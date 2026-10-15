@@ -1,0 +1,10 @@
+{
+  "title": "A Local AI Video Studio",
+  "source_urls": [],
+  "scenes": [
+    {"heading":"One idea, clearly told.","narration":"Can your Mac turn a fresh idea into a polished video? Here is the workflow.","caption":"Can your Mac turn a fresh idea into a polished video? Here is the workflow.","visual":"cards","points":["Choose a useful topic","Shape a clear story","Bring it to life"]},
+    {"heading":"Start with a strong source.","narration":"Public feeds surface recent stories, and a local model turns one into a concise script.","caption":"Public feeds surface recent stories, and a local model turns one into a concise script.","visual":"flow","points":["Find a timely idea","Keep claims grounded","Write for the ear"]},
+    {"heading":"Give the story a voice.","narration":"Kokoro creates the narration, then Remotion brings each scene and caption onto the screen.","caption":"Kokoro creates the narration, then Remotion brings each scene and caption onto the screen.","visual":"terminal","points":["Natural narration","Animated scenes","Word-synced captions"]},
+    {"heading":"Review before you publish.","narration":"Check the facts, listen for pronunciation, and make sure every caption matches the spoken words.","caption":"Check the facts, listen for pronunciation, and make sure every caption matches the spoken words.","visual":"meter","points":["Verify the source","Listen to the voice","Check every caption"]}
+  ]
+}

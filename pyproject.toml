@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-video-mcp"
+version = "0.1.0"
+description = "Local English explainer video production over MCP"
+requires-python = ">=3.12,<3.13"
+dependencies = ["mcp>=1.12,<2", "pydantic>=2,<3", "httpx", "feedparser", "kokoro", "soundfile"]
+
+[project.scripts]
+local-video-mcp = "video_mcp.server:main"
+local-video = "video_mcp.engine:main"
+
+[tool.setuptools.packages.find]
+include = ["video_mcp*"]

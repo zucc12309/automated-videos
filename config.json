@@ -1,0 +1,76 @@
+{
+  "model": "qwen2.5:14b",
+  "voice": "am_adam",
+  "tts_language_code": "a",
+  "niche": "Claude Code hacks, Codex skills, AI coding agents, MCP, and AI startups",
+  "keywords": [
+    "Claude",
+    "Anthropic",
+    "Codex",
+    "OpenAI",
+    "agent",
+    "agents",
+    "MCP",
+    "coding",
+    "LLM",
+    "startup",
+    "YC",
+    "vibe coding",
+    "Cursor",
+    "AI"
+  ],
+  "feeds": [
+    "https://simonwillison.net/atom/everything/",
+    "https://hnrss.org/frontpage?q=Claude+OR+Codex+OR+Anthropic+OR+agent+OR+MCP+OR+LLM",
+    "https://techcrunch.com/category/artificial-intelligence/feed/",
+    "https://github.blog/feed/",
+    "https://huggingface.co/blog/feed.xml"
+  ],
+  "max_age_days": 7,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "styles": [
+    "studio"
+  ],
+  "brand": "FIELDNOTES",
+  "voice_speed": 1.05,
+  "music": true,
+  "formats": [
+    "roundup",
+    "story"
+  ],
+  "story_points": 4,
+  "roundup_size": 4,
+  "repo_max_age_days": 120,
+  "repo_themes": [
+    {
+      "name": "Claude Code repos you should install",
+      "query": "claude code in:name,description,topics",
+      "series": "REPOS",
+      "min_stars": 150,
+      "must": "claude[- ]?code|claude"
+    },
+    {
+      "name": "Codex and agent skills worth stealing",
+      "query": "skills codex OR claude in:name,description",
+      "series": "SKILLS",
+      "min_stars": 100,
+      "must": "skill"
+    },
+    {
+      "name": "MCP servers that give your AI superpowers",
+      "query": "topic:mcp-server",
+      "series": "SERVERS",
+      "min_stars": 200,
+      "must": "\\bmcp\\b|model context protocol"
+    },
+    {
+      "name": "open-source AI agent repos blowing up",
+      "query": "topic:ai-agents",
+      "series": "REPOS",
+      "min_stars": 300,
+      "must": "agent"
+    }
+  ]
+}
