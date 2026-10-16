@@ -24,9 +24,10 @@
    "kokoro_strength": 0.5
   },
   "scene_tail_s": {
-   "default": 0.4,
-   "demonstration": 0.62,
-   "pause": 0.62
+   "default": 0.3,
+   "demonstration": 0.45,
+   "pause": 0.62,
+   "note": "Silence after each scene's narration; calibrated so scene-boundary pauses match Reference A's median pause. The CTA ('pause' pace) keeps a longer beat."
   },
   "music": {
    "style": "warm_pad",

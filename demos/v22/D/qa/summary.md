@@ -20,7 +20,7 @@
 - PASS `resolution` — 1080x1920 (want 1080x1920)
 - PASS `aspect_ratio` — 9:16
 - PASS `frame_rate` — 30.000 fps (want 30)
-- PASS `duration` — 26.28s (expected 26.23s)
+- PASS `duration` — 25.28s (expected 25.23s)
 - PASS `audio_present` — aac 48000
 - PASS `decode_integrity` — clean full decode
 - PASS `black_frames` — none
@@ -34,8 +34,8 @@
 ## Audio
 
 - PASS `loudness` — -14.1 LUFS (target -14.0 ±2) (deterministic)
-- PASS `true_peak` — -1.7 dBTP (limit -0.5) (deterministic)
-- PASS `clipping` — true peak -1.7 dBTP (deterministic)
+- PASS `true_peak` — -1.8 dBTP (limit -0.5) (deterministic)
+- PASS `clipping` — true peak -1.8 dBTP (deterministic)
 - PASS `scene_001_caption_sync` — {'covered_speech': 0.865, 'inside_ratio': 0.951} via energy_snapped (heuristic)
 - FAIL `scene_002_caption_sync` — {'covered_speech': 0.786, 'inside_ratio': 0.818} via energy_snapped (heuristic)
 - PASS `scene_003_caption_sync` — {'covered_speech': 0.896, 'inside_ratio': 0.834} via energy_snapped (heuristic)

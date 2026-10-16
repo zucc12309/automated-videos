@@ -4,7 +4,7 @@
     "provider": "claude-code-interactive",
     "used": true,
     "note": "storyboard supplied by caller",
-    "at": 1792148109.146925
+    "at": 1792148524.2719777
   },
   {
     "stage": "cinematic",
@@ -13,7 +13,7 @@
     "cached": true,
     "provider": "mock",
     "mock": true,
-    "at": 1792148109.1580956
+    "at": 1792148524.278043
   },
   {
     "stage": "cinematic",
@@ -22,25 +22,25 @@
     "cached": true,
     "provider": "mock",
     "mock": true,
-    "at": 1792148109.1597056
+    "at": 1792148524.278865
   },
   {
     "stage": "narration",
     "engine": "kokoro_onnx",
     "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
-    "at": 1792148109.1664326
+    "at": 1792148524.369798
   },
   {
     "stage": "music",
     "style": "warm_pad",
-    "gain_db": -1.08,
+    "gain_db": -0.92,
     "basis": "reference bed level",
-    "at": 1792148122.2638845
+    "at": 1792148538.21027
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 13.96,
-    "at": 1792148122.3845134
+    "memory_available_gb": 13.57,
+    "at": 1792148538.333277
   }
 ]

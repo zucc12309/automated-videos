@@ -48,7 +48,7 @@
   "Music licensing (procedural bed is generated locally)"
  ],
  "estimated_caption_timing": true,
- "contact_sheet": "/home/user/automated-videos/data/jobs/72b13ce5dd8b/qa/contact_sheet.jpg",
+ "contact_sheet": "/home/user/automated-videos/data/jobs/729055280714/qa/contact_sheet.jpg",
  "reference_style": {
   "ground_colour": true,
   "luminance": true,
@@ -61,7 +61,7 @@
   "music_bed_warmth": true,
   "voice_pitch": true,
   "speech_share": true,
-  "pause_length": false,
+  "pause_length": true,
   "voice_tone": true
  }
 }

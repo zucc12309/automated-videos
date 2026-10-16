@@ -32,7 +32,7 @@
   {
    "check": "duration",
    "passed": true,
-   "detail": "26.28s (expected 26.23s)",
+   "detail": "25.28s (expected 25.23s)",
    "mandatory": true,
    "basis": "deterministic"
   },
@@ -72,7 +72,7 @@
    "basis": "deterministic"
   }
  ],
- "duration_seconds": 26.282,
+ "duration_seconds": 25.28,
  "black_segments": [],
  "freeze_segments": [],
  "silence_segments": [],
