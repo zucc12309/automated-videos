@@ -224,165 +224,165 @@
    "stage_std": 58.42
   },
   {
-   "t": 2.417,
+   "t": 2.333,
    "kind": "scene_mid",
    "scene": "scene_001",
    "mean_luma": 43.3,
-   "stage_std": 58.93
+   "stage_std": 58.94
   },
   {
-   "t": 4.633,
+   "t": 4.467,
    "kind": "scene_exit",
    "scene": "scene_001",
    "mean_luma": 43.5,
-   "stage_std": 59.43
+   "stage_std": 59.45
   },
   {
-   "t": 4.983,
+   "t": 4.817,
    "kind": "scene_entrance",
    "scene": "scene_002",
    "mean_luma": 33.7,
-   "stage_std": 68.31
+   "stage_std": 68.23
   },
   {
-   "t": 7.717,
+   "t": 7.467,
    "kind": "scene_mid",
    "scene": "scene_002",
-   "mean_luma": 25.2,
-   "stage_std": 61.25
+   "mean_luma": 26.6,
+   "stage_std": 62.28
   },
   {
-   "t": 10.4,
+   "t": 10.067,
    "kind": "scene_exit",
    "scene": "scene_002",
-   "mean_luma": 26.3,
-   "stage_std": 62.72
+   "mean_luma": 26.2,
+   "stage_std": 62.77
   },
   {
-   "t": 10.75,
+   "t": 10.417,
    "kind": "scene_entrance",
    "scene": "scene_003",
-   "mean_luma": 22.6,
-   "stage_std": 24.98
+   "mean_luma": 22.5,
+   "stage_std": 24.96
   },
   {
-   "t": 13.367,
+   "t": 12.983,
    "kind": "scene_mid",
    "scene": "scene_003",
    "mean_luma": 24.4,
    "stage_std": 40.88
   },
   {
-   "t": 15.933,
+   "t": 15.5,
    "kind": "scene_exit",
    "scene": "scene_003",
    "mean_luma": 24.5,
    "stage_std": 41.2
   },
   {
-   "t": 16.283,
+   "t": 15.85,
    "kind": "scene_entrance",
    "scene": "scene_004",
    "mean_luma": 21.4,
    "stage_std": 15.17
   },
   {
-   "t": 19.15,
+   "t": 18.617,
    "kind": "scene_mid",
    "scene": "scene_004",
-   "mean_luma": 21.3,
-   "stage_std": 17.84
+   "mean_luma": 22.9,
+   "stage_std": 25.4
   },
   {
-   "t": 21.967,
+   "t": 21.333,
    "kind": "scene_exit",
    "scene": "scene_004",
    "mean_luma": 22.3,
    "stage_std": 18.2
   },
   {
-   "t": 22.317,
+   "t": 21.683,
    "kind": "scene_entrance",
    "scene": "scene_005",
    "mean_luma": 21.2,
-   "stage_std": 13.11
+   "stage_std": 13.08
   },
   {
-   "t": 25.433,
+   "t": 24.667,
    "kind": "scene_mid",
    "scene": "scene_005",
    "mean_luma": 25.6,
-   "stage_std": 49.15
+   "stage_std": 49.17
   },
   {
-   "t": 28.5,
+   "t": 27.6,
    "kind": "scene_exit",
    "scene": "scene_005",
    "mean_luma": 26.8,
-   "stage_std": 51.19
+   "stage_std": 51.17
   },
   {
-   "t": 28.85,
+   "t": 27.95,
    "kind": "scene_entrance",
    "scene": "scene_006",
-   "mean_luma": 26.7,
-   "stage_std": 38.06
+   "mean_luma": 26.6,
+   "stage_std": 38.07
   },
   {
-   "t": 31.2,
+   "t": 30.25,
    "kind": "scene_mid",
    "scene": "scene_006",
-   "mean_luma": 25.5,
-   "stage_std": 26.78
+   "mean_luma": 25.4,
+   "stage_std": 26.81
   },
   {
-   "t": 31.293,
+   "t": 30.393,
    "kind": "beat_boundary",
    "scene": "scene_006",
    "mean_luma": 25.7,
    "stage_std": 19.2
   },
   {
-   "t": 33.5,
+   "t": 32.5,
    "kind": "scene_exit",
    "scene": "scene_006",
    "mean_luma": 29.3,
-   "stage_std": 39.15
+   "stage_std": 39.13
   },
   {
-   "t": 33.85,
+   "t": 32.85,
    "kind": "scene_entrance",
    "scene": "scene_007",
    "mean_luma": 28.0,
-   "stage_std": 29.93
+   "stage_std": 29.95
   },
   {
-   "t": 35.167,
+   "t": 34.133,
    "kind": "scene_mid",
    "scene": "scene_007",
    "mean_luma": 29.2,
-   "stage_std": 60.23
+   "stage_std": 60.26
   },
   {
-   "t": 35.733,
+   "t": 34.667,
    "kind": "beat_boundary",
    "scene": "scene_007",
-   "mean_luma": 32.2,
-   "stage_std": 58.59
+   "mean_luma": 34.2,
+   "stage_std": 58.6
   },
   {
-   "t": 36.433,
+   "t": 35.367,
    "kind": "scene_exit",
    "scene": "scene_007",
-   "mean_luma": 40.7,
-   "stage_std": 59.27
+   "mean_luma": 39.5,
+   "stage_std": 59.33
   },
   {
-   "t": 36.533,
+   "t": 35.467,
    "kind": "final_frame",
    "scene": "",
-   "mean_luma": 36.5,
-   "stage_std": 59.37
+   "mean_luma": 35.1,
+   "stage_std": 59.44
   }
  ],
  "issues": [],
@@ -397,5 +397,5 @@
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/f4e65d0c42a4/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/41a14bee4d0f/qa/contact_sheet.jpg"
 }

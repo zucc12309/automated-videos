@@ -88,12 +88,12 @@ Unit tests did not catch any of these. All came from inspecting frames, and each
 
 Measured values from each demo's `summary.json`, `qa/summary.json` and `costs.json`.
 
-| Demo | Topic | Mode | CTA | Duration | Wall time | QA issues | Brand checks | Reference style (ground / luma / change rate) | Spend |
-|---|---|---|---|---|---|---|---|---|---|
-| A | 4 Claude Code repos (roundup) | local | LINK | 36.9 s | 184.4 s | 0 | 100 | pass / pass / pass | $0 |
-| B | Vibe prompt before/after | local | PROMPT | 25.9 s | 275.0 s | 0 | 100 | pass / pass / pass | $0 |
-| C | MCP architecture | local | GUIDE | 36.5 s | 180.5 s | 0 | 100 | pass / pass / pass | $0 |
-| D | Future of AI-assisted development | hybrid (MOCK cinematic) | GUIDE | 26.7 s | 160.1 s | 0 | 100 | pass / pass / pass | $0 |
+| Demo | Topic | Mode | CTA | Duration | Wall time | QA issues | Brand checks | Reference style | Reference audio (8 checks) | Voice | Spend |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| A | 4 Claude Code repos (roundup) | local | LINK | 36.3 s | 201.0 s | 0 | 100 | 3/3 pass | 8/8 pass (F0 122.1 Hz, pause 0.26 s, -14.1 LUFS) | Kokoro am_adam (ONNX) | $0 |
+| B | Vibe prompt before/after | local | PROMPT | 22.7 s | 247.5 s | 0 | 100 | 3/3 pass | 8/8 pass (F0 129.0 Hz, pause 0.31 s, -14.0 LUFS) | Kokoro am_adam (ONNX) | $0 |
+| C | MCP architecture | local | GUIDE | 35.6 s | 199.6 s | 0 | 100 | 3/3 pass | 8/8 pass (F0 123.1 Hz, pause 0.31 s, -14.1 LUFS) | Kokoro am_adam (ONNX) | $0 |
+| D | Future of AI-assisted development | hybrid (MOCK cinematic) | GUIDE | 25.2 s | 157.6 s | 0 | 100 | 3/3 pass | 8/8 pass (F0 123.1 Hz, pause 0.36 s, -14.1 LUFS) | Kokoro am_adam (ONNX) | $0 |
 
 Notes on the table:
 

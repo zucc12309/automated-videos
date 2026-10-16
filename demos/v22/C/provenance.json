@@ -8,7 +8,7 @@
       "url": "https://modelcontextprotocol.io/docs/learn/architecture",
       "title": "Model Context Protocol: architecture overview",
       "kind": "article",
-      "retrieved_at": 1792147912.8642535
+      "retrieved_at": 1792149145.317209
     }
   ],
   "claims": [
@@ -67,26 +67,26 @@
       "provider": "supplied",
       "used": true,
       "note": "storyboard supplied by caller",
-      "at": 1792147912.8694298
+      "at": 1792149145.319884
     },
     {
       "stage": "narration",
       "engine": "kokoro_onnx",
       "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
-      "at": 1792147912.9591267
+      "at": 1792149145.3260663
     },
     {
       "stage": "music",
       "style": "warm_pad",
-      "gain_db": -0.74,
+      "gain_db": -1.77,
       "basis": "reference bed level",
-      "at": 1792147931.4769266
+      "at": 1792149164.6590755
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 13.98,
-      "at": 1792147931.65299
+      "memory_available_gb": 13.44,
+      "at": 1792149164.7807472
     }
   ],
   "model": "qwen2.5:14b",
@@ -104,8 +104,8 @@
   "variant": {
     "seed": "v22-C",
     "palette": "",
-    "background": "mesh",
-    "temperament": "smooth",
+    "background": "grid",
+    "temperament": "snappy",
     "captions": "bold",
     "transitions": [
       "cut",
@@ -115,8 +115,8 @@
     "outfit": "#2f3b52",
     "hair": "#a16207",
     "music": {
-      "progression": 2,
-      "bpm": 100
+      "progression": 3,
+      "bpm": 84
     },
     "camera": 0.8,
     "theme": "fieldnotes-premium",
@@ -137,6 +137,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792148106.7827132,
+  "created_at": 1792149342.7298396,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }
