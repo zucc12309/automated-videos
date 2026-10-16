@@ -1,6 +1,8 @@
 # GTA VI police system · evidence report (draft, 2026-10-16)
 
-Status: **research from search-engine summaries only.** The build environment's network policy blocks rockstargames.com, YouTube, IGN and the coverage sites, so no article or video was opened directly and **no timestamp below has been checked against the footage**. Every row must be re-verified against the official video before publishing.
+Status (update 2): pages for SVG, Beebom, Sole Retriever, Postmode, GTAVice and Yahoo were fetched and read directly (`data/gta6/pages/`, git-ignored). IGN itself is not reachable; its interview is quoted through SVG. The official video is on Rockstar's own channel (youtube.com/watch?v=tJbzMqJGH4k, "Grand Theft Auto VI: An Extended Look", 26:49, channel UC6VcWc1rAoWdBCM0JxrRQ3A), but it is age-restricted and YouTube asks this server to sign in, so the footage is not yet in hand.
+
+Original status: **research from search-engine summaries only.** The build environment's network policy blocks rockstargames.com, YouTube, IGN and the coverage sites, so no article or video was opened directly and **no timestamp below has been checked against the footage**. Every row must be re-verified against the official video before publishing.
 
 ## Primary source (official)
 
@@ -49,3 +51,14 @@ Hook choice: **B** ("GTA 6 might track more than just your wanted level") is sup
 - Red Bull, Extended Look details: https://www.redbull.com/us-en/gta-6-extended-look-everything-revealed
 - Beebom, wanted system: https://beebom.com/gta-6-wanted-system-explained/
 - Tech2Geek: https://www.tech2geek.net/gta-6-police-explained-how-the-new-wanted-system-works/
+
+
+## Verified on the fetched pages (update 2)
+
+- **SVG** (Joe Roberts, Aug 2026): "IGN was given some insight into the "GTA 6" Wanted system by Rockstar North co-head Rob Nelson". Nelson: "Changing your hair will change your appearance … But the police will still know what you are wearing". "several red icons which now sit below the star-level on the HUD and inform players what information the police have." The Extended Look "did reveal these new icons, which include avatars of two people, a single person, a clothes hanger, and a car." According to IGN, the single person means the cops know your physical description, the hanger what you're wearing, and the camera that police have CCTV footage. Nelson to IGN: "The Wanted system in 'GTA 6' requires that someone witness the crime, or an alarm needs to be set off for it to be reported to the law." There is also a "hollow" star (police know a crime happened but have no information), and a wanted area where the level comes back if you return.
+- **Postmode** (Jordan Oloman, 28 Aug 2026): IGN's Matt Purslow lists three icons under the wanted level (silhouette, clothes hanger, camera). "There are even more in the Extended Look, bringing the total to six, including a silhouette of a duo, a car icon, and a weapon icon."
+- **Sole Retriever**: during a robbery in the Extended Look, "in the corner … there is a camera icon, a clothes hanger, a weapon, and two circles with a silhouette of a person"; stars change colour; a second sequence has Lucia leaving the robbed store.
+- **Beebom**: Nelson "confirms that police can know what a character looks like, what they are wearing, what vehicle they are using, and whether Jason and Lucia are together"; "red icons underneath the wanted stars".
+- **Engadget** (fetched): "six stars in the upper-right of the screen" during the chase.
+
+Upgrades in confidence: #2 icons → OBSERVED in the official video by several outlets, with meanings CONFIRMED by Nelson via IGN for appearance, clothing, CCTV and duo; #6 CCTV → CONFIRMED icon meaning (via IGN); #7 hollow stars → CONFIRMED via IGN (SVG). Masks stay SPECULATIVE (Beebom lists them, with no quote).
