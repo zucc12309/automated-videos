@@ -39,9 +39,28 @@ then compared against the reference, and the result is written to `qa/audio_prof
 | Voice tone (bands vs. total) | low −4.1 / mid −2.8 / presence −12.7 / air −16.7 dB | low −7.4, presence −10.8 | within 0.5 dB | adaptive matching EQ per narration (±6 dB clamp) |
 | Pauses / speech share | 0.32 s median, 66% speech | 0.19 s, 80% | about 0.33 s, about 64% | espeak phrase pauses + scene tails from the profile |
 
-**Not matched: the voice's timbre.** Reference A is Kokoro `am_adam`. On your Mac, Kokoro `am_adam` produces that timbre itself, and the
-profile then only sets the mix, the EQ trim, the bed and mastering. In this container the espeak fallback now has the reference's pitch,
-range, pacing and tonal balance, but it still sounds synthetic. No measurement here can make espeak sound like Kokoro.
+The table above was measured with the espeak fallback.
+
+**The voice is now Kokoro `am_adam` itself** (your follow-up "download the same from kokoro"):
+
+- **Source.** Hugging Face is blocked in this container. The Kokoro v1.0 weights and voice pack, an ONNX conversion of
+  `hexgrad/Kokoro-82M` that includes `am_adam`, were downloaded from the `kokoro-onnx` GitHub release:
+
+  | File | Size | SHA-256 |
+  |---|---|---|
+  | `kokoro-v1.0.onnx` | 325 MB | `7d5df8ec…` |
+  | `voices-v1.0.bin` | 28 MB | `bca610b8…` |
+
+  `scripts/fetch_kokoro_onnx.sh` repeats the download and checks both checksums. The files are stored in `data/models/kokoro-onnx/`
+  (gitignored).
+- **Runtime.** `kokoro-onnx==0.6.1` from PyPI (`requirements-kokoro-onnx.txt`).
+- **Engine selection.** `tts.available_engine` picks, in order: Kokoro (PyTorch, your Mac) → Kokoro ONNX → espeak. Provenance records
+  which one ran.
+- **Same voice, different runtime.** Same voice and speed (1.05); one synthesis call per sentence. The ONNX runtime returns no word
+  timestamps, so caption timings inside a sentence are estimated and energy-snapped; sentence boundaries are exact.
+- **Match on demo B, before the final trim.** Kokoro passes all eight reference audio checks: pitch 124 Hz (reference 118.5), speech
+  share 67% (66%), bed 22.7 dB under the voice (22.2), loudness −14.0 LUFS. The tone EQ now runs at half strength for Kokoro, because it
+  is already the reference voice.
 
 ## Problems found by looking at the renders, and fixed
 
@@ -111,10 +130,10 @@ The MP4 is kept locally (`*.mp4` is gitignored); regenerate it with `examples/de
 
 ## Limitations (stated plainly)
 
-- **Voice.** Reference A's voice measures as Kokoro `am_adam` (male, F0 ≈ 121 Hz). It is pinned in `brand/voice.json` and is the
-  config voice on your Mac. This container cannot load Kokoro weights: Hugging Face is blocked, and a third-party npm mirror was
-  refused as untrusted. So the demo renders here use the espeak-ng fallback and sound robotic. Rendering on the Mac uses `am_adam`
-  automatically. To get Kokoro here, provide the weights through a source you trust, or approve that mirror explicitly.
+- **Voice.** The demos use Kokoro `am_adam` through ONNX (see above). It is the same voice as Reference A, but not byte-identical:
+  the runtime differs from the Mac's PyTorch `kokoro`, sentences are synthesised one at a time, and in-sentence caption timings are
+  estimated rather than taken from Kokoro's timestamps. The weights come from a community ONNX conversion. Hugging Face itself was
+  unreachable here, so they could not be compared byte-for-byte with the upstream PyTorch files.
 - **Mac renderer.** The FIELDNOTES renderer that produced Reference A is not in git. V2.2 reconstructs it from the video. It matches on
   the measured statistics (ground colour, luminance, change rate) and passes a visual check of the character sheet, but it is not
   identical code. Push the Mac files (steps in the audit) for an exact merge.

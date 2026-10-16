@@ -1,0 +1,6 @@
+# Optional: Kokoro voices through onnxruntime (used when the PyTorch `kokoro` package is not installed).
+# Model files: scripts/fetch_kokoro_onnx.sh
+kokoro-onnx==0.6.1
+onnxruntime==1.31.0
+phonemizer==3.4.0
+espeakng-loader==0.2.4

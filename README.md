@@ -146,6 +146,7 @@ plans, logs or reports.
 | Ollama | https://github.com/ollama/ollama | MIT; local model runtime |
 | Qwen2.5 | https://huggingface.co/Qwen/Qwen2.5-14B-Instruct | Apache 2.0; script model |
 | Kokoro | https://github.com/hexgrad/kokoro | Apache 2.0; local speech |
+| kokoro-onnx (optional) | https://github.com/thewh1teagle/kokoro-onnx | MIT; Kokoro v1.0 via onnxruntime (`scripts/fetch_kokoro_onnx.sh`); pulls phonemizer (GPL-3.0) |
 | espeak-ng | https://github.com/espeak-ng/espeak-ng | GPL-3.0; fallback speech (invoked as a separate program) |
 | Remotion | https://github.com/remotion-dev/remotion | Special license; free eligibility depends on usage/team |
 | FFmpeg | https://ffmpeg.org | LGPL/GPL depending on build |
@@ -162,6 +163,7 @@ python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.lock.txt
 .venv/bin/pip install -r requirements-claude.lock.txt     # optional: CLAUDE/HYBRID
 .venv/bin/pip install -e . --no-deps
+.venv/bin/pip install -r requirements-kokoro-onnx.txt && scripts/fetch_kokoro_onnx.sh   # optional: Kokoro without PyTorch
 npm ci
 brew install ffmpeg espeak-ng ollama
 node_modules/.bin/remotion browser ensure
