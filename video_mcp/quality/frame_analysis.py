@@ -86,13 +86,14 @@ def layout_checks(props: dict) -> dict:
             ratio = contrast(palette[role], palette["bg"])
             add(f"contrast_{role}", ratio >= minimum, f"{theme_name} {role}/bg {ratio}:1 (min {minimum})", kind="contrast")
         add("contrast_surface", contrast(palette["ink"], palette["surface"]) >= 4.5, f"ink/surface {contrast(palette['ink'], palette['surface'])}:1", kind="contrast")
+    premium = props.get("style") == "premium"
     order = []
     for scene in props["scenes"]:
         sid = scene.get("id") or f"scene_{props['scenes'].index(scene) + 1:03d}"
         for beat in scene.get("beats", []):
             layout = beat.get("layout", "")
             order.append(layout)
-            for field, limit, px in LAYOUT_TEXT.get(layout, []):
+            for field, limit, px in ([] if premium else LAYOUT_TEXT.get(layout, [])):
                 for text in _texts(layout, field, scene, beat):
                     if len(text) > limit:
                         add("text_fits", False, f"{layout}.{field} '{text[:40]}' is {len(text)} chars > {limit} (will be clipped)", sid, kind="overflow",
@@ -103,7 +104,7 @@ def layout_checks(props: dict) -> dict:
                 longest = max((len(x) for x in (scene.get("visualData") or {}).get("code") or [""]), default=0)
                 font = min(40, 720 / (.6 * max(1, longest)))
                 add("code_font_size", font >= 28, f"longest line {longest} chars -> {font:.0f}px", sid, kind="tiny_text")
-            if beat.get("anchor") == "center" and layout not in ("mascotCloseup",) and scene.get("character", True):
+            if not premium and beat.get("anchor") == "center" and layout not in ("mascotCloseup",) and scene.get("character", True):
                 add("presenter_occlusion", False, f"presenter centred over {layout}", sid, kind="occlusion")
             items = sum(1 for x in props["scenes"] if x.get("item", 0) > 0)
             if layout in ("hookStack", "recap") and items < 2:
@@ -115,7 +116,14 @@ def layout_checks(props: dict) -> dict:
         words = scene.get("words") or []
         longest_chunk = max((sum(len(w["w"]) + 1 for w in words[i:i + 4]) for i in range(0, max(1, len(words)), 4)), default=0)
         caption_lines = 1 + int(longest_chunk * .55 * 70 / (SAFE["right"] - SAFE["left"]))
-        add("caption_band", caption_lines <= 2, f"longest caption chunk ~{caption_lines} line(s)", sid, kind="caption")
+        if not premium:
+            add("caption_band", caption_lines <= 2, f"longest caption chunk ~{caption_lines} line(s)", sid, kind="caption")
+    if premium:      # FIELDNOTES renderer: its own type scale, character staging, CTA and pacing checks
+        from . import premium_checks
+        for row in premium_checks.checks(props):
+            checks.append(row)
+            if not row["passed"]:
+                issues.append(row)
     repeats = sum(1 for a, b in zip(order, order[1:]) if a == b)
     add("no_back_to_back_layouts", repeats == 0, f"{repeats} repeat(s)", kind="repetition")
     distinct = len(set(order))

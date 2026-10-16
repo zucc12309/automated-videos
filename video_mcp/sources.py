@@ -122,3 +122,17 @@ def stories(cfg: dict, used_ids: set[str]) -> tuple[list[dict], list[dict]]:
                 errors.append({"source": url, "error": str(exc)})
     results.sort(key=lambda x: (x["score"], x["published"]), reverse=True)
     return results, errors
+
+
+def vibe_topics(used_ids: set[str]) -> list[dict]:
+    """Unused tips from the curated vibe-coding library (editorial guidance; no network)."""
+    import json
+    from pathlib import Path
+    lib = json.loads((Path(__file__).parent / "content" / "vibe_library.json").read_text())
+    out = []
+    for tip in lib["tips"]:
+        if tip["id"] in used_ids:
+            continue
+        out.append({**tip, "kind": "vibe_coding", "summary": tip["notes"], "url": lib["sources"].get(tip.get("source", ""), ""),
+                    "series": "BUILD SMARTER", "published": time.time(), "score": 6})
+    return out

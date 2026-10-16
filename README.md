@@ -19,6 +19,13 @@ Docs: [Architecture](docs/ARCHITECTURE_V2.md) · [Claude](docs/CLAUDE_INTEGRATIO
 [Autopilot](docs/AUTOPILOT_V2.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Audit](reports/HYBRID_VIDEO_V2_AUDIT.md) ·
 [Implementation report](reports/HYBRID_VIDEO_V2_IMPLEMENTATION.md)
 
+**V2.2 (default look): FIELDNOTES premium.** Every reel uses the same premium publication frame and the same animated
+character, with a scored frame-0 hook and a contextual, truthful CTA (Comment LINK / PROMPT / GUIDE / CODE / TOOLS)
+that comes with ready-to-send resources. Docs: [Premium design system](docs/PREMIUM_DESIGN_SYSTEM.md) ·
+[Character](docs/CHARACTER_IDENTITY.md) · [Formats](docs/CONTENT_FORMATS.md) · [CTA & resources](docs/CTA_RESOURCE_WORKFLOW.md) ·
+[Gap audit](reports/V22_VISUAL_GAP_AUDIT.md) · [V2.2 report](reports/V22_IMPLEMENTATION_REPORT.md). Brand package: `brand/`.
+Demos: `examples/demos/v22/run_demo.py A|B|C|D` → `demos/v22/<X>/`.
+
 ## Installed on this Mac
 
 - MCP name: `local-video`; launcher `/Users/priyanshupatel/Downloads/VIDEOS/local-video-mcp/run-server.sh` (loads an optional `.env`)
@@ -79,6 +86,11 @@ npm run typecheck     # strict TypeScript check
 
 ## Content and visuals
 
+* **V2.2 premium renderer** (`src/premium/`, default `production.style: "premium"`): FIELDNOTES masthead + counter +
+  hairline, kinetic top headline with serif selection-box emphasis, one centred object per beat, blur/expand/focus/push
+  transitions chosen by a visual director, and the recurring character staged per beat (`brand/character/identity.json`).
+  `production.style: "studio"` keeps the V2 renderer below.
+* **`vibe_coding` format**: curated prompt before/after tips (`video_mcp/content/vibe_library.json`) → PROMPT CTA.
 * **Formats**: `roundup` (GitHub repos; names, descriptions and star counts on screen come from the API) and `story`
   (full article text), alternating per `formats`; plus manual topics and supplied storyboards.
 * **Storyboard v2** (`video_mcp/schemas/storyboard.py`): creative direction, sources, claims, scenes with intent, pace,

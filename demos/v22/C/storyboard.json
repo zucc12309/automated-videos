@@ -1,0 +1,573 @@
+{
+  "schema_version": "2.0",
+  "video_id": "b929f1232f48",
+  "title": "How MCP connects agents to your tools",
+  "format": "story",
+  "duration_target_seconds": 40.0,
+  "aspect_ratio": "9:16",
+  "series": "AGENTS",
+  "creative_direction": {
+    "audience": "developers using coding agents",
+    "core_message": "MCP gives an agent a standard way to reach tools and data: host, client, server, JSON-RPC.",
+    "viewer_benefit": "Understand what happens when you add an MCP server.",
+    "hook": "Your AI agent only knows the tools you plug in.",
+    "tone": "bold editorial",
+    "pacing": "dynamic",
+    "theme": "fieldnotes-premium",
+    "visual_identity": "FIELDNOTES premium",
+    "sound_design": "impact on hook, ticks, chime on CTA",
+    "call_to_action": "Comment GUIDE",
+    "character": "on"
+  },
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+      "title": "Model Context Protocol: architecture overview",
+      "kind": "article",
+      "retrieved_at": 1792142442.2022703
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "MCP uses a client-server architecture: a host application creates one MCP client per MCP server.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "MCP servers expose tools, resources and prompts.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c3",
+      "text": "MCP messages use JSON-RPC 2.0.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "unverified",
+      "note": "automatic check found no source wording support (overlap 0.333)"
+    },
+    {
+      "id": "c4",
+      "text": "Local servers commonly use the stdio transport; remote servers use Streamable HTTP.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c5",
+      "text": "One rule: only connect servers you trust, because their tools act with your permissions.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.889)"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene_001",
+      "role": "hook",
+      "narration": "Your AI agent only knows the tools you plug in. MCP is the plug.",
+      "heading": "MCP is how agents get tools",
+      "points": [],
+      "emphasis": "MCP",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "hook",
+      "render_engine": "remotion",
+      "layout": "hookBold",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "emphasis",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_002",
+      "role": "body",
+      "narration": "The host app, like Claude Code, creates one MCP client for every server it connects to.",
+      "heading": "One client per server",
+      "points": [
+        "GitHub server",
+        "Database server",
+        "Files server"
+      ],
+      "emphasis": "one MCP client",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "architecture",
+      "render_engine": "remotion",
+      "layout": "nodeGraph",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c1"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_003",
+      "role": "body",
+      "narration": "Each server exposes three things: tools to call, resources to read, and prompts to reuse.",
+      "heading": "Tools, resources, prompts",
+      "points": [
+        "Tools: actions",
+        "Resources: context",
+        "Prompts: templates"
+      ],
+      "emphasis": "three things",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "list",
+      "render_engine": "remotion",
+      "layout": "steps",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c2"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [
+          "Tools: actions the model can call",
+          "Resources: data it can read",
+          "Prompts: reusable templates"
+        ],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_004",
+      "role": "body",
+      "narration": "Under the hood, every request is a JSON-RPC message: a method, parameters, and an ID.",
+      "heading": "It's just JSON-RPC",
+      "points": [],
+      "emphasis": "JSON-RPC",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "code",
+      "render_engine": "remotion",
+      "layout": "codeBlock",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c3"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [
+          "{ \"jsonrpc\": \"2.0\",",
+          "  \"id\": 7,",
+          "  \"method\": \"tools/call\",",
+          "  \"params\": {",
+          "    \"name\": \"search_issues\",",
+          "    \"arguments\": {\"q\": \"bug\"} } }"
+        ],
+        "code_language": "json",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_005",
+      "role": "body",
+      "narration": "Local servers usually talk over standard input and output. Remote servers use streamable HTTP.",
+      "heading": "Two transports",
+      "points": [],
+      "emphasis": "streamable HTTP",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "api_flow",
+      "render_engine": "remotion",
+      "layout": "flowDiagram",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c4"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [
+          "Claude Code",
+          "MCP client",
+          "stdio or HTTP",
+          "MCP server",
+          "Your tool"
+        ],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_006",
+      "role": "body",
+      "narration": "One rule: only connect servers you trust, because their tools act with your permissions.",
+      "heading": "Only trust servers you'd run",
+      "points": [],
+      "emphasis": "trust",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "warning",
+      "render_engine": "remotion",
+      "layout": "warningCard",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c5"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_007",
+      "role": "outro",
+      "narration": "Want the step-by-step? Comment GUIDE.",
+      "heading": "Comment GUIDE",
+      "points": [],
+      "emphasis": "GUIDE",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "recap",
+      "render_engine": "remotion",
+      "layout": "outroCTA",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "pause",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "pointing",
+      "cta": {
+        "keyword": "GUIDE",
+        "secondary": "Get the step-by-step guide",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    }
+  ],
+  "repos": [],
+  "director": {
+    "supplied": true
+  },
+  "seed": "v22-C",
+  "hook_candidates": [
+    {
+      "text": "How MCP connects agents to your tools.",
+      "score": 4.01,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 0.8,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "0 things to know about How MCP connects agents to your tools.",
+      "score": 3.83,
+      "parts": {
+        "clarity": 0.55,
+        "specificity": 1.0,
+        "relevance": 0.8,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "Your AI agent only knows the tools you plug in. MCP is the plug.",
+      "score": 3.16,
+      "parts": {
+        "clarity": 0.25,
+        "specificity": 0.55,
+        "relevance": 1.0,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": [],
+      "origin": "director"
+    },
+    {
+      "text": "This changes how you use MCP.",
+      "score": 3.11,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.35,
+        "relevance": 0.4,
+        "curiosity": 0.9,
+        "visual_potential": 0.4,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    }
+  ],
+  "cta": {
+    "keyword": "GUIDE",
+    "secondary": "Get the step-by-step guide",
+    "narration": "Want the step-by-step? Comment GUIDE.",
+    "series_label": "AGENT FILES",
+    "content_type": "agents",
+    "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+    "dm_promised": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+ "source": "Reference A (FIELDNOTES reel supplied by the owner)",
+ "motion_mean_diff": 1.29,
+ "duration_s": 40.0,
+ "ground_rgb": [
+  11,
+  13,
+  16
+ ],
+ "mean_luma": 19.5,
+ "ink_share": 0.0061,
+ "accent_share": 0.0016,
+ "change_events": 13,
+ "changes_per_10s": 3.25
+}

@@ -25,7 +25,7 @@ Emphasize = Literal["pulse", "zoom", "highlight", "underline", "counter", "none"
 Connect = Literal["line_draw", "node_link", "flow", "morph", "none"]
 Exit = Literal["fade", "push", "mask", "collapse", "cut"]
 Camera = Literal["static", "subtle_push", "pan_left", "pan_right", "parallax", "dolly"]
-THEMES = ("carbon", "midnight", "warm-editorial", "minimal-white", "tech-mono", "soft-gradient", "product-launch", "cinematic-dark")
+THEMES = ("fieldnotes-premium", "carbon", "midnight", "warm-editorial", "minimal-white", "tech-mono", "soft-gradient", "product-launch", "cinematic-dark")
 
 
 class Source(BaseModel):
@@ -91,11 +91,18 @@ class Visual(BaseModel):
     timeline: list[str] = Field(default_factory=list, max_length=5)
     nodes: list[str] = Field(default_factory=list, max_length=6)
     url: str = Field(default="", max_length=80)       # display-only address for browser mockups
+    prompt_before: list[str] = Field(default_factory=list, max_length=5)   # weak prompt (vibe coding), shown then transformed
+    prompt_after: list[str] = Field(default_factory=list, max_length=5)    # improved prompt
 
     @field_validator("code")
     @classmethod
     def short_lines(cls, lines):
         return [line[:48] for line in lines]
+
+    @field_validator("prompt_before", "prompt_after")
+    @classmethod
+    def prompt_lines(cls, lines):
+        return [re.sub(r"\s+", " ", l).strip()[:60] for l in lines if l and l.strip()]
 
     @field_validator("steps", "compare_left", "compare_right", "compare_titles", "series_labels", "timeline", "nodes")
     @classmethod
@@ -128,6 +135,9 @@ class StoryScene(BaseModel):
     cinematic: CinematicSpec | None = None
     assets: list[Asset] = Field(default_factory=list)
     character: bool | None = None                       # None = theme decides
+    character_action: Literal["", "idle", "speaking", "thinking", "pointing", "typing", "explaining", "surprised", "celebrating", "warning",
+                              "confused", "presenting"] = ""   # director override for the character's state in this scene
+    cta: dict = Field(default_factory=dict)              # outro only: {keyword, secondary, fulfillment}
     fallback_layout: str = Field(default="heroWord", max_length=24)
     qa: SceneQA = Field(default_factory=SceneQA)
 
@@ -168,7 +178,7 @@ class Storyboard(BaseModel):
     schema_version: Literal["2.0"] = SCHEMA_VERSION
     video_id: str = Field(default="", max_length=40)
     title: str = Field(min_length=1, max_length=100)
-    format: Literal["story", "roundup", "explainer"] = "explainer"
+    format: Literal["story", "roundup", "explainer", "vibe_coding"] = "explainer"
     duration_target_seconds: float = Field(default=40, ge=8, le=180)
     aspect_ratio: Literal["9:16", "16:9", "1:1", "4:5"] = "9:16"
     series: str = Field(default="", max_length=16)
@@ -179,6 +189,8 @@ class Storyboard(BaseModel):
     repos: list[dict] = Field(default_factory=list, max_length=8)
     director: dict = Field(default_factory=dict)       # provider, model, created_at, interactive flag
     seed: str = Field(default="", max_length=40)
+    hook_candidates: list[dict] = Field(default_factory=list, max_length=6)   # scored alternatives; the chosen one is scene_001
+    cta: dict = Field(default_factory=dict)                                    # {keyword, secondary, narration, fulfillment, resources}
 
     @model_validator(mode="after")
     def integrity(self):
@@ -230,6 +242,8 @@ class DirectorScene(BaseModel):
     timeline: list[str]
     cinematic_prompt: str
     character: bool
+    prompt_before: list[str] = Field(default_factory=list)
+    prompt_after: list[str] = Field(default_factory=list)
 
 
 class DirectorClaim(BaseModel):
@@ -292,7 +306,7 @@ def from_director(out: DirectorOutput, *, topic: dict, sources: list[Source], fm
         if s.render_engine == "cinematic" and s.cinematic_prompt.strip():
             cinematic = CinematicSpec(prompt=s.cinematic_prompt.strip()[:900], fallback_layout=s.layout or "heroWord")
         visual = Visual(code=s.code_lines, steps=s.steps, compare_titles=s.compare_titles, compare_left=s.compare_left,
-                        compare_right=s.compare_right, nodes=s.nodes, timeline=s.timeline)
+                        compare_right=s.compare_right, nodes=s.nodes, timeline=s.timeline, prompt_before=s.prompt_before, prompt_after=s.prompt_after)
         scenes.append(StoryScene(
             id=_scene_id(i), role=role, narration=s.narration.strip()[:500], heading=(s.heading.strip() or s.label or "Key idea")[:65],
             points=[p.strip()[:65] for p in s.points if p.strip()][:3], emphasis=s.emphasis.strip()[:30], stat=s.stat.strip()[:20],

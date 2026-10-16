@@ -38,7 +38,8 @@
   "music": true,
   "formats": [
     "roundup",
-    "story"
+    "story",
+    "vibe_coding"
   ],
   "story_points": 4,
   "roundup_size": 4,
@@ -77,8 +78,9 @@
     "mode": "local",
     "quality": "premium",
     "target_duration_seconds": 40,
-    "theme": "auto",
-    "character": "auto"
+    "theme": "fieldnotes-premium",
+    "character": "on",
+    "style": "premium"
   },
   "creative_director": {
     "provider": "ollama",
@@ -126,5 +128,10 @@
     "browser_executable": "",
     "concurrency": 2,
     "timeout_seconds": 1800
+  },
+  "brand_profile": {
+    "wordmark": "FIELDNOTES",
+    "public_character_name": null,
+    "cta_dm_delivery_enabled": false
   }
 }

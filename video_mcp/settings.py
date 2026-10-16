@@ -34,7 +34,8 @@ class Production(_Section):
     mode: Mode = "local"
     quality: Literal["draft", "standard", "premium"] = "premium"
     target_duration_seconds: float = Field(default=40, ge=8, le=180)
-    theme: str = "auto"
+    theme: str = "fieldnotes-premium"          # V2.2 production default; "auto" = seeded legacy themes
+    style: Literal["premium", "studio"] = "premium"   # premium = FIELDNOTES renderer; studio = V2 renderer
     character: Literal["auto", "on", "off"] = "auto"
     resolution: tuple[int, int] | None = None   # None -> legacy width/height keys
     fps: int | None = None
@@ -62,6 +63,12 @@ class Cinematic(_Section):
     poll_interval_seconds: float = 5
     timeout_seconds: float = 900
     max_download_mb: int = 300
+
+
+class Brand(_Section):
+    wordmark: str = "FIELDNOTES"
+    public_character_name: str | None = None   # never rendered unless approved and set
+    cta_dm_delivery_enabled: bool = False      # only an authorized, working delivery integration may set this
 
 
 class Budget(_Section):
@@ -116,6 +123,7 @@ class Settings(BaseModel):
     quality_control: QualityControl = Field(default_factory=QualityControl)
     narration: Narration = Field(default_factory=Narration)
     renderer: Renderer = Field(default_factory=Renderer)
+    brand_profile: Brand = Field(default_factory=Brand)
 
     @model_validator(mode="before")
     @classmethod

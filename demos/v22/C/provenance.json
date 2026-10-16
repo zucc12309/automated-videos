@@ -1,0 +1,135 @@
+{
+  "schema_version": "2.0",
+  "mode": "local",
+  "dry_run": false,
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+      "title": "Model Context Protocol: architecture overview",
+      "kind": "article",
+      "retrieved_at": 1792142442.2022703
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "MCP uses a client-server architecture: a host application creates one MCP client per MCP server.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "MCP servers expose tools, resources and prompts.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c3",
+      "text": "MCP messages use JSON-RPC 2.0.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "unverified",
+      "note": "automatic check found no source wording support (overlap 0.333)"
+    },
+    {
+      "id": "c4",
+      "text": "Local servers commonly use the stdio transport; remote servers use Streamable HTTP.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c5",
+      "text": "One rule: only connect servers you trust, because their tools act with your permissions.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.889)"
+    }
+  ],
+  "director": {
+    "supplied": true
+  },
+  "decisions": [
+    {
+      "stage": "direction",
+      "provider": "supplied",
+      "used": true,
+      "note": "storyboard supplied by caller",
+      "at": 1792142442.2068107
+    },
+    {
+      "stage": "narration",
+      "engine": "espeak",
+      "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
+      "at": 1792142442.2129369
+    },
+    {
+      "stage": "render",
+      "concurrency": 2,
+      "memory_available_gb": 15.13,
+      "at": 1792142445.4032202
+    }
+  ],
+  "model": "qwen2.5:14b",
+  "voice_model": "espeak-ng",
+  "voice": "en-us",
+  "voice_engines": [
+    "espeak"
+  ],
+  "caption_timing": [
+    "energy_snapped"
+  ],
+  "narration_language": "English (US)",
+  "visual_style": "studio",
+  "theme": "fieldnotes-premium",
+  "variant": {
+    "seed": "v22-C",
+    "palette": "",
+    "background": "flat",
+    "temperament": "smooth",
+    "captions": "pill",
+    "transitions": [
+      "cut",
+      "zoom",
+      "push"
+    ],
+    "outfit": "#2f3b52",
+    "hair": "#a16207",
+    "music": {
+      "progression": 2,
+      "bpm": 92
+    },
+    "camera": 0.8,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "layouts": [
+    "hookBold",
+    "nodeGraph",
+    "steps",
+    "codeBlock",
+    "flowDiagram",
+    "warningCard",
+    "heroWord",
+    "outroCTA",
+    "loop"
+  ],
+  "scene_transitions": "beat-level 9-frame transitions; scenes butt-joined",
+  "assets": [],
+  "music": "procedural bed generated locally (no third-party audio)",
+  "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
+  "created_at": 1792142645.598104,
+  "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
+}

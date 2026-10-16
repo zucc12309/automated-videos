@@ -1,0 +1,10 @@
+{
+  "engine": "kokoro",
+  "voice": "am_adam",
+  "speed": 1.05,
+  "language_code": "a",
+  "evidence": "Reference A narration median F0 ~121 Hz (male) and config.json voice am_adam / voice_speed 1.05 on the Mac that rendered it.",
+  "fallback": {"engine": "espeak", "voice": "en-us+m3", "note": "Container-only fallback; robotic. Never the production voice."},
+  "pronunciations": {"Kokoro": "Ko-ko-ro", "Remotion": "Ree-motion", "Codex": "Co-dex", "MCP": "M C P"},
+  "mastering": {"lufs": -14, "true_peak_dbtp": -1.0}
+}

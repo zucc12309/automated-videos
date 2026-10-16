@@ -8,12 +8,14 @@ import {KineticShot} from './styles/Kinetic';
 import {MascotShot} from './styles/MascotScene';
 import {PaperVideo} from './paper/PaperVideo';
 import {StudioVideo} from './studio/StudioVideo';
+import {BlobSheet, PremiumVideo} from './premium/PremiumVideo';
 
-const shots: Record<Exclude<Style, 'paper' | 'studio'>, React.FC<ShotProps>> = {editorial: EditorialShot, kinetic: KineticShot, mascot: MascotShot, fieldnotes: FieldnotesShot};
+const shots: Record<Exclude<Style, 'paper' | 'studio' | 'premium'>, React.FC<ShotProps>> = {editorial: EditorialShot, kinetic: KineticShot, mascot: MascotShot, fieldnotes: FieldnotesShot};
 
 const Video: React.FC<Props> = props => {
   if (props.style === 'paper') return <PaperVideo {...props}/>;
   if (props.style === 'studio') return <StudioVideo {...props}/>;
+  if (props.style === 'premium') return <PremiumVideo {...props}/>;
   const Shot = shots[props.style ?? 'fieldnotes'] ?? FieldnotesShot;
   return <AbsoluteFill>{props.scenes.map((scene, index) => <Sequence key={index} from={scene.from} durationInFrames={scene.frames}><Shot scene={scene} index={index} total={props.scenes.length} brand={props.brand ?? 'FIELDNOTES'}/></Sequence>)}</AbsoluteFill>;
 };
@@ -25,5 +27,5 @@ const CharacterSheet = () => <AbsoluteFill style={{background: '#ebe8e1', flexDi
     <Character width={560} mouth={.7} pose={pose} expression={expression} viseme={viseme} look={look} seed={i}/>
   </div>)}
 </AbsoluteFill>;
-const Root = () => <><Composition id="CharacterSheet" component={CharacterSheet} durationInFrames={120} fps={30} width={2000} height={2000}/><Composition id="Explainer" component={Video} defaultProps={defaults} durationInFrames={150} fps={30} width={1080} height={1920} calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps, width: props.width, height: props.height})}/></>;
+const Root = () => <><Composition id="BlobSheet" component={BlobSheet} durationInFrames={60} fps={30} width={1440} height={1240}/><Composition id="CharacterSheet" component={CharacterSheet} durationInFrames={120} fps={30} width={2000} height={2000}/><Composition id="Explainer" component={Video} defaultProps={defaults} durationInFrames={150} fps={30} width={1080} height={1920} calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps, width: props.width, height: props.height})}/></>;
 registerRoot(Root);

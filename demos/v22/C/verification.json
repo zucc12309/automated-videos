@@ -1,0 +1,9 @@
+{
+  "checked_sentences": 10,
+  "verified": 5,
+  "interpretation": 1,
+  "removed": [],
+  "downgraded": [
+    "c3"
+  ]
+}

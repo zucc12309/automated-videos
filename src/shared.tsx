@@ -1,7 +1,7 @@
 import React from 'react';
 import {Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 
-export type Style = 'studio' | 'paper' | 'editorial' | 'kinetic' | 'mascot' | 'fieldnotes';
+export type Style = 'studio' | 'premium' | 'paper' | 'editorial' | 'kinetic' | 'mascot' | 'fieldnotes';
 export type Word = {w: string; s: number; e: number};
 export type Beat = {s: number; e: number; w: [number, number]; text: string; focus: string; layout: string; anchor: string; transition: string; punch: boolean; layoutReason?: unknown};
 export type Motion = {entrance: string; emphasis: string; connect: string; exit: string; camera: string; intensity: number; stagger_frames: number};

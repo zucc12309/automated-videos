@@ -1,0 +1,21 @@
+[
+  {
+    "stage": "direction",
+    "provider": "supplied",
+    "used": true,
+    "note": "storyboard supplied by caller",
+    "at": 1792142442.2068107
+  },
+  {
+    "stage": "narration",
+    "engine": "espeak",
+    "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
+    "at": 1792142442.2129369
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 15.13,
+    "at": 1792142445.4032202
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "id": "fieldnotes-blob",
+  "version": "1.0.0",
+  "provisional_name": "Mochi",
+  "public_name": null,
+  "name_note": "public_name stays null until approved; rendered videos never show the provisional name.",
+  "silhouette": "Soft marshmallow: a dome-topped rounded block (width:height 1.27) whose lower 36% is a slightly darker base band with fully rounded bottom corners. No limbs at rest; one short rounded nub appears only for pointing/waving.",
+  "proportions": {"width": 1.0, "height": 0.79, "top_radius": 0.42, "bottom_radius": 0.16, "band_height": 0.36},
+  "palette": {"body": "#f6f6f2", "band": "#d9d9d3", "eye": "#121318", "cheek": "#f3b4c2", "shadow": "#00000066", "spark": "#ffd76a"},
+  "face": {"eyes": "two vertical pill ovals, 7% x 20% of width, 18% apart, centred at 47% height",
+           "cheeks": "two soft pink ovals on the band line, under and outside the eyes",
+           "mouth": "hidden at rest; a small dark rounded slot appears only while speaking (driven by visemes/loudness)"},
+  "eye_shapes": {"neutral": "pill", "blink": "line", "happy": "arc", "surprised": "circle", "squint": "short pill", "look": "pupils shift with gaze"},
+  "visemes": {"closed": ["A", "X"], "small": ["B", "G", "H"], "open": ["C", "D"], "round": ["E", "F"]},
+  "states": ["idle", "speaking", "thinking", "pointing", "typing", "explaining", "surprised", "celebrating", "warning", "confused", "presenting", "exiting"],
+  "gestures": {"point": "nub extends toward the target; body leans 6 degrees", "nod": "4% squash on stressed words", "hop": "small jump with squash and stretch",
+               "lean": "presenting lean toward content", "shiver": "warning micro-shake"},
+  "idle": {"breathing": "1.5% vertical scale at 0.25 Hz", "blink": "every 2.8-4.6 s (seeded) and on scene changes", "gaze": "drifts toward the active content"},
+  "scales": {"companion": 150, "medium": 260, "closeup": 520, "hidden": 0},
+  "placement_rules": [
+    "Never overlap the content card or the headline band; the renderer clamps the character inside free space.",
+    "Companion size during dense demonstrations (code, diagrams, terminals).",
+    "Medium size beside a single object it is introducing.",
+    "Close-up only for the opening acknowledgement or one reaction per video.",
+    "Hidden when a visual needs full attention for its whole beat (e.g. a full-bleed clip)."
+  ],
+  "personality": ["curious", "clever", "slightly playful", "technically knowledgeable", "friendly", "occasionally impressed", "never loud or childish"],
+  "voice": {"profile": "brand/voice.json"},
+  "speaking_cadence": "Even, conversational; slight lift on the payoff word; never shouts.",
+  "behavior_rules": [
+    "Reacts to content, never performs for its own sake.",
+    "At most one big reaction (surprised/celebrating) per video.",
+    "Looks at what the narration is talking about.",
+    "Dims slightly when the content needs focus."
+  ],
+  "signatures": {
+    "entrance": "pop-up: rises from below the hairline with a single blink and a tiny nod (first 0.5 s)",
+    "reveal": "double-blink then happy arc eyes with a small hop when something impressive appears",
+    "cta": "leans toward the keyword, points with the nub, and winks (one eye arcs) on the final word"
+  },
+  "entrance": "pop-up", "exit": "sink below the hairline with a fade"
+}

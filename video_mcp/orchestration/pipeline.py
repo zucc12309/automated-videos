@@ -141,6 +141,8 @@ class Pipeline:
             board = Storyboard.model_validate(request["storyboard"])
             board.video_id, board.seed = self.job_id, board.seed or seed
             board.director = {**board.director, "supplied": True}
+            # Supplied storyboards keep their authored hook (candidates are scored and recorded) but get the contextual CTA.
+            board = director.finish(board, request.get("topic"), self.cfg, choose_hook=False)
             self.decide(stage="direction", provider=board.director.get("provider", "supplied"), used=True, note="storyboard supplied by caller")
             topic = request.get("topic") or _load(self.folder / "topic.json")
             if topic:
@@ -482,6 +484,8 @@ class Pipeline:
                            "id": story.id, "role": story.role, "intent": story.intent, "pace": story.pace,
                            "visualData": story.visual.model_dump(), "motion": story.motion.model_dump(), "media": media, "mediaSeconds": media_seconds,
                            "layoutHint": hint, "avoidLayouts": overrides.get("avoid", {}).get(story.id, []),
+                           "cta": story.cta or None, "character_action": story.character_action,
+                           "_stars": (board.repos[story.item - 1].get("stars", 0) if roundup and 0 < story.item <= len(board.repos) else 0),
                            "motionClip": bool(motion) and media == (motion.path if motion else None),
                            "character": False if story.id in overrides.get("hide_character", []) else
                                         (bool(story.character) if character_mode == "auto" else character_mode == "on"),
@@ -489,13 +493,23 @@ class Pipeline:
             cursor += length
         duration = scenes[-1]["from"] + scenes[-1]["frames"]
         layouts = variety.plan_layouts(scenes, variant)
+        style = "premium" if cfg.production.style == "premium" and (overrides.get("theme") or theme) in ("fieldnotes-premium", None, "") else "studio"
+        direction = None
+        if style == "premium":
+            from ..creative import visual_director
+            direction = visual_director.direct(scenes, character_mode="off" if character_mode == "off" else "on")
+            layouts = [b["layout"] for s in scenes for b in s["beats"]]
         for s in scenes:
             s.pop("_roundup", None)
             s.pop("_repo", None)
             s.pop("_listItems", None)
+            s.pop("_noLoop", None)
         readmes = {r.get("full_name"): re.sub(r"\s+", " ", r.get("readme_excerpt") or "")[:900] for r in board.repos}
         repos = [{**r, "readme": readmes.get(r.get("full_name"), "")} for r in plan["repos"]]
-        return {"title": board.title, "style": "studio", "brand": cfg.brand, "series": board.series,
+        for s in scenes:
+            s.pop("_stars", None)
+        return {"title": board.title, "style": style, "brand": cfg.brand_profile.wordmark or cfg.brand, "series": board.series,
+                "direction": direction,
                 "repos": repos, "music": None, "variant": variant, "scenes": scenes, "fps": fps, "width": width,
                 "height": height, "durationInFrames": duration, "schemaVersion": "2.0", "theme": variant.get("theme"),
                 "characterMode": character_mode, "_layouts": layouts}
@@ -642,6 +656,9 @@ class Pipeline:
         self.timings["total_wall_clock"] = round(time.time() - total_started + self.timings.get("total_wall_clock", 0), 2)
         _save(self.folder / "timings.json", self.timings)
         self.finalize(board, narration, props, report, estimate, mode)
+        if board.cta:
+            from ..creative import cta as cta_engine
+            cta_engine.write_resources(self.folder, board, request.get("topic") or _load(self.folder / "topic.json"))
         if self.cfg.quality_control.require_technical_pass and not checks["passed"]:
             failures = [c["check"] for c in report["summary"]["mandatory_failures"]] or ["technical"]
             raise RuntimeError(f"Mandatory QA checks failed after repairs: {', '.join(failures)}")

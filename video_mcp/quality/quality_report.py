@@ -29,6 +29,14 @@ def run(video: Path, props: dict, narration: list[dict], storyboard: dict | None
     layout = frame_analysis.layout_checks(props)
     frames = frame_analysis.frame_checks(video, props, qa_dir)
     audio = audio_analysis.analyze(video, narration)
+    reference = None
+    if props.get("style") == "premium":
+        from . import reference_compare
+        try:
+            reference = reference_compare.compare(video, qa_dir)
+        except Exception as exc:          # reference QA is advisory; never blocks a render
+            reference = {"available": False, "note": f"reference comparison failed: {str(exc)[:200]}"}
+        (qa_dir / "reference_compare.json").write_text(json.dumps(reference, indent=1, default=str))
     visual = {"layout_checks": layout["checks"], "frame_samples": frames["samples"], "issues": layout["issues"] + frames["issues"],
               "layout_order": layout["layout_order"], "contact_sheet": frames["contact_sheet"]}
     sources = {"claims": [], "summary": "no storyboard"}
@@ -44,6 +52,8 @@ def run(video: Path, props: dict, narration: list[dict], storyboard: dict | None
                            "basis": "heuristic (freeze detection only; motion taste needs manual review)"},
         "scene_variety": {"score": _score(by_kind({"repetition"}) + [{"passed": i["kind"] != "repetition"} for i in frames["issues"]]),
                           "basis": "deterministic + heuristic"},
+        "brand_consistency": {"score": _score(by_kind({"brand", "pacing"})) if by_kind({"brand"}) else None,
+                              "basis": "deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json)"},
         "audio_quality": {"score": _score(audio["checks"]), "basis": "deterministic loudness/peak; heuristic caption sync"},
         "narrative_coherence": {"score": None, "basis": "manual review required (no model opinion collected)"},
         "source_reliability": {"score": round(100 * sources["summary"].get("verified", 0) / max(1, len(sources["claims"])))
@@ -54,7 +64,8 @@ def run(video: Path, props: dict, narration: list[dict], storyboard: dict | None
     failing_scenes = sorted({i.get("scene") for i in visual["issues"] if i.get("scene")})
     summary = {"technical_pass": technical["passed"] and not mandatory_fail, "mandatory_failures": mandatory_fail, "scores": scores,
                "failing_scenes": failing_scenes, "issue_count": len(visual["issues"]), "manual_review": MANUAL,
-               "estimated_caption_timing": audio["estimated_timings"], "contact_sheet": frames["contact_sheet"]}
+               "estimated_caption_timing": audio["estimated_timings"], "contact_sheet": frames["contact_sheet"],
+               "reference_style": {c["check"]: c["passed"] for c in reference["checks"]} if reference and reference.get("checks") else None}
     for name, value in (("technical.json", technical), ("visual.json", visual), ("audio.json", audio),
                         ("storyboard.json", {"sources": sources}), ("summary.json", summary)):
         (qa_dir / name).write_text(json.dumps(value, indent=1, default=str))
@@ -121,6 +132,9 @@ def plan_repairs(report: dict, props: dict) -> dict:
             overrides["notes"].append(f"audio: {check['check']} -> re-master with measured true-peak correction")
     for issue in report["visual"]["issues"]:
         kind, sid = issue.get("kind"), issue.get("scene")
+        if kind in ("brand", "pacing"):      # reported for review; a re-render with the same plan would not change them
+            overrides["notes"].append(f"{sid or 'video'}: {issue['check']} -> reported (no automatic repair)")
+            continue
         if kind == "overflow" and sid and issue.get("field") in ("heading", "points", "label"):
             fields = overrides["shorten"].setdefault(sid, {})
             fields[issue["field"]] = min(fields.get(issue["field"], 999), issue["limit"])
@@ -139,7 +153,7 @@ def plan_repairs(report: dict, props: dict) -> dict:
             overrides["reseed"] = True
         elif kind == "caption":
             overrides["captions"] = "pill"
-        elif kind == "contrast":
+        elif kind == "contrast" and props.get("style") != "premium":   # the premium brand palette is fixed
             overrides["theme"] = "carbon"
         overrides["notes"].append(f"{sid or 'video'}: {kind} -> {REPAIRS.get(kind, 're-render')}")
     return overrides

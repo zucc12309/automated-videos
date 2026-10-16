@@ -1,0 +1,9 @@
+{
+ "id": "demo-c-mcp",
+ "kind": "manual",
+ "title": "How MCP connects agents to your tools",
+ "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+ "summary": "Model Context Protocol architecture. MCP follows a client-server architecture where an MCP host, an AI application such as Claude Code or Claude Desktop, establishes connections to one or more MCP servers. The host creates one MCP client for each MCP server. Servers expose tools, resources and prompts. Tools are actions the model can call, resources provide data and context it can read, prompts are reusable templates. The data layer uses JSON-RPC 2.0: each request has a method, params and an id, for example tools/call. Transports: the stdio transport uses standard input and output for local servers; the Streamable HTTP transport is used for remote servers. Only connect servers you trust, because their tools act with your permissions.",
+ "retrieved_at": 1760572800,
+ "series": "AGENTS"
+}

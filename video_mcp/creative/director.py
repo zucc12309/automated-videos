@@ -7,6 +7,7 @@ HYBRID  as CLAUDE, and cinematic scenes may be requested (generation happens lat
 from __future__ import annotations
 
 import hashlib
+import re
 import time
 
 from ..providers.base import ProviderError
@@ -85,9 +86,12 @@ def create_storyboard(topic: dict, settings, *, mode: str, video_id: str, seed: 
     """Returns (storyboard, verification report, usages). `claude` is a ClaudeProvider; `gate` the budget gate factory."""
     decisions = decisions if decisions is not None else []
     research_packet, sources = research.build_research(topic)
-    fmt = "roundup" if topic.get("kind") == "roundup" else "story"
+    fmt = "roundup" if topic.get("kind") == "roundup" else "vibe_coding" if topic.get("kind") == "vibe_coding" else "story"
     usages: list = []
     board = None
+    if fmt == "vibe_coding" and not (mode in ("claude", "hybrid") and claude is not None and claude.available()[0]):
+        board = vibe_storyboard(topic, settings, video_id=video_id, seed=seed)
+        decisions.append({"stage": "script", "provider": "vibe_library", "used": True, "notes": ["curated tip; deterministic storyboard"]})
     if mode in ("claude", "hybrid") and claude is not None:
         ok, why = claude.available()
         if not ok:
@@ -120,6 +124,7 @@ def create_storyboard(topic: dict, settings, *, mode: str, video_id: str, seed: 
         board.creative_direction.call_to_action = board.scenes[-1].narration[:160]
     board.seed = seed
     board = local_direction(board, settings, seed, cinematic) if board.director.get("provider") == "local" else _fill_missing(board, settings)
+    board = finish(board, topic, settings)
     report = research.verify(board, topic)
     return Storyboard.model_validate(board.model_dump()), report, usages
 
@@ -131,3 +136,62 @@ def _fill_missing(board: Storyboard, settings) -> Storyboard:
         if scene.layout:
             scene.layout = scene.layout if scene.layout in semantic_router.CATALOG else ""
     return board
+
+
+# ---------------------------------------------------------------- V2.2: vibe coding, hooks, CTA
+
+def vibe_storyboard(topic: dict, settings, *, video_id: str, seed: str) -> Storyboard:
+    """Deterministic storyboard for a curated vibe-coding tip: hook → weak prompt → better prompt → why → expected change → CTA."""
+    from ..schemas.storyboard import Source, StoryScene, Visual
+    weak, better, why = topic["weak"], topic["better"], topic["why"]
+    scenes = [
+        StoryScene(id="scene_001", role="hook", narration=topic.get("hook") or topic["title"], heading=(topic.get("hook") or topic["title"])[:65],
+                   emphasis="", intent="hook", pace="emphasis"),
+        StoryScene(id="scene_002", role="body", narration=f"Most people type something like: {weak[0]}. The agent has to guess what you mean.",
+                   heading="The vague prompt", label="Vague", emphasis="guess", intent="warning", layout="terminal", pace="medium",
+                   character_action="confused", visual=Visual(code=[f"> {w}" for w in weak], code_language="prompt"), points=["Guesswork"]),
+        StoryScene(id="scene_003", role="body", narration="Instead, give it a scope, constraints, and a way to check the result.",
+                   heading="The better prompt", label="Better", emphasis="scope", intent="comparison", layout="splitCompare", pace="demonstration",
+                   visual=Visual(prompt_before=weak, prompt_after=better, compare_titles=["Before", "After"]), points=[better[0][:60]]),
+        StoryScene(id="scene_004", role="body", narration=f"Why it works: {why[0].lower()}, {why[1].lower()}, and {why[2].lower()}.",
+                   heading="Why it works", emphasis="works", intent="list", layout="steps", pace="medium", points=[w[:65] for w in why[:3]],
+                   visual=Visual(steps=why)),
+        StoryScene(id="scene_005", role="body", narration="Here's the kind of focused change you should expect back.",
+                   heading=topic.get("demo_label", "Expected change")[:65], emphasis="focused", intent="code", layout="codeBlock", pace="demonstration",
+                   visual=Visual(code=topic.get("demo", []), code_language="diff" if any(l[:2] in ("+ ", "- ") for l in topic.get("demo", [])) else "text"),
+                   character_action="celebrating"),
+        StoryScene(id="scene_006", role="outro", narration="Comment PROMPT for the template.", heading="Comment PROMPT", emphasis="PROMPT", intent="recap", pace="medium"),
+    ]
+    board = Storyboard(video_id=video_id, title=topic["title"][:100], format="vibe_coding", series="BUILD SMARTER", seed=seed,
+                       sources=[Source(id="src1", url=topic.get("url") or "https://code.claude.com/docs", title=topic["title"][:250], kind="manual")],
+                       scenes=scenes, director={"provider": "local", "script_provider": "vibe_library", "model": "vibe-template-v1", "created_at": time.time()})
+    board.creative_direction.audience = "developers who build with AI coding agents"
+    board.creative_direction.core_message = f"Replace '{weak[0]}' with a scoped, checkable prompt."
+    board.creative_direction.theme = "fieldnotes-premium"
+    return board
+
+
+def finish(board: Storyboard, topic: dict | None, settings, *, choose_hook: bool = True) -> Storyboard:
+    """V2.2 finishing pass shared by every path: hook candidates, contextual CTA, series label, theme default."""
+    from . import cta as cta_engine, hooks
+    import json as _json
+    topic = topic or {"title": board.title}
+    count = sum(1 for s in board.scenes if s.item) or len(board.repos) or 0
+    source_text = _json.dumps(topic, ensure_ascii=False)
+    chosen, scored = hooks.choose(topic, board.format, count, source_text)
+    own = hooks.score(board.scenes[0].narration, {n.replace(",", "") for n in re.findall(r"\d[\d,]*", source_text)} | {str(count)})
+    own["text"], own["origin"] = board.scenes[0].narration, "director"
+    board.hook_candidates = sorted([own, *scored], key=lambda x: -x["score"])[:6]
+    best = board.hook_candidates[0]
+    if choose_hook and best["text"] != board.scenes[0].narration and best["score"] > own["score"]:
+        hook = board.scenes[0]
+        hook.narration = best["text"]
+        hook.heading = best["text"].rstrip(".")[:65]
+        hook.emphasis = ""
+    plan = cta_engine.plan(board.format, topic, count or len(board.repos), settings.brand_profile.cta_dm_delivery_enabled)
+    cta_engine.apply(board, plan)
+    if not board.series:
+        board.series = plan["series_label"][:16]
+    if board.creative_direction.theme not in THEMES or settings.production.theme == "fieldnotes-premium":
+        board.creative_direction.theme = settings.production.theme if settings.production.theme in THEMES else board.creative_direction.theme
+    return Storyboard.model_validate(board.model_dump())

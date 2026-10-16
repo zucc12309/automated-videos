@@ -1,0 +1,9 @@
+Hey! Here's what you asked for from "How MCP connects agents to your tools":
+
+1. One client per server
+2. Tools, resources, prompts
+3. It's just JSON-RPC
+4. Two transports
+5. Only trust servers you'd run
+
+• Model Context Protocol: architecture overview: https://modelcontextprotocol.io/docs/learn/architecture

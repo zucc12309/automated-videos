@@ -126,7 +126,8 @@ def discover(limit=10):
     cfg = config()
     roundups, repo_errors = sources.repo_roundups(cfg, used_repos(), history_ids())
     stories, story_errors = sources.stories(cfg, history_ids())
-    results = roundups + stories
+    vibe = sources.vibe_topics(history_ids()) if "vibe_coding" in (cfg.get("formats") or []) else []
+    results = roundups + stories + vibe
     save(DATA / "topics.json", results)
     return {"topics": results[:max(1, min(limit, 30))], "errors": repo_errors + story_errors,
             "basis": "GitHub API repo metadata and readmes; full article text where fetchable. Not fact-checked."}

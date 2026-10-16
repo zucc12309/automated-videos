@@ -30,7 +30,7 @@ ANCHOR = {"heroWord": "right", "bigNumber": "left", "quote": "peek", "mascotClos
           "chartBars": "left", "browserMock": "left", "warningCard": "right", "splitCompare": "peek", "cinematic": "peek",
           "hookBold": "right", "readmeScroll": "left", "repoConnect": "peek", "outroCTA": "right", "motionClip": "peek"}
 # Premium editorial themes (V2). A video keeps one theme for every scene.
-THEMES = ["carbon", "midnight", "warm-editorial", "minimal-white", "tech-mono", "soft-gradient", "product-launch", "cinematic-dark"]
+THEMES = ["fieldnotes-premium", "carbon", "midnight", "warm-editorial", "minimal-white", "tech-mono", "soft-gradient", "product-launch", "cinematic-dark"]
 
 
 def _pick(rng: random.Random, options: list, recent: list) -> object:
@@ -124,6 +124,8 @@ def _reserve_loop_tail(scene: dict):
     last = beats[-1]
     if last["e"] - last["s"] < LOOP_TAIL + 1.4:
         if len(beats) == 1:
+            if scene.get("cta"):
+                scene["_noLoop"] = True    # a short CTA ending keeps its beat; no loop-back
             return                     # too short to split; the whole beat loops
         prev = beats[-2]
         cut = max(prev["s"] + 1.0, last["e"] - LOOP_TAIL)
@@ -162,7 +164,7 @@ def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
             text = " ".join(w["w"] for w in scene["words"][beat["w"][0]:beat["w"][1] + 1])
             beat["text"] = text
             beat["focus"] = _focus(scene, text)
-            if is_last and b == len(scene["beats"]) - 1 and len(scenes) > 1:
+            if is_last and b == len(scene["beats"]) - 1 and len(scenes) > 1 and not scene.get("_noLoop"):
                 layout, reason = "loop", {"rule": "final beat loops to the opening frame"}
             else:
                 ctx = sr.beat_context(scene, beat, b, character=character and scene.get("character", True) is not False)

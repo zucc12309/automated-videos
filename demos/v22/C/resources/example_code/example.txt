@@ -1,0 +1,8 @@
+{ "jsonrpc": "2.0",
+  "id": 7,
+  "method": "tools/call",
+  "params": {
+    "name": "search_issues",
+    "arguments": {"q": "bug"} } }
+
+# Illustrative snippet from the video; not executed by this pipeline.

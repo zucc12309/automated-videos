@@ -1,0 +1,52 @@
+{
+  "fulfillment": {
+    "dm_delivery_enabled": false,
+    "note": "No authorized DM delivery is configured. Narration must not promise automatic DMs; resources are prepared for manual sending."
+  },
+  "keywords": {
+    "LINK": {
+      "for": [
+        "roundup"
+      ],
+      "secondary": "Get all {count} GitHub repos",
+      "narration_truthful": "Want all {count} repos? Comment LINK for the list.",
+      "narration_dm": "Want all {count} repos? Comment LINK and I'll send them to your DMs."
+    },
+    "PROMPT": {
+      "for": [
+        "vibe_coding"
+      ],
+      "secondary": "Get the full prompt template",
+      "narration_truthful": "Want the full template? Comment PROMPT.",
+      "narration_dm": "Comment PROMPT and I'll send you the template."
+    },
+    "GUIDE": {
+      "for": [
+        "agents",
+        "story",
+        "tutorial"
+      ],
+      "secondary": "Get the step-by-step guide",
+      "narration_truthful": "Want the step-by-step? Comment GUIDE.",
+      "narration_dm": "Comment GUIDE and I'll send you the guide."
+    },
+    "CODE": {
+      "for": [
+        "debug",
+        "code"
+      ],
+      "secondary": "Get the example code",
+      "narration_truthful": "Want the example code? Comment CODE.",
+      "narration_dm": "Comment CODE and I'll send you the code."
+    },
+    "TOOLS": {
+      "for": [
+        "tools",
+        "comparison"
+      ],
+      "secondary": "Get the full tool list",
+      "narration_truthful": "Want the full list? Comment TOOLS.",
+      "narration_dm": "Comment TOOLS and I'll send you the list."
+    }
+  }
+}

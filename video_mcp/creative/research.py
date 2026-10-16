@@ -35,6 +35,12 @@ def build_research(topic: dict) -> tuple[dict, list[Source]]:
                           "topics": repo.get("topics", []), "stars_on_screen_only": repo.get("stars"),
                           "readme_excerpt": (repo.get("readme_excerpt") or "")[:1500]})
         research = {"kind": "roundup", "theme": topic.get("theme", ""), "facts": facts}
+    elif topic.get("kind") == "vibe_coding":
+        sources.append(Source(id="src1", url=topic.get("url", "")[:500] or "https://code.claude.com/docs", title=topic["title"][:250], kind="manual",
+                              retrieved_at=retrieved))
+        research = {"kind": "vibe_coding", "title": topic["title"], "facts": [{"source_id": "src1", "text": topic.get("summary", ""),
+                    "weak_prompt": topic.get("weak"), "better_prompt": topic.get("better"), "why": topic.get("why"),
+                    "note": "editorial guidance from the curated tip library, not an executed result"}]}
     else:
         sid = "src1"
         if topic.get("url"):
