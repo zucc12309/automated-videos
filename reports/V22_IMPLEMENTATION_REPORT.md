@@ -48,9 +48,26 @@ Unit tests did not catch any of these. All came from inspecting frames, and each
 
 ## Demos
 
-The DEMO_TABLE placeholder below is replaced with measured values from each demo's `summary.json`.
+Measured values from each demo's `summary.json`, `qa/summary.json` and `costs.json`.
 
-DEMO_TABLE
+| Demo | Topic | Mode | CTA | Duration | Wall time | QA issues | Brand checks | Reference style (ground / luma / change rate) | Spend |
+|---|---|---|---|---|---|---|---|---|---|
+| A | 4 Claude Code repos (roundup) | local | LINK | 36.9 s | 184.4 s | 0 | 100 | pass / pass / pass | $0 |
+| B | Vibe prompt before/after | local | PROMPT | 25.9 s | 275.0 s | 0 | 100 | pass / pass / pass | $0 |
+| C | MCP architecture | local | GUIDE | 36.5 s | 180.5 s | 0 | 100 | pass / pass / pass | $0 |
+| D | Future of AI-assisted development | hybrid (MOCK cinematic) | GUIDE | 26.7 s | 160.1 s | 0 | 100 | pass / pass / pass | $0 |
+
+Notes on the table:
+
+- **A** is marked `degraded: [scene_001]`. Its storyboard requests cinematic footage for the hook, and `local` mode renders that
+  scene in Remotion instead. The fallback is recorded in `decisions.json`.
+- **D** shows $0 because both mock clips were served from the content-addressed asset cache (2 hits). An uncached mock run reserves
+  the configured mock rate in the ledger.
+- **Source reliability:**
+  - A: 100 (GitHub metadata).
+  - B: 40 (editorial tips, labelled interpretation).
+  - C: 80 (one source; one sentence auto-classified as interpretation).
+  - D: 0 (opinion piece with no sources; every line is interpretation and is labelled as such).
 
 All four ran in `local` mode except D. D ran in `hybrid` with the **mock cinematic provider**: local FFmpeg clips stand in for Higgsfield
 footage, so D is not live-provider-tested. No paid call was made and no money was spent. Claude direction was not used: no API key is

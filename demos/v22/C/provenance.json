@@ -8,7 +8,7 @@
       "url": "https://modelcontextprotocol.io/docs/learn/architecture",
       "title": "Model Context Protocol: architecture overview",
       "kind": "article",
-      "retrieved_at": 1792142442.2022703
+      "retrieved_at": 1792144390.9522202
     }
   ],
   "claims": [
@@ -67,19 +67,19 @@
       "provider": "supplied",
       "used": true,
       "note": "storyboard supplied by caller",
-      "at": 1792142442.2068107
+      "at": 1792144390.953754
     },
     {
       "stage": "narration",
       "engine": "espeak",
       "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792142442.2129369
+      "at": 1792144390.959488
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 15.13,
-      "at": 1792142445.4032202
+      "memory_available_gb": 14.76,
+      "at": 1792144394.3032951
     }
   ],
   "model": "qwen2.5:14b",
@@ -98,8 +98,8 @@
     "seed": "v22-C",
     "palette": "",
     "background": "flat",
-    "temperament": "smooth",
-    "captions": "pill",
+    "temperament": "snappy",
+    "captions": "editorial",
     "transitions": [
       "cut",
       "zoom",
@@ -109,7 +109,7 @@
     "hair": "#a16207",
     "music": {
       "progression": 2,
-      "bpm": 92
+      "bpm": 100
     },
     "camera": 0.8,
     "theme": "fieldnotes-premium",
@@ -130,6 +130,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792142645.598104,
+  "created_at": 1792144569.2514002,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }

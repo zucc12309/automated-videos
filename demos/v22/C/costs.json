@@ -1,5 +1,5 @@
 {
-  "job_id": "b929f1232f48",
+  "job_id": "4f81907441eb",
   "total_external_usd": 0,
   "reserved_open_usd": 0,
   "reservations": [],
@@ -10,7 +10,7 @@
   },
   "spent_today_usd": 0.8,
   "estimate": {
-    "job_id": "b929f1232f48",
+    "job_id": "4f81907441eb",
     "mode": "local",
     "claude_actual_usd": 0,
     "cinematic": [],
@@ -19,11 +19,11 @@
     "local_only": true
   },
   "local_timings_seconds": {
-    "creative_direction": 0.01,
-    "narration": 2.0,
-    "render": 164.46,
-    "qa": 36.92,
-    "total_wall_clock": 203.39
+    "creative_direction": 0.0,
+    "narration": 2.16,
+    "render": 142.8,
+    "qa": 33.32,
+    "total_wall_clock": 178.3
   },
   "cache_hits": 0,
   "claude_usage": [],

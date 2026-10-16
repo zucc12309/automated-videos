@@ -8,13 +8,13 @@
     "reveal_scene": null
   },
   "repos": [],
-  "music": "jobs/b929f1232f48/music.wav",
+  "music": "jobs/4f81907441eb/music.wav",
   "variant": {
     "seed": "v22-C",
     "palette": "",
     "background": "flat",
-    "temperament": "smooth",
-    "captions": "pill",
+    "temperament": "snappy",
+    "captions": "editorial",
     "transitions": [
       "cut",
       "zoom",
@@ -24,7 +24,7 @@
     "hair": "#a16207",
     "music": {
       "progression": 2,
-      "bpm": 92
+      "bpm": 100
     },
     "camera": 0.8,
     "theme": "fieldnotes-premium",
@@ -41,10 +41,10 @@
       "label": "",
       "emphasis": "MCP",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-0.wav",
+      "audio": "jobs/4f81907441eb/scene-0.wav",
       "frames": 127,
       "audioFrames": 118,
-      "uiAudio": "jobs/b929f1232f48/scene-0-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-0-ui.wav",
       "words": [
         {
           "w": "Your",
@@ -475,10 +475,10 @@
       "label": "",
       "emphasis": "one MCP client",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-1.wav",
+      "audio": "jobs/4f81907441eb/scene-1.wav",
       "frames": 186,
       "audioFrames": 169,
-      "uiAudio": "jobs/b929f1232f48/scene-1-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-1-ui.wav",
       "words": [
         {
           "w": "The",
@@ -1049,10 +1049,10 @@
       "label": "",
       "emphasis": "three things",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-2.wav",
+      "audio": "jobs/4f81907441eb/scene-2.wav",
       "frames": 174,
       "audioFrames": 166,
-      "uiAudio": "jobs/b929f1232f48/scene-2-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-2-ui.wav",
       "words": [
         {
           "w": "Each",
@@ -1536,9 +1536,9 @@
           "focus": "three things",
           "layout": "steps",
           "layoutReason": {
-            "score": 5.3127,
+            "score": 5.5127,
             "parts": {
-              "relevance": 1.05,
+              "relevance": 1.1,
               "narrative": 0.5,
               "readability": 0.893,
               "recent": 0.0,
@@ -1623,10 +1623,10 @@
       "label": "",
       "emphasis": "JSON-RPC",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-3.wav",
+      "audio": "jobs/4f81907441eb/scene-3.wav",
       "frames": 175,
       "audioFrames": 159,
-      "uiAudio": "jobs/b929f1232f48/scene-3-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-3-ui.wav",
       "words": [
         {
           "w": "Under",
@@ -2091,7 +2091,7 @@
               "brand": 0.0
             },
             "intent": "code",
-            "runner_up": "heroWord"
+            "runner_up": "terminal"
           },
           "anchor": "left",
           "transition": "blurDissolve",
@@ -2169,10 +2169,10 @@
       "label": "",
       "emphasis": "streamable HTTP",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-4.wav",
+      "audio": "jobs/4f81907441eb/scene-4.wav",
       "frames": 193,
       "audioFrames": 176,
-      "uiAudio": "jobs/b929f1232f48/scene-4-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-4-ui.wav",
       "words": [
         {
           "w": "Local",
@@ -2763,10 +2763,10 @@
       "label": "",
       "emphasis": "trust",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-5.wav",
+      "audio": "jobs/4f81907441eb/scene-5.wav",
       "frames": 150,
       "audioFrames": 142,
-      "uiAudio": "jobs/b929f1232f48/scene-5-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-5-ui.wav",
       "words": [
         {
           "w": "One",
@@ -3329,10 +3329,10 @@
       "label": "",
       "emphasis": "GUIDE",
       "stat": "",
-      "audio": "jobs/b929f1232f48/scene-6.wav",
+      "audio": "jobs/4f81907441eb/scene-6.wav",
       "frames": 89,
       "audioFrames": 73,
-      "uiAudio": "jobs/b929f1232f48/scene-6-ui.wav",
+      "uiAudio": "jobs/4f81907441eb/scene-6-ui.wav",
       "words": [
         {
           "w": "Want",
@@ -3585,7 +3585,7 @@
             "rule": "final beat loops to the opening frame"
           },
           "anchor": "right",
-          "transition": "blurDissolve",
+          "transition": "cut",
           "punch": true,
           "character": {
             "state": "speaking",
@@ -3593,7 +3593,7 @@
             "anchor": "centre"
           },
           "direction": {
-            "transition": "loop tail returns softly to the opening frame",
+            "transition": "loop tail cuts back to the opening frame so the CTA never overlaps the hook and the replay is seamless",
             "character": "loop returns to the opening composition",
             "layout": null
           }

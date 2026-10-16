@@ -354,28 +354,28 @@
    "kind": "scene_mid",
    "scene": "scene_007",
    "mean_luma": 29.2,
-   "stage_std": 60.26
+   "stage_std": 60.25
   },
   {
    "t": 35.567,
    "kind": "beat_boundary",
    "scene": "scene_007",
-   "mean_luma": 39.6,
-   "stage_std": 73.73
+   "mean_luma": 34.1,
+   "stage_std": 58.53
   },
   {
    "t": 36.267,
    "kind": "scene_exit",
    "scene": "scene_007",
    "mean_luma": 39.3,
-   "stage_std": 59.38
+   "stage_std": 59.37
   },
   {
    "t": 36.367,
    "kind": "final_frame",
    "scene": "",
    "mean_luma": 35.1,
-   "stage_std": 59.45
+   "stage_std": 59.44
   }
  ],
  "issues": [],
@@ -390,5 +390,5 @@
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/b929f1232f48/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/4f81907441eb/qa/contact_sheet.jpg"
 }

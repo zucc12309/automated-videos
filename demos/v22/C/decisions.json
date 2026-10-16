@@ -4,18 +4,18 @@
     "provider": "supplied",
     "used": true,
     "note": "storyboard supplied by caller",
-    "at": 1792142442.2068107
+    "at": 1792144390.953754
   },
   {
     "stage": "narration",
     "engine": "espeak",
     "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-    "at": 1792142442.2129369
+    "at": 1792144390.959488
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 15.13,
-    "at": 1792142445.4032202
+    "memory_available_gb": 14.76,
+    "at": 1792144394.3032951
   }
 ]
