@@ -8,28 +8,28 @@
       "url": "https://github.com/lidge-jun/opencodex",
       "title": "lidge-jun/opencodex",
       "kind": "repository",
-      "retrieved_at": 1792142647.9999402
+      "retrieved_at": 1792144206.543135
     },
     {
       "id": "src2",
       "url": "https://github.com/yetone/magpie",
       "title": "yetone/magpie",
       "kind": "repository",
-      "retrieved_at": 1792142647.9999452
+      "retrieved_at": 1792144206.543139
     },
     {
       "id": "src3",
       "url": "https://github.com/Vincentwei1021/video-shotcraft",
       "title": "Vincentwei1021/video-shotcraft",
       "kind": "repository",
-      "retrieved_at": 1792142647.9999478
+      "retrieved_at": 1792144206.543141
     },
     {
       "id": "src4",
       "url": "https://github.com/google/artemis",
       "title": "google/artemis",
       "kind": "repository",
-      "retrieved_at": 1792142647.9999743
+      "retrieved_at": 1792144206.5431426
     }
   ],
   "claims": [
@@ -83,7 +83,7 @@
       "provider": "claude-code-interactive",
       "used": true,
       "note": "storyboard supplied by caller",
-      "at": 1792142648.0025108
+      "at": 1792144206.544342
     },
     {
       "stage": "cinematic",
@@ -91,19 +91,19 @@
       "used": false,
       "reason": "local mode renders everything in Remotion",
       "fallback": "remotion:hookBold",
-      "at": 1792142648.0099313
+      "at": 1792144206.5479438
     },
     {
       "stage": "narration",
       "engine": "espeak",
       "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792142648.0152311
+      "at": 1792144206.5505247
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 15.0,
-      "at": 1792142651.5243428
+      "memory_available_gb": 14.9,
+      "at": 1792144209.740957
     }
   ],
   "model": "claude-opus-5-5 (interactive Claude Code session)",
@@ -121,15 +121,15 @@
   "variant": {
     "seed": "v22-A",
     "palette": "",
-    "background": "grid",
-    "temperament": "editorial",
-    "captions": "bold",
+    "background": "mesh",
+    "temperament": "smooth",
+    "captions": "pill",
     "transitions": [
       "mask",
       "zoom",
       "whip"
     ],
-    "outfit": "#6d28d9",
+    "outfit": "#1f2937",
     "hair": "#1c1917",
     "music": {
       "progression": 0,
@@ -156,6 +156,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792142839.7320342,
+  "created_at": 1792144388.4902046,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }

@@ -11,14 +11,14 @@
   {
    "check": "true_peak",
    "passed": true,
-   "detail": "-1.6 dBTP (limit -0.5)",
+   "detail": "-1.8 dBTP (limit -0.5)",
    "mandatory": true,
    "basis": "deterministic"
   },
   {
    "check": "clipping",
    "passed": true,
-   "detail": "true peak -1.6 dBTP",
+   "detail": "true peak -1.8 dBTP",
    "mandatory": false,
    "basis": "deterministic"
   },
@@ -67,8 +67,8 @@
  ],
  "loudness": {
   "integrated_lufs": -13.8,
-  "lra": 1.4,
-  "true_peak_dbtp": -1.6
+  "lra": 1.5,
+  "true_peak_dbtp": -1.8
  },
  "timing_sources": [
   "energy_snapped"

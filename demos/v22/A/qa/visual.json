@@ -358,8 +358,8 @@
    "t": 36.034,
    "kind": "beat_boundary",
    "scene": "scene_006",
-   "mean_luma": 40.4,
-   "stage_std": 73.01
+   "mean_luma": 36.6,
+   "stage_std": 63.69
   },
   {
    "t": 36.733,
@@ -390,5 +390,5 @@
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/84118f87ae29/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/064e9625b8db/qa/contact_sheet.jpg"
 }

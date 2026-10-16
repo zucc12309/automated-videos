@@ -34,8 +34,8 @@
 ## Audio
 
 - PASS `loudness` — -13.8 LUFS (target -14.0 ±2) (deterministic)
-- PASS `true_peak` — -1.6 dBTP (limit -0.5) (deterministic)
-- PASS `clipping` — true peak -1.6 dBTP (deterministic)
+- PASS `true_peak` — -1.8 dBTP (limit -0.5) (deterministic)
+- PASS `clipping` — true peak -1.8 dBTP (deterministic)
 - PASS `scene_001_caption_sync` — {'covered_speech': 0.97, 'inside_ratio': 0.811} via energy_snapped (heuristic)
 - PASS `scene_002_caption_sync` — {'covered_speech': 0.906, 'inside_ratio': 0.878} via energy_snapped (heuristic)
 - PASS `scene_003_caption_sync` — {'covered_speech': 0.92, 'inside_ratio': 0.889} via energy_snapped (heuristic)

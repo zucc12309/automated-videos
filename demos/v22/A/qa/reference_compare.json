@@ -24,7 +24,7 @@
    14,
    17
   ],
-  "mean_luma": 29.6,
+  "mean_luma": 29.5,
   "ink_share": 0.0315,
   "accent_share": 0.0066,
   "change_events": 13,
@@ -39,7 +39,7 @@
   {
    "check": "luminance",
    "passed": true,
-   "detail": "mean luma 29.6 vs reference 19.5 (ratio 1.52)"
+   "detail": "mean luma 29.5 vs reference 19.5 (ratio 1.51)"
   },
   {
    "check": "change_rate",
@@ -47,5 +47,5 @@
    "detail": "3.51 vs reference 3.25 visual changes per 10 s (ratio 1.08); motion 2.38 vs 1.29"
   }
  ],
- "side_by_side": "/home/user/automated-videos/data/jobs/84118f87ae29/qa/reference_side_by_side.jpg"
+ "side_by_side": "/home/user/automated-videos/data/jobs/064e9625b8db/qa/reference_side_by_side.jpg"
 }

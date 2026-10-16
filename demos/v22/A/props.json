@@ -65,19 +65,19 @@
       "readme": ""
     }
   ],
-  "music": "jobs/84118f87ae29/music.wav",
+  "music": "jobs/064e9625b8db/music.wav",
   "variant": {
     "seed": "v22-A",
     "palette": "",
-    "background": "grid",
-    "temperament": "editorial",
-    "captions": "bold",
+    "background": "mesh",
+    "temperament": "smooth",
+    "captions": "pill",
     "transitions": [
       "mask",
       "zoom",
       "whip"
     ],
-    "outfit": "#6d28d9",
+    "outfit": "#1f2937",
     "hair": "#1c1917",
     "music": {
       "progression": 0,
@@ -98,10 +98,10 @@
       "label": "",
       "emphasis": "gaps",
       "stat": "",
-      "audio": "jobs/84118f87ae29/scene-0.wav",
+      "audio": "jobs/064e9625b8db/scene-0.wav",
       "frames": 96,
       "audioFrames": 88,
-      "uiAudio": "jobs/84118f87ae29/scene-0-ui.wav",
+      "uiAudio": "jobs/064e9625b8db/scene-0-ui.wav",
       "words": [
         {
           "w": "Four",
@@ -463,10 +463,10 @@
       "label": "opencodex",
       "emphasis": "any LLM",
       "stat": "",
-      "audio": "jobs/84118f87ae29/scene-1.wav",
+      "audio": "jobs/064e9625b8db/scene-1.wav",
       "frames": 241,
       "audioFrames": 224,
-      "uiAudio": "jobs/84118f87ae29/scene-1-ui.wav",
+      "uiAudio": "jobs/064e9625b8db/scene-1-ui.wav",
       "words": [
         {
           "w": "Number",
@@ -1211,10 +1211,10 @@
       "label": "magpie",
       "emphasis": "menu bar",
       "stat": "",
-      "audio": "jobs/84118f87ae29/scene-2.wav",
+      "audio": "jobs/064e9625b8db/scene-2.wav",
       "frames": 244,
       "audioFrames": 228,
-      "uiAudio": "jobs/84118f87ae29/scene-2-ui.wav",
+      "uiAudio": "jobs/064e9625b8db/scene-2-ui.wav",
       "words": [
         {
           "w": "Number",
@@ -2011,10 +2011,10 @@
       "label": "video-shotcraft",
       "emphasis": "cinematic",
       "stat": "",
-      "audio": "jobs/84118f87ae29/scene-3.wav",
+      "audio": "jobs/064e9625b8db/scene-3.wav",
       "frames": 244,
       "audioFrames": 228,
-      "uiAudio": "jobs/84118f87ae29/scene-3-ui.wav",
+      "uiAudio": "jobs/064e9625b8db/scene-3-ui.wav",
       "words": [
         {
           "w": "Number",
@@ -2807,10 +2807,10 @@
       "label": "artemis",
       "emphasis": "Android",
       "stat": "",
-      "audio": "jobs/84118f87ae29/scene-4.wav",
+      "audio": "jobs/064e9625b8db/scene-4.wav",
       "frames": 182,
       "audioFrames": 166,
-      "uiAudio": "jobs/84118f87ae29/scene-4-ui.wav",
+      "uiAudio": "jobs/064e9625b8db/scene-4-ui.wav",
       "words": [
         {
           "w": "Number",
@@ -3360,10 +3360,10 @@
       "label": "",
       "emphasis": "LINK",
       "stat": "",
-      "audio": "jobs/84118f87ae29/scene-5.wav",
+      "audio": "jobs/064e9625b8db/scene-5.wav",
       "frames": 101,
       "audioFrames": 84,
-      "uiAudio": "jobs/84118f87ae29/scene-5-ui.wav",
+      "uiAudio": "jobs/064e9625b8db/scene-5-ui.wav",
       "words": [
         {
           "w": "Want",
@@ -3663,7 +3663,7 @@
             "rule": "final beat loops to the opening frame"
           },
           "anchor": "right",
-          "transition": "blurDissolve",
+          "transition": "cut",
           "punch": false,
           "character": {
             "state": "speaking",
@@ -3671,7 +3671,7 @@
             "anchor": "centre"
           },
           "direction": {
-            "transition": "loop tail returns softly to the opening frame",
+            "transition": "loop tail cuts back to the opening frame so the CTA never overlaps the hook and the replay is seamless",
             "character": "loop returns to the opening composition",
             "layout": null
           }
