@@ -152,6 +152,7 @@
  ],
  "files": [
   "claude-game-caption.md",
+  "claude-game-cover-3x4.png",
   "claude-game-cover-4x5.png",
   "claude-game-cover-square.png",
   "claude-game-cover.png",
@@ -163,11 +164,11 @@
   "claude-game-script.md"
  ],
  "qa_summary": {
-  "passed": 47,
+  "passed": 48,
   "failed": 0,
   "advisory": 1,
-  "total": 48,
+  "total": 49,
   "visual_review": "recorded"
  },
- "build_seconds": 25
+ "build_seconds": 26
 }

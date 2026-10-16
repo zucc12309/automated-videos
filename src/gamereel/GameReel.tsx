@@ -197,20 +197,25 @@ export const GameReelCover: React.FC<GameCoverProps> = p => {
       <Img src={staticFile(p.frame)} style={{position: 'absolute', left: 0, top: -p.crop[0] * k, width: cw, height: 1920 * k}}/>
     </div>
     <div style={{...box(C.headline), display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6}}>
-      {p.lines.map((l, i) => <div key={i} style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 96, lineHeight: 1.04, letterSpacing: -2, whiteSpace: 'nowrap',
+      {p.lines.map((l, i) => <div key={i} style={{fontFamily: FONT.sans, fontWeight: 900, lineHeight: 1.04, letterSpacing: -2, whiteSpace: 'nowrap',
+        fontSize: Math.min(96, Math.floor((C.headline[2] - 20) / (.56 * Math.max(...p.lines.map(x => x.length))))),
         color: p.accent.includes(i) ? S.accent : S.ink}}>{l}</div>)}
     </div>
     <div style={{...box(C.tag), display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, letterSpacing: 4, color: S.ground, background: S.accent, padding: '10px 24px', borderRadius: 999}}>{p.tag}</div>
+      <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 28, letterSpacing: 4, color: S.ground, background: S.accent, padding: '8px 22px', borderRadius: 999}}>{p.tag}</div>
     </div>
     <div style={{...box(C.brand), display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16}}>
-      <MimoMascot state="excited" size={110} frame={0} amount={.5}/>
-      <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 36, letterSpacing: 4, color: S.inkSoft}}>{p.handle}</div>
+      <MimoMascot state="excited" size={64} frame={0} amount={.5}/>
+      <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 30, letterSpacing: 4, color: S.inkSoft}}>{p.handle}</div>
     </div>
     {p.mask && <AbsoluteFill>
-      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 285, background: 'rgba(255,0,80,.45)'}}/>
-      <div style={{position: 'absolute', left: 0, top: 1635, width: 1080, height: 285, background: 'rgba(255,0,80,.45)'}}/>
-      <div style={{position: 'absolute', left: 0, top: 420, width: 1080, height: 1080, border: '4px dashed #3f6'}}/>
+      {/* every crop Instagram applies to a Reel cover; content must sit inside the solid green box */}
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 240, background: 'rgba(255,0,80,.45)'}}/>
+      <div style={{position: 'absolute', left: 0, top: 1680, width: 1080, height: 240, background: 'rgba(255,0,80,.45)'}}/>
+      <div style={{position: 'absolute', left: 0, top: 285, width: 1080, height: 1350, border: '4px dashed #f80'}}/>
+      <div style={{position: 'absolute', left: 0, top: 420, width: 1080, height: 1080, border: '4px dashed #3cf'}}/>
+      <div style={{position: 'absolute', left: 160, top: 285, width: 760, height: 1350, border: '4px dashed #c6f'}}/>
+      <div style={{...box(C.safe), border: '5px solid #3f6'}}/>
     </AbsoluteFill>}
   </AbsoluteFill>;
 };

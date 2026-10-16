@@ -203,10 +203,19 @@ def run(out: Path, name: str, props: dict, spec: dict, loud: dict, voice: list[d
     add("honesty", "no_unverified_claims", not [x for x in banned if x in nar], "no time-to-build, publication or 'Claude did it alone' claims in narration")
 
     # ---- deliverables
-    want = [f"{name}-final.mp4", f"{name}-no-music.mp4", f"{name}-cover.png", f"{name}-cover-4x5.png", f"{name}-cover-square.png", f"{name}-script.md",
+    want = [f"{name}-final.mp4", f"{name}-no-music.mp4", f"{name}-cover.png", f"{name}-cover-4x5.png", f"{name}-cover-square.png", f"{name}-cover-3x4.png", f"{name}-script.md",
             f"{name}-caption.md", f"{name}-prompt.md"]
     miss = [w for w in want if not (out / w).exists()]
     add("deliverables", "all_files", not miss, "missing: " + ", ".join(miss) if miss else f"{len(want)} files + metadata + QA report")
+    # measured on the cover master: nothing but background outside the box every Instagram crop keeps
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(out / f"{name}-cover.png"), "-vf", "format=gray", "-f", "rawvideo", "-"], capture_output=True, check=True).stdout
+    cov = np.frombuffer(raw, np.uint8).reshape(1920, 1080).astype(np.float32)
+    x, y, w, h = L["cover"]["safe"]
+    mask = np.ones_like(cov, bool)
+    mask[y:y + h, x:x + w] = False
+    outside = float(cov[mask].max())
+    add("deliverables", "cover_survives_every_crop", outside < 70,
+        f"brightest pixel outside x {x}–{x + w}, y {y}–{y + h}: {outside:.0f}/255 (that box is kept by the 1:1, 4:5, 3:4 grid and 4:5-as-9:16 crops)")
     cp = _probe(out / f"{name}-cover-4x5.png")["streams"][0]
     add("deliverables", "cover_4x5", (cp["width"], cp["height"]) == (1080, 1350), f"{cp['width']}x{cp['height']}")
 

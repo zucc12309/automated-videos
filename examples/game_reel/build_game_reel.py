@@ -284,6 +284,8 @@ def main():
         (work / "cover.json").write_text(json.dumps(cp))
         bi.remotion("GameReelCover", out / f"{name}-cover.png", work / "cover.json", vcfg, still=0)
         be.cover_crops(out / f"{name}-cover.png", out / f"{name}-cover-4x5.png", out / f"{name}-cover-square.png")
+        # Instagram's profile grid shows Reels at 3:4: the same centre crop, for checking or for the grid-crop step when posting
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(out / f"{name}-cover.png"), "-vf", "crop=1080:1440:0:240", str(out / f"{name}-cover-3x4.png")], check=True)
         (work / "cover-mask.json").write_text(json.dumps({**cp, "mask": True}))
         bi.remotion("GameReelCover", out / "qa" / "cover-mask.png", work / "cover-mask.json", vcfg, still=0)
         be.grid_preview(out / f"{name}-cover-square.png", out / "qa" / "cover-grid-thumbnail.png")

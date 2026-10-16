@@ -70,29 +70,36 @@
   "size": 50
  },
  "cover": {
+  "note": "All cover content inside 'safe' (x 180-900, y 430-1490), which survives every crop Instagram applies: 1:1 (y 420-1500), 4:5 (y 285-1635), 3:4 profile grid (y 240-1680), and a 4:5 image used as the 9:16 Reel cover (x 160-920).",
+  "safe": [
+   180,
+   430,
+   720,
+   1060
+  ],
   "tag": [
-   60,
-   300,
-   960,
-   70
+   180,
+   436,
+   720,
+   56
   ],
   "headline": [
-   60,
-   430,
-   960,
-   220
+   180,
+   504,
+   720,
+   170
   ],
   "card": [
-   190,
-   676,
-   700,
-   820
+   230,
+   692,
+   620,
+   700
   ],
   "brand": [
-   60,
-   1510,
-   960,
-   120
+   180,
+   1410,
+   720,
+   76
   ]
  }
 }

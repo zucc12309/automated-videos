@@ -2,7 +2,7 @@
 
 29.53 s · 168.0 wpm · final -14.2 LUFS / -1.9 dBTP
 
-**47/48 automated checks pass**, 0 fail, 1 advisory. Visual review: recorded.
+**48/49 automated checks pass**, 0 fail, 1 advisory. Visual review: recorded.
 
 ## Visual review (frames inspected)
 
@@ -16,7 +16,7 @@
 - **Loop** — the last frame is the same recording 0.03 s before the first frame's moment, so the replay continues the run
 - **Instagram safe zones** — headline, card, labels, CTA, Mimo, handle and subtitles all clear of the simulated top bar, action rail and caption block
 - **Privacy** — on-screen titles seen: Tri-Color, First Tap, Pair Up, Right of Way, Junction, The Crew, Levels, world names; the level titled with the project's name is cropped below its title bar; home/title screens never used
-- **Cover** — real frame (crew celebration) large under the two-line statement; square and 4:5 crops keep headline + board
+- **Cover** — real frame (crew celebration) under the two-line statement; checked in all five crops (master, 3:4 grid, 4:5, 1:1, 4:5 used as the 9:16 Reel cover) with nothing cut
 
 ### Found and fixed during review
 
@@ -27,6 +27,7 @@
 - Levels shot too short for its line: re-recorded with a scroll through all five worlds
 - Cover board's bottom row was cut: card proportions changed
 - Simulated Instagram caption showed the emoji as a box: stripped for the preview font
+- Cover was cut off in Instagram's crops (headline and board ran nearly edge to edge): all content moved into x 180–900, y 430–1490, which the 1:1, 4:5, 3:4 profile-grid and 4:5-as-9:16 crops all keep; added a 3:4 file and a measured QA check
 
 ### Not verified
 
@@ -165,5 +166,6 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| all_files | PASS | 8 files + metadata + QA report |
+| all_files | PASS | 9 files + metadata + QA report |
+| cover_survives_every_crop | PASS | brightest pixel outside x 180–900, y 430–1490: 35/255 (that box is kept by the 1:1, 4:5, 3:4 grid and 4:5-as-9:16 crops) |
 | cover_4x5 | PASS | 1080x1350 |
