@@ -1,0 +1,22 @@
+{
+ "status": "reviewed",
+ "basis": "agent inspection of extracted frames (contact sheet + 28 frames at scene boundaries and key words); not computed",
+ "frames_inspected_s": [0.0, 0.5, 2.45, 2.7, 3.3, 3.6, 3.9, 4.6, 6.4, 7.3, 7.55, 8.6, 10.6, 12.6, 13.95, 14.6, 15.6, 17.1, 19.6, 20.0, 20.4, 21.5, 23.4, 24.1, 24.4, 25.0, 26.6, 29.5],
+ "findings": [
+  {"frame_s": 0.0, "ok": true, "note": "Hook readable on frame 0: counter 9,140 + TUTORIALS over a tutorial-tab avalanche."},
+  {"frame_s": 2.45, "ok": true, "note": "STILL STUCK? slams with a 6-frame RGB-split glitch and the failing build terminal."},
+  {"frame_s": 3.6, "ok": true, "note": "Terminal cracks along an orange fault line, then splits; Mimo pops out (surprised → happy), blinks twice, waves; dev glyphs orbit."},
+  {"frame_s": 7.3, "ok": true, "note": "Fixed: build opened ~0.5 s nearly empty; tool chips now arrive from frame 1."},
+  {"frame_s": 10.6, "ok": true, "note": "Fixed: 'you can actually follow.' overlapped Mimo; now right-aligned clear of him. Editor morphs into the BUILD 01 card."},
+  {"frame_s": 13.95, "ok": true, "note": "Whip transition into the topics panels; agent loop, MCP hub with plugs, repo tree with scanning highlight."},
+  {"frame_s": 20.4, "ok": true, "note": "FLUFF struck through and crushed; checklist ticks on the spoken words; '$ ship it' types after."},
+  {"frame_s": 24.1, "ok": true, "note": "Fixed: iris into the outro showed outro elements without a background over the terminal; the iris is now opaque."},
+  {"frame_s": 26.6, "ok": true, "note": "Logo lockup (same animation as the 5 s sting), Follow along button with tap cursor, Mimo winks then waves."},
+  {"frame_s": null, "ok": true, "note": "Fixed: reveal-to-outro static stretches (QA motion 53% → 86%) with camera push, ambient code glyphs, card float, tree scan."}
+ ],
+ "known_limits": [
+  "Mimo is an original SVG drawing; no approved mascot image was available in this session.",
+  "Word timings inside a sentence are estimated (kokoro-onnx returns no timestamps); sentence starts are exact.",
+  "Speech share is below Reference A (0.66) because the brand intro holds visual beats (logo, reveal); reported as an advisory."
+ ]
+}

@@ -5,7 +5,7 @@ import {Backdrop} from './Backdrop';
 import {LogoMark} from './Logo';
 import {Mimo, MimoExpr} from './Mimo';
 import {BuildScene, HookScene, NoFluffScene, OutroScene, RevealScene, SceneProps, TopicsScene} from './Scenes';
-import {DM, FONT, IntroProps} from './theme';
+import {DM, FONT, IntroProps, rand} from './theme';
 
 /* DevMimo intro: six scenes timed by examples/devmimo/build_intro.py from the real Kokoro narration (props.scenes[].from/frames/words),
    Mimo's mouth driven by the narration loudness (props.mouth, one value per frame). Audio is mixed and mastered outside Remotion
@@ -34,6 +34,7 @@ export const DevMimoIntro: React.FC<IntroProps> = props => {
   const build = scenes.find(s => s.kind === 'build');
   return <AbsoluteFill style={{background: DM.charcoal}}>
     <Backdrop f={g} keyX={kx} keyY={ky} intensity={current?.kind === 'reveal' ? 1.2 : .7}/>
+    <Ambient g={g}/>
     {scenes.map((s, i) => {
       const Comp = SCENES[s.kind];
       const next = scenes[i + 1];
@@ -46,10 +47,25 @@ export const DevMimoIntro: React.FC<IntroProps> = props => {
   </AbsoluteFill>;
 };
 
+const DRIFT = new Set(['build', 'topics', 'nofluff', 'outro']);
 const SceneFrame: React.FC<{scene: IntroProps['scenes'][number]; Comp: React.FC<SceneProps>; mouth: number}> = ({scene, Comp, mouth}) => {
   const f = useCurrentFrame();
-  return <AbsoluteFill><Comp scene={scene} f={f} mouth={mouth}/></AbsoluteFill>;
+  // slow camera push so no beat sits dead still once its graphic has landed
+  const z = DRIFT.has(scene.kind) ? 1 + .045 * Math.min(1, f / scene.frames) : 1;
+  return <AbsoluteFill style={{transform: `scale(${z})`, transformOrigin: '50% 45%'}}><Comp scene={scene} f={f} mouth={mouth}/></AbsoluteFill>;
 };
+
+const GLYPHS = ['</>', '{ }', '>_', ';', '=>', '//', '()', '#'];
+/** Ambient code glyphs drifting up behind everything: depth and constant, quiet motion. */
+const Ambient: React.FC<{g: number}> = ({g}) => <AbsoluteFill style={{pointerEvents: 'none'}}>
+  {Array.from({length: 16}, (_, i) => {
+    const speed = .8 + rand(i) * 1.6, size = 34 + rand(i + 4) * 40;
+    const y = 2050 - ((g * speed + rand(i + 8) * 2200) % 2300);
+    const x = rand(i + 12) * 1000 + Math.sin(g / 40 + i) * 30;
+    return <div key={i} style={{position: 'absolute', left: x, top: y, fontFamily: FONT.mono, fontWeight: 700, fontSize: size,
+      color: i % 3 === 0 ? DM.orange : DM.ivory, opacity: .07 + rand(i + 20) * .1, transform: `rotate(${Math.sin(g / 50 + i) * 12}deg)`}}>{GLYPHS[i % GLYPHS.length]}</div>;
+  })}
+</AbsoluteFill>;
 
 /** Reel cover (1080x1920). Key content sits inside the centred 4:5 grid crop (y 285–1635). */
 export const DevMimoPoster: React.FC = () => {

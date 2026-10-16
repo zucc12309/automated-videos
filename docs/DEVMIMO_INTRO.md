@@ -1,0 +1,73 @@
+# DevMimo intro and logo sting
+
+A 30-second cinematic intro for DevMimo (1080×1920, 30 fps) and a reusable 5-second logo animation. Both are built on the existing V2.2
+pieces. Nothing in the pipeline was rebuilt, and no other video format was changed.
+
+```bash
+.venv/bin/python examples/devmimo/build_intro.py              # narrate → time → mix → render both → master → QA
+.venv/bin/python examples/devmimo/build_intro.py --reuse-voice # keep the cached narration (data/devmimo/)
+npx remotion still src/index.tsx MimoSheet out.png             # mascot expression sheet
+```
+
+Outputs go to `demos/devmimo/`:
+
+- `devmimo_intro.mp4`
+- `devmimo_intro_poster.png`
+- `devmimo_intro_contact_sheet.png`
+- `devmimo_intro_storyboard.json`
+- `devmimo_intro_qa.json`
+- `devmimo_logo.mp4`
+- `devmimo_logo_contact_sheet.png`
+
+The MP4s are git-ignored, like every other render.
+
+## What was reused
+
+| Piece | Source |
+|---|---|
+| Narration | `tts.narrate`: Kokoro `am_adam` @ 1.05 via kokoro-onnx; spoken forms for Mimo / DevMimo / MCP |
+| Voice tone | `audio_profile.match_eq` (reference EQ, Kokoro strength 0.5), compressor, loudnorm per scene |
+| Music | `audio.music_bed(style="warm_pad")`, ducked under speech; level from `audio_profile.bed_gain_db` (reference bed −22 dB under speech) |
+| SFX | `audio.whoosh / pop / tick / chime / stamp / plug` plus three new synths in the build script (sub boom, riser, key clicks, glitch) |
+| Master | linear gain to −14 LUFS + limiter, re-measured until loudness and true peak (≤ −1 dBTP) both hold |
+| QA | `video_validation.technical`, `audio_profile.compare`, plus intro checks in `examples/devmimo/qa.py` |
+| Fonts | the bundled Figtree, Instrument Serif and JetBrains Mono (`ensureFonts`) |
+
+## New Remotion code (`src/devmimo/`)
+
+| File | Contents |
+|---|---|
+| `theme.ts` | charcoal / ivory / orange tokens, clamped easing helpers, word-frame lookup |
+| `Mimo.tsx` | the mascot as layered SVG: blink (auto + scripted), breathing, head bob, antenna sway, wave, typing, squash; expressions neutral / happy / surprised / wink / focused; mouth driven by narration loudness |
+| `Logo.tsx` | `LogoMark`, `LogoReveal` (the 150-frame animation, reusable at any scale) and the `DevMimoLogo` composition |
+| `Backdrop.tsx` | dot grid drifting under a warm key light, vignette |
+| `Scenes.tsx` | hook, reveal, build, topics, no-fluff and outro scenes |
+| `DevMimoIntro.tsx` | composition, slab wipe, slow camera push, ambient code glyphs, `DevMimoPoster`, `MimoSheet` |
+
+Compositions: `DevMimoIntro`, `DevMimoLogo`, `DevMimoPoster`, `MimoSheet`.
+
+## Timing
+
+Each scene lasts lead-in + measured speech + tail. The tails share what is left of the 30 s by the storyboard's `hold` weights, so the
+picture always waits for the voice. Every animation that lands on a word reads that word's start from `props.scenes[].words`. Sound
+cues can be anchored to a word index (`"word": n` in the storyboard's `sfx` list), so the sound and the picture use the same frames.
+
+## The mascot
+
+No approved mascot image was available when this was built. Mimo is therefore an original drawing in the DevMimo palette. To match an
+approved profile image, edit `src/devmimo/Mimo.tsx` only: scenes use nothing but its props.
+
+## QA
+
+`devmimo_intro_qa.json` has two parts:
+
+- **Deterministic checks:**
+  - technical;
+  - timing (each scene ≥ its narration);
+  - reference audio;
+  - frame-0 contrast;
+  - motion share and longest static stretch;
+  - palette share;
+  - logo technical checks.
+- **Visual review** (`examples/devmimo/visual_review.json`): what was seen on extracted frames and what was fixed. It is labelled as
+  an inspection, not a computed check.

@@ -1,5 +1,6 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
+import {Backdrop} from './Backdrop';
 import {LogoMark, LogoReveal} from './Logo';
 import {Mimo} from './Mimo';
 import {DM, DMScene, FONT, io, rand, sp, wf} from './theme';
@@ -83,6 +84,7 @@ export const HookScene: React.FC<SceneProps> = ({scene, f}) => {
 
 // ------------------------------------------------------------------------------------------------ 2. reveal
 export const RevealScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
+  const push = 1 + Math.max(0, f - 30) * .0012;
   const burst = 14;
   const crack = io(f, 0, burst);
   const blown = io(f, burst, burst + 16, 0, 1, t => t * t);
@@ -95,7 +97,7 @@ export const RevealScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
   const shake = f < burst ? (rand(f) - .5) * 20 * crack : 0;
   const rays = io(f, burst, burst + 20);
   const wave = io(f, land + 22, land + 30) * (1 - io(f, scene.frames - 12, scene.frames - 2));
-  return <AbsoluteFill>
+  return <AbsoluteFill style={{transform: `scale(${push})`, transformOrigin: '50% 60%'}}>
     {/* light rays */}
     <AbsoluteFill style={{opacity: rays * .9, background: `repeating-conic-gradient(from ${f * .6}deg at 50% 62%, rgba(255,122,26,.13) 0deg 7deg, transparent 7deg 20deg)`,
       maskImage: 'radial-gradient(circle at 50% 62%, black 10%, transparent 62%)', WebkitMaskImage: 'radial-gradient(circle at 50% 62%, black 10%, transparent 62%)'}}/>
@@ -124,6 +126,17 @@ export const RevealScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
         {[...'Mimo'].map((c, i) => { const k = sp(f, name + i * 2, 11, 200); return <span key={i} style={{display: 'inline-block', opacity: Math.min(1, k * 1.5), transform: `translateY(${(1 - k) * 120}px) rotate(${(1 - k) * (i % 2 ? 12 : -12)}deg)`}}>{c}</span>; })}
       </div>
     </div>
+    {/* dev glyphs orbit Mimo once it has landed */}
+    {['</>', '>_', '{ }', '#', '=>'].map((g, i) => {
+      const k = sp(f, land + 6 + i * 4, 12, 150);
+      const a = (f - land) * 1.6 + i * 72;
+      const r = (330 + 40 * Math.sin(i)) * k;
+      const x = 540 + r * Math.cos(a * Math.PI / 180), y = 1150 + r * .42 * Math.sin(a * Math.PI / 180);
+      const front = Math.sin(a * Math.PI / 180) > 0;
+      return f > land ? <div key={g} style={abs({left: x - 70, top: y - 40, width: 140, height: 80, borderRadius: 24, background: DM.panel, border: `3px solid ${DM.orange}`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.mono, fontWeight: 700, fontSize: 40, color: DM.ivory,
+        opacity: k * (front ? 1 : .55), transform: `scale(${front ? 1 : .8})`, zIndex: front ? 2 : 0})}>{g}</div> : null;
+    })}
     {f >= burst && <MimoAt x={540} y={mimoY} size={560 * (.3 + .7 * pop)} rotate={f < land ? (1 - arc) * -18 : 0}>
       <Mimo size={560 * (.3 + .7 * pop)} frame={f} mouth={mouth} squash={squash - (f < land ? .35 * (1 - arc) : 0)} expression={f < land + 8 ? 'surprised' : 'happy'}
         blinkAt={[land + 10, land + 17]} wave={wave} glow={1 + .5 * (1 - io(f, burst, burst + 20))} look={{x: 0, y: f < land ? -.6 : 0}}/>
@@ -158,7 +171,7 @@ export const BuildScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
     </div>
     {/* tool chips fly in, then into the editor */}
     {TOOLS.map((t, i) => {
-      const k = sp(f, 10 + i * 6, 12, 170);
+      const k = sp(f, 1 + i * 4, 22, 170);
       const suck = io(f, 36 + i * 2, 48 + i * 2, 0, 1, t2 => t2 * t2);
       const x0 = 90 + (i % 2) * 460, y0 = 560 + Math.floor(i / 2) * 120;
       const x = x0 + (1 - k) * 900 + suck * (540 - 200 - x0), y = y0 + suck * (980 - y0);
@@ -168,7 +181,7 @@ export const BuildScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
     })}
     {/* editor → build card */}
     <div style={abs({left: cx - w / 2, top: 760 - morph * 60, width: w, height: h, opacity: Math.min(1, editorIn * 1.4), transform: `scale(${.6 + .4 * editorIn})`,
-      transformOrigin: '50% 30%', borderRadius: 34 + morph * 10, background: DM.panel, border: `2px solid ${morph > .5 ? DM.orange : DM.line}`,
+      transformOrigin: '50% 30%', rotate: `${morph * Math.sin(f / 14) * 2.2}deg`, translate: `0 ${morph * Math.sin(f / 11) * 14}px`, borderRadius: 34 + morph * 10, background: DM.panel, border: `2px solid ${morph > .5 ? DM.orange : DM.line}`,
       boxShadow: `0 40px 100px rgba(0,0,0,.6), 0 0 ${60 * morph}px ${DM.orangeGlow}`, overflow: 'hidden'})}>
       <div style={{height: 76, display: 'flex', alignItems: 'center', gap: 14, padding: '0 30px', background: DM.panelHi, borderBottom: `2px solid ${DM.line}`}}>
         {[DM.error, DM.ok, DM.ivorySoft].map((c, i) => <div key={i} style={{width: 20, height: 20, borderRadius: 10, background: c, opacity: .85}}/>)}
@@ -197,8 +210,8 @@ export const BuildScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
         </div>
       </div>
     </div>
-    <div style={abs({left: 80, right: 80, top: 1500, textAlign: 'right', fontFamily: FONT.serif, fontStyle: 'italic', fontSize: 84, color: DM.ivory,
-      opacity: io(f, follow - 14, follow - 6)})}>you can actually <span style={{color: DM.orange}}>follow.</span></div>
+    <div style={abs({left: 80, right: 80, top: 1500, textAlign: 'right', fontFamily: FONT.serif, fontStyle: 'italic', fontSize: 80, color: DM.ivory,
+      paddingLeft: 300, opacity: io(f, follow - 14, follow - 6), transform: `translateY(${(1 - io(f, follow - 14, follow - 4)) * 30}px)`})}>you can actually <span style={{color: DM.orange}}>follow.</span></div>
     <MimoAt x={210} y={1760} size={330}>
       <Mimo size={330} frame={f + 200} mouth={mouth} typing={io(f, 44, 50) * (1 - io(f, short - 6, short))} look={{x: .8, y: -.6}}
         expression={f > follow ? 'happy' : 'neutral'} blinkAt={[real]}/>
@@ -261,7 +274,8 @@ const RepoPanel: React.FC<{f: number; worth: number}> = ({f, worth}) =>
   <>
     <div style={abs({left: 110, top: 600, width: 860, padding: '40px 50px', borderRadius: 36, background: DM.panel, border: `2px solid ${DM.line}`,
       transform: `translateY(${(1 - sp(f, 0, 13, 160)) * 200}px)`})}>
-      {TREE.map((line, i) => <div key={line} style={{fontFamily: FONT.mono, fontSize: 54, lineHeight: 1.6, color: i ? DM.ivory : DM.orange, fontWeight: i ? 500 : 700,
+      {f > 28 && <div style={abs({left: 30, right: 30, top: 40 + 86 * (1 + Math.floor((f - 28) / 9) % 4), height: 86, borderRadius: 16, background: 'rgba(255,122,26,.14)'})}/>}
+      {TREE.map((line, i) => <div key={line} style={{position: 'relative', fontFamily: FONT.mono, fontSize: 54, lineHeight: 1.6, color: i ? DM.ivory : DM.orange, fontWeight: i ? 500 : 700,
         opacity: io(f, 4 + i * 4, 8 + i * 4), transform: `translateX(${(1 - io(f, 4 + i * 4, 10 + i * 4)) * 40}px)`, whiteSpace: 'nowrap'}}>{line}</div>)}
       <div style={abs({right: 46, top: 40, fontSize: 80, color: DM.orange, transform: `scale(${sp(f, 24, 8, 200)}) rotate(${f * 2}deg)`,
         filter: `drop-shadow(0 0 16px ${DM.orange})`})}>★</div>
@@ -322,6 +336,9 @@ export const NoFluffScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
             <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 60, color: on && last ? DM.orangeHot : DM.ivory}}>{c}</div>
           </div>;
         })}
+        <div style={{fontFamily: FONT.mono, fontSize: 52, color: DM.ivory, padding: '22px 22px 4px', opacity: f > at[2] + 8 ? 1 : 0}}>
+          <span style={{color: DM.orange}}>$ </span>{'ship it'.slice(0, Math.floor(io(f, at[2] + 14, at[2] + 30, 0, 7, t => t)))}
+          <span style={{color: DM.orange, opacity: Math.floor(f / 7) % 2 ? 1 : 0}}>▍</span></div>
       </Terminal>
     </div>
     <MimoAt x={220} y={1780} size={300}>
@@ -340,6 +357,7 @@ export const OutroScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
   const cursor = io(f, follow + 2, follow + 16);
   const ring = ((f - follow) % 36) / 36;
   return <AbsoluteFill style={{clipPath: `circle(${iris}px at 50% 46%)`}}>
+    <Backdrop f={f + 700} keyX={50} keyY={42} intensity={.8}/>
     <AbsoluteFill style={{background: `radial-gradient(ellipse 70% 40% at 50% 40%, rgba(255,122,26,.10), transparent 70%)`}}/>
     <div style={abs({left: 0, top: 130, width: 1080, display: 'flex', justifyContent: 'center'})}><LogoReveal f={f} scale={.86}/></div>
     <div style={abs({left: 0, right: 0, top: 840, display: 'flex', justifyContent: 'center'})}>

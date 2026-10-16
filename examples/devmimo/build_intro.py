@@ -208,17 +208,20 @@ def remotion(comp: str, out: Path, props: Path | None, cfg, extra: list[str] | N
 
 
 def master(silent: Path, wav: Path, out: Path, lufs: float = -14.0):
-    """Linear gain to the target (keeps the pauses' dynamics), limiter, AAC; true peak corrected after encoding."""
-    current = audio_profile.loudness(wav)["integrated_lufs"]
-    chain = f"volume={lufs - current:.2f}dB,alimiter=limit=0.84:attack=1:release=60:level=false"
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(silent), "-i", str(wav), "-map", "0:v", "-map", "1:a", "-c:v", "copy",
-                    "-af", chain, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True, timeout=600)
-    tp = audio_profile.loudness(out)["true_peak_dbtp"]
-    if tp is not None and tp > -1.0:
-        tmp = out.with_suffix(".tp.mp4")
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(out), "-c:v", "copy", "-af", f"volume={-1.2 - tp:.2f}dB", "-ar", "48000",
-                        "-c:a", "aac", "-b:a", "192k", str(tmp)], check=True, timeout=600)
-        tmp.replace(out)
+    """Linear gain to the target (keeps the pauses' dynamics), limiter, AAC. The limiter shaves the SFX peaks, which lowers the
+    integrated loudness, so the gain is re-measured and corrected (up to 3 passes); true peak is corrected after encoding."""
+    gain, limit = lufs - audio_profile.loudness(wav)["integrated_lufs"], .84
+    for _ in range(5):
+        chain = f"volume={gain:.2f}dB,alimiter=limit={limit:.3f}:attack=1:release=60:level=false"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(silent), "-i", str(wav), "-map", "0:v", "-map", "1:a", "-c:v", "copy",
+                        "-af", chain, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True, timeout=600)
+        m = audio_profile.loudness(out)
+        if abs(m["integrated_lufs"] - lufs) <= .3 and m["true_peak_dbtp"] <= -1.0:
+            return m
+        if m["true_peak_dbtp"] > -1.0:          # AAC overshoot: lower the ceiling, keep the loudness
+            limit *= 10 ** ((-1.25 - m["true_peak_dbtp"]) / 20)
+        gain += lufs - m["integrated_lufs"]
+    return m
 
 
 def contact_sheet(video: Path, out: Path, seconds: float, cols: int = 6, rows: int = 4):

@@ -1,0 +1,450 @@
+{
+ "video": "devmimo_intro.mp4",
+ "logo": "devmimo_logo.mp4",
+ "seconds": 30.033,
+ "frames": 901,
+ "voice": {
+  "engine": "kokoro_onnx",
+  "voice": "am_adam @ 1.05"
+ },
+ "music_bed_gain_db": -3.48,
+ "scenes": [
+  {
+   "id": "hook",
+   "start_s": 0.0,
+   "seconds": 3.23,
+   "speech_s": 2.485
+  },
+  {
+   "id": "reveal",
+   "start_s": 3.23,
+   "seconds": 3.63,
+   "speech_s": 0.779
+  },
+  {
+   "id": "build",
+   "start_s": 6.87,
+   "seconds": 6.87,
+   "speech_s": 4.962
+  },
+  {
+   "id": "topics",
+   "start_s": 13.73,
+   "seconds": 5.93,
+   "speech_s": 4.466
+  },
+  {
+   "id": "nofluff",
+   "start_s": 19.67,
+   "seconds": 4.4,
+   "speech_s": 2.998
+  },
+  {
+   "id": "outro",
+   "start_s": 24.07,
+   "seconds": 5.97,
+   "speech_s": 3.455
+  }
+ ],
+ "sfx_cues": 29,
+ "summary": {
+  "passed": true,
+  "mandatory_failed": [],
+  "advisories": [
+   "speech_share"
+  ],
+  "checks": 37,
+  "visual_review": "reviewed"
+ },
+ "checks": [
+  {
+   "group": "technical",
+   "check": "readable",
+   "passed": true,
+   "detail": "ffprobe parsed the container",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "resolution",
+   "passed": true,
+   "detail": "1080x1920 (want 1080x1920)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "aspect_ratio",
+   "passed": true,
+   "detail": "9:16",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "frame_rate",
+   "passed": true,
+   "detail": "30.000 fps (want 30)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "duration",
+   "passed": true,
+   "detail": "30.03s (expected 30.03s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "audio_present",
+   "passed": true,
+   "detail": "aac 48000",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "decode_integrity",
+   "passed": true,
+   "detail": "clean full decode",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "black_frames",
+   "passed": true,
+   "detail": "none",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "frozen_frames",
+   "passed": true,
+   "detail": "none",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "unexpected_silence",
+   "passed": true,
+   "detail": "none",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "target_length",
+   "passed": true,
+   "detail": "30.03s (target 30 \u00b10.5)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:hook",
+   "passed": true,
+   "detail": "97 frames for 76 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:reveal",
+   "passed": true,
+   "detail": "109 frames for 40 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:build",
+   "passed": true,
+   "detail": "206 frames for 152 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:topics",
+   "passed": true,
+   "detail": "178 frames for 137 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:nofluff",
+   "passed": true,
+   "detail": "132 frames for 93 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:outro",
+   "passed": true,
+   "detail": "179 frames for 108 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "loudness",
+   "passed": true,
+   "detail": "-14.5 vs reference -14.1 LUFS (\u00b11.0)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "true_peak",
+   "passed": true,
+   "detail": "-1.2 dBTP (\u2264 -1.0)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "music_bed_level",
+   "passed": true,
+   "detail": "bed -22.2 vs reference -22.2 dB under speech (\u00b13.0)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "music_bed_warmth",
+   "passed": true,
+   "detail": "bed centroid 334 vs reference 355 Hz (\u00b170.0)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "voice_pitch",
+   "passed": true,
+   "detail": "median F0 125.0 vs reference 118.5 Hz; range 89.4\u2013153.8 vs 93.0\u2013144.1",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "speech_share",
+   "passed": false,
+   "detail": "0.571 vs reference 0.656 of the runtime is speech (\u00b10.08)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "pause_length",
+   "passed": true,
+   "detail": "median pause 0.34 vs reference 0.32 s (\u00b10.08)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "voice_tone",
+   "passed": true,
+   "detail": "largest band difference: air +2.9 dB (\u00b13.0); render {'low': -4.0, 'mid': -3.5, 'presence': -11.4, 'air': -13.8} vs {'low': -4.1, 'mid': -2.8, 'presence': -12.7, 'air': -16.7}",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "hook",
+   "check": "frame0_contrast",
+   "passed": true,
+   "detail": "luma p99-p5 spread 226 on frame 0 (>120 = bold readable content)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "hook",
+   "check": "frame0_has_type",
+   "passed": true,
+   "detail": "3.8% of frame 0 is bright type/graphics",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "motion",
+   "check": "motion_share",
+   "passed": true,
+   "detail": "86% of 0.25 s steps change visibly",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "motion",
+   "check": "longest_static",
+   "passed": true,
+   "detail": "longest static stretch 0.75s (\u2264 1.5 s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "brand",
+   "check": "palette_share",
+   "passed": true,
+   "detail": "99.8% of sampled pixels are charcoal / ivory / orange or their blends",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "readable",
+   "passed": true,
+   "detail": "ffprobe parsed the container",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "resolution",
+   "passed": true,
+   "detail": "1080x1920 (want 1080x1920)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "frame_rate",
+   "passed": true,
+   "detail": "30.000 fps (want 30)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "duration",
+   "passed": true,
+   "detail": "5.00s (expected 5.00s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "audio_present",
+   "passed": true,
+   "detail": "aac 48000",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "decode_integrity",
+   "passed": true,
+   "detail": "clean full decode",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "black_frames",
+   "passed": true,
+   "detail": "none",
+   "mandatory": true,
+   "basis": "deterministic"
+  }
+ ],
+ "visual_review": {
+  "status": "reviewed",
+  "basis": "agent inspection of extracted frames (contact sheet + 28 frames at scene boundaries and key words); not computed",
+  "frames_inspected_s": [
+   0.0,
+   0.5,
+   2.45,
+   2.7,
+   3.3,
+   3.6,
+   3.9,
+   4.6,
+   6.4,
+   7.3,
+   7.55,
+   8.6,
+   10.6,
+   12.6,
+   13.95,
+   14.6,
+   15.6,
+   17.1,
+   19.6,
+   20.0,
+   20.4,
+   21.5,
+   23.4,
+   24.1,
+   24.4,
+   25.0,
+   26.6,
+   29.5
+  ],
+  "findings": [
+   {
+    "frame_s": 0.0,
+    "ok": true,
+    "note": "Hook readable on frame 0: counter 9,140 + TUTORIALS over a tutorial-tab avalanche."
+   },
+   {
+    "frame_s": 2.45,
+    "ok": true,
+    "note": "STILL STUCK? slams with a 6-frame RGB-split glitch and the failing build terminal."
+   },
+   {
+    "frame_s": 3.6,
+    "ok": true,
+    "note": "Terminal cracks along an orange fault line, then splits; Mimo pops out (surprised \u2192 happy), blinks twice, waves; dev glyphs orbit."
+   },
+   {
+    "frame_s": 7.3,
+    "ok": true,
+    "note": "Fixed: build opened ~0.5 s nearly empty; tool chips now arrive from frame 1."
+   },
+   {
+    "frame_s": 10.6,
+    "ok": true,
+    "note": "Fixed: 'you can actually follow.' overlapped Mimo; now right-aligned clear of him. Editor morphs into the BUILD 01 card."
+   },
+   {
+    "frame_s": 13.95,
+    "ok": true,
+    "note": "Whip transition into the topics panels; agent loop, MCP hub with plugs, repo tree with scanning highlight."
+   },
+   {
+    "frame_s": 20.4,
+    "ok": true,
+    "note": "FLUFF struck through and crushed; checklist ticks on the spoken words; '$ ship it' types after."
+   },
+   {
+    "frame_s": 24.1,
+    "ok": true,
+    "note": "Fixed: iris into the outro showed outro elements without a background over the terminal; the iris is now opaque."
+   },
+   {
+    "frame_s": 26.6,
+    "ok": true,
+    "note": "Logo lockup (same animation as the 5 s sting), Follow along button with tap cursor, Mimo winks then waves."
+   },
+   {
+    "frame_s": null,
+    "ok": true,
+    "note": "Fixed: reveal-to-outro static stretches (QA motion 53% \u2192 86%) with camera push, ambient code glyphs, card float, tree scan."
+   }
+  ],
+  "known_limits": [
+   "Mimo is an original SVG drawing; no approved mascot image was available in this session.",
+   "Word timings inside a sentence are estimated (kokoro-onnx returns no timestamps); sentence starts are exact.",
+   "Speech share is below Reference A (0.66) because the brand intro holds visual beats (logo, reveal); reported as an advisory."
+  ]
+ },
+ "basis": "deterministic checks via ffmpeg/numpy; visual_review is a human/agent inspection of extracted frames, recorded separately",
+ "build_seconds": 167.3
+}
