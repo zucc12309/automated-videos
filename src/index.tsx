@@ -9,6 +9,9 @@ import {MascotShot} from './styles/MascotScene';
 import {PaperVideo} from './paper/PaperVideo';
 import {StudioVideo} from './studio/StudioVideo';
 import {BlobSheet, PremiumVideo} from './premium/PremiumVideo';
+import {DevMimoIntro, DevMimoPoster, MimoSheet} from './devmimo/DevMimoIntro';
+import {DevMimoLogo} from './devmimo/Logo';
+import {IntroProps} from './devmimo/theme';
 
 const shots: Record<Exclude<Style, 'paper' | 'studio' | 'premium'>, React.FC<ShotProps>> = {editorial: EditorialShot, kinetic: KineticShot, mascot: MascotShot, fieldnotes: FieldnotesShot};
 
@@ -27,5 +30,13 @@ const CharacterSheet = () => <AbsoluteFill style={{background: '#ebe8e1', flexDi
     <Character width={560} mouth={.7} pose={pose} expression={expression} viseme={viseme} look={look} seed={i}/>
   </div>)}
 </AbsoluteFill>;
-const Root = () => <><Composition id="BlobSheet" component={BlobSheet} durationInFrames={60} fps={30} width={1440} height={1240}/><Composition id="CharacterSheet" component={CharacterSheet} durationInFrames={120} fps={30} width={2000} height={2000}/><Composition id="Explainer" component={Video} defaultProps={defaults} durationInFrames={150} fps={30} width={1080} height={1920} calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps, width: props.width, height: props.height})}/></>;
+const introDefaults: IntroProps = {fps: 30, durationInFrames: 900, scenes: [], mouth: []};
+const DevMimoCompositions = () => <>
+  <Composition id="DevMimoIntro" component={DevMimoIntro} defaultProps={introDefaults} durationInFrames={900} fps={30} width={1080} height={1920}
+    calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps})}/>
+  <Composition id="DevMimoLogo" component={DevMimoLogo} durationInFrames={150} fps={30} width={1080} height={1920}/>
+  <Composition id="DevMimoPoster" component={DevMimoPoster} durationInFrames={1} fps={30} width={1080} height={1920}/>
+  <Composition id="MimoSheet" component={MimoSheet} durationInFrames={1} fps={30} width={1440} height={1240}/>
+</>;
+const Root = () => <><DevMimoCompositions/><Composition id="BlobSheet" component={BlobSheet} durationInFrames={60} fps={30} width={1440} height={1240}/><Composition id="CharacterSheet" component={CharacterSheet} durationInFrames={120} fps={30} width={2000} height={2000}/><Composition id="Explainer" component={Video} defaultProps={defaults} durationInFrames={150} fps={30} width={1080} height={1920} calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps, width: props.width, height: props.height})}/></>;
 registerRoot(Root);
