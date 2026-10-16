@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Easing, interpolate, Sequence, spring, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Audio, Easing, interpolate, OffthreadVideo, Sequence, spring, staticFile, useCurrentFrame} from 'remotion';
 import {Character, Expression, Pose, Viseme} from '../Character';
 import {Beat, Props, Scene} from '../shared';
 import {Backdrop, Captions} from './Backdrop';
@@ -9,16 +9,18 @@ import {Chat, Chips, DeviceMock, NodeGraph, RepoCard, StarMeter, Terminal} from 
 import {DocStamp, HookStack, Recap} from './LayoutsStory';
 import {BrowserMock, ChartBars, Cinematic, CodeBlock, FlowDiagram, SplitCompare, Timeline, WarningCard} from './LayoutsV2';
 import {GENERATED} from './generated';
+import {HookBold, MotionClip, OutroCTA, ReadmeScroll, RepoConnect} from './LayoutsRetention';
 import {DEFAULT_VARIANT, FONT, PALETTES, Palette, STAGE, THEMES, Variant, punch} from './tokens';
 
 const LAYOUTS: Record<string, React.FC<LayoutProps>> = {heroWord: HeroWord, bigNumber: BigNumber, quote: Quote, mascotCloseup: MascotCloseup, listStack: ListStack,
   steps: Steps, compare: Compare, repoCard: RepoCard, terminal: Terminal, chips: Chips, starMeter: StarMeter, deviceMock: DeviceMock, chat: Chat, nodeGraph: NodeGraph,
   hookStack: HookStack, docStamp: DocStamp, recap: Recap,
   codeBlock: CodeBlock, flowDiagram: FlowDiagram, timeline: Timeline, chartBars: ChartBars, browserMock: BrowserMock, warningCard: WarningCard,
-  splitCompare: SplitCompare, cinematic: Cinematic, ...GENERATED};
-const TEXT_FORWARD = new Set(['heroWord', 'quote', 'hookStack', 'loop', 'mascotCloseup']);
+  splitCompare: SplitCompare, cinematic: Cinematic, hookBold: HookBold, readmeScroll: ReadmeScroll, repoConnect: RepoConnect, outroCTA: OutroCTA,
+  motionClip: MotionClip, ...GENERATED};
+const TEXT_FORWARD = new Set(['heroWord', 'quote', 'hookStack', 'loop', 'mascotCloseup', 'hookBold', 'outroCTA']);
 const DEICTIC = new Set(['repoCard', 'terminal', 'deviceMock', 'starMeter', 'chips', 'nodeGraph', 'docStamp', 'chat', 'steps', 'listStack', 'bigNumber',
-  'codeBlock', 'flowDiagram', 'timeline', 'chartBars', 'browserMock', 'splitCompare']);
+  'codeBlock', 'flowDiagram', 'timeline', 'chartBars', 'browserMock', 'splitCompare', 'readmeScroll', 'repoConnect']);
 // Camera grammar (storyboard motion.camera) -> push-in strength over a beat.
 const CAMERA: Record<string, number> = {static: 0, subtle_push: 1, parallax: 1, dolly: 1.6, pan_left: .6, pan_right: .6};
 const T = 9;  // transition length in frames
@@ -65,6 +67,12 @@ const BeatView: React.FC<{b: GBeat; next?: GBeat; props: Props; P: Palette; v: V
   const lp: LayoutProps = isLoop ? {beat: first, scene: first.scene, props, P, v, index: 0, hit: null, dur} : {beat: b, scene: b.scene, props, P, v, index: b.si, hit: b.hit, dur};
   return <AbsoluteFill style={{...tin, ...tout}}>
     {b.transition === 'mask' && <Backdrop P={P} kind={v.theme && THEMES[v.theme] ? THEMES[v.theme].background : v.background} shift={{x: 0, y: 0}}/>}
+    {b.scene.media && b.layout !== 'cinematic' && b.layout !== 'motionClip' && !isLoop && <AbsoluteFill>
+      {/* Footage as a graded backdrop behind typography layouts (e.g. the bold hook over a Higgsfield establishing shot). */}
+      <OffthreadVideo src={staticFile(b.scene.media)} muted playbackRate={b.scene.mediaSeconds ? Math.max(.5, Math.min(1, b.scene.mediaSeconds / Math.max(.1, dur / 30))) : 1}
+        style={{width: '100%', height: '100%', objectFit: 'cover', filter: `saturate(.8) brightness(${P.dark ? .55 : .8})`}}/>
+      <AbsoluteFill style={{background: `linear-gradient(180deg, ${P.bg}99 0%, ${P.bg}55 40%, ${P.bg}dd 85%)`}}/>
+    </AbsoluteFill>}
     <AbsoluteFill style={{transform: `translateX(${pan}px) scale(${push * k * cutPunch})`, transformOrigin: '50% 42%'}}>
       <div style={{position: 'absolute', left: STAGE.left, top: STAGE.top, width: STAGE.width, height: STAGE.height}}><L {...lp}/></div>
     </AbsoluteFill>

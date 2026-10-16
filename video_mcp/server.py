@@ -146,6 +146,15 @@ def list_assets(limit: int = 50) -> dict:
     return tools.list_assets(limit)
 
 
+@app.tool(annotations=WRITE)
+def import_motion_clip(file_path: str, title: str = "", origin: str = "claude-motion") -> dict:
+    """Add a local motion-graphics clip (e.g. an MP4 exported from Claude's motion/design tools) to the library. Use the
+    returned id in a storyboard scene as assets: [{"kind": "graphic", "path": "library:<id>"}]; the scene then plays the
+    clip full-stage under narration and captions. The file is validated (decodable video, <= 300 MB) and copied."""
+    from .orchestration.motion_library import MotionLibrary
+    return MotionLibrary(engine.DATA).import_clip(file_path, title=title, origin=origin)
+
+
 @app.tool(annotations=READ)
 def get_video_report(job_id: str) -> dict:
     """Creative decisions, sources and claims, provider usage, spending, timings and QA results for a job."""

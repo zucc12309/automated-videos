@@ -137,7 +137,7 @@ def test_mcp_tools_preserved_and_extended(example_plan):
                 names = {t.name for t in (await session.list_tools()).tools}
                 original = {"health_check", "discover_topics", "create_video", "create_video_from_topic", "run_autopilot_once", "job_status", "list_videos"}
                 new = {"preview_storyboard", "estimate_video_cost", "create_hybrid_video", "approve_generation", "review_video", "repair_video",
-                       "list_assets", "get_video_report", "cancel_job", "resume_job"}
+                       "list_assets", "get_video_report", "cancel_job", "resume_job", "import_motion_clip"}
                 assert original | new <= names
                 preview = await session.call_tool("preview_storyboard", {"plan": example_plan.model_dump()})
                 assert not preview.isError

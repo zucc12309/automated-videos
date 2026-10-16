@@ -280,3 +280,71 @@ def test_render_concurrency_respects_memory():
     assert resources.render_concurrency(2, 6.0) == 2
     snap = resources.snapshot()
     assert snap["cpus"] and "memory_available_gb" in snap
+
+
+# ---------- V2.1 retention changes ----------
+
+def test_hooks_open_bold_and_outros_end_on_a_call_to_action(tmp_path):
+    def scene(visual, item, text, **kw):
+        words = [{"w": w, "s": i * .4, "e": i * .4 + .35} for i, w in enumerate(text.split())]
+        return {"visual": visual, "item": item, "words": words, "beats": variety.split_beats(words, len(words) * .4 + .3), "emphasis": "",
+                "heading": "h", "label": f"tool-{item}", "stat": "", "points": ["fast search", "gitignore aware"], "narration": text,
+                "_roundup": True, **kw}
+    scenes = [scene("hook", 0, "Four repos that fix Claude Code's biggest gaps.")] + \
+             [scene("repo", i, "This tool is fast, it ships useful commands. You install it once, then forget it.") for i in (1, 2, 3, 4)] + \
+             [scene("outro", 0, "Save this, and install one before your next session. Then come back.")]
+    order = variety.plan_layouts(scenes, variety.choose_variant("bold", tmp_path / "v.json", theme="carbon"))
+    assert order[0] == "hookBold"
+    assert scenes[-1]["beats"][0]["layout"] == "outroCTA" and order[-1] == "loop"
+    supporting = [b["layout"] for s in scenes[1:5] for b in s["beats"][1:]]
+    assert {"readmeScroll", "repoConnect"} & set(supporting)          # moving visuals, not only static cards
+    assert all(a != b for a, b in zip(order, order[1:]))
+
+
+def test_template_hook_is_a_bold_statement_and_outro_has_a_cta():
+    from video_mcp.providers.script_providers import TemplateProvider
+    topic = {"kind": "roundup", "theme": "Claude Code repos you should install", "series": "REPOS",
+             "repos": [{"full_name": f"o/t{i}", "owner": "o", "name": f"t{i}", "description": "A helper for agents.", "stars": 10,
+                        "language": "Go", "topics": [], "url": f"https://github.com/o/t{i}", "readme_excerpt": ""} for i in (1, 2, 3, 4)]}
+    plan = TemplateProvider(settings.load()).write_plan(topic, 4).plan
+    assert plan.scenes[0].narration == "4 Claude Code repos worth installing today."
+    assert plan.scenes[0].heading.startswith("4 Claude Code repos") and len(plan.scenes[0].heading) <= 40
+    assert plan.scenes[-1].heading == "Save this. Install one."
+
+
+def test_phone_legibility_threshold_flags_small_type():
+    from video_mcp.quality import frame_analysis as fa
+    assert fa.MIN_BODY_PX >= 36
+    for layout, fields in fa.LAYOUT_TEXT.items():
+        for field, _, px in fields:
+            assert px >= (fa.MIN_LABEL_PX if field == "label" else fa.MIN_BODY_PX), (layout, field, px)
+
+
+def test_motion_clip_library(tmp_path):
+    import shutil, subprocess
+    if not shutil.which("ffmpeg"):
+        pytest.skip("ffmpeg missing")
+    from video_mcp.orchestration.motion_library import MotionLibrary
+    clip = tmp_path / "claude_motion.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc2=s=540x960:r=30:d=2", "-pix_fmt", "yuv420p", str(clip)], check=True)
+    lib = MotionLibrary(tmp_path / "data")
+    meta = lib.import_clip(clip, title="Agent loop")
+    assert lib.get(meta["id"])["probe"]["duration"] == pytest.approx(2, abs=.1) and meta["origin"] == "claude-motion"
+    bad = tmp_path / "x.mp4"
+    bad.write_bytes(b"nope")
+    with pytest.raises(ValueError):
+        lib.import_clip(bad)
+    with pytest.raises(ValueError):
+        lib.import_clip(tmp_path / "notes.txt")
+
+
+def test_single_beat_outro_still_shows_its_call_to_action(tmp_path):
+    words = [{"w": w, "s": i * .4, "e": i * .4 + .35} for i, w in enumerate("Save this, and install one tonight.".split())]
+    hook_words = [{"w": w, "s": i * .4, "e": i * .4 + .35} for i, w in enumerate("Four repos that fix your agent.".split())]
+    scenes = [{"visual": "hook", "item": 0, "words": hook_words, "beats": [{"s": 0, "e": 2.6, "w": [0, 5]}], "emphasis": "", "heading": "h",
+               "label": "", "stat": "", "points": []},
+              {"visual": "outro", "item": 0, "words": words, "beats": [{"s": 0, "e": 3.4, "w": [0, 5]}], "emphasis": "Save",
+               "heading": "Save this. Install one.", "label": "", "stat": "", "points": ["a", "b"]}]
+    variety.plan_layouts(scenes, variety.choose_variant("cta", tmp_path / "v.json", theme="carbon"))
+    beats = scenes[-1]["beats"]
+    assert [b["layout"] for b in beats] == ["outroCTA", "loop"] and beats[1]["e"] - beats[1]["s"] == pytest.approx(1.0)

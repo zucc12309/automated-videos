@@ -122,7 +122,8 @@ def approve_generation(job_id: str, max_usd: float, request_id: str | None = Non
 
 
 def list_assets(limit: int = 50) -> dict:
-    return {"assets": AssetManager(engine.DATA).list(max(1, min(limit, 200)))}
+    from .motion_library import MotionLibrary
+    return {"assets": AssetManager(engine.DATA).list(max(1, min(limit, 200))), "motion_clips": MotionLibrary(engine.DATA).list()[:limit]}
 
 
 def video_report(job_id: str) -> dict:

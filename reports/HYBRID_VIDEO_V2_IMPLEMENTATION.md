@@ -148,3 +148,15 @@ npm ci && npm run typecheck
 ```
 Then reload the MCP host; the server name and launcher are unchanged. For CLAUDE/HYBRID follow
 `docs/CLAUDE_INTEGRATION.md`, `docs/HIGGSFIELD_INTEGRATION.md` and `docs/COST_CONTROLS.md`.
+
+## V2.1 — review notes on a locally generated reel
+
+Applied to the V2 renderer: bold frame-0 hook (`hookBold`, prompts and template writer require a bold count/payoff
+statement), moving repo visuals (`readmeScroll`, `repoConnect`, floating cards with topic marquee; filler cuts reduced),
+phone-size type (≥ 36 px body enforced by QA and a test), and a recap → big call-to-action ending (`outroCTA`; a bug where
+a single-beat outro was swallowed by the loop-back was found in the demo and fixed). HYBRID adds an establishing shot
+behind the hook; `import_motion_clip` brings exported motion clips (e.g. from Claude's motion tools) into scenes.
+Demo D (`data/jobs/3c5f0c05aad4`, 36.9 s, carbon, mock footage under the hook) uses the four repos from the reviewed reel,
+with text transcribed from that reel: 0 QA issues, −13.7 LUFS, −1.8 dBTP. Tests: 98 passed, 1 skipped.
+Note: the reviewed reel's renderer (dark "FIELDNOTES / product notes" style) is not in the GitHub repository; it exists only
+on the user's machine and must be pushed before V2 can be merged with it.

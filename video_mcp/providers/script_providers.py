@@ -82,8 +82,10 @@ class TemplateProvider:
         if roundup:
             repos = topic["repos"]
             theme = re.sub(r"^\d+\s+", "", topic.get("theme", "tools")).strip()
-            hook = f"{len(repos)} {theme} you can try today."
-            scenes.append({"heading": _heading(theme.capitalize()), "narration": hook, "caption": hook, "emphasis": str(len(repos))})
+            core = re.sub(r"\b(you should install|worth stealing|blowing up)\b", "", theme).strip()
+            hook = f"{len(repos)} {core} worth installing today."
+            scenes.append({"heading": _heading(f"{len(repos)} {core} worth installing", 40), "narration": hook, "caption": hook,
+                           "emphasis": str(len(repos))})
             for i, repo in enumerate(repos, 1):
                 desc = re.sub(r"\s+", " ", repo.get("description") or "").strip().rstrip(".")
                 desc = re.sub(r"https?://\S+", "", desc)
@@ -94,21 +96,21 @@ class TemplateProvider:
                 points = [x for x in [repo.get("language", ""), *(repo.get("topics") or [])] if x][:3] or ["Open source"]
                 scenes.append({"heading": _heading(desc or name), "narration": line, "caption": line, "label": repo["name"][:28],
                                "points": [p[:30] for p in points], "emphasis": name.split()[0]})
-            outro = "Save this list, and try one of them this week."
-            scenes.append({"heading": "Save this list", "narration": outro, "caption": outro, "emphasis": "Save"})
+            outro = "Save this, and install one before your next session."
+            scenes.append({"heading": "Save this. Install one.", "narration": outro, "caption": outro, "emphasis": "Save"})
         else:
             facts = _sentences(topic.get("summary", ""))
             title = re.sub(r"\s+", " ", topic.get("title", "This story")).strip()
             hook = _clip_words(title, 12).rstrip(".") + "."
-            scenes.append({"heading": _heading(title), "narration": hook, "caption": hook})
+            scenes.append({"heading": _heading(title, 40), "narration": hook, "caption": hook})
             picked = facts[:count] if len(facts) >= count else facts + [title] * (count - len(facts))
             for i, fact in enumerate(picked, 1):
                 line = _clip_words(fact, 34)
                 kw = _key_words(line)
                 scenes.append({"heading": _heading(line), "narration": line, "caption": line, "label": (kw[0] if kw else f"Fact {i}")[:28],
                                "points": [k[:30] for k in kw[:3]] or [f"Fact {i}"], "emphasis": kw[0] if kw else ""})
-            outro = "Save this for later, and share it with a builder who needs it."
-            scenes.append({"heading": "Save this", "narration": outro, "caption": outro, "emphasis": "Save"})
+            outro = "Save this, and send it to the builder who needs it today."
+            scenes.append({"heading": "Save this. Send it on.", "narration": outro, "caption": outro, "emphasis": "Save"})
         plan = engine.Plan(title=_clip_words(topic.get("title", "Untitled"), 14)[:100], scenes=scenes,
                            series=topic.get("series", "REPOS" if roundup else "FACTS"))
         plan = engine.shape_plan(plan, topic, len(scenes) - 2, strict=False)

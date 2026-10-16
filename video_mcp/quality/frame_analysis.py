@@ -15,19 +15,20 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 SAFE = {"left": 120, "right": 960, "top": 290, "bottom": 1248}
 STAGE = {"left": 120, "top": 360, "width": 840, "height": 700}
-MIN_BODY_PX, MIN_LABEL_PX = 30, 22
-TEXT_FORWARD = {"heroWord", "quote", "hookStack", "loop", "mascotCloseup"}
+MIN_BODY_PX, MIN_LABEL_PX = 36, 26          # phone legibility at 1080 px width (V2.1: raised after review)
+TEXT_FORWARD = {"heroWord", "quote", "hookStack", "loop", "mascotCloseup", "hookBold", "outroCTA"}
 
 # (field, clamp limit in chars, font px) mirrored from the TSX components.
 LAYOUT_TEXT = {
     "heroWord": [("focus", 22, 96)], "quote": [("text", 120, 64)], "listStack": [("heading", 34, 64), ("points", 26, 48)],
-    "steps": [("points", 22, 52)], "compare": [("points", 40, 50)], "repoCard": [("label", 18, 64)], "chips": [("points", 20, 40)],
-    "deviceMock": [("heading", 30, 40), ("points", 24, 30)], "chat": [("heading", 44, 42), ("points", 28, 40)],
-    "nodeGraph": [("points", 18, 34), ("focus", 14, 52)], "hookStack": [("heading", 40, 84)], "docStamp": [("heading", 40, 60), ("points", 34, 40)],
-    "recap": [("label", 22, 52)], "codeBlock": [("heading", 30, 52), ("code", 48, 34)], "flowDiagram": [("nodes", 26, 40)],
-    "timeline": [("timeline", 26, 42)], "chartBars": [("heading", 30, 50)], "browserMock": [("heading", 32, 54), ("points", 30, 36)],
-    "warningCard": [("heading", 48, 70), ("points", 44, 38)], "splitCompare": [("compare", 30, 36)], "cinematic": [("heading", 40, 76)],
-    "terminal": [("points", 32, 40)], "bigNumber": [("focus", 12, 200)], "starMeter": [("label", 18, 38)], "mascotCloseup": [("focus", 30, 60)],
+    "steps": [("points", 22, 52)], "compare": [("points", 40, 50)], "repoCard": [("label", 18, 64)], "chips": [("points", 20, 46)],
+    "deviceMock": [("heading", 26, 46), ("points", 20, 38)], "chat": [("heading", 44, 42), ("points", 28, 44)],
+    "nodeGraph": [("points", 16, 40), ("focus", 14, 52)], "hookBold": [("heading", 46, 104)], "readmeScroll": [("label", 30, 42)],
+    "repoConnect": [("points", 14, 40)], "outroCTA": [("heading", 34, 96)], "hookStack": [("heading", 40, 84)], "docStamp": [("heading", 40, 60), ("points", 34, 40)],
+    "recap": [("label", 22, 52)], "codeBlock": [("heading", 30, 52), ("code", 48, 38)], "flowDiagram": [("nodes", 26, 46)],
+    "timeline": [("timeline", 26, 46)], "chartBars": [("heading", 30, 50)], "browserMock": [("heading", 32, 54), ("points", 30, 42)],
+    "warningCard": [("heading", 48, 70), ("points", 38, 44)], "splitCompare": [("compare", 30, 42)], "cinematic": [("heading", 40, 76)],
+    "terminal": [("points", 32, 40)], "bigNumber": [("focus", 12, 200)], "starMeter": [("label", 18, 44)], "mascotCloseup": [("focus", 30, 60)],
 }
 
 
@@ -100,8 +101,8 @@ def layout_checks(props: dict) -> dict:
                     add("font_size", False, f"{layout}.{field} {px}px below minimum", sid, kind="tiny_text")
             if layout == "codeBlock":
                 longest = max((len(x) for x in (scene.get("visualData") or {}).get("code") or [""]), default=0)
-                font = min(34, 720 / (.6 * max(1, longest)))
-                add("code_font_size", font >= 24, f"longest line {longest} chars -> {font:.0f}px", sid, kind="tiny_text")
+                font = min(40, 720 / (.6 * max(1, longest)))
+                add("code_font_size", font >= 28, f"longest line {longest} chars -> {font:.0f}px", sid, kind="tiny_text")
             if beat.get("anchor") == "center" and layout not in ("mascotCloseup",) and scene.get("character", True):
                 add("presenter_occlusion", False, f"presenter centred over {layout}", sid, kind="occlusion")
             items = sum(1 for x in props["scenes"] if x.get("item", 0) > 0)

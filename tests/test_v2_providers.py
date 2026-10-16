@@ -335,7 +335,7 @@ def test_cinematic_generated_once_then_served_from_cache(tmp_path, make_cfg):
     budget = {**PAID, "approval_policy": "auto_within_budget"}
     p = _pipe(tmp_path, make_cfg, budget)
     board = p.generate_assets(_hybrid_board(), "hybrid")
-    assert board.scenes[0].layout == "cinematic" and board.scenes[0].assets[0].provenance["cached"] is False
+    assert board.scenes[0].layout == "hookBold" and board.scenes[0].assets[0].provenance["cached"] is False   # bold type over footage
     assert p.costs.spent_for_job("abcdef123456") == .2
     # A second job with the identical request reuses the cached asset and spends nothing.
     p2 = _pipe(tmp_path / "second", make_cfg, budget)

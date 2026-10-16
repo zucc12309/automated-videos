@@ -47,6 +47,16 @@ starMeter, deviceMock, chat, nodeGraph, hookStack, docStamp, recap) plus V2 (`La
 | cinematic | full-bleed footage graded to the theme, heading composited | scene asset |
 | statRing (generated) | ring fills to a percentage stat | stat |
 
+## V2.1 retention changes (from review of a generated reel)
+
+| Note | Change |
+|---|---|
+| Stronger first two seconds | `hookBold`: the hook statement in 104–124 px type, fully visible on frame 0 and mid-"slam"; count in the accent colour, drawn underline, item avatars fly in. Default for every hook. Prompts and the template writer now require a bold statement that starts with the count/payoff (no soft intros, no multipliers absent from the data). In HYBRID, an establishing shot plays *behind* the bold type. |
+| More visual movement | `readmeScroll` (the real README scrolls through a reading band, focus line highlighted), `repoConnect` (repo hub with links drawing and packets flowing to its topics/points), repo cards float and their topics run as a marquee. Supporting beats inside repo items keep repo visuals; scene openers are never reused as filler. |
+| Larger text | Minimum body text raised to 36 px (labels 26 px) and enforced by QA; repo descriptions 46 px, chips 46, device rows 38, flow nodes 46, split columns 42, code 28–40 px auto-fit. A test fails if any layout's declared size drops below the minimum. |
+| More memorable ending | `outroCTA`: items tick off fast, then one big imperative call to action (heading ≤ 26 chars) with a pulsing save icon and "watch it again" loop arrow; the final beat loops to the hook. |
+| Imported motion graphics | `motionClip` + `import_motion_clip` tool: a clip exported from Claude's motion/design tools (or any editor) is validated, stored in `data/motion_library/`, and placed in a scene with `assets: [{"kind": "graphic", "path": "library:<id>"}]`. |
+
 ## Semantic selection (`video_mcp/creative/semantic_router.py`)
 
 Intent per scene (from the director, or inferred from narration and data). Score =

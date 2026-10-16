@@ -1,0 +1,71 @@
+{
+ "id": "demo-d-claude-code-repos",
+ "kind": "roundup",
+ "title": "4 repos that fix Claude Code's gaps",
+ "theme": "Claude Code repos",
+ "series": "REPOS",
+ "repos": [
+  {
+   "full_name": "lidge-jun/opencodex",
+   "owner": "lidge-jun",
+   "name": "opencodex",
+   "stars": 17445,
+   "language": "TypeScript",
+   "topics": [
+    "ai-gateway",
+    "ai-tools",
+    "anthropic"
+   ],
+   "description": "Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini,",
+   "url": "https://github.com/lidge-jun/opencodex",
+   "readme_excerpt": ""
+  },
+  {
+   "full_name": "yetone/magpie",
+   "owner": "yetone",
+   "name": "magpie",
+   "stars": 13420,
+   "language": "Go",
+   "topics": [
+    "claude-code",
+    "codex",
+    "deepseek"
+   ],
+   "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+   "url": "https://github.com/yetone/magpie",
+   "readme_excerpt": ""
+  },
+  {
+   "full_name": "Vincentwei1021/video-shotcraft",
+   "owner": "Vincentwei1021",
+   "name": "video-shotcraft",
+   "stars": 12058,
+   "language": "TypeScript",
+   "topics": [
+    "agent-skills",
+    "ai-agents",
+    "ai-video"
+   ],
+   "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion",
+   "url": "https://github.com/Vincentwei1021/video-shotcraft",
+   "readme_excerpt": ""
+  },
+  {
+   "full_name": "google/artemis",
+   "owner": "google",
+   "name": "artemis",
+   "stars": 11839,
+   "language": "Python",
+   "topics": [
+    "ai-agents",
+    "android",
+    "google"
+   ],
+   "description": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+   "url": "https://github.com/google/artemis",
+   "readme_excerpt": ""
+  }
+ ],
+ "url": "",
+ "provenance_note": "Repo names, owners, descriptions (as far as shown) and star counts transcribed from the user's own rendered reel; not re-fetched from GitHub in this environment."
+}

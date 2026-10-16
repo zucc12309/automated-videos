@@ -104,13 +104,19 @@ CATALOG: dict[str, LayoutSpec] = {s.name: s for s in [
     LayoutSpec("warningCard", "card", 1.8, .4, ()),
     LayoutSpec("splitCompare", "card", 2.4, .7, ("compare",)),
     LayoutSpec("cinematic", "footage", 1.5, .2, ("footage",), cost=1.0, themes=("cinematic-dark", "midnight", "carbon")),
+    # V2.1 retention layouts
+    LayoutSpec("hookBold", "type", .8, .3, ("hook",)),
+    LayoutSpec("readmeScroll", "device", 2.4, .6, ("repo",)),
+    LayoutSpec("repoConnect", "diagram", 2.2, .5, ("repo_or_points",)),
+    LayoutSpec("outroCTA", "card", 2.0, .4, ("outro",)),
+    LayoutSpec("motionClip", "footage", 1.0, .1, ("motion_clip",)),
 ]}
 
 RELEVANCE: dict[str, dict[str, float]] = {
-    "hook": {"hookStack": 1.0, "heroWord": .9, "bigNumber": .75, "cinematic": .8, "quote": .5},
+    "hook": {"hookBold": 1.0, "hookStack": .85, "heroWord": .8, "bigNumber": .75, "cinematic": .7, "quote": .45},
     "product_intro": {"browserMock": .9, "heroWord": .85, "deviceMock": .75, "chips": .6, "cinematic": .6},
     "api_flow": {"flowDiagram": 1.0, "codeBlock": .75, "nodeGraph": .65, "terminal": .55, "chat": .4},
-    "repository": {"repoCard": 1.0, "starMeter": .65, "terminal": .65, "chips": .55, "codeBlock": .5},
+    "repository": {"repoCard": 1.0, "readmeScroll": .8, "repoConnect": .78, "terminal": .65, "starMeter": .6, "chips": .5, "codeBlock": .5},
     "comparison": {"splitCompare": 1.0, "compare": .9, "chartBars": .5},
     "process": {"steps": 1.0, "timeline": .7, "flowDiagram": .65, "listStack": .55},
     "architecture": {"nodeGraph": 1.0, "flowDiagram": .85, "steps": .4},
@@ -123,7 +129,7 @@ RELEVANCE: dict[str, dict[str, float]] = {
     "warning": {"warningCard": 1.0, "quote": .45, "docStamp": .4},
     "quote": {"quote": 1.0, "heroWord": .6},
     "list": {"listStack": 1.0, "chips": .8, "steps": .55},
-    "recap": {"recap": 1.0, "listStack": .5, "heroWord": .4},
+    "recap": {"outroCTA": 1.0, "recap": .9, "listStack": .5, "heroWord": .4},
     "generic": {"heroWord": .6, "quote": .55, "listStack": .55, "chips": .5, "docStamp": .45, "mascotCloseup": .4,
                 "nodeGraph": .3, "chat": .3, "deviceMock": .3},
 }
@@ -136,7 +142,7 @@ def _requirements_met(spec: LayoutSpec, ctx: dict) -> bool:
         "repo": ctx["has_repo"], "repo_or_points": ctx["has_repo"] or ctx["points"] >= 2, "hook": ctx["role"] == "hook",
         "item": ctx["item"] > 0, "outro": ctx["role"] == "outro", "code": ctx["code"], "nodes_or_points": ctx["nodes"] or ctx["points"] >= 2,
         "timeline": ctx["timeline"], "series": ctx["series"], "compare": ctx["compare"], "footage": ctx["footage"],
-        "items": ctx.get("list_items", 0) >= 2,
+        "items": ctx.get("list_items", 0) >= 2, "motion_clip": ctx.get("motion_clip", False),
     }
     return all(checks[n] for n in spec.needs)
 
@@ -153,7 +159,7 @@ def score(layout: str, ctx: dict, history: list[str], used: dict[str, int], them
         relevance = max(relevance * .7, SUPPORT.get(layout, 0.0) + RELEVANCE["generic"].get(layout, 0) * .3)
     if ctx["preferred"] == layout:
         relevance = min(1.2, relevance + .5)
-    narrative = 1.0 if (ctx["role"] == "hook" and spec.family == "type") or (ctx["role"] == "outro" and layout == "recap") else .5
+    narrative = 1.0 if (ctx["role"] == "hook" and spec.family == "type") or (ctx["role"] == "outro" and layout in ("recap", "outroCTA")) else .5
     readability = min(1.0, ctx["seconds"] / max(.1, spec.min_seconds))
     recent = (1.0 if history and history[-1] == layout else 0) + (.5 if layout in history[-4:] else 0) + .4 * max(0, used.get(layout, 0) - 1)
     families = [CATALOG[h].family for h in history[-2:] if h in CATALOG]
@@ -166,9 +172,13 @@ def score(layout: str, ctx: dict, history: list[str], used: dict[str, int], them
     return round(total, 4), parts
 
 
+OPENERS = {"repoCard", "docStamp", "hookStack", "hookBold", "recap", "outroCTA"}   # scene openers, never supporting beats
+
+
 def choose(ctx: dict, history: list[str], used: dict[str, int], seed: str, beat_index: int, theme: str,
            allowed: list[str] | None = None, cap: int = 2) -> tuple[str, dict]:
-    candidates = [name for name in (allowed or CATALOG) if name in CATALOG and _requirements_met(CATALOG[name], ctx)]
+    candidates = [name for name in (allowed or CATALOG) if name in CATALOG and _requirements_met(CATALOG[name], ctx)
+                  and (ctx["primary"] or name not in OPENERS)]
     structural = {"repoCard", "docStamp", "hookStack", "recap", "cinematic"}
     # The usage cap keeps supporting beats varied; a scene's primary visual is chosen on meaning (recency still penalised).
     fresh = [c for c in candidates if (not history or c != history[-1]) and (c in structural or ctx["primary"] or used.get(c, 0) < cap)]
@@ -180,6 +190,9 @@ def choose(ctx: dict, history: list[str], used: dict[str, int], seed: str, beat_
                   "runner_up": scored[1][2] if len(scored) > 1 else None}
 
 
+STRONG_BEAT_INTENTS = {"statistic", "comparison", "warning", "timeline"}
+
+
 def beat_context(scene: dict, beat: dict, beat_no: int, *, character: bool) -> dict:
     text = beat.get("text", "")
     visual = scene.get("visualData") or {}
@@ -189,10 +202,12 @@ def beat_context(scene: dict, beat: dict, beat_no: int, *, character: bool) -> d
     scene_intent = infer_intent(scene.get("narration", ""), role=role, visual=visual, has_repo=bool(scene.get("_repo")),
                                 given=scene.get("intent", "generic"))
     intent = scene_intent if primary else infer_intent(text, role="body", visual={}, given="generic")
+    if not primary and intent not in STRONG_BEAT_INTENTS and scene_intent not in ("hook", "recap", "generic"):
+        intent = scene_intent        # weak keyword hits on a supporting phrase do not override what the scene is about
     if not primary and role == "outro":
         intent = "generic"      # the payoff line stays a recap, not a new diagram
     if not primary and intent == "generic":
-        intent = scene_intent if scene_intent not in ("hook", "recap", "repository") else "generic"
+        intent = scene_intent if scene_intent not in ("hook", "recap") else "generic"     # repo items keep moving repo visuals
     return {"intent": intent, "primary": primary, "role": role, "item": scene.get("item", 0), "seconds": beat["e"] - beat["s"],
             "has_number": bool(re.search(r"\d", text)) or (primary and bool(scene.get("stat"))), "points": len(scene.get("points") or []),
             "has_repo": bool(scene.get("_repo")), "character": character, "code": bool(visual.get("code")),
@@ -200,7 +215,7 @@ def beat_context(scene: dict, beat: dict, beat_no: int, *, character: bool) -> d
             "series": len(visual.get("series_values") or []) >= 2,
             "compare": bool(visual.get("compare_left")) and bool(visual.get("compare_right")),
             "footage": primary and bool(scene.get("media")), "preferred": scene.get("layoutHint", "") if primary else "",
-            "list_items": scene.get("_listItems", 0)}
+            "list_items": scene.get("_listItems", 0), "motion_clip": primary and bool(scene.get("motionClip"))}
 
 
 def _register_generated():
@@ -229,6 +244,8 @@ def holds_scene(layout: str, pace: str) -> bool:
     spec = CATALOG.get(layout)
     if not spec:
         return False
-    if layout in ("repoCard", "docStamp", "hookStack", "recap"):
+    if layout in ("outroCTA", "motionClip"):
+        return True             # the ending and imported clips play through
+    if layout in ("repoCard", "docStamp", "hookStack", "hookBold", "recap"):
         return False            # structural openers hand over to supporting beats (V1 rhythm)
     return spec.family in HOLD_FAMILIES or layout == "splitCompare" or (pace == "demonstration" and spec.complexity >= .5)

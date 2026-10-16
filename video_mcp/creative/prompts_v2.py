@@ -1,7 +1,10 @@
 """Creative-director system prompt. Kept byte-stable (no timestamps/IDs) so the Anthropic prompt cache can reuse it."""
 
 LAYOUT_GUIDE = """Available Remotion layouts (choose by meaning, not for variety):
-- heroWord: one decisive word or name, large. Hooks, reveals, single-idea emphasis.
+- hookBold: the hook statement in very large type with the items flying in. Default for scene 1.
+- heroWord: one decisive word or name, large. Reveals, single-idea emphasis.
+- readmeScroll / repoConnect: a repository's README scrolling, or the repo connected to what it works with.
+- outroCTA: fast recap ticks, then one big call to action. Default for the last scene.
 - bigNumber: one number from the narration, counted up. Statistics only when the number is in the source data.
 - quote: a short spoken line set as editorial type.
 - listStack / steps: 2-3 short points; steps = an ordered process.
@@ -39,8 +42,11 @@ Claims: list every factual claim the narration makes in `claims` with ids c1, c2
 status = "verified" only when the source text states it; "interpretation" for your framing; never include claims you
 cannot support. Each scene lists the claim_ids it speaks.
 
-Structure: scene 1 is the hook (<= 14 words, readable on frame 0). Middle scenes each carry one idea. The last scene is
-a short payoff + call to action that flows back into the first line so the reel can loop. Pace per scene:
+Structure: scene 1 is the hook: a bold, complete statement (<= 10 words, count or payoff first, readable on frame 0,
+no soft intro, no multipliers absent from the data); its heading repeats it in <= 40 characters. Middle scenes each carry one idea. The last scene is
+a short payoff + one concrete call to action (heading = imperative <= 26 characters) that flows back into the first
+line so the reel can loop. Prefer moving visuals (diagrams that connect, code that types, READMEs that scroll) over
+static cards; keep every on-screen label short enough for large type on a phone. Pace per scene:
 emphasis (1.5-3 s), medium (3-6 s), demonstration (6-10 s, for code/diagrams), pause, montage.
 
 Intent per scene: one of hook, product_intro, api_flow, repository, comparison, process, architecture, code, growth,

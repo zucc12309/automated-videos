@@ -33,7 +33,7 @@ export const CodeBlock: React.FC<LayoutProps> = p => {
   const lines = ((vd(p).code as string[] | undefined)?.length ? vd(p).code as string[] : scene.points.map(x => `// ${x}`)).slice(0, 8);
   const rows = typed(f, lines, {delay: 6, cps: 2.2, lineGap: 4});
   // Shrink long lines to fit the window instead of clipping them (mono glyph ~0.6em; floor 24 px).
-  const size = Math.max(24, Math.min(34, 720 / (.6 * Math.max(1, ...lines.map(l => l.length)))));
+  const size = Math.max(28, Math.min(40, 720 / (.6 * Math.max(1, ...lines.map(l => l.length)))));
   const colors = {kw: P.accent, str: P.dark ? '#a5d6a7' : '#2e7d32', num: P.accent2, cm: P.muted, tx: P.ink};
   const lang = (vd(p).code_language as string) || (lines.some(l => /^\$|npm|pip|git /.test(l)) ? 'shell' : 'code');
   return <div style={{position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 22}}>
@@ -41,7 +41,7 @@ export const CodeBlock: React.FC<LayoutProps> = p => {
     <Panel P={P} style={{overflow: 'hidden', padding: 0, ...enterStyle('scale', f, {delay: 2})}}>
       <div style={{display: 'flex', alignItems: 'center', gap: 12, padding: '18px 24px', borderBottom: `2px solid ${P.line}`, background: P.bg2}}>
         {[0, 1, 2].map(i => <span key={i} style={{width: 16, height: 16, borderRadius: 8, background: P.line}}/>)}
-        <span style={{marginLeft: 14, fontFamily: FONT.mono, fontSize: 24, color: P.muted}}>{lang}</span>
+        <span style={{marginLeft: 14, fontFamily: FONT.mono, fontSize: 28, color: P.muted}}>{lang}</span>
       </div>
       <div style={{padding: '22px 26px 30px'}}>
         {rows.map((r, i) => <div key={i} style={{display: 'flex', gap: 22, fontFamily: FONT.mono, fontSize: size, lineHeight: 1.55, whiteSpace: 'pre'}}>
@@ -74,8 +74,8 @@ export const FlowDiagram: React.FC<LayoutProps> = p => {
       const first = i === 0, last = i === n - 1;
       return <div key={i} style={{position: 'absolute', left: x, top: ys[i], transform: `translate(-50%, -50%) scale(${.9 + e * .1})`, opacity: e,
         minWidth: 420, padding: '22px 34px', borderRadius: 24, textAlign: 'center', background: first || last ? P.accent : P.surface,
-        border: `3px solid ${first || last ? P.accent : P.line}`, color: first || last ? P.bg : P.ink, fontFamily: FONT.sans, fontWeight: 760, fontSize: 40}}>
-        <div style={{fontFamily: FONT.mono, fontSize: 22, opacity: .75, letterSpacing: 2}}>{first ? 'REQUEST' : last ? 'RESPONSE' : `STEP ${i}`}</div>
+        border: `3px solid ${first || last ? P.accent : P.line}`, color: first || last ? P.bg : P.ink, fontFamily: FONT.sans, fontWeight: 760, fontSize: 46}}>
+        <div style={{fontFamily: FONT.mono, fontSize: 28, opacity: .75, letterSpacing: 2}}>{first ? 'REQUEST' : last ? 'RESPONSE' : `STEP ${i}`}</div>
         {clampText(label, 26)}
       </div>;
     })}
@@ -100,7 +100,7 @@ export const Timeline: React.FC<LayoutProps> = p => {
       return <div key={i} style={{position: 'absolute', left: 36, top: 80 + i * gap - 26, display: 'flex', alignItems: 'center', gap: 34, opacity: e,
         transform: `translateX(${(1 - e) * 40}px)`}}>
         <span style={{width: 54, height: 54, borderRadius: 27, background: P.bg, border: `6px solid ${P.accent}`, boxSizing: 'border-box'}}/>
-        <span style={{fontFamily: FONT.sans, fontSize: 42, color: P.ink, fontWeight: 700}}>
+        <span style={{fontFamily: FONT.sans, fontSize: 46, color: P.ink, fontWeight: 720}}>
           {has && <span style={{color: P.accent, fontFamily: FONT.mono, fontSize: 32, marginRight: 16}}>{clampText(when, 10)}</span>}
           {clampText(has ? rest.join(' ') : ev, 26)}</span>
       </div>;
@@ -124,13 +124,13 @@ export const ChartBars: React.FC<LayoutProps> = p => {
         const g = progress(f, {delay: 6 + i * 5, duration: 22});
         const last = i === values.length - 1;
         return <div key={i} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10}}>
-          <span style={{fontFamily: FONT.mono, fontSize: 30, color: last ? P.accent : P.muted, opacity: g}}>{last ? <Counter value={String(val)} delay={8 + i * 5}/> : val.toLocaleString('en-US')}</span>
+          <span style={{fontFamily: FONT.mono, fontSize: 36, color: last ? P.accent : P.muted, opacity: g}}>{last ? <Counter value={String(val)} delay={8 + i * 5}/> : val.toLocaleString('en-US')}</span>
           <div style={{width: barW, height: 420 * (val / max) * g, borderRadius: '14px 14px 0 0', background: last ? P.accent : P.line}}/>
         </div>;
       })}
     </div>
     <div style={{position: 'absolute', left: 0, right: 0, bottom: 10, display: 'flex', justifyContent: 'space-around'}}>
-      {values.map((_, i) => <span key={i} style={{fontFamily: FONT.sans, fontSize: 30, color: P.muted, width: barW + 30, textAlign: 'center'}}>{clampText(labels[i] ?? '', 10)}</span>)}
+      {values.map((_, i) => <span key={i} style={{fontFamily: FONT.sans, fontSize: 34, color: P.muted, width: barW + 30, textAlign: 'center'}}>{clampText(labels[i] ?? '', 10)}</span>)}
     </div>
   </div>;
 };
@@ -146,12 +146,12 @@ export const BrowserMock: React.FC<LayoutProps> = p => {
     <Panel P={P} style={{width: '100%', overflow: 'hidden', padding: 0, ...enterStyle('slide', f, {direction: 'up'})}}>
       <div style={{display: 'flex', alignItems: 'center', gap: 14, padding: '18px 22px', background: P.bg2, borderBottom: `2px solid ${P.line}`}}>
         {[0, 1, 2].map(i => <span key={i} style={{width: 16, height: 16, borderRadius: 8, background: P.line}}/>)}
-        <span style={{flex: 1, marginLeft: 12, padding: '10px 20px', borderRadius: 14, background: P.surface, fontFamily: FONT.mono, fontSize: 26, color: P.muted}}>{url}</span>
+        <span style={{flex: 1, marginLeft: 12, padding: '10px 20px', borderRadius: 14, background: P.surface, fontFamily: FONT.mono, fontSize: 30, color: P.muted}}>{url}</span>
       </div>
       <div style={{padding: '34px 36px 40px'}}>
         <div style={{fontFamily: FONT.sans, fontWeight: 820, fontSize: 54, color: P.ink, lineHeight: 1.08, letterSpacing: -1.2}}>{clampText(scene.heading, 32)}</div>
         {rows.map((r, i) => <div key={i} style={{marginTop: 20, padding: '20px 24px', borderRadius: 18, border: `2px solid ${i === 0 ? P.accent : P.line}`,
-          background: i === 0 ? P.accent : P.surface, color: i === 0 ? P.bg : P.ink, fontFamily: FONT.sans, fontWeight: 680, fontSize: 36,
+          background: i === 0 ? P.accent : P.surface, color: i === 0 ? P.bg : P.ink, fontFamily: FONT.sans, fontWeight: 700, fontSize: 42,
           transform: `scale(${i === 0 ? click : 1})`, ...enterStyle('slide', f, {delay: 8 + i * 5, direction: 'left', amplitude: .5})}}>{clampText(r, 30)}</div>)}
       </div>
     </Panel>
@@ -173,7 +173,7 @@ export const WarningCard: React.FC<LayoutProps> = p => {
     </div>
     <div style={{height: 6, width: `${rule * 100}%`, background: P.accent, borderRadius: 3}}/>
     <WordEmphasis text={clampText(scene.heading, 48)} emphasis={beat.focus} P={P} kind="underline" size={70} delay={6}/>
-    {scene.points[0] && <div style={{fontFamily: FONT.sans, fontSize: 38, color: P.muted, ...enterStyle('reveal', f, {delay: 20})}}>{clampText(scene.points[0], 44)}</div>}
+    {scene.points[0] && <div style={{fontFamily: FONT.sans, fontSize: 44, color: P.muted, ...enterStyle('reveal', f, {delay: 20})}}>{clampText(scene.points[0], 38)}</div>}
   </div>;
 };
 
@@ -188,10 +188,10 @@ export const SplitCompare: React.FC<LayoutProps> = p => {
   const rows = Math.max(left.length, right.length);
   const divider = progress(f, {delay: 0, duration: 16});
   const col = (side: 0 | 1, list: string[]) => <div style={{flex: 1, display: 'flex', flexDirection: 'column', gap: 22, padding: side ? '0 0 0 34px' : '0 34px 0 0'}}>
-    <div style={{fontFamily: FONT.mono, fontSize: 28, letterSpacing: 3, color: side ? P.accent : P.muted, ...enterStyle('fade', f, {delay: 4})}}>{clampText(titles[side].toUpperCase(), 14)}</div>
+    <div style={{fontFamily: FONT.mono, fontSize: 30, letterSpacing: 3, color: side ? P.accent : P.muted, ...enterStyle('fade', f, {delay: 4})}}>{clampText(titles[side].toUpperCase(), 14)}</div>
     {Array.from({length: rows}, (_, i) => <div key={i} style={{minHeight: 110, padding: '20px 22px', borderRadius: 20, boxSizing: 'border-box',
       background: side ? P.accent : P.surface, border: `2px solid ${side ? P.accent : P.line}`, color: side ? P.bg : P.ink,
-      fontFamily: FONT.sans, fontWeight: 700, fontSize: 36, lineHeight: 1.15,
+      fontFamily: FONT.sans, fontWeight: 720, fontSize: 42, lineHeight: 1.15,
       ...enterStyle('slide', f, {delay: 8 + i * 6 + side * 3, direction: side ? 'right' : 'left', amplitude: .6})}}>{clampText(list[i] ?? '—', 30)}</div>)}
   </div>;
   return <div style={{position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 30}}>

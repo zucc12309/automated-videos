@@ -51,6 +51,19 @@ hashes, seed and provider config; identical requests reuse them at zero cost. Fo
 Remotion (saturation/contrast/brightness, theme-tinted soft-light layer, legibility gradients) and accurate text is
 composited on top — the model is never asked to render text or UI. Short clips are slowed (≥ 0.5×) to span their beat.
 
+## Hook establishing shot (V2.1)
+
+In HYBRID mode with `cinematic.enabled`, the local director adds one atmospheric shot under the hook (dark desk,
+monitor glow, empty upper half for titles, no text/logos). The bold hook typography is composited on top, graded toward
+the theme; if generation is not approved or fails, the hook renders without it.
+
+## Claude motion clips and Higgsfield
+
+The Higgsfield connector's `import-claude-motion-from-url` imports an MP4 *into Higgsfield's media library*; it needs a
+signed `*.claudeusercontent.com` URL plus a download token from Claude's motion export, and it does not generate video.
+The opposite direction — using a motion clip *in* a reel — is the `import_motion_clip` MCP tool (local file → validated
+→ `data/motion_library/` → `library:<id>` asset).
+
 ## Enabling real footage
 
 ```sh

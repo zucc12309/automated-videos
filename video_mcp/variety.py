@@ -19,7 +19,7 @@ HAIR = ["#3b2a21", "#1c1917", "#7c4a2d", "#a16207"]
 MUSIC = [{"progression": p, "bpm": b} for p in range(4) for b in (84, 92, 100)]
 
 STRUCTURAL = {"repoCard", "docStamp", "hookStack", "recap"}
-REPO_FOLLOW = ["terminal", "chips", "starMeter", "heroWord", "listStack", "deviceMock", "mascotCloseup", "quote"]
+REPO_FOLLOW = ["readmeScroll", "repoConnect", "terminal", "chips", "starMeter", "heroWord", "listStack", "deviceMock", "mascotCloseup", "quote"]
 DOC_OPEN = ["docStamp", "heroWord", "bigNumber"]
 DOC_FOLLOW = ["listStack", "nodeGraph", "quote", "deviceMock", "chat", "heroWord", "mascotCloseup", "steps", "compare"]
 HOOK_OPEN = ["hookStack", "heroWord", "bigNumber"]
@@ -27,7 +27,8 @@ ANCHOR = {"heroWord": "right", "bigNumber": "left", "quote": "peek", "mascotClos
           "repoCard": "right", "terminal": "left", "chips": "right", "starMeter": "left", "listStack": "right",
           "deviceMock": "left", "docStamp": "right", "nodeGraph": "left", "chat": "right", "steps": "left",
           "compare": "peek", "recap": "right", "loop": "right", "codeBlock": "left", "flowDiagram": "peek", "timeline": "right",
-          "chartBars": "left", "browserMock": "left", "warningCard": "right", "splitCompare": "peek", "cinematic": "peek"}
+          "chartBars": "left", "browserMock": "left", "warningCard": "right", "splitCompare": "peek", "cinematic": "peek",
+          "hookBold": "right", "readmeScroll": "left", "repoConnect": "peek", "outroCTA": "right", "motionClip": "peek"}
 # Premium editorial themes (V2). A video keeps one theme for every scene.
 THEMES = ["carbon", "midnight", "warm-editorial", "minimal-white", "tech-mono", "soft-gradient", "product-launch", "cinematic-dark"]
 
@@ -113,6 +114,28 @@ def _focus(scene: dict, text: str) -> str:
 PACE = {"emphasis": (1.0, 2.4), "medium": (1.3, 3.0), "demonstration": (2.4, 5.5), "pause": (1.6, 3.6), "montage": (.9, 1.8)}
 
 
+LOOP_TAIL = 1.0      # seconds of the final beat that replay the opening frame
+
+
+def _reserve_loop_tail(scene: dict):
+    """The loop-back is a short tail, never the whole ending: split it off the last beat so the outro's own visual
+    (the call to action) plays first."""
+    beats = scene["beats"]
+    last = beats[-1]
+    if last["e"] - last["s"] < LOOP_TAIL + 1.4:
+        if len(beats) == 1:
+            return                     # too short to split; the whole beat loops
+        prev = beats[-2]
+        cut = max(prev["s"] + 1.0, last["e"] - LOOP_TAIL)
+        prev["e"], last["s"] = round(cut, 3), round(cut, 3)
+        return
+    cut = round(last["e"] - LOOP_TAIL, 3)
+    tail = {**last, "s": cut, "w": [last["w"][1], last["w"][1]]}
+    last["e"] = cut
+    last["w"] = [last["w"][0], max(last["w"][0], last["w"][1] - 1)]
+    beats.append(tail)
+
+
 def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
     """Assign a layout, focus, transition and camera move to every beat. Mutates scenes; returns layout order.
 
@@ -127,6 +150,8 @@ def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
     order: list[str] = []
     beat_no = 0
     list_items = sum(1 for s in scenes if s.get("item", 0) > 0)
+    if len(scenes) > 1:
+        _reserve_loop_tail(scenes[-1])
     for index, scene in enumerate(scenes):
         scene["_listItems"] = list_items
         is_last = index == len(scenes) - 1
@@ -142,14 +167,15 @@ def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
             else:
                 ctx = sr.beat_context(scene, beat, b, character=character and scene.get("character", True) is not False)
                 allowed = None
-                if b == 0 and scene["visual"] == "repo" and scene["_repo"]:
+                if b == 0 and scene.get("motionClip"):
+                    allowed = ["motionClip"]
+                elif b == 0 and scene["visual"] == "repo" and scene["_repo"]:
                     allowed = ["repoCard"]
-                elif b == 0 and scene["visual"] == "outro" and list_items >= 2:
-                    allowed = ["recap"]
+                elif b == 0 and scene["visual"] == "outro":
+                    allowed = ["outroCTA", "recap"] if list_items >= 2 else ["outroCTA", "listStack", "heroWord"]
                 elif b == 0 and scene["visual"] == "hook":
-                    allowed = HOOK_OPEN + ["cinematic"]
-                    if scene.get("_roundup") and not scene.get("media"):
-                        allowed = ["hookStack", "heroWord", "bigNumber"]
+                    # Bold statement first; footage (if any) plays behind it as a backdrop.
+                    allowed = ["hookBold"] + HOOK_OPEN + (["cinematic"] if scene.get("media") else [])
                     if list_items < 2:
                         allowed = [x for x in allowed if x != "hookStack"]
                 elif b == 0 and scene["visual"] == "doc" and ctx["intent"] in ("generic", "list"):

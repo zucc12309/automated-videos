@@ -17,7 +17,11 @@ from . import research, semantic_router
 DEMONSTRATION = {"code", "architecture", "api_flow", "process", "timeline", "comparison"}
 
 
-def local_direction(board: Storyboard, settings, seed: str) -> Storyboard:
+HOOK_SHOT = ("Slow push-in across a dark developer desk at night, monitor glow and shallow depth of field, premium technology "
+             "commercial lighting, calm and precise, large empty area in the upper half for bold titles, no readable text, no logos")
+
+
+def local_direction(board: Storyboard, settings, seed: str, cinematic: bool = False) -> Storyboard:
     """Heuristic director for LOCAL mode and for plans supplied without direction: intents, pacing, theme, character,
     and structured visual data derived only from text already in the plan / topic."""
     theme = settings.production.theme
@@ -43,6 +47,12 @@ def local_direction(board: Storyboard, settings, seed: str) -> Storyboard:
         scene.motion.camera = "static" if scene.pace == "demonstration" else "subtle_push"
         scene.motion.entrance = "mask" if scene.role == "hook" else "reveal"
         scene.motion.emphasis = "counter" if scene.stat else "highlight"
+    hook = board.scenes[0]
+    if cinematic and hook.role == "hook" and hook.cinematic is None:
+        # HYBRID: one atmospheric establishing shot behind the bold hook; text stays Remotion typography.
+        from ..schemas.storyboard import CinematicSpec
+        hook.cinematic = CinematicSpec(prompt=HOOK_SHOT, duration_seconds=4, fallback_layout="hookBold")
+        hook.render_engine = "cinematic"
     return board
 
 
@@ -71,7 +81,7 @@ def script_locally(topic: dict, settings, decisions: list[dict]):
 
 
 def create_storyboard(topic: dict, settings, *, mode: str, video_id: str, seed: str, claude=None, gate=None,
-                      decisions: list[dict] | None = None) -> tuple[Storyboard, dict, list]:
+                      decisions: list[dict] | None = None, cinematic: bool = False) -> tuple[Storyboard, dict, list]:
     """Returns (storyboard, verification report, usages). `claude` is a ClaudeProvider; `gate` the budget gate factory."""
     decisions = decisions if decisions is not None else []
     research_packet, sources = research.build_research(topic)
@@ -109,7 +119,7 @@ def create_storyboard(topic: dict, settings, *, mode: str, video_id: str, seed: 
         board.creative_direction.core_message = board.scenes[0].narration[:240]
         board.creative_direction.call_to_action = board.scenes[-1].narration[:160]
     board.seed = seed
-    board = local_direction(board, settings, seed) if board.director.get("provider") == "local" else _fill_missing(board, settings)
+    board = local_direction(board, settings, seed, cinematic) if board.director.get("provider") == "local" else _fill_missing(board, settings)
     report = research.verify(board, topic)
     return Storyboard.model_validate(board.model_dump()), report, usages
 

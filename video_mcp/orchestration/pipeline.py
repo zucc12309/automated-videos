@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import re
 import shutil
 import subprocess
 import time
@@ -151,7 +152,7 @@ class Pipeline:
         elif request.get("plan"):
             board = from_plan(request["plan"], video_id=self.job_id)
             board.seed = seed
-            board = director.local_direction(board, self.cfg, seed)
+            board = director.local_direction(board, self.cfg, seed, mode == "hybrid" and self.cfg.cinematic.enabled)
             self.decide(stage="direction", provider="local", used=True, note="V1 plan supplied; local heuristic direction")
             report = {"note": "supplied plan; no topic data to verify against"}
         else:
@@ -162,7 +163,8 @@ class Pipeline:
             self.phase("DIRECTING", "creative_direction")
             board, report, usages = director.create_storyboard(
                 topic, self.cfg, mode=effective, video_id=self.job_id, seed=seed,
-                claude=self.claude if effective != "local" else None, gate=self.claude_gate, decisions=self.decisions)
+                claude=self.claude if effective != "local" else None, gate=self.claude_gate, decisions=self.decisions,
+                cinematic=mode == "hybrid" and self.cfg.cinematic.enabled)
             _save(self.folder / "decisions.json", self.decisions)
             if usages:
                 _save(self.folder / "claude_usage.json", [u.__dict__ for u in usages])
@@ -340,6 +342,33 @@ class Pipeline:
         self.timed("cinematic_generation_wait", started)
         return board
 
+    def attach_motion_clips(self, board: Storyboard) -> Storyboard:
+        """Resolve `library:<id>` graphic assets into job-local files Remotion can play."""
+        from .motion_library import MotionLibrary
+        library = MotionLibrary(self.data)
+        for scene in board.scenes:
+            for asset in scene.assets:
+                if asset.kind != "graphic" or not asset.path.startswith("library:"):
+                    continue
+                try:
+                    clip = library.get(asset.path.split(":", 1)[1])
+                except KeyError as exc:
+                    scene.qa.issues.append(str(exc)[:200])
+                    scene.assets = [a for a in scene.assets if a is not asset]
+                    self.decide(stage="motion_clip", scene=scene.id, used=False, reason=str(exc))
+                    continue
+                target = self.public / "motion" / f"{scene.id}{Path(clip['file']).suffix}"
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(clip["path"], target)
+                asset.path = str(target.relative_to(self.root / "public"))
+                asset.sha256 = asset.sha256 or clip["id"]
+                asset.provider = clip.get("origin", "imported")
+                asset.provenance = {"library_id": clip["id"], "title": clip.get("title"), "duration": clip["probe"]["duration"],
+                                    "origin": clip.get("origin"), "imported_at": clip.get("imported_at")}
+                scene.layout = "motionClip"
+                self.decide(stage="motion_clip", scene=scene.id, used=True, library_id=clip["id"], origin=clip.get("origin"))
+        return board
+
     def await_result(self, provider, remote: str, target: Path) -> Path:
         deadline = time.time() + self.cfg.cinematic.timeout_seconds
         while True:
@@ -369,7 +398,7 @@ class Pipeline:
                   provenance={"cache_key": record.get("key"), "remote_id": record.get("remote_id"), "cached": cached,
                               "duration": (record.get("probe") or {}).get("duration") or probe_video(path)["duration"],
                               "mock": record.get("mock", False), "generated_at": record.get("generated_at")})]
-        scene.layout = "cinematic"
+        scene.layout = "hookBold" if scene.role == "hook" else "cinematic"     # hooks keep bold type over the footage
         self.decide(stage="cinematic", scene=scene.id, used=True, cached=cached, provider=record.get("provider"), mock=record.get("mock", False))
 
     # ---------- stage: narration ----------
@@ -437,6 +466,9 @@ class Pipeline:
             media = None if story.id in overrides.get("drop_media", []) else next((a.path for a in story.assets if a.kind == "cinematic"), None)
             media = media if media and self._safe_media(media) else None
             media_seconds = next((a.provenance.get("duration") for a in story.assets if a.kind == "cinematic"), None)
+            motion = next((a for a in story.assets if a.kind == "graphic" and not a.path.startswith("library:")), None)
+            if motion and self._safe_media(motion.path):
+                media, media_seconds = motion.path, motion.provenance.get("duration")
             hint = overrides.get("layout_hints", {}).get(story.id) or story.layout
             if hint == "cinematic" and not media:
                 hint = story.fallback_layout
@@ -450,6 +482,7 @@ class Pipeline:
                            "id": story.id, "role": story.role, "intent": story.intent, "pace": story.pace,
                            "visualData": story.visual.model_dump(), "motion": story.motion.model_dump(), "media": media, "mediaSeconds": media_seconds,
                            "layoutHint": hint, "avoidLayouts": overrides.get("avoid", {}).get(story.id, []),
+                           "motionClip": bool(motion) and media == (motion.path if motion else None),
                            "character": False if story.id in overrides.get("hide_character", []) else
                                         (bool(story.character) if character_mode == "auto" else character_mode == "on"),
                            "claimIds": story.claim_ids})
@@ -460,8 +493,10 @@ class Pipeline:
             s.pop("_roundup", None)
             s.pop("_repo", None)
             s.pop("_listItems", None)
+        readmes = {r.get("full_name"): re.sub(r"\s+", " ", r.get("readme_excerpt") or "")[:900] for r in board.repos}
+        repos = [{**r, "readme": readmes.get(r.get("full_name"), "")} for r in plan["repos"]]
         return {"title": board.title, "style": "studio", "brand": cfg.brand, "series": board.series,
-                "repos": plan["repos"], "music": None, "variant": variant, "scenes": scenes, "fps": fps, "width": width,
+                "repos": repos, "music": None, "variant": variant, "scenes": scenes, "fps": fps, "width": width,
                 "height": height, "durationInFrames": duration, "schemaVersion": "2.0", "theme": variant.get("theme"),
                 "characterMode": character_mode, "_layouts": layouts}
 
@@ -592,6 +627,7 @@ class Pipeline:
             return job_state.transition(self.folder, "COMPLETED", stage="dry_run_done", dry_run=True, review_required=True,
                                         storyboard=str(self.folder / "storyboard.json"), estimate=estimate)
         board = self.generate_assets(board, mode)
+        board = self.attach_motion_clips(board)
         _save(self.folder / "storyboard.json", board.model_dump())
         narration = self.narrate(board, self.cfg.frame_rate)
         props = self.build_props(board, narration)

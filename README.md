@@ -57,6 +57,7 @@ New tools:
 | `list_assets` | Cached generated media with provenance |
 | `get_video_report` | Creative decisions, sources and claims, spend, provider usage, timings, QA |
 | `cancel_job` / `resume_job` | Cancel; resume from checkpoints after a crash, failure or approval pause |
+| `import_motion_clip` | Add a local motion-graphics clip (e.g. exported from Claude's motion tools) for use in a scene |
 
 Long work always returns a job ID immediately; one heavy job runs at a time.
 
@@ -89,6 +90,7 @@ npm run typecheck     # strict TypeScript check
   cinematic-dark — one per video, WCAG-checked. The older styles (`paper`, `editorial`, `kinetic`, `mascot`,
   `fieldnotes`) still render when a V1 plan sets `style`.
 * **Presenter**: only where motivated (hook/outro by default), or `production.character: "off"`.
+* **Retention (V2.1)**: bold hook on frame 0 (`hookBold`), scrolling READMEs and connection graphs instead of static cards, ≥ 36 px body text enforced by QA, and a recap → big call-to-action ending (`outroCTA`). See the motion system doc.
 
 ## Voice, captions and sound
 
