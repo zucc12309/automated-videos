@@ -10,7 +10,7 @@
 | motion quality | 100 | heuristic (freeze detection only; motion taste needs manual review) |
 | scene variety | 100 | deterministic + heuristic |
 | brand consistency | 100 | deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json) |
-| audio quality | 100 | deterministic loudness/peak; heuristic caption sync |
+| audio quality | 90 | deterministic loudness/peak; heuristic caption sync |
 | narrative coherence | n/a | manual review required (no model opinion collected) |
 | source reliability | 0 | deterministic word-overlap support check; share of claims with source support |
 
@@ -20,7 +20,7 @@
 - PASS `resolution` — 1080x1920 (want 1080x1920)
 - PASS `aspect_ratio` — 9:16
 - PASS `frame_rate` — 30.000 fps (want 30)
-- PASS `duration` — 26.80s (expected 26.73s)
+- PASS `duration` — 26.28s (expected 26.23s)
 - PASS `audio_present` — aac 48000
 - PASS `decode_integrity` — clean full decode
 - PASS `black_frames` — none
@@ -34,15 +34,15 @@
 ## Audio
 
 - PASS `loudness` — -14.1 LUFS (target -14.0 ±2) (deterministic)
-- PASS `true_peak` — -1.8 dBTP (limit -0.5) (deterministic)
-- PASS `clipping` — true peak -1.8 dBTP (deterministic)
-- PASS `scene_001_caption_sync` — {'covered_speech': 0.897, 'inside_ratio': 0.933} via energy_snapped (heuristic)
-- PASS `scene_002_caption_sync` — {'covered_speech': 0.944, 'inside_ratio': 0.907} via energy_snapped (heuristic)
-- PASS `scene_003_caption_sync` — {'covered_speech': 0.95, 'inside_ratio': 0.874} via energy_snapped (heuristic)
-- PASS `scene_004_caption_sync` — {'covered_speech': 0.886, 'inside_ratio': 0.862} via energy_snapped (heuristic)
-- PASS `scene_005_caption_sync` — {'covered_speech': 0.973, 'inside_ratio': 0.903} via energy_snapped (heuristic)
-- PASS `scene_006_caption_sync` — {'covered_speech': 0.9, 'inside_ratio': 0.895} via energy_snapped (heuristic)
-- PASS `scene_007_caption_sync` — {'covered_speech': 1.0, 'inside_ratio': 0.816} via energy_snapped (heuristic)
+- PASS `true_peak` — -1.7 dBTP (limit -0.5) (deterministic)
+- PASS `clipping` — true peak -1.7 dBTP (deterministic)
+- PASS `scene_001_caption_sync` — {'covered_speech': 0.865, 'inside_ratio': 0.951} via energy_snapped (heuristic)
+- FAIL `scene_002_caption_sync` — {'covered_speech': 0.786, 'inside_ratio': 0.818} via energy_snapped (heuristic)
+- PASS `scene_003_caption_sync` — {'covered_speech': 0.896, 'inside_ratio': 0.834} via energy_snapped (heuristic)
+- PASS `scene_004_caption_sync` — {'covered_speech': 0.877, 'inside_ratio': 0.815} via energy_snapped (heuristic)
+- PASS `scene_005_caption_sync` — {'covered_speech': 0.926, 'inside_ratio': 0.923} via energy_snapped (heuristic)
+- PASS `scene_006_caption_sync` — {'covered_speech': 0.801, 'inside_ratio': 0.875} via energy_snapped (heuristic)
+- PASS `scene_007_caption_sync` — {'covered_speech': 0.922, 'inside_ratio': 0.887} via energy_snapped (heuristic)
 - Caption timings are **estimated** (no model timestamps for this voice).
 
 ## Sources

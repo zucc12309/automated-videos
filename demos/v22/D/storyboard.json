@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "video_id": "66d11c91953d",
+  "video_id": "4fb61e565db9",
   "title": "The future of AI-powered coding",
   "format": "explainer",
   "duration_target_seconds": 40.0,
@@ -97,7 +97,7 @@
       "assets": [
         {
           "kind": "cinematic",
-          "path": "jobs/66d11c91953d/cinematic/scene_001.mp4",
+          "path": "jobs/4fb61e565db9/cinematic/scene_001.mp4",
           "sha256": "f83c988f1561eb1235107afd778f950eebe2b7d6e229254d5c56ac54d610bde1",
           "provider": "mock",
           "provenance": {
@@ -305,7 +305,7 @@
       "assets": [
         {
           "kind": "cinematic",
-          "path": "jobs/66d11c91953d/cinematic/scene_004.mp4",
+          "path": "jobs/4fb61e565db9/cinematic/scene_004.mp4",
           "sha256": "4ab7abd6d65827a55fdd11b82a355e5e7dcbfef408e6fc6d6535dfc58d0978b7",
           "provider": "mock",
           "provenance": {

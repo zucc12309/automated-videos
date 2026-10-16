@@ -32,7 +32,7 @@
       "provider": "claude-code-interactive",
       "used": true,
       "note": "storyboard supplied by caller",
-      "at": 1792144046.4687047
+      "at": 1792147719.2373338
     },
     {
       "stage": "cinematic",
@@ -41,7 +41,7 @@
       "cached": true,
       "provider": "mock",
       "mock": true,
-      "at": 1792144046.4772687
+      "at": 1792147719.2438061
     },
     {
       "stage": "cinematic",
@@ -50,45 +50,52 @@
       "cached": true,
       "provider": "mock",
       "mock": true,
-      "at": 1792144046.4782155
+      "at": 1792147719.2449923
     },
     {
       "stage": "narration",
-      "engine": "espeak",
-      "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792144046.4815283
+      "engine": "kokoro_onnx",
+      "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+      "at": 1792147719.2482817
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -2.22,
+      "basis": "reference bed level",
+      "at": 1792147731.4339404
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 14.89,
-      "at": 1792144049.0539541
+      "memory_available_gb": 13.96,
+      "at": 1792147731.5579398
     }
   ],
   "model": "claude-opus-5-5 (interactive Claude Code session)",
-  "voice_model": "espeak-ng",
-  "voice": "en-us",
+  "voice_model": "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)",
+  "voice": "am_adam",
   "voice_engines": [
-    "espeak"
+    "kokoro_onnx"
   ],
   "caption_timing": [
     "energy_snapped"
   ],
   "narration_language": "English (US)",
-  "visual_style": "studio",
+  "visual_style": "premium",
   "theme": "fieldnotes-premium",
   "variant": {
     "seed": "v22-D",
     "palette": "",
     "background": "grid",
     "temperament": "editorial",
-    "captions": "bold",
+    "captions": "editorial",
     "transitions": [
       "cut",
       "push",
       "mask"
     ],
-    "outfit": "#2f3b52",
+    "outfit": "#c2410c",
     "hair": "#7c4a2d",
     "music": {
       "progression": 3,
@@ -113,7 +120,7 @@
     {
       "scene": "scene_001",
       "kind": "cinematic",
-      "path": "jobs/66d11c91953d/cinematic/scene_001.mp4",
+      "path": "jobs/4fb61e565db9/cinematic/scene_001.mp4",
       "sha256": "f83c988f1561eb1235107afd778f950eebe2b7d6e229254d5c56ac54d610bde1",
       "provider": "mock",
       "provenance": {
@@ -128,7 +135,7 @@
     {
       "scene": "scene_004",
       "kind": "cinematic",
-      "path": "jobs/66d11c91953d/cinematic/scene_004.mp4",
+      "path": "jobs/4fb61e565db9/cinematic/scene_004.mp4",
       "sha256": "4ab7abd6d65827a55fdd11b82a355e5e7dcbfef408e6fc6d6535dfc58d0978b7",
       "provider": "mock",
       "provenance": {
@@ -143,6 +150,6 @@
   ],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792144204.7508442,
+  "created_at": 1792147901.338196,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }
