@@ -1,0 +1,173 @@
+{
+ "id": "claude-game",
+ "title": "I built this game with Claude",
+ "seconds": 29.53,
+ "frames": 886,
+ "wpm": 168.0,
+ "words": 74,
+ "voice": {
+  "engine": "kokoro_onnx",
+  "voice": "am_adam @ 0.838",
+  "speed": 0.838,
+  "speed_search": [
+   {
+    "speed": 1.0,
+    "wpm": 193.9
+   },
+   {
+    "speed": 0.838,
+    "wpm": 168.0
+   }
+  ]
+ },
+ "loudness": {
+  "final": {
+   "integrated_lufs": -14.2,
+   "lra_lu": 1.7,
+   "true_peak_dbtp": -1.9
+  },
+  "no_music": {
+   "integrated_lufs": -14.2,
+   "lra_lu": 1.7,
+   "true_peak_dbtp": -1.9
+  }
+ },
+ "mix": {
+  "bed_gain_db": -2.05,
+  "game_gain_db": -0.96,
+  "speech_spans": 74
+ },
+ "source": {
+  "latest_build": "5b6cecb",
+  "first_playable_build": "04e1734",
+  "engine": "Godot 4.5.1 (official Linux build), GL Compatibility renderer, Xvfb + Mesa llvmpipe",
+  "prompt_excerpt_from": "the first development prompt (2026-10-15), section 1 PRODUCT OVERVIEW, quoted verbatim with the title line omitted"
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "from_s": 0.0,
+   "seconds": 4.73,
+   "narration": "Making games used to feel impossible without a whole development team.",
+   "cuts": [
+    {
+     "clip": "hook",
+     "src": 6.1,
+     "frames": 142
+    }
+   ]
+  },
+  {
+   "id": "idea",
+   "from_s": 4.73,
+   "seconds": 2.8,
+   "narration": "But I wanted to see what I could build with Claude.",
+   "cuts": [
+    {
+     "clip": "first",
+     "src": 1.783,
+     "frames": 84
+    }
+   ]
+  },
+  {
+   "id": "build",
+   "from_s": 7.53,
+   "seconds": 4.07,
+   "narration": "So I gave it my game idea, and started making it playable.",
+   "cuts": [
+    {
+     "clip": "solve",
+     "src": 1.9,
+     "frames": 66
+    },
+    {
+     "clip": "neon",
+     "src": 4.2,
+     "frames": 33
+    },
+    {
+     "clip": "big",
+     "src": 4.6,
+     "frames": 23
+    }
+   ]
+  },
+  {
+   "id": "features",
+   "from_s": 11.6,
+   "seconds": 6.43,
+   "narration": "Characters with personalities. Thirty-six puzzles, five worlds, and hints that teach.",
+   "cuts": [
+    {
+     "clip": "menus",
+     "src": 3.75,
+     "frames": 63
+    },
+    {
+     "clip": "menus",
+     "src": 8.6,
+     "frames": 80
+    },
+    {
+     "clip": "fail_fix",
+     "src": 5.0,
+     "frames": 50
+    }
+   ]
+  },
+  {
+   "id": "iteration",
+   "from_s": 18.03,
+   "seconds": 5.13,
+   "narration": "I kept reviewing it, finding problems, and asking Claude to improve things.",
+   "cuts": []
+  },
+  {
+   "id": "result",
+   "from_s": 23.17,
+   "seconds": 2.6,
+   "narration": "And this is what I ended up building.",
+   "cuts": [
+    {
+     "clip": "big",
+     "src": 5.5,
+     "frames": 78
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "from_s": 25.77,
+   "seconds": 3.77,
+   "narration": "Want the prompt? Comment LINK, or DM me LINK.",
+   "cuts": [
+    {
+     "clip": "hook",
+     "src": 2.333,
+     "frames": 113
+    }
+   ]
+  }
+ ],
+ "files": [
+  "claude-game-caption.md",
+  "claude-game-cover-4x5.png",
+  "claude-game-cover-square.png",
+  "claude-game-cover.png",
+  "claude-game-final.mp4",
+  "claude-game-metadata.json",
+  "claude-game-no-music.mp4",
+  "claude-game-prompt.md",
+  "claude-game-qa-report.md",
+  "claude-game-script.md"
+ ],
+ "qa_summary": {
+  "passed": 47,
+  "failed": 0,
+  "advisory": 1,
+  "total": 48,
+  "visual_review": "recorded"
+ },
+ "build_seconds": 25
+}

@@ -226,7 +226,7 @@ def hook_variant(spec: dict, cfg: dict, rec: dict, v: dict, scenes: list[dict], 
 
 
 # ---------------------------------------------------------------- Instagram overlay previews
-def ig_overlay_filter(guides: bool) -> str:
+def ig_overlay_filter(guides: bool, caption: str = "Someone recreated seven Adobe-style apps…") -> str:
     """Approximate Reels chrome at 1080x1920 (top bar, right action rail, bottom caption block), drawn over a frame; with guides the
     safe area is outlined too. A simulation for layout checks, not Instagram's exact UI."""
     t = lambda text, x, y, size, c="white": f"drawtext=fontfile={FONT}:text='{text}':x={x}:y={y}:fontsize={size}:fontcolor={c}"
@@ -235,7 +235,7 @@ def ig_overlay_filter(guides: bool) -> str:
     for y in (1120, 1270, 1420, 1570, 1690):                 # action rail (icons only: no invented counts)
         parts.append(f"drawbox=x=930:y={y}:w=76:h=70:color=white@0.92:t=6")
     parts += ["drawbox=x=40:y=1612:w=84:h=84:color=white@0.9:t=fill", t("devmimo", 142, 1622, 40), "drawbox=x=330:y=1614:w=150:h=58:color=white@0.9:t=3",
-              t("Follow", 350, 1626, 34), t("Someone recreated seven Adobe-style apps…", 40, 1730, 38), t("more", 40, 1780, 36, "white@0.7"),
+              t("Follow", 350, 1626, 34), t(caption, 40, 1730, 38), t("more", 40, 1780, 36, "white@0.7"),
               t("Original audio · devmimo", 40, 1846, 32, "white@0.85"), "drawbox=x=930:y=1820:w=76:h=76:color=white@0.9:t=4"]
     if guides:
         sz = LAYOUT["safe"]

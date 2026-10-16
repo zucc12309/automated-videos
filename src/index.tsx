@@ -15,6 +15,7 @@ import {IntroProps} from './devmimo/theme';
 import {SeriesCover, SeriesCoverGuides} from './series/Cover';
 import {SeriesEpisode} from './series/Episode';
 import {ReelProps, SeriesReel} from './series/Reel';
+import {GameCoverProps, GameReel, GameReelCover, GameReelProps} from './gamereel/GameReel';
 import {CoverProps, EpisodeProps} from './series/theme';
 
 const shots: Record<Exclude<Style, 'paper' | 'studio' | 'premium'>, React.FC<ShotProps>> = {editorial: EditorialShot, kinetic: KineticShot, mascot: MascotShot, fieldnotes: FieldnotesShot};
@@ -51,6 +52,9 @@ const SeriesCompositions = () => <>
     calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames ?? 750, fps: props.fps ?? 30})}/>
   <Composition id="SeriesReel" component={SeriesReel} defaultProps={{} as ReelProps} durationInFrames={900} fps={30} width={1080} height={1920}
     calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames ?? 900, fps: props.fps ?? 30})}/>
+  <Composition id="GameReel" component={GameReel} defaultProps={{} as GameReelProps} durationInFrames={870} fps={30} width={1080} height={1920}
+    calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames ?? 870, fps: props.fps ?? 30})}/>
+  <Composition id="GameReelCover" component={GameReelCover} defaultProps={{} as GameCoverProps} durationInFrames={1} fps={30} width={1080} height={1920}/>
   <Composition id="SeriesCover" component={SeriesCover} defaultProps={coverDefaults} durationInFrames={1} fps={30} width={1080} height={1920}/>
   <Composition id="SeriesCoverGuides" component={SeriesCoverGuides} defaultProps={coverDefaults} durationInFrames={1} fps={30} width={1080} height={1920}/>
 </>;

@@ -1,0 +1,98 @@
+{
+ "note": "Game reel layout, [x, y, w, h] at 1080x1920. Instagram safe area x 60-900, y 250-1520 (series.json safe_zone.reel_v2). GameReel.tsx draws with these; qa_game_reel.py checks them.",
+ "safe": {
+  "left": 60,
+  "top": 250,
+  "right": 900,
+  "bottom": 1520
+ },
+ "card": [
+  120,
+  278,
+  720,
+  1093
+ ],
+ "headline": [
+  60,
+  284,
+  840,
+  250
+ ],
+ "pill": [
+  60,
+  404,
+  840,
+  70
+ ],
+ "prompt": [
+  90,
+  430,
+  780,
+  780
+ ],
+ "split": {
+  "left": [
+   60,
+   300,
+   400,
+   700
+  ],
+  "right": [
+   500,
+   300,
+   400,
+   700
+  ],
+  "note": [
+   60,
+   1080,
+   840,
+   56
+  ]
+ },
+ "mimo": [
+  66,
+  1140,
+  170,
+  200
+ ],
+ "handle": [
+  236,
+  1286,
+  420,
+  60
+ ],
+ "subtitle": {
+  "x": 60,
+  "y": 1384,
+  "w": 840,
+  "max_h": 132,
+  "size": 50
+ },
+ "cover": {
+  "tag": [
+   60,
+   300,
+   960,
+   70
+  ],
+  "headline": [
+   60,
+   430,
+   960,
+   220
+  ],
+  "card": [
+   190,
+   676,
+   700,
+   820
+  ],
+  "brand": [
+   60,
+   1510,
+   960,
+   120
+  ]
+ }
+}
