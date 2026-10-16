@@ -150,7 +150,7 @@ def run(out: Path, name: str, props: dict, spec: dict, cfg: dict, loud: dict, vo
         "see qa/cover-grid-thumbnail.png")
     # headline is the largest type on the cover (fitSize in theme.ts is deterministic: recompute the same estimate)
     em = lambda s: sum(.98 if c in "MW" else .36 if c in "IJ1" else .3 if c in ".,:;!'’" else .26 if c == " " else .6 if c == "?" else .72 for c in s)
-    head = min(176, *[(q["right"] - q["left"] - 40) / max(1, em(l)) for l in spec["cover_headline"]])
+    head = min(150, *[(q["right"] - q["left"] - 40) / max(1, em(l)) for l in spec["cover_headline"]])
     add("cover", "headline_largest", head > 72, f"headline {head:.0f} px vs EP label 72 px and header 32 px")
 
     mascot_src = (ROOT / "src" / "series" / "Visuals.tsx").read_text()

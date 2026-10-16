@@ -1,5 +1,5 @@
 import React from 'react';
-import {Img, staticFile} from 'remotion';
+import {Img, OffthreadVideo, staticFile} from 'remotion';
 import {Mimo} from '../devmimo/Mimo';
 import {accentA, clamp01, FONT, HandKey, inkA, io, lerp, Panel, S, samplePath} from './theme';
 
@@ -133,11 +133,11 @@ export const CursorPanel: React.FC<{w: number; h: number; path: HandKey[]; t: nu
     </PanelFrame>;
   };
 
-export const TerminalPanel: React.FC<{w: number; h: number; lines: {text: string; at: number; tone?: string}[]; t: number; title?: string; tag?: string | null}> =
-  ({w, h, lines, t, title = 'TERMINAL', tag}) => {
+export const TerminalPanel: React.FC<{w: number; h: number; lines: {text: string; at: number; tone?: string}[]; t: number; title?: string; tag?: string | null;
+  size?: number}> = ({w, h, lines, t, title = 'TERMINAL', tag, size = 30}) => {
     const col = (tone?: string) => tone === 'ok' ? S.ok : tone === 'dim' ? S.muted : tone === 'out' ? S.inkSoft : S.ink;
     return <PanelFrame w={w} h={h} title={title} tag={tag}>
-      <div style={{position: 'absolute', left: 26, right: 26, top: 66, fontFamily: FONT.mono, fontSize: 30, lineHeight: 1.45}}>
+      <div style={{position: 'absolute', left: 26, right: 26, top: 66, fontFamily: FONT.mono, fontSize: size, lineHeight: 1.45}}>
         {lines.filter(l => t >= l.at).map((l, i) => {
           const typed = l.tone === 'cmd' || !l.tone ? Math.floor(clamp01((t - l.at) / .6) * l.text.length) : l.text.length;
           return <div key={i} style={{color: col(l.tone), whiteSpace: 'pre', overflow: 'hidden'}}>
@@ -159,20 +159,37 @@ export const CodePanel: React.FC<{w: number; h: number; lines: string[]; highlig
       </div>
     </PanelFrame>;
 
-export const ImagePanel: React.FC<{w: number; h: number; src: string; t: number; pan?: [number, number]; title?: string; tag?: string | null}> =
-  ({w, h, src, t, pan = [0, 0], title, tag}) =>
+export const ImagePanel: React.FC<{w: number; h: number; src: string; t: number; pan?: [number, number]; title?: string; tag?: string | null;
+  position?: string}> = ({w, h, src, t, pan = [0, 0], title, tag, position = 'center'}) =>
     <PanelFrame w={w} h={h} title={title} tag={tag}>
-      <Img src={staticFile(src)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
+      <Img src={staticFile(src)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: position,
         transform: `translate(${pan[0] * t}px, ${pan[1] * t}px)`}}/>
     </PanelFrame>;
+
+/** A real output video in a phone frame (9:16, centred in w × h). Muted: the episode's narration carries the sound. */
+export const VideoPanel: React.FC<{w: number; h: number; src: string; startFrom?: number; title?: string; tag?: string | null}> =
+  ({w, h, src, startFrom = 0, title, tag}) => {
+    const ph = Math.min(h, w * 16 / 9), pw = ph * 9 / 16;
+    return <div style={{position: 'relative', width: w, height: h}}>
+      <div style={{position: 'absolute', left: (w - pw) / 2, top: (h - ph) / 2, width: pw, height: ph, borderRadius: pw * .09, overflow: 'hidden',
+        border: `${Math.max(4, pw * .018)}px solid ${S.line}`, boxShadow: `0 30px 80px rgba(0,0,0,.6), 0 0 0 2px ${inkA(.08)}`, background: '#000'}}>
+        <OffthreadVideo src={staticFile(src)} muted startFrom={Math.round(startFrom * 30)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
+        {title && <div style={{position: 'absolute', left: 14, top: 14, fontFamily: FONT.mono, fontWeight: 700, fontSize: 20, letterSpacing: 2, color: S.ground,
+          background: S.accent, padding: '4px 10px', borderRadius: 8}}>{title}</div>}
+        {tag && <div style={{position: 'absolute', left: 0, right: 0, top: 50, textAlign: 'center'}}><span style={{fontFamily: FONT.mono, fontSize: 17,
+          letterSpacing: 1.2, color: S.inkSoft, background: 'rgba(14,15,18,.75)', padding: '4px 10px', borderRadius: 8}}>{tag}</span></div>}
+      </div>
+    </div>;
+  };
 
 export const PanelView: React.FC<{panel: Panel; w: number; h: number; t: number; tag?: string | null}> = ({panel, w, h, t, tag}) => {
   switch (panel.kind) {
     case 'hand': return <HandPanel w={w} h={h} path={panel.path} t={t} title={panel.label} tag={tag}/>;
     case 'cursor': return <CursorPanel w={w} h={h} path={panel.path} t={t} title={panel.label} tag={tag}/>;
-    case 'terminal': return <TerminalPanel w={w} h={h} lines={panel.lines} t={t} title={panel.title ?? panel.label} tag={tag}/>;
+    case 'terminal': return <TerminalPanel w={w} h={h} lines={panel.lines} t={t} title={panel.title ?? panel.label} tag={tag} size={panel.size}/>;
     case 'code': return <CodePanel w={w} h={h} lines={panel.lines} highlight={panel.highlight} t={t} title={panel.title ?? panel.label} tag={tag}/>;
-    case 'image': return <ImagePanel w={w} h={h} src={panel.src} t={t} pan={panel.pan} title={panel.label} tag={tag}/>;
+    case 'image': return <ImagePanel w={w} h={h} src={panel.src} t={t} pan={panel.pan} title={panel.label} tag={tag} position={panel.position}/>;
+    case 'video': return <VideoPanel w={w} h={h} src={panel.src} startFrom={panel.startFrom} title={panel.label} tag={tag}/>;
   }
 };
 
@@ -197,10 +214,32 @@ const CoverTerminal: React.FC<{w: number; h: number}> = ({w, h}) =>
       <rect key={i} x={w * .12 + 40} y={h * .08 + 80 + i * 52} width={w * .76 * (len as number)} height={20} rx={10} fill={c as string}/>)}
   </svg>;
 
+/** Input → output: a real screenshot of the project's input, an arrow, and a real frame of what it produced, in a phone. */
+const CoverInputOutput: React.FC<{w: number; h: number; input?: string; output?: string}> = ({w, h, input, output}) => {
+  const ch = h * .86, cw = ch * .68, ph = h * .98, pw = ph * 9 / 16;
+  return <div style={{position: 'relative', width: w, height: h}}>
+    <div style={{position: 'absolute', left: w * .02, top: (h - ch) / 2 + 14, width: cw, height: ch, borderRadius: 22, overflow: 'hidden', transform: 'rotate(-4deg)',
+      border: `3px solid ${inkA(.14)}`, boxShadow: '0 24px 60px rgba(0,0,0,.6)', background: S.panel}}>
+      {input && <Img src={staticFile(input)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left'}}/>}
+    </div>
+    <svg width={w} height={h} style={{position: 'absolute', inset: 0, overflow: 'visible'}}>
+      <path d={`M${w * .02 + cw + 8},${h * .5} C${w * .5},${h * .38} ${w * .55},${h * .62} ${w - pw - w * .04},${h * .5}`} fill="none" stroke={S.accent} strokeWidth={6}
+        strokeLinecap="round"/>
+      <path d={`M${w - pw - w * .04 - 22},${h * .5 - 16} L${w - pw - w * .04},${h * .5} L${w - pw - w * .04 - 22},${h * .5 + 16}`} fill="none" stroke={S.accent}
+        strokeWidth={6} strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+    <div style={{position: 'absolute', right: w * .02, top: (h - ph) / 2, width: pw, height: ph, borderRadius: pw * .1, overflow: 'hidden', transform: 'rotate(3deg)',
+      border: `5px solid ${S.line}`, boxShadow: `0 24px 60px rgba(0,0,0,.6), 0 0 0 3px ${S.accent}`, background: '#000'}}>
+      {output && <Img src={staticFile(output)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>}
+    </div>
+  </div>;
+};
+
 /** The episode's central cover illustration, chosen by `visual`. New kinds slot in here without touching the cover layout. */
-export const ProjectVisual: React.FC<{visual: string; w: number; h: number}> = ({visual, w, h}) => {
+export const ProjectVisual: React.FC<{visual: string; w: number; h: number; assets?: {input?: string; output?: string}}> = ({visual, w, h, assets}) => {
   switch (visual) {
     case 'hand-cursor': return <CoverHandCursor w={w} h={h}/>;
+    case 'input-output': return <CoverInputOutput w={w} h={h} input={assets?.input} output={assets?.output}/>;
     default: return <CoverTerminal w={w} h={h}/>;
   }
 };

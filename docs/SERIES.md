@@ -12,14 +12,38 @@ the shared components is specific to one episode.
 
 ## Status
 
-- **The series system is built and tested end to end** on a labelled pipeline-test fixture
-  (`tests/fixtures/series/pipeline_test_spec.json`). That fixture used a temporary registry and was rendered outside `outputs/`, so it
-  never took a real number. It passed all 52 deterministic checks, and its frames were inspected.
-- **EP. 001 has not been produced.** The briefed repository, `fikriaf/HandCam-Control`, was verified and rejected, and the producer
-  chose a different repository. See `series/mimo-found-this-on-github/candidates/rejected.json`:
-  - Hand tracking and gesture recognition are real. Its own detector code was run on scripted landmarks.
-  - It never moves the operating-system cursor or clicks. Actions stay inside its own page, and pinch and OK are TODO stubs.
-- No episode number is allocated yet. The first spec that is built becomes EP. 001.
+- **EP. 001 is produced and QA-passed** (52/52 checks, frames inspected). It features `harry0703/MoneyPrinterTurbo` (MIT, v1.3.8,
+  commit `c3634de`). Outputs are in `outputs/mimo-found-this-on-github/episode-001/`.
+- `fikriaf/HandCam-Control` was verified and rejected because it has no OS cursor control. See `candidates/rejected.json`.
+- The pipeline-test fixture (`tests/fixtures/series/pipeline_test_spec.json`) builds against a temporary registry and never takes a number.
+
+### How EP. 001's demonstration was made
+
+MoneyPrinterTurbo (MPT) was installed in an isolated venv and run **unmodified** from its CLI:
+
+| Input | Source |
+|---|---|
+| Script | Supplied with `--video-script`, so the LLM step was skipped. That feature is verified in source only. |
+| Footage | Original Mandelbrot zooms rendered with ffmpeg, passed with `--video-source local` (no stock footage). |
+| Voice | MPT's own `[kokoro]` provider pointed at `examples/series/tools/kokoro_server.py`: an OpenAI-compatible speech endpoint on 127.0.0.1:8880, backed by the repo's Kokoro model. It stands in for Kokoro-FastAPI because Edge TTS is unreachable from the build environment. |
+
+MPT produced the rest:
+
+- the voice track;
+- sentence-timed, burned-in subtitles;
+- the background music;
+- the 1080×1920 edit (`final-1.mp4`, 10.0 s).
+
+The episode shows that output muted inside a phone frame, together with:
+
+- a real screenshot of MPT's Streamlit WebUI with the topic and script typed in;
+- terminal lines re-typed from the real run log.
+
+The on-screen tag reads "REAL RUN · MPT v1.3.8". The full command, limits and evidence are in the spec's `verification` block and the
+episode metadata.
+
+Assets live in `public/series/mimo-found-this-on-github/episode-001/`. The PNGs are committed. `mpt-output.mp4` is git-ignored; to
+rebuild it, re-run the command recorded in the spec.
 
 ## Layout
 

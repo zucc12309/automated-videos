@@ -20,7 +20,8 @@ export const EpisodeNumber: React.FC<{label: string; size?: number; solid?: bool
     letterSpacing: size * .04, color: solid ? S.ground : S.accent, background: solid ? S.accent : 'transparent',
     border: solid ? 'none' : `3px solid ${S.accent}`, padding: `${size * .2}px ${size * .32}px`, borderRadius: size * .22, whiteSpace: 'nowrap'}}>{label}</div>;
 
-export const CoverHeadline: React.FC<{lines: string[]; width: number; max?: number}> = ({lines, width, max = 176}) => {
+export const HEADLINE_MAX = 150;
+export const CoverHeadline: React.FC<{lines: string[]; width: number; max?: number}> = ({lines, width, max = HEADLINE_MAX}) => {
   const size = fitSize(lines, width, max);
   return <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: size, lineHeight: .95, letterSpacing: -size * .02, textAlign: 'center'}}>
     {lines.map((l, i) => <div key={i} style={{color: i === lines.length - 1 && lines.length > 1 ? S.accent : S.ink, whiteSpace: 'nowrap'}}>{l}</div>)}
@@ -61,6 +62,10 @@ const Ground: React.FC<{episode: EpisodeInfo}> = ({episode}) =>
 
 export const SeriesCover: React.FC<CoverProps> = ({series, episode, mask = false}) => {
   ensureFonts();
+  // the illustration starts below the measured headline, so a short headline set large never collides with it
+  const head = fitSize(episode.headline, Q.right - Q.left - 40, HEADLINE_MAX);
+  const visTop = Math.max(Q.top + 500, Q.top + 250 + episode.headline.length * head * .95 + 28);
+  const visH = Math.min(420, Q.bottom - 96 - visTop);
   return <AbsoluteFill style={{background: mask ? '#000' : S.ground}}>
     {!mask && <Ground episode={episode}/>}
     <Essential mask={mask} style={{position: 'absolute', top: Q.top + 34, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
@@ -69,9 +74,9 @@ export const SeriesCover: React.FC<CoverProps> = ({series, episode, mask = false
       <EpisodeNumber label={episode.label}/></Essential>
     <Essential mask={mask} style={{position: 'absolute', top: Q.top + 250, left: Q.left + 10, right: 1080 - Q.right + 10, display: 'flex', justifyContent: 'center'}}>
       <CoverHeadline lines={episode.headline} width={Q.right - Q.left - 40}/></Essential>
-    <Essential mask={mask} style={{position: 'absolute', top: Q.top + 500, left: 90, width: 700, height: 420}}>
-      <ProjectVisual visual={episode.visual} w={700} h={420}/></Essential>
-    <Essential mask={mask} style={{position: 'absolute', top: Q.top + 712, left: 790, width: 190}}>
+    <Essential mask={mask} style={{position: 'absolute', top: visTop, left: 90, width: 700, height: visH}}>
+      <ProjectVisual visual={episode.visual} w={700} h={visH} assets={episode.visualAssets}/></Essential>
+    <Essential mask={mask} style={{position: 'absolute', top: visTop + visH - 230, left: 790, width: 190}}>
       <MimoMascot state={(episode.expression as MimoState) || 'surprised'} size={190} frame={40} amount={1} look={{x: -1, y: -.6}}/></Essential>
     <Essential mask={mask} style={{position: 'absolute', top: Q.bottom - 74, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
       <BrandFooter text={series.footer}/></Essential>

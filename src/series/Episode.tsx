@@ -50,11 +50,25 @@ const DemoStage: React.FC<{panels: Panel[]; t: number; w: number; h: number; tag
         <HandPanel w={pw} h={ph} path={hand.path} t={t} title={hand.label ?? 'CAM'}/></div>
     </div>;
   }
+  const vid = panels.find(x => x.kind === 'video'), other = panels.find(x => x.kind !== 'video');
+  if (vid && other) {                                   // input → output: what you give the project, and the real thing it made
+    const vw = Math.round(h * 9 / 16), lw = w - vw - 56, lh = h - 90;
+    const on = clamp01(t * 2);
+    return <div style={{position: 'relative', width: w, height: h}}>
+      <div style={{position: 'absolute', left: 0, top: 45}}><PanelView panel={other} w={lw} h={lh} t={t}/></div>
+      <svg width={w} height={h} style={{position: 'absolute', inset: 0, overflow: 'visible'}}>
+        <path d={`M${lw - 6},${h / 2} L${w - vw + 4},${h / 2}`} stroke={S.accent} strokeWidth={6} strokeLinecap="round" strokeDasharray="12 10"
+          strokeDashoffset={-t * 60} opacity={on}/>
+        <circle cx={lw - 6} cy={h / 2} r={11} fill={S.accent} opacity={on}/>
+      </svg>
+      <div style={{position: 'absolute', right: 0, top: 0}}><PanelView panel={vid} w={vw} h={h} t={t} tag={tag}/></div>
+    </div>;
+  }
   return <PanelView panel={panels[0]} w={w} h={h} t={t} tag={tag}/>;
 };
 
 // ---------------------------------------------------------------- scenes
-const HookScene: React.FC<SP> = ({scene, f, p}) => {
+const HookScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const t = f / 30;
   const lines = p.episode.headline;
   const at = lines.map((_, i) => i === 0 ? 0 : wf(scene, Math.round(i * scene.words.length / lines.length)));
@@ -69,6 +83,11 @@ const HookScene: React.FC<SP> = ({scene, f, p}) => {
         return <div key={i} style={{fontSize: 132, lineHeight: 1, color: i === lines.length - 1 && lines.length > 1 ? S.accent : S.ink,
           opacity: f >= at[i] ? 1 : 0, transform: `scale(${1.35 - .35 * k})`, whiteSpace: 'nowrap'}}>{l}</div>;
       })}
+    </div>
+    {/* Mimo peeks over the stage edge as the punchline lands: a reaction, not an intro */}
+    <div style={{position: 'absolute', left: R.hook.peek[0], top: R.hook.peek[1], width: R.hook.peek[2], height: R.hook.peek[3], overflow: 'hidden'}}>
+      <div style={{position: 'absolute', left: 30, top: R.hook.peek[3] - 150 * sp(f, at[at.length - 1] + 4, 12, 180)}}>
+        <MimoMascot state="surprised" size={200} frame={f} mouth={mouth} look={{x: 1, y: -.6}}/></div>
     </div>
   </AbsoluteFill>;
 };
@@ -102,13 +121,13 @@ const DiscoveryScene: React.FC<SP> = ({scene, f, p, mouth}) => {
       </div>
     </div>
     {/* identity signature: Mimo pops up from behind a hairline, so it never crosses the subtitle band */}
-    <div style={{position: 'absolute', left: 60, top: 980, width: 400, height: 360, overflow: 'hidden'}}>
-      <div style={{position: 'absolute', left: 50, top: 60 + (1 - enter) * 320}}>
-        <MimoMascot state={point > .05 ? 'pointing' : 'surprised'} size={250} frame={f} mouth={mouth} amount={point > .05 ? point : 1} pointAngle={-55}/>
+    <div style={{position: 'absolute', left: 60, top: R.discovery.mimo[1], width: 420, height: R.discovery.mimo[3], overflow: 'hidden'}}>
+      <div style={{position: 'absolute', left: 50, top: (1 - enter) * 380}}>
+        <MimoMascot state={point > .05 ? 'pointing' : 'surprised'} size={R.discovery.mimo[2]} frame={f} mouth={mouth} amount={point > .05 ? point : 1} pointAngle={-55}/>
       </div>
     </div>
-    <div style={{position: 'absolute', left: 90, top: 1339, width: 340, height: 2, background: inkA(.12)}}/>
-    <div style={{position: 'absolute', left: 420, top: 1120, fontFamily: FONT.serif, fontStyle: 'italic', fontSize: 64, color: S.ink,
+    <div style={{position: 'absolute', left: 90, top: R.discovery.mimo[1] + R.discovery.mimo[3] - 1, width: 360, height: 2, background: inkA(.12)}}/>
+    <div style={{position: 'absolute', left: 500, top: 1230, fontFamily: FONT.serif, fontStyle: 'italic', fontSize: 64, color: S.ink,
       opacity: io(f, 26, 34), transform: `translateY(${(1 - io(f, 26, 34)) * 20}px)`}}>found this.</div>
   </AbsoluteFill>;
 };
@@ -131,11 +150,21 @@ const DemoScene: React.FC<SP> = ({scene, f, p, mouth}) => {
         strokeDasharray="10 9" strokeDashoffset={-f * 2} opacity={on}/>
       <circle cx={ax} cy={ay} r={8} fill={S.accent} opacity={on}/>
     </svg>;
+  } else {                                                // any other pair: input panel → output panel
+    const on = io(f, 10, 22), y = top + ph / 2, ax = lx + pw, bx = rx + (right.kind === 'video' ? (pw - ph * 9 / 16) / 2 : 0);
+    wire = <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
+      <path d={`M${ax - 4},${y} L${bx + 4},${y}`} stroke={S.accent} strokeWidth={5} strokeDasharray="10 8" strokeDashoffset={-f * 2} opacity={on}/>
+      <circle cx={ax - 4} cy={y} r={9} fill={S.accent} opacity={on}/>
+    </svg>;
   }
   const speed = (() => {
     const a = samplePath(right.kind === 'cursor' ? right.path : [], t - .1), b = samplePath(right.kind === 'cursor' ? right.path : [], t);
     return clamp01(Math.hypot(a.x - b.x, a.y - b.y) * 12);
   })();
+  // Mimo nods as each label lands and lights up for the last one
+  const hits = labels.map((_, i) => labelFrame(scene, labels, i));
+  const nod = Math.max(0, ...hits.map(h => f >= h ? Math.exp(-(f - h) / 5) * Math.sin(Math.min(Math.PI, (f - h) / 3)) : 0));
+  const lastHit = hits.length > 0 && f >= hits[hits.length - 1];
   return <AbsoluteFill>
     <div style={{position: 'absolute', left: lx, top, opacity: inL, transform: `translateY(${(1 - inL) * 60}px)`}}>
       <PanelView panel={left} w={pw} h={ph} t={t} tag={p.episode.demoTag}/></div>
@@ -150,7 +179,9 @@ const DemoScene: React.FC<SP> = ({scene, f, p, mouth}) => {
       })}
     </div>
     <div style={{position: 'absolute', left: R.demo.mimo[0], top: R.demo.mimo[1]}}>
-      <MimoMascot state="curious" size={170} frame={f} mouth={mouth} amount={.4 + .6 * speed} look={{x: .8, y: -1}}/></div>
+      <div style={{transform: `translateY(${-nod * 18}px) scale(${1 + nod * .04}, ${1 - nod * .05})`, transformOrigin: '50% 100%'}}>
+        <MimoMascot state={lastHit ? 'excited' : 'curious'} size={R.demo.mimo[2]} frame={f} mouth={mouth}
+          amount={lastHit ? .5 : right.kind === 'cursor' ? .4 + .6 * speed : .8} look={{x: .8, y: -1}}/></div></div>
   </AbsoluteFill>;
 };
 
@@ -159,7 +190,7 @@ const FlowScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const nodeAt = nodes.map((_, i) => Math.round(8 + i * Math.min(26, (scene.frames - 50) / Math.max(1, nodes.length))));
   const active = nodeAt.filter(a => f >= a).length - 1;
   const y0 = R.flow.nodes[1], nh = 170, gap = (R.flow.nodes[3] - nh) / Math.max(1, nodes.length - 1);
-  const mimoY = y0 + Math.max(0, active) * gap + nh / 2 - 130 + Math.sin(f / 30 * Math.PI * 4) * 4;
+  const mimoY = y0 + Math.max(0, active) * gap + nh / 2 - R.flow.mimo[2] * .6 + Math.sin(f / 30 * Math.PI * 4) * 4;
   const walking = active >= 0 && f - nodeAt[Math.max(0, active)] < 12;
   return <AbsoluteFill>
     <div style={{position: 'absolute', top: 290, left: 0, right: 0, textAlign: 'center', opacity: io(f, 0, 8)}}>
@@ -187,14 +218,18 @@ const FlowScene: React.FC<SP> = ({scene, f, p, mouth}) => {
         {n.sub && <div style={{fontFamily: FONT.mono, fontSize: 26, color: S.muted, marginTop: 6, whiteSpace: 'nowrap'}}>{n.sub}</div>}
       </div>;
     })}
-    <div style={{position: 'absolute', left: 70, top: mimoY}}>
-      <MimoMascot state={walking ? 'curious' : 'thinking'} size={190} frame={f} mouth={mouth} amount={1} look={{x: 1, y: 0}}/></div>
+    <div style={{position: 'absolute', left: R.flow.mimo[0], top: mimoY}}>
+      <MimoMascot state={active === nodes.length - 1 && !walking ? 'excited' : walking ? 'curious' : 'thinking'} size={R.flow.mimo[2]} frame={f} mouth={mouth}
+        amount={active === nodes.length - 1 && !walking ? .5 : 1} look={{x: 1, y: 0}}/></div>
   </AbsoluteFill>;
 };
 
 const PayoffScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const t = f / 30 + (p.payoff.replayFrom ?? 0);                    // replay the strongest verified moment of the demo path
-  const q = p.payoff.question.split(/(?<=\?)|\s(?=TRY)/i).filter(Boolean);
+  const qw = p.payoff.question.split(' ');                         // two balanced lines
+  const cut = qw.reduce((best, _, i) => Math.abs(qw.slice(0, i).join(' ').length - qw.slice(i).join(' ').length) <
+    Math.abs(qw.slice(0, best).join(' ').length - qw.slice(best).join(' ').length) ? i : best, 1);
+  const q = [qw.slice(0, cut).join(' '), qw.slice(cut).join(' ')].filter(Boolean);
   const qAt = 4;
   const follow = scene.words.findIndex(w => /^follow/i.test(w.w));
   const stampAt = follow >= 0 ? wf(scene, follow) : Math.round(scene.frames * .55);
@@ -202,8 +237,8 @@ const PayoffScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   return <AbsoluteFill>
     <div style={{position: 'absolute', left: R.payoff.stage[0], top: R.payoff.stage[1], transform: `scale(${.92 + .08 * sp(f, 0, 16, 180)})`}}>
       <DemoStage panels={[p.payoff.panel, ...p.hook.panels.filter(x => x.kind !== p.payoff.panel.kind)]} t={t} w={R.payoff.stage[2]} h={R.payoff.stage[3]} tag={p.episode.demoTag}/></div>
-    <div style={{position: 'absolute', left: 80, top: 940}}>
-      <MimoMascot state="excited" size={230} frame={f} mouth={mouth} amount={io(f, 0, 10)}/></div>
+    <div style={{position: 'absolute', left: R.payoff.mimo[0], top: R.payoff.mimo[1]}}>
+      <MimoMascot state="excited" size={R.payoff.mimo[2]} frame={f} mouth={mouth} amount={io(f, 0, 10)}/></div>
     <div style={{position: 'absolute', left: 360, right: 50, top: 930, fontFamily: FONT.sans, fontWeight: 900, fontSize: 92, lineHeight: .98, letterSpacing: -2}}>
       {q.map((l, i) => {
         const k = sp(f, qAt + i * 6, 14, 220);

@@ -43,6 +43,23 @@ DEMO_TAGS = {"captured": None, "run-in-sandbox": "RE-DRAWN FROM A SANDBOX RUN", 
              "fixture": "PIPELINE TEST · NOT AN EPISODE"}
 
 
+def media_refs(spec: dict) -> list[str]:
+    """Every image / video the episode shows (panel sources and cover assets), as paths under public/."""
+    refs = list(spec.get("project_visual_assets", {}).values())
+
+    def walk(x):
+        if isinstance(x, dict):
+            if x.get("kind") in ("image", "video") and x.get("src"):
+                refs.append(x["src"])
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(spec.get("demo", {}))
+    return sorted(set(refs))
+
+
 def storyboard(spec: dict, cfg: dict) -> dict:
     narration = series.default_narration(spec, cfg)
     pacing = {**cfg["pacing"], **spec.get("pacing", {})}
@@ -193,7 +210,7 @@ def episode_props(spec: dict, cfg: dict, rec: dict, scenes: list[dict], subs: li
         "episode": {"n": rec["episode"], "label": series.fmt(rec["episode"]), "title": spec["title"], "repo": f"{owner}/{name}",
                     "category": spec.get("category", "Open source"), "headline": spec["cover_headline"],
                     "expression": spec.get("mascot_expression", "surprised"), "visual": spec.get("project_visual", "terminal"),
-                    "demoStatus": status, "demoTag": demo.get("tag", DEMO_TAGS[status])},
+                    "demoStatus": status, "demoTag": demo.get("tag", DEMO_TAGS[status]), "visualAssets": spec.get("project_visual_assets", {})},
         "scenes": [{**s, "narration": next(x["narration"] for x in storyboard(spec, cfg)["scenes"] if x["id"] == s["id"])} for s in scenes],
         "subtitles": subs, "mouth": mouth,
         "hook": {"panels": demo["hook"]["panels"], "labels": demo["hook"].get("labels", [])},
@@ -236,6 +253,9 @@ def main():
     errs = series.validate(spec, cfg)
     if errs:
         raise SystemExit("spec rejected:\n  - " + "\n  - ".join(errs))
+    missing = [m for m in media_refs(spec) if not (ROOT / "public" / m).exists()]
+    if missing:
+        raise SystemExit("spec rejected: media not found under public/: " + ", ".join(missing))
     if a.validate_only:
         print("spec OK (nothing allocated)")
         return

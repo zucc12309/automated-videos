@@ -144,3 +144,18 @@ def test_builder_makes_no_paid_calls():
         src = (ROOT / "examples" / "series" / f).read_text().lower()
         for banned in ("anthropic", "higgsfield", "requests.post", "urlopen"):
             assert banned not in src
+
+
+def test_episode_001_spec_is_verified_and_numbered():
+    spec = json.loads((ROOT / "series" / SLUG / "specs" / "harry0703-moneyprinterturbo.json").read_text())
+    assert series.validate(spec, cfg()) == []
+    rec = series.find_by_repo(SLUG, spec["repository"])
+    assert rec and rec["episode"] == 1
+    # every claim on screen is backed by evidence; anything not run is labelled source-only
+    statuses = {f["id"]: f["status"] for f in spec["verified_features"]}
+    assert statuses["script"] == "verified-source"
+    assert all(statuses[l["feature"]] == "verified-run" for l in spec["demo"]["demo"]["labels"])
+    import build_episode as be
+    for ref in be.media_refs(spec):
+        if ref.endswith(".png"):                       # mp4 renders are git-ignored; images are committed
+            assert (ROOT / "public" / ref).exists(), ref

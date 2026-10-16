@@ -1,0 +1,22 @@
+{
+  "series": "mimo-found-this-on-github",
+  "episode": 1,
+  "label": "EP. 001",
+  "repository": "harry0703/MoneyPrinterTurbo",
+  "title": "I pasted a script and got back a finished short",
+  "status": "rendered",
+  "reserved_at": "2026-10-16T15:40:52Z",
+  "rendered_at": "2026-10-16T15:59:30Z",
+  "outputs": {
+    "final": "outputs/mimo-found-this-on-github/episode-001/episode-001-final.mp4",
+    "no_music": "outputs/mimo-found-this-on-github/episode-001/episode-001-no-music.mp4",
+    "cover": "outputs/mimo-found-this-on-github/episode-001/episode-001-cover.png",
+    "cover_4x5": "outputs/mimo-found-this-on-github/episode-001/episode-001-cover-4x5.png",
+    "cover_square": "outputs/mimo-found-this-on-github/episode-001/episode-001-cover-square.png",
+    "script": "outputs/mimo-found-this-on-github/episode-001/episode-001-script.md",
+    "caption": "outputs/mimo-found-this-on-github/episode-001/episode-001-caption.md",
+    "metadata": "outputs/mimo-found-this-on-github/episode-001/episode-001-metadata.json",
+    "qa_report": "outputs/mimo-found-this-on-github/episode-001/episode-001-qa-report.md"
+  },
+  "demo_status": "run-in-sandbox"
+}

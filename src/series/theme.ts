@@ -25,16 +25,17 @@ export type HandKey = {t: number; x: number; y: number; pinch?: number; open?: n
 export type Panel =
   | {kind: 'hand'; path: HandKey[]; label?: string; mirror?: boolean}
   | {kind: 'cursor'; path: HandKey[]; label?: string; clicks?: number[]; windows?: string[]}
-  | {kind: 'terminal'; lines: {text: string; at: number; tone?: 'cmd' | 'out' | 'ok' | 'dim'}[]; label?: string; title?: string}
+  | {kind: 'terminal'; lines: {text: string; at: number; tone?: 'cmd' | 'out' | 'ok' | 'dim'}[]; label?: string; title?: string; size?: number}
   | {kind: 'code'; lines: string[]; highlight?: number[]; label?: string; title?: string}
-  | {kind: 'image'; src: string; label?: string; pan?: [number, number]};
+  | {kind: 'image'; src: string; label?: string; pan?: [number, number]; position?: string}
+  | {kind: 'video'; src: string; label?: string; startFrom?: number};
 export type Label = {text: string; feature: string; at?: number};
 export type FlowNode = {label: string; sub?: string};
 export type RepoCard = {owner: string; name: string; description: string; language?: string; license?: string};
 
 export type SeriesInfo = {header: string; tagline: string; footer: string; handle: string; collection: string};
 export type EpisodeInfo = {n: number; label: string; title: string; repo: string; category: string; headline: string[]; expression: string;
-  visual: string; demoStatus: string; demoTag?: string | null};
+  visual: string; demoStatus: string; demoTag?: string | null; visualAssets?: {input?: string; output?: string}};
 
 export type EpisodeProps = {
   fps: number; durationInFrames: number; series: SeriesInfo; episode: EpisodeInfo; scenes: Scene[]; subtitles: SubGroup[]; mouth: number[];
