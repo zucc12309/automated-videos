@@ -290,3 +290,17 @@ def test_match_eq_strength_scales_the_correction():
     full = audio_profile.match_eq(x, 16000, target)[1]["gains_db"]
     half = audio_profile.match_eq(x, 16000, target, .5)[1]["gains_db"]
     assert all(abs(half[k]) <= abs(full[k]) for k in full)
+
+
+def test_warm_pad_register_is_the_same_for_every_progression(tmp_path):
+    import numpy as np
+    import soundfile as sf
+    from video_mcp import audio as audio_fx
+    cents = []
+    for prog in range(len(audio_fx.PROGRESSIONS)):
+        audio_fx.music_bed(tmp_path / f"p{prog}.wav", 8, 84, prog, None, style="warm_pad")
+        x, sr = sf.read(tmp_path / f"p{prog}.wav", dtype="float32")
+        X = np.abs(np.fft.rfft(x)) ** 2
+        f = np.fft.rfftfreq(len(x), 1 / sr)
+        cents.append((f * X).sum() / X.sum())
+    assert max(cents) - min(cents) < 40, cents

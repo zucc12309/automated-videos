@@ -214,7 +214,7 @@
    "kind": "first_frame",
    "scene": "",
    "mean_luma": 27.1,
-   "stage_std": 58.34
+   "stage_std": 58.35
   },
   {
    "t": 0.15,
@@ -224,63 +224,63 @@
    "stage_std": 58.42
   },
   {
-   "t": 2.117,
+   "t": 2.417,
    "kind": "scene_mid",
    "scene": "scene_001",
    "mean_luma": 43.3,
-   "stage_std": 58.95
+   "stage_std": 58.93
   },
   {
-   "t": 4.033,
+   "t": 4.633,
    "kind": "scene_exit",
    "scene": "scene_001",
-   "mean_luma": 43.4,
-   "stage_std": 59.37
+   "mean_luma": 43.5,
+   "stage_std": 59.43
   },
   {
-   "t": 4.383,
+   "t": 4.983,
    "kind": "scene_entrance",
    "scene": "scene_002",
-   "mean_luma": 33.8,
-   "stage_std": 68.32
+   "mean_luma": 33.7,
+   "stage_std": 68.31
   },
   {
-   "t": 7.333,
+   "t": 7.717,
    "kind": "scene_mid",
    "scene": "scene_002",
-   "mean_luma": 26.5,
-   "stage_std": 62.23
+   "mean_luma": 25.2,
+   "stage_std": 61.25
   },
   {
-   "t": 10.233,
+   "t": 10.4,
    "kind": "scene_exit",
    "scene": "scene_002",
-   "mean_luma": 26.4,
-   "stage_std": 62.85
+   "mean_luma": 26.3,
+   "stage_std": 62.72
   },
   {
-   "t": 10.583,
+   "t": 10.75,
    "kind": "scene_entrance",
    "scene": "scene_003",
-   "mean_luma": 22.5,
-   "stage_std": 24.97
+   "mean_luma": 22.6,
+   "stage_std": 24.98
   },
   {
-   "t": 13.333,
+   "t": 13.367,
    "kind": "scene_mid",
    "scene": "scene_003",
    "mean_luma": 24.4,
-   "stage_std": 40.87
+   "stage_std": 40.88
   },
   {
-   "t": 16.033,
+   "t": 15.933,
    "kind": "scene_exit",
    "scene": "scene_003",
    "mean_luma": 24.5,
-   "stage_std": 41.22
+   "stage_std": 41.2
   },
   {
-   "t": 16.383,
+   "t": 16.283,
    "kind": "scene_entrance",
    "scene": "scene_004",
    "mean_luma": 21.4,
@@ -290,92 +290,99 @@
    "t": 19.15,
    "kind": "scene_mid",
    "scene": "scene_004",
-   "mean_luma": 22.9,
-   "stage_std": 25.38
+   "mean_luma": 21.3,
+   "stage_std": 17.84
   },
   {
-   "t": 21.867,
+   "t": 21.967,
    "kind": "scene_exit",
    "scene": "scene_004",
    "mean_luma": 22.3,
-   "stage_std": 18.21
+   "stage_std": 18.2
   },
   {
-   "t": 22.217,
+   "t": 22.317,
    "kind": "scene_entrance",
    "scene": "scene_005",
    "mean_luma": 21.2,
-   "stage_std": 13.08
+   "stage_std": 13.11
   },
   {
-   "t": 25.283,
+   "t": 25.433,
    "kind": "scene_mid",
    "scene": "scene_005",
    "mean_luma": 25.6,
-   "stage_std": 49.16
+   "stage_std": 49.15
   },
   {
-   "t": 28.3,
+   "t": 28.5,
    "kind": "scene_exit",
    "scene": "scene_005",
    "mean_luma": 26.8,
    "stage_std": 51.19
   },
   {
-   "t": 28.65,
+   "t": 28.85,
    "kind": "scene_entrance",
    "scene": "scene_006",
-   "mean_luma": 26.6,
-   "stage_std": 38.07
+   "mean_luma": 26.7,
+   "stage_std": 38.06
   },
   {
-   "t": 30.992,
+   "t": 31.2,
+   "kind": "scene_mid",
+   "scene": "scene_006",
+   "mean_luma": 25.5,
+   "stage_std": 26.78
+  },
+  {
+   "t": 31.293,
    "kind": "beat_boundary",
    "scene": "scene_006",
-   "mean_luma": 25.6,
-   "stage_std": 17.51
+   "mean_luma": 25.7,
+   "stage_std": 19.2
   },
   {
-   "t": 33.3,
+   "t": 33.5,
    "kind": "scene_exit",
    "scene": "scene_006",
    "mean_luma": 29.3,
-   "stage_std": 39.12
+   "stage_std": 39.15
   },
   {
-   "t": 33.65,
+   "t": 33.85,
    "kind": "scene_entrance",
    "scene": "scene_007",
    "mean_luma": 28.0,
-   "stage_std": 29.99
+   "stage_std": 29.93
   },
   {
-   "t": 34.983,
+   "t": 35.167,
    "kind": "scene_mid",
    "scene": "scene_007",
    "mean_luma": 29.2,
-   "stage_std": 60.25
+   "stage_std": 60.23
   },
   {
-   "t": 35.567,
+   "t": 35.733,
    "kind": "beat_boundary",
    "scene": "scene_007",
-   "mean_luma": 34.1,
-   "stage_std": 58.53
+   "mean_luma": 32.2,
+   "stage_std": 58.59
   },
   {
-   "t": 36.267,
+   "t": 36.433,
    "kind": "scene_exit",
    "scene": "scene_007",
-   "mean_luma": 39.3,
-   "stage_std": 59.37
+   "mean_luma": 40.7,
+   "stage_std": 59.27
   },
   {
-   "t": 36.367,
+   "t": 36.533,
    "kind": "final_frame",
    "scene": "",
-   "mean_luma": 35.1,
-   "stage_std": 59.44
+   "mean_luma": 36.5,
+   "stage_std": 59.37
   }
  ],
  "issues": [],
@@ -390,5 +397,5 @@
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/4f81907441eb/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/c15dcf6237f8/qa/contact_sheet.jpg"
 }

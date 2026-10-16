@@ -4,18 +4,25 @@
     "provider": "supplied",
     "used": true,
     "note": "storyboard supplied by caller",
-    "at": 1792144390.953754
+    "at": 1792147525.3373382
   },
   {
     "stage": "narration",
-    "engine": "espeak",
-    "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-    "at": 1792144390.959488
+    "engine": "kokoro_onnx",
+    "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+    "at": 1792147525.343363
+  },
+  {
+    "stage": "music",
+    "style": "warm_pad",
+    "gain_db": -2.06,
+    "basis": "reference bed level",
+    "at": 1792147542.2924082
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 14.76,
-    "at": 1792144394.3032951
+    "memory_available_gb": 14.01,
+    "at": 1792147542.4690194
   }
 ]

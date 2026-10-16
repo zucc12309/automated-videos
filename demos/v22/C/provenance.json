@@ -8,7 +8,7 @@
       "url": "https://modelcontextprotocol.io/docs/learn/architecture",
       "title": "Model Context Protocol: architecture overview",
       "kind": "article",
-      "retrieved_at": 1792144390.9522202
+      "retrieved_at": 1792147525.3358169
     }
   ],
   "claims": [
@@ -67,39 +67,46 @@
       "provider": "supplied",
       "used": true,
       "note": "storyboard supplied by caller",
-      "at": 1792144390.953754
+      "at": 1792147525.3373382
     },
     {
       "stage": "narration",
-      "engine": "espeak",
-      "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792144390.959488
+      "engine": "kokoro_onnx",
+      "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+      "at": 1792147525.343363
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -2.06,
+      "basis": "reference bed level",
+      "at": 1792147542.2924082
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 14.76,
-      "at": 1792144394.3032951
+      "memory_available_gb": 14.01,
+      "at": 1792147542.4690194
     }
   ],
   "model": "qwen2.5:14b",
-  "voice_model": "espeak-ng",
-  "voice": "en-us",
+  "voice_model": "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)",
+  "voice": "am_adam",
   "voice_engines": [
-    "espeak"
+    "kokoro_onnx"
   ],
   "caption_timing": [
     "energy_snapped"
   ],
   "narration_language": "English (US)",
-  "visual_style": "studio",
+  "visual_style": "premium",
   "theme": "fieldnotes-premium",
   "variant": {
     "seed": "v22-C",
     "palette": "",
     "background": "flat",
     "temperament": "snappy",
-    "captions": "editorial",
+    "captions": "bold",
     "transitions": [
       "cut",
       "zoom",
@@ -108,8 +115,8 @@
     "outfit": "#2f3b52",
     "hair": "#a16207",
     "music": {
-      "progression": 2,
-      "bpm": 100
+      "progression": 3,
+      "bpm": 84
     },
     "camera": 0.8,
     "theme": "fieldnotes-premium",
@@ -130,6 +137,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792144569.2514002,
+  "created_at": 1792147717.0043676,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }

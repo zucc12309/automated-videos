@@ -147,13 +147,19 @@ def beat_sfx(path: Path, seconds: float, beats: list[dict], words: list[dict], e
     sf.write(path, np.clip(track, -.95, .95), RATE)
 
 
-def warm_pad(seconds: float, bpm: float, progression: int) -> np.ndarray:
+PAD_CENTROID_HZ = 225.0      # standalone spectral centroid; sits ~350 Hz in the mix like Reference A
+
+
+def warm_pad(seconds: float, bpm: float, progression: int, _shift: float | None = None) -> np.ndarray:
     """Reference A's bed: a soft, low, slowly breathing pad (energy ~140-340 Hz), no drums or plucks.
 
     Chords sit in the 130-500 Hz register with a quiet root an octave below; upper partials are filtered away and long
     cross-fades join the chords."""
     bar = 60 / bpm * 4 * 2                    # two bars per chord: slow harmonic rhythm
     chords = PROGRESSIONS[progression % len(PROGRESSIONS)]
+    # Same brightness for every progression: generate, measure the centroid, transpose toward PAD_CENTROID_HZ.
+    shift = _shift or 1.0
+    chords = [[f * shift for f in c] for c in chords]
     track = _blank(seconds + bar)
     for b in range(math.ceil(seconds / bar) + 1):
         chord = chords[b % len(chords)]
@@ -163,6 +169,14 @@ def warm_pad(seconds: float, bpm: float, progression: int) -> np.ndarray:
         swell = 1 + .12 * np.sin(2 * np.pi * t / bar)
         env = np.minimum(1, t / 1.2) * np.minimum(1, (bar + 1.2 - t) / 1.2) * swell
         _mix(track, _lowpass((pad * env * .09).astype(np.float32), 900), b * bar)
+    if _shift is None:          # the 900 Hz filter makes brightness non-linear in pitch: refine the transposition a few times
+        for _ in range(3):
+            used = track[:round(seconds * RATE)]          # measure only what the video plays
+            spec = np.abs(np.fft.rfft(used)) ** 2
+            freqs = np.fft.rfftfreq(len(used), 1 / RATE)
+            centroid = float((freqs * spec).sum() / (spec.sum() + 1e-12))
+            shift *= PAD_CENTROID_HZ / max(centroid, 1.0)
+            track = warm_pad(seconds, bpm, progression, _shift=shift)
     return track
 
 
