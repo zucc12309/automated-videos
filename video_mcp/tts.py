@@ -4,6 +4,7 @@ Both return the same Narration record so the rest of the pipeline does not care 
 """
 from __future__ import annotations
 
+import html
 import math
 import re
 import shutil
@@ -134,22 +135,31 @@ def espeak_narrate(text: str, cfg, fps: int) -> Narration:
     if current:
         phrases.append(current)
     wpm = int(165 * cfg.voice_speed)
+    voice, ssml, pauses = cfg.narration.espeak_voice, None, (.18, .08)
+    if getattr(cfg.narration, "audio_profile", "off") == "reference":
+        from . import audio_profile
+        target = audio_profile.profile()["targets"]["voice"]["espeak"]
+        voice, wpm, pauses = target["variant"], target["rate_wpm"], (target["sentence_pause_s"], target["comma_pause_s"])
+        ssml = (target["pitch"], target["range"])
     chunks, words, t = [], [], 0.0
     with tempfile.TemporaryDirectory() as tmp:
         for i, phrase in enumerate(phrases):
             out = Path(tmp) / f"p{i}.wav"
-            subprocess.run([binary, "-v", cfg.narration.espeak_voice, "-s", str(wpm), "-w", str(out), " ".join(s for _, s in phrase)],
+            said = " ".join(s for _, s in phrase)
+            if ssml:      # reference prosody: pitch and range calibrated against Reference A
+                said = f'<speak><prosody pitch="{ssml[0]}" range="{ssml[1]}">{html.escape(said, quote=False)}</prosody></speak>'
+            subprocess.run([binary, *(["-m"] if ssml else []), "-v", voice, "-s", str(wpm), "-w", str(out), said],
                            check=True, capture_output=True, timeout=60)
             pcm = _read_resampled(out)
             pcm = _trim(pcm)
-            gap = .18 if re.search(r"[.!?]$", phrase[-1][0]) else .08
+            gap = pauses[0] if re.search(r"[.!?]$", phrase[-1][0]) else pauses[1]
             est = alignment.estimate([c for c, _ in phrase], 0, len(pcm) / RATE)
             est = alignment.energy_snap(pcm, RATE, est)
             words += [{"w": w["w"], "s": round(w["s"] + t, 3), "e": round(w["e"] + t, 3)} for w in est]
             chunks += [pcm, np.zeros(int(gap * RATE), dtype=np.float32)]
             t += len(pcm) / RATE + gap
     audio = np.concatenate(chunks[:-1]) if len(chunks) > 1 else chunks[0]
-    return Narration(audio, words, text_visemes(words, fps), "espeak", cfg.narration.espeak_voice, "energy_snapped",
+    return Narration(audio, words, text_visemes(words, fps), "espeak", voice + (f" pitch {ssml[0]} range {ssml[1]}" if ssml else ""), "energy_snapped",
                      ["espeak-ng fallback voice: robotic timbre; install Kokoro for production narration"])
 
 

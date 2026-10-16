@@ -94,6 +94,7 @@ class Narration(_Section):
     espeak_voice: str = "en-us"
     pronunciations: dict[str, str] = Field(default_factory=dict)
     expand_acronyms: bool = True
+    audio_profile: Literal["reference", "off"] = "reference"   # brand/audio_profile.json (Reference A); "off" = V2 sound
 
 
 class Renderer(_Section):

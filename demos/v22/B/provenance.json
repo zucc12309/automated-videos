@@ -8,7 +8,7 @@
       "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
       "title": "Stop your coding agent from breaking your UI",
       "kind": "manual",
-      "retrieved_at": 1792143771.462171
+      "retrieved_at": 1792146068.3567283
     }
   ],
   "claims": [
@@ -56,7 +56,7 @@
     "provider": "local",
     "script_provider": "vibe_library",
     "model": "vibe-template-v1",
-    "created_at": 1792143771.462175
+    "created_at": 1792146068.3567314
   },
   "decisions": [
     {
@@ -71,19 +71,33 @@
       "stage": "narration",
       "engine": "espeak",
       "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792143771.47435
+      "at": 1792146068.3672585
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -0.02,
+      "basis": "reference bed level",
+      "at": 1792146070.5916183
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 12.11,
-      "at": 1792143774.3677845
+      "memory_available_gb": 15.38,
+      "at": 1792146070.7155738
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -0.02,
+      "basis": "reference bed level",
+      "at": 1792146218.0679202
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 15.02,
-      "at": 1792143912.7089272
+      "memory_available_gb": 15.44,
+      "at": 1792146218.1894984
     }
   ],
   "model": "vibe-template-v1",
@@ -101,19 +115,19 @@
   "variant": {
     "seed": "v22-B",
     "palette": "",
-    "background": "flat",
-    "temperament": "smooth",
+    "background": "grain",
+    "temperament": "editorial",
     "captions": "editorial",
     "transitions": [
       "push",
       "mask",
       "zoom"
     ],
-    "outfit": "#1f2937",
+    "outfit": "#0f766e",
     "hair": "#3b2a21",
     "music": {
       "progression": 2,
-      "bpm": 100
+      "bpm": 92
     },
     "camera": 1.0,
     "theme": "fieldnotes-premium",
@@ -132,6 +146,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792144044.650056,
+  "created_at": 1792146367.920589,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }

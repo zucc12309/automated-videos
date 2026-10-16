@@ -147,8 +147,37 @@ def beat_sfx(path: Path, seconds: float, beats: list[dict], words: list[dict], e
     sf.write(path, np.clip(track, -.95, .95), RATE)
 
 
-def music_bed(path: Path, seconds: float, bpm: float = 92, progression: int = 0, speech: list[tuple[float, float]] | None = None):
-    """Lo-fi pad + soft kick/hat + plucked arpeggio; key, tempo and harmony vary per video. Ducked under speech."""
+def warm_pad(seconds: float, bpm: float, progression: int) -> np.ndarray:
+    """Reference A's bed: a soft, low, slowly breathing pad (energy ~140-340 Hz), no drums or plucks.
+
+    Chords sit in the 130-500 Hz register with a quiet root an octave below; upper partials are filtered away and long
+    cross-fades join the chords."""
+    bar = 60 / bpm * 4 * 2                    # two bars per chord: slow harmonic rhythm
+    chords = PROGRESSIONS[progression % len(PROGRESSIONS)]
+    track = _blank(seconds + bar)
+    for b in range(math.ceil(seconds / bar) + 1):
+        chord = chords[b % len(chords)]
+        t = np.arange(round((bar + 1.2) * RATE), dtype=np.float32) / RATE
+        pad = sum(np.sin(2 * np.pi * f * t + i) + .18 * np.sin(2 * np.pi * f * 2.002 * t) for i, f in enumerate(chord)) / len(chord)
+        pad += .3 * np.sin(2 * np.pi * chord[0] / 2 * t)                       # soft root an octave below
+        swell = 1 + .12 * np.sin(2 * np.pi * t / bar)
+        env = np.minimum(1, t / 1.2) * np.minimum(1, (bar + 1.2 - t) / 1.2) * swell
+        _mix(track, _lowpass((pad * env * .09).astype(np.float32), 900), b * bar)
+    return track
+
+
+def music_bed(path: Path, seconds: float, bpm: float = 92, progression: int = 0, speech: list[tuple[float, float]] | None = None,
+              style: str = "lofi", duck_db: float = -7.0):
+    """style "lofi": pad + soft kick/hat + plucked arpeggio (V2). style "warm_pad": Reference A's low pad (brand/audio_profile.json).
+    Key, tempo and harmony vary per video. Ducked under speech."""
+    if style == "warm_pad":
+        track = warm_pad(seconds, bpm, progression)[:round(seconds * RATE)]
+        if speech:
+            track *= duck_curve(seconds, speech, depth_db=duck_db)[:len(track)]
+        fade = min(len(track), RATE * 2)
+        track[-fade:] *= np.linspace(1, 0, fade)
+        sf.write(path, np.clip(track, -.95, .95), RATE)
+        return
     beat = 60 / bpm
     track = _blank(seconds + 1)
     chords = PROGRESSIONS[progression % len(PROGRESSIONS)]

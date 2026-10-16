@@ -403,6 +403,19 @@ class Pipeline:
         scene.layout = "hookBold" if scene.role == "hook" else "cinematic"     # hooks keep bold type over the footage
         self.decide(stage="cinematic", scene=scene.id, used=True, cached=cached, provider=record.get("provider"), mock=record.get("mock", False))
 
+    # ---------- reference audio profile ----------
+    def _profile(self) -> dict | None:
+        if self.cfg.narration.audio_profile != "reference":
+            return None
+        if not hasattr(self, "_profile_cache"):
+            from .. import audio_profile
+            self._profile_cache = audio_profile.profile() if audio_profile.PROFILE.exists() else None
+        return self._profile_cache
+
+    def _audio_profile_key(self) -> str:
+        p = self._profile()
+        return hashlib.sha256(json.dumps(p, sort_keys=True).encode()).hexdigest()[:12] if p else "off"
+
     # ---------- stage: narration ----------
     def narrate(self, board: Storyboard, fps: int) -> list[dict]:
         self.phase("SYNTHESIZING_AUDIO", "loading_local_voice")
@@ -416,7 +429,7 @@ class Pipeline:
         out = []
         for i, scene in enumerate(board.scenes):
             key = hashlib.sha256(json.dumps([scene.narration, engine, self.cfg.voice, self.cfg.voice_speed,
-                                             self.cfg.narration.pronunciations], sort_keys=True).encode()).hexdigest()[:16]
+                                             self.cfg.narration.pronunciations, self._audio_profile_key()], sort_keys=True).encode()).hexdigest()[:16]
             meta_path = self.public / f"scene-{i}.json"
             wav = self.public / f"scene-{i}.wav"
             cached = _load(meta_path)
@@ -428,13 +441,18 @@ class Pipeline:
             import soundfile as sf
             raw = self.public / f"scene-{i}-raw.wav"
             sf.write(raw, n.audio, RATE)
+            eq, eq_info = "", None
+            if self._profile():          # move the voice's tonal balance toward Reference A (clamped ±6 dB per band)
+                from .. import audio_profile
+                eq, eq_info = audio_profile.match_eq(n.audio, RATE, self._profile()["measured"]["voice_bands_db"])
             subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-af",
-                            "highpass=f=75,acompressor=threshold=-20dB:ratio=2.5:attack=5:release=80,loudnorm=I=-16:TP=-1.5:LRA=7",
+                            "highpass=f=75," + (eq + "," if eq else "") +
+                            "acompressor=threshold=-20dB:ratio=2.5:attack=5:release=80,loudnorm=I=-16:TP=-1.5:LRA=7",
                             "-ar", str(RATE), "-ac", "1", str(wav)], check=True, timeout=300)
             raw.unlink()
             normalized, _ = sf.read(wav, dtype="float32")
             from .. import alignment
-            record = {"key": key, "engine": n.engine, "voice": n.voice, "timing_source": n.timing_source, "notes": n.notes,
+            record = {"key": key, "engine": n.engine, "voice": n.voice, "timing_source": n.timing_source, "notes": n.notes, "eq": eq_info,
                       "seconds": len(n.audio) / RATE, "words": n.words, "visemes": n.visemes,
                       "mouth": audio_fx.mouth_envelope(normalized, fps), "sync": alignment.sync_error(n.words, normalized, RATE)}
             _save(meta_path, record)
@@ -462,7 +480,8 @@ class Pipeline:
         roundup = board.format == "roundup"
         for i, (scene, story, voice) in enumerate(zip(plan["scenes"], board.scenes, narration)):
             seconds = voice["seconds"]
-            tail = .55 if story.pace in ("demonstration", "pause") else .28
+            tails = (self._profile() or {}).get("targets", {}).get("scene_tail_s") or {"default": .28, "demonstration": .55, "pause": .55}
+            tail = tails.get(story.pace, tails["default"])
             length = math.ceil((seconds + tail) * fps)
             lo, hi = variety.PACE.get(story.pace, (1.3, 3.0))
             media = None if story.id in overrides.get("drop_media", []) else next((a.path for a in story.assets if a.kind == "cinematic"), None)
@@ -519,6 +538,13 @@ class Pipeline:
         from ..quality.audio_analysis import loudness
         out = self.folder / "video-master.mp4"
         chain = "volume=0dB" if from_master else "loudnorm=I=-14:TP=-1.5:LRA=9,alimiter=limit=0.8:attack=1:release=50:level=false"
+        if not from_master and self._profile():
+            # Linear gain to the target: single-pass loudnorm is dynamic and lifts every pause, which flattens the mix that
+            # Reference A keeps (its quietest 5% sits ~28 dB under the voice peaks).
+            target = self._profile()["targets"]["master"]["integrated_lufs"]
+            current = loudness(video).get("integrated_lufs")
+            if current is not None:
+                chain = f"volume={target - current:.2f}dB,alimiter=limit=0.84:attack=1:release=60:level=false"
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-c:v", "copy", "-af", chain, "-ar", "48000", "-c:a", "aac",
                         "-b:a", "192k", str(out)], check=True, timeout=600)
         measured = loudness(out)
@@ -550,8 +576,19 @@ class Pipeline:
         if self.cfg.music:
             speech = [(s["from"] / fps + w["s"], s["from"] / fps + w["e"]) for s in props["scenes"] for w in s["words"]]
             music = props["variant"]["music"]
-            audio_fx.music_bed(self.public / "music-raw.wav", props["durationInFrames"] / fps, music["bpm"], music["progression"], speech)
-            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(self.public / "music-raw.wav"), "-af", "loudnorm=I=-31:TP=-6",
+            bed = (self._profile() or {}).get("targets", {}).get("music") or {}
+            audio_fx.music_bed(self.public / "music-raw.wav", props["durationInFrames"] / fps, music["bpm"], music["progression"], speech,
+                               style=bed.get("style", "lofi"), duck_db=bed.get("duck_db", -7.0))
+            level = "loudnorm=I=-31:TP=-6"
+            if self._profile():          # Reference A: bed sits a measured distance under the voice (pauses keep their dynamics)
+                import soundfile as sf
+                from .. import audio_profile
+                voice = [sf.read(self.public / f"scene-{i}.wav", dtype="float32")[0] for i in range(len(props["scenes"]))]
+                raw, _ = sf.read(self.public / "music-raw.wav", dtype="float32")
+                gain = audio_profile.bed_gain_db(voice, raw, RATE, self._profile()["measured"]["bed_minus_speech_db"])
+                level = f"volume={gain}dB"
+                self.decide(stage="music", style=bed.get("style"), gain_db=gain, basis="reference bed level")
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(self.public / "music-raw.wav"), "-af", level,
                             "-ar", str(RATE), str(self.public / "music.wav")], check=True, timeout=300)
             (self.public / "music-raw.wav").unlink()
             props["music"] = f"jobs/{self.job_id}/music.wav"

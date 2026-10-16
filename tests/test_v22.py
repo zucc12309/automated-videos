@@ -196,3 +196,70 @@ def test_loop_tail_cuts_back_to_the_hook():
     scenes = _video()
     visual_director.direct(scenes, character_mode="on")
     assert scenes[-1]["beats"][-1]["transition"] == "cut"
+
+
+# ---------------------------------------------------------------- reference audio profile
+def test_audio_profile_has_reference_measurements_and_targets():
+    from video_mcp import audio_profile
+    p = audio_profile.profile()
+    m = p["measured"]
+    assert -15 < m["integrated_lufs"] < -13 and m["f0_median"] and m["bed_minus_speech_db"] < -15
+    espeak = p["targets"]["voice"]["espeak"]
+    assert espeak["variant"].startswith("en-us") and espeak["pitch"].endswith("%")
+    assert p["targets"]["voice"]["kokoro"]["voice"] == "am_adam"
+
+
+def test_match_eq_moves_band_balance_toward_target_and_is_clamped():
+    import numpy as np
+    from video_mcp import audio_profile
+    rng = np.random.default_rng(0)
+    x = rng.standard_normal(16000 * 2).astype(np.float32)
+    target = {"low": -4.0, "mid": -3.0, "presence": -12.0, "air": -17.0}
+    chain, info = audio_profile.match_eq(x, 16000, target)
+    assert all(abs(g) <= audio_profile.EQ_LIMIT_DB for g in info["gains_db"].values())
+    assert info["gains_db"]["air"] < 0 and info["gains_db"]["low"] > 0       # white noise is air-heavy, low-light
+    assert "equalizer" in chain
+
+
+def test_bed_gain_places_music_under_speech_by_the_reference_margin():
+    import numpy as np
+    from video_mcp import audio_profile
+    t = np.arange(24000 * 2) / 24000
+    voice = (.3 * np.sin(2 * np.pi * 150 * t)).astype(np.float32)
+    music = (.3 * np.sin(2 * np.pi * 220 * t)).astype(np.float32)
+    gain = audio_profile.bed_gain_db([voice], music, 24000, -22.0)
+    assert abs(gain + 22.0) < .5                                               # equal levels -> 22 dB down
+
+
+def test_warm_pad_bed_is_darker_than_the_lofi_bed(tmp_path):
+    import numpy as np
+    import soundfile as sf
+    from video_mcp import audio as audio_fx
+    def high_share(p):          # energy above 1 kHz (hats, plucks) relative to the whole bed
+        x, sr = sf.read(p, dtype="float32")
+        X = np.abs(np.fft.rfft(x)) ** 2
+        f = np.fft.rfftfreq(len(x), 1 / sr)
+        return X[f > 1000].sum() / X.sum()
+    audio_fx.music_bed(tmp_path / "pad.wav", 8, 92, 1, None, style="warm_pad")
+    audio_fx.music_bed(tmp_path / "lofi.wav", 8, 92, 1, None)
+    assert high_share(tmp_path / "pad.wav") < high_share(tmp_path / "lofi.wav") / 5
+
+
+def test_espeak_uses_reference_prosody_when_profile_is_on(monkeypatch, make_cfg):
+    import shutil
+    import subprocess
+    from video_mcp import tts
+    calls = []
+    def fake_run(cmd, **kw):
+        calls.append(cmd)
+        raise RuntimeError("stop after the first call")
+    monkeypatch.setattr(shutil, "which", lambda name: "/usr/bin/espeak-ng")
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    with pytest.raises(RuntimeError):
+        tts.espeak_narrate("A scope & a check.", make_cfg(narration={"audio_profile": "reference"}), 30)
+    cmd = calls[0]
+    assert "-m" in cmd and 'pitch="+' in cmd[-1] and "&amp;" in cmd[-1]
+    calls.clear()
+    with pytest.raises(RuntimeError):
+        tts.espeak_narrate("Plain.", make_cfg(narration={"audio_profile": "off"}), 30)
+    assert "-m" not in calls[0]

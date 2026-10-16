@@ -37,6 +37,13 @@ def run(video: Path, props: dict, narration: list[dict], storyboard: dict | None
         except Exception as exc:          # reference QA is advisory; never blocks a render
             reference = {"available": False, "note": f"reference comparison failed: {str(exc)[:200]}"}
         (qa_dir / "reference_compare.json").write_text(json.dumps(reference, indent=1, default=str))
+        try:
+            from .. import audio_profile
+            sound = audio_profile.compare(video) if audio_profile.PROFILE.exists() else {"checks": [], "note": "no reference audio profile"}
+        except Exception as exc:          # advisory, like the visual reference comparison
+            sound = {"checks": [], "note": f"audio profile comparison failed: {str(exc)[:200]}"}
+        (qa_dir / "audio_profile_compare.json").write_text(json.dumps(sound, indent=1, default=str))
+        reference = {**reference, "audio_checks": sound.get("checks", [])}
     visual = {"layout_checks": layout["checks"], "frame_samples": frames["samples"], "issues": layout["issues"] + frames["issues"],
               "layout_order": layout["layout_order"], "contact_sheet": frames["contact_sheet"]}
     sources = {"claims": [], "summary": "no storyboard"}
@@ -65,7 +72,8 @@ def run(video: Path, props: dict, narration: list[dict], storyboard: dict | None
     summary = {"technical_pass": technical["passed"] and not mandatory_fail, "mandatory_failures": mandatory_fail, "scores": scores,
                "failing_scenes": failing_scenes, "issue_count": len(visual["issues"]), "manual_review": MANUAL,
                "estimated_caption_timing": audio["estimated_timings"], "contact_sheet": frames["contact_sheet"],
-               "reference_style": {c["check"]: c["passed"] for c in reference["checks"]} if reference and reference.get("checks") else None}
+               "reference_style": {c["check"]: c["passed"] for c in reference["checks"]} if reference and reference.get("checks") else None,
+               "reference_audio": {c["check"]: c["passed"] for c in reference["audio_checks"]} if reference and reference.get("audio_checks") else None}
     for name, value in (("technical.json", technical), ("visual.json", visual), ("audio.json", audio),
                         ("storyboard.json", {"sources": sources}), ("summary.json", summary)):
         (qa_dir / name).write_text(json.dumps(value, indent=1, default=str))
