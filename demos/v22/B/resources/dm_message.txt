@@ -1,0 +1,9 @@
+Hey! Here's what you asked for from "Stop your coding agent from breaking your UI":
+
+• Stop your coding agent from breaking your UI: https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
+
+Prompt template:
+Only edit DashboardHeader.tsx.
+Keep its props and tests unchanged.
+Use existing design tokens, no new colors.
+Show the diff before applying.

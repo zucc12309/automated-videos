@@ -1,0 +1,34 @@
+[
+  {
+    "stage": "script",
+    "provider": "vibe_library",
+    "used": true,
+    "notes": [
+      "curated tip; deterministic storyboard"
+    ]
+  },
+  {
+    "stage": "narration",
+    "engine": "espeak",
+    "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
+    "at": 1792142842.1075196
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 15.01,
+    "at": 1792142844.564031
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 15.06,
+    "at": 1792142977.0450819
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 15.02,
+    "at": 1792143109.95444
+  }
+]

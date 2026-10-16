@@ -1,0 +1,39 @@
+[
+  {
+    "attempt": 1,
+    "overrides": {
+      "avoid": {},
+      "hide_character": [],
+      "drop_media": [],
+      "shorten": {
+        "scene_005": {
+          "heading": 26
+        }
+      },
+      "notes": [
+        "scene_005: overflow -> shorten heading to 26 chars at a word boundary",
+        "video: one_reveal_reaction -> reported (no automatic repair)",
+        "video: repetition -> re-seed layout planning"
+      ],
+      "reseed": 1
+    },
+    "issues_before": 3,
+    "technical_pass_before": true
+  },
+  {
+    "attempt": 2,
+    "overrides": {
+      "avoid": {},
+      "hide_character": [],
+      "drop_media": [],
+      "shorten": {},
+      "notes": [
+        "video: one_reveal_reaction -> reported (no automatic repair)",
+        "video: repetition -> re-seed layout planning"
+      ],
+      "reseed": 2
+    },
+    "issues_before": 2,
+    "technical_pass_before": true
+  }
+]

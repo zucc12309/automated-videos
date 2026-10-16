@@ -175,3 +175,24 @@ def test_storyboard_requested_celebration_replaces_the_automatic_reveal():
     visual_director.direct(scenes, character_mode="on")
     big = [b["character"]["state"] for s in scenes for b in s["beats"] if b["character"]["state"] in ("surprised", "celebrating")]
     assert big == ["celebrating"]
+
+
+def _route(scene, text="Most people type something vague here and hope."):
+    from video_mcp.creative import semantic_router as sr
+    beat = {"s": 0, "e": 4, "text": text}
+    ctx = sr.beat_context({"role": "body", "points": [], **scene}, beat, 0, character=True)
+    return sr.choose(ctx, [], {}, "seed", 0, "fieldnotes-premium")[0]
+
+
+def test_router_keeps_authored_vibe_layouts_when_their_data_is_present():
+    weak = ["make the dashboard look better"]
+    assert _route({"intent": "warning", "layoutHint": "terminal", "points": ["Guesswork"],
+                   "visualData": {"code": [f"> {weak[0]}"], "code_language": "prompt"}}) == "terminal"
+    assert _route({"intent": "comparison", "layoutHint": "splitCompare",
+                   "visualData": {"prompt_before": weak, "prompt_after": ["Only edit Dashboard.tsx", "Use the tokens"]}}) == "splitCompare"
+
+
+def test_loop_tail_cuts_back_to_the_hook():
+    scenes = _video()
+    visual_director.direct(scenes, character_mode="on")
+    assert scenes[-1]["beats"][-1]["transition"] == "cut"

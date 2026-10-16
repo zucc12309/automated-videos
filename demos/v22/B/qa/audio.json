@@ -1,0 +1,80 @@
+{
+ "passed": true,
+ "checks": [
+  {
+   "check": "loudness",
+   "passed": true,
+   "detail": "-14.2 LUFS (target -14.0 \u00b12)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "check": "true_peak",
+   "passed": true,
+   "detail": "-1.9 dBTP (limit -0.5)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "check": "clipping",
+   "passed": true,
+   "detail": "true peak -1.9 dBTP",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "check": "scene_001_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.981, 'inside_ratio': 0.871} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_002_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.872, 'inside_ratio': 0.836} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_003_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.891, 'inside_ratio': 0.872} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_004_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.923, 'inside_ratio': 0.847} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_005_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.808, 'inside_ratio': 0.777} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_006_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.891, 'inside_ratio': 0.769} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  }
+ ],
+ "loudness": {
+  "integrated_lufs": -14.2,
+  "lra": 1.5,
+  "true_peak_dbtp": -1.9
+ },
+ "timing_sources": [
+  "energy_snapped"
+ ],
+ "estimated_timings": true,
+ "engines": [
+  "espeak"
+ ]
+}

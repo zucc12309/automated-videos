@@ -86,7 +86,7 @@ CATALOG: dict[str, LayoutSpec] = {s.name: s for s in [
     LayoutSpec("steps", "diagram", 2.2, .6, ("points2",)),
     LayoutSpec("compare", "card", 2.2, .6, ("points2",)),
     LayoutSpec("repoCard", "card", 2.0, .6, ("repo",)),
-    LayoutSpec("terminal", "device", 2.0, .5, ("repo_or_points",), themes=("tech-mono", "carbon", "midnight")),
+    LayoutSpec("terminal", "device", 2.0, .5, ("terminal_data",), themes=("tech-mono", "carbon", "midnight")),
     LayoutSpec("chips", "card", 1.5, .4, ("points2",)),
     LayoutSpec("starMeter", "data", 1.6, .3, ("repo",)),
     LayoutSpec("deviceMock", "device", 2.0, .5, ("points1",)),
@@ -139,7 +139,8 @@ SUPPORT = {"heroWord": .35, "quote": .3, "chips": .25, "listStack": .25}   # wea
 def _requirements_met(spec: LayoutSpec, ctx: dict) -> bool:
     checks = {
         "number": ctx["has_number"], "character": ctx["character"], "points1": ctx["points"] >= 1, "points2": ctx["points"] >= 2,
-        "repo": ctx["has_repo"], "repo_or_points": ctx["has_repo"] or ctx["points"] >= 2, "hook": ctx["role"] == "hook",
+        "repo": ctx["has_repo"], "repo_or_points": ctx["has_repo"] or ctx["points"] >= 2,
+        "terminal_data": ctx["has_repo"] or ctx["points"] >= 2 or ctx["code"], "hook": ctx["role"] == "hook",
         "item": ctx["item"] > 0, "outro": ctx["role"] == "outro", "code": ctx["code"], "nodes_or_points": ctx["nodes"] or ctx["points"] >= 2,
         "timeline": ctx["timeline"], "series": ctx["series"], "compare": ctx["compare"], "footage": ctx["footage"],
         "items": ctx.get("list_items", 0) >= 2, "motion_clip": ctx.get("motion_clip", False),
@@ -157,8 +158,8 @@ def score(layout: str, ctx: dict, history: list[str], used: dict[str, int], them
     relevance = RELEVANCE.get(ctx["intent"], {}).get(layout) or RELEVANCE["generic"].get(layout, 0.0) * .6
     if not ctx["primary"]:
         relevance = max(relevance * .7, SUPPORT.get(layout, 0.0) + RELEVANCE["generic"].get(layout, 0) * .3)
-    if ctx["preferred"] == layout:
-        relevance = min(1.2, relevance + .5)
+    if ctx["preferred"] == layout:       # an authored layout whose data requirements are met wins over a keyword guess
+        relevance = min(1.2, max(relevance + .5, 1.1))
     narrative = 1.0 if (ctx["role"] == "hook" and spec.family == "type") or (ctx["role"] == "outro" and layout in ("recap", "outroCTA")) else .5
     readability = min(1.0, ctx["seconds"] / max(.1, spec.min_seconds))
     recent = (1.0 if history and history[-1] == layout else 0) + (.5 if layout in history[-4:] else 0) + .4 * max(0, used.get(layout, 0) - 1)
@@ -213,7 +214,8 @@ def beat_context(scene: dict, beat: dict, beat_no: int, *, character: bool) -> d
             "has_repo": bool(scene.get("_repo")), "character": character, "code": bool(visual.get("code")),
             "nodes": len(visual.get("nodes") or []) >= 3, "timeline": len(visual.get("timeline") or visual.get("steps") or []) >= 2,
             "series": len(visual.get("series_values") or []) >= 2,
-            "compare": bool(visual.get("compare_left")) and bool(visual.get("compare_right")),
+            "compare": (bool(visual.get("compare_left")) and bool(visual.get("compare_right")))
+                       or (bool(visual.get("prompt_before")) and bool(visual.get("prompt_after"))),
             "footage": primary and bool(scene.get("media")), "preferred": scene.get("layoutHint", "") if primary else "",
             "list_items": scene.get("_listItems", 0), "motion_clip": primary and bool(scene.get("motionClip"))}
 

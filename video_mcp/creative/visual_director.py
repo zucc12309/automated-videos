@@ -70,7 +70,7 @@ def direct(scenes: list[dict], *, character_mode: str = "on") -> dict:
             if prev_layout is None:
                 tr, why = "cut", "first frame: the hook must be readable immediately"
             elif layout == "loop":
-                tr, why = "blurDissolve", "loop tail returns softly to the opening frame"
+                tr, why = "cut", "loop tail cuts back to the opening frame so the CTA never overlaps the hook and the replay is seamless"
             elif si == prev_si and prev_layout == "repoCard" and layout in DETAIL_OF_CARD:
                 tr, why = "expand", "the repo card expands into its own demonstration (same object continues)"
             elif si == prev_si and layout in DETAIL_OF_CARD | {"bigNumber", "heroWord"}:
