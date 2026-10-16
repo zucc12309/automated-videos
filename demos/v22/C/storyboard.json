@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "video_id": "c15dcf6237f8",
+  "video_id": "f4e65d0c42a4",
   "title": "How MCP connects agents to your tools",
   "format": "story",
   "duration_target_seconds": 40.0,
@@ -25,7 +25,7 @@
       "url": "https://modelcontextprotocol.io/docs/learn/architecture",
       "title": "Model Context Protocol: architecture overview",
       "kind": "article",
-      "retrieved_at": 1792147525.3358169
+      "retrieved_at": 1792147912.8642535
     }
   ],
   "claims": [

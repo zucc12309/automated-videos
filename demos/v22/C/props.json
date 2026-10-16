@@ -8,12 +8,12 @@
     "reveal_scene": null
   },
   "repos": [],
-  "music": "jobs/c15dcf6237f8/music.wav",
+  "music": "jobs/f4e65d0c42a4/music.wav",
   "variant": {
     "seed": "v22-C",
     "palette": "",
-    "background": "flat",
-    "temperament": "snappy",
+    "background": "mesh",
+    "temperament": "smooth",
     "captions": "bold",
     "transitions": [
       "cut",
@@ -23,8 +23,8 @@
     "outfit": "#2f3b52",
     "hair": "#a16207",
     "music": {
-      "progression": 3,
-      "bpm": 84
+      "progression": 2,
+      "bpm": 100
     },
     "camera": 0.8,
     "theme": "fieldnotes-premium",
@@ -41,10 +41,10 @@
       "label": "",
       "emphasis": "MCP",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-0.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-0.wav",
       "frames": 145,
       "audioFrames": 133,
-      "uiAudio": "jobs/c15dcf6237f8/scene-0-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-0-ui.wav",
       "words": [
         {
           "w": "Your",
@@ -514,10 +514,10 @@
       "label": "",
       "emphasis": "one MCP client",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-1.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-1.wav",
       "frames": 173,
       "audioFrames": 155,
-      "uiAudio": "jobs/c15dcf6237f8/scene-1-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-1-ui.wav",
       "words": [
         {
           "w": "The",
@@ -1046,10 +1046,10 @@
       "label": "",
       "emphasis": "three things",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-2.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-2.wav",
       "frames": 166,
       "audioFrames": 154,
-      "uiAudio": "jobs/c15dcf6237f8/scene-2-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-2-ui.wav",
       "words": [
         {
           "w": "Each",
@@ -1584,10 +1584,10 @@
       "label": "",
       "emphasis": "JSON-RPC",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-3.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-3.wav",
       "frames": 181,
       "audioFrames": 162,
-      "uiAudio": "jobs/c15dcf6237f8/scene-3-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-3-ui.wav",
       "words": [
         {
           "w": "Under",
@@ -2141,10 +2141,10 @@
       "label": "",
       "emphasis": "streamable HTTP",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-4.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-4.wav",
       "frames": 196,
       "audioFrames": 177,
-      "uiAudio": "jobs/c15dcf6237f8/scene-4-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-4-ui.wav",
       "words": [
         {
           "w": "Local",
@@ -2732,10 +2732,10 @@
       "label": "",
       "emphasis": "trust",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-5.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-5.wav",
       "frames": 150,
       "audioFrames": 138,
-      "uiAudio": "jobs/c15dcf6237f8/scene-5-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-5-ui.wav",
       "words": [
         {
           "w": "One",
@@ -3278,10 +3278,10 @@
       "label": "",
       "emphasis": "GUIDE",
       "stat": "",
-      "audio": "jobs/c15dcf6237f8/scene-6.wav",
+      "audio": "jobs/f4e65d0c42a4/scene-6.wav",
       "frames": 88,
       "audioFrames": 70,
-      "uiAudio": "jobs/c15dcf6237f8/scene-6-ui.wav",
+      "uiAudio": "jobs/f4e65d0c42a4/scene-6-ui.wav",
       "words": [
         {
           "w": "Want",

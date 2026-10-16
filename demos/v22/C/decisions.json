@@ -4,25 +4,25 @@
     "provider": "supplied",
     "used": true,
     "note": "storyboard supplied by caller",
-    "at": 1792147525.3373382
+    "at": 1792147912.8694298
   },
   {
     "stage": "narration",
     "engine": "kokoro_onnx",
     "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
-    "at": 1792147525.343363
+    "at": 1792147912.9591267
   },
   {
     "stage": "music",
     "style": "warm_pad",
-    "gain_db": -2.06,
+    "gain_db": -0.74,
     "basis": "reference bed level",
-    "at": 1792147542.2924082
+    "at": 1792147931.4769266
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 14.01,
-    "at": 1792147542.4690194
+    "memory_available_gb": 13.98,
+    "at": 1792147931.65299
   }
 ]
