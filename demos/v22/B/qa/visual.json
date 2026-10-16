@@ -262,36 +262,36 @@
    "t": 8.55,
    "kind": "scene_entrance",
    "scene": "scene_003",
-   "mean_luma": 22.5,
-   "stage_std": 6.89
+   "mean_luma": 20.2,
+   "stage_std": 8.04
   },
   {
    "t": 10.65,
    "kind": "scene_mid",
    "scene": "scene_003",
-   "mean_luma": 27.9,
-   "stage_std": 29.35
+   "mean_luma": 22.3,
+   "stage_std": 19.46
   },
   {
    "t": 12.7,
    "kind": "scene_exit",
    "scene": "scene_003",
-   "mean_luma": 27.6,
-   "stage_std": 24.57
+   "mean_luma": 23.9,
+   "stage_std": 33.18
   },
   {
    "t": 13.05,
    "kind": "scene_entrance",
    "scene": "scene_004",
-   "mean_luma": 22.6,
-   "stage_std": 11.91
+   "mean_luma": 21.4,
+   "stage_std": 14.64
   },
   {
    "t": 16.0,
    "kind": "scene_mid",
    "scene": "scene_004",
    "mean_luma": 24.4,
-   "stage_std": 43.64
+   "stage_std": 43.63
   },
   {
    "t": 18.9,
@@ -339,8 +339,8 @@
    "t": 25.0,
    "kind": "beat_boundary",
    "scene": "scene_006",
-   "mean_luma": 40.3,
-   "stage_std": 82.95
+   "mean_luma": 34.0,
+   "stage_std": 65.7
   },
   {
    "t": 25.7,
@@ -361,11 +361,11 @@
  "layout_order": [
   "hookBold",
   "terminal",
-  "heroWord",
+  "splitCompare",
   "steps",
   "codeBlock",
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/d1bb3f2583b3/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/37321ffb5155/qa/contact_sheet.jpg"
 }

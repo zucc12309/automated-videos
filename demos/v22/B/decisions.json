@@ -11,18 +11,18 @@
     "stage": "narration",
     "engine": "espeak",
     "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-    "at": 1792143380.40238
+    "at": 1792143771.47435
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 12.14,
-    "at": 1792143383.150735
+    "memory_available_gb": 12.11,
+    "at": 1792143774.3677845
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 14.98,
-    "at": 1792143519.7660189
+    "memory_available_gb": 15.02,
+    "at": 1792143912.7089272
   }
 ]

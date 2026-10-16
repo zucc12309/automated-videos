@@ -2,11 +2,7 @@
   {
     "attempt": 1,
     "overrides": {
-      "avoid": {
-        "scene_003": [
-          "splitCompare"
-        ]
-      },
+      "avoid": {},
       "hide_character": [],
       "drop_media": [],
       "shorten": {
@@ -15,12 +11,11 @@
         }
       },
       "notes": [
-        "scene_003: overflow -> switch the scene to a layout with more text capacity",
         "scene_005: overflow -> shorten heading to 26 chars at a word boundary"
       ],
       "reseed": null
     },
-    "issues_before": 2,
+    "issues_before": 1,
     "technical_pass_before": true
   }
 ]

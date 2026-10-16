@@ -1,11 +1,11 @@
 {
   "demo": "B",
-  "job": "d1bb3f2583b3",
+  "job": "37321ffb5155",
   "state": "completed",
   "phase": "COMPLETED",
   "degraded": [],
-  "wall_seconds": 270.2,
+  "wall_seconds": 275.0,
   "mock_cinematic": false,
   "live_provider_tested": false,
-  "qa": "/home/user/automated-videos/data/jobs/d1bb3f2583b3/qa/summary.md"
+  "qa": "/home/user/automated-videos/data/jobs/37321ffb5155/qa/summary.md"
 }

@@ -8,23 +8,23 @@
     "reveal_scene": "scene_003"
   },
   "repos": [],
-  "music": "jobs/d1bb3f2583b3/music.wav",
+  "music": "jobs/37321ffb5155/music.wav",
   "variant": {
     "seed": "v22-B",
     "palette": "",
     "background": "flat",
-    "temperament": "editorial",
+    "temperament": "smooth",
     "captions": "editorial",
     "transitions": [
       "push",
       "mask",
       "zoom"
     ],
-    "outfit": "#0f766e",
+    "outfit": "#1f2937",
     "hair": "#3b2a21",
     "music": {
       "progression": 2,
-      "bpm": 84
+      "bpm": 100
     },
     "camera": 1.0,
     "theme": "fieldnotes-premium",
@@ -41,10 +41,10 @@
       "label": "",
       "emphasis": "",
       "stat": "",
-      "audio": "jobs/d1bb3f2583b3/scene-0.wav",
+      "audio": "jobs/37321ffb5155/scene-0.wav",
       "frames": 80,
       "audioFrames": 72,
-      "uiAudio": "jobs/d1bb3f2583b3/scene-0-ui.wav",
+      "uiAudio": "jobs/37321ffb5155/scene-0-ui.wav",
       "words": [
         {
           "w": "Your",
@@ -343,10 +343,10 @@
       "label": "Vague",
       "emphasis": "guess",
       "stat": "",
-      "audio": "jobs/d1bb3f2583b3/scene-1.wav",
+      "audio": "jobs/37321ffb5155/scene-1.wav",
       "frames": 172,
       "audioFrames": 164,
-      "uiAudio": "jobs/d1bb3f2583b3/scene-1-ui.wav",
+      "uiAudio": "jobs/37321ffb5155/scene-1-ui.wav",
       "words": [
         {
           "w": "Most",
@@ -935,10 +935,10 @@
       "label": "Better",
       "emphasis": "scope",
       "stat": "",
-      "audio": "jobs/d1bb3f2583b3/scene-2.wav",
+      "audio": "jobs/37321ffb5155/scene-2.wav",
       "frames": 135,
       "audioFrames": 119,
-      "uiAudio": "jobs/d1bb3f2583b3/scene-2-ui.wav",
+      "uiAudio": "jobs/37321ffb5155/scene-2-ui.wav",
       "words": [
         {
           "w": "Instead,",
@@ -1303,11 +1303,11 @@
           ],
           "text": "Instead, give it a scope, constraints, and a way to check the result.",
           "focus": "scope",
-          "layout": "heroWord",
+          "layout": "splitCompare",
           "layoutReason": {
-            "score": 2.84,
+            "score": 6.2,
             "parts": {
-              "relevance": 0.36,
+              "relevance": 1.2,
               "narrative": 0.5,
               "readability": 1.0,
               "recent": 0.0,
@@ -1317,19 +1317,20 @@
               "brand": 0.0
             },
             "intent": "comparison",
-            "runner_up": "quote"
+            "runner_up": "heroWord"
           },
-          "anchor": "right",
+          "anchor": "peek",
           "transition": "blurDissolve",
           "punch": true,
           "character": {
-            "state": "speaking",
-            "scale": "medium",
-            "anchor": "home"
+            "state": "thinking",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.1
           },
           "direction": {
             "transition": "unrelated objects: editorial blur dissolve",
-            "character": "explanation beat: medium presenter",
+            "character": "considers before vs after without covering it",
             "layout": "comparison"
           }
         }
@@ -1377,9 +1378,7 @@
       "media": null,
       "mediaSeconds": null,
       "layoutHint": "splitCompare",
-      "avoidLayouts": [
-        "splitCompare"
-      ],
+      "avoidLayouts": [],
       "cta": null,
       "character_action": "",
       "motionClip": false,
@@ -1402,10 +1401,10 @@
       "label": "",
       "emphasis": "works",
       "stat": "",
-      "audio": "jobs/d1bb3f2583b3/scene-3.wav",
+      "audio": "jobs/37321ffb5155/scene-3.wav",
       "frames": 186,
       "audioFrames": 178,
-      "uiAudio": "jobs/d1bb3f2583b3/scene-3-ui.wav",
+      "uiAudio": "jobs/37321ffb5155/scene-3-ui.wav",
       "words": [
         {
           "w": "Why",
@@ -1980,10 +1979,10 @@
       "label": "",
       "emphasis": "focused",
       "stat": "",
-      "audio": "jobs/d1bb3f2583b3/scene-4.wav",
+      "audio": "jobs/37321ffb5155/scene-4.wav",
       "frames": 111,
       "audioFrames": 95,
-      "uiAudio": "jobs/d1bb3f2583b3/scene-4-ui.wav",
+      "uiAudio": "jobs/37321ffb5155/scene-4-ui.wav",
       "words": [
         {
           "w": "Here's",
@@ -2362,10 +2361,10 @@
       "label": "",
       "emphasis": "PROMPT",
       "stat": "",
-      "audio": "jobs/d1bb3f2583b3/scene-5.wav",
+      "audio": "jobs/37321ffb5155/scene-5.wav",
       "frames": 93,
       "audioFrames": 77,
-      "uiAudio": "jobs/d1bb3f2583b3/scene-5-ui.wav",
+      "uiAudio": "jobs/37321ffb5155/scene-5-ui.wav",
       "words": [
         {
           "w": "Want",

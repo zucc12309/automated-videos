@@ -67,7 +67,7 @@
  ],
  "loudness": {
   "integrated_lufs": -14.2,
-  "lra": 1.6,
+  "lra": 1.5,
   "true_peak_dbtp": -1.8
  },
  "timing_sources": [

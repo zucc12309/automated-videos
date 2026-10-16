@@ -8,7 +8,7 @@
       "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
       "title": "Stop your coding agent from breaking your UI",
       "kind": "manual",
-      "retrieved_at": 1792143380.3913648
+      "retrieved_at": 1792143771.462171
     }
   ],
   "claims": [
@@ -56,7 +56,7 @@
     "provider": "local",
     "script_provider": "vibe_library",
     "model": "vibe-template-v1",
-    "created_at": 1792143380.391367
+    "created_at": 1792143771.462175
   },
   "decisions": [
     {
@@ -71,19 +71,19 @@
       "stage": "narration",
       "engine": "espeak",
       "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792143380.40238
+      "at": 1792143771.47435
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 12.14,
-      "at": 1792143383.150735
+      "memory_available_gb": 12.11,
+      "at": 1792143774.3677845
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 14.98,
-      "at": 1792143519.7660189
+      "memory_available_gb": 15.02,
+      "at": 1792143912.7089272
     }
   ],
   "model": "vibe-template-v1",
@@ -102,18 +102,18 @@
     "seed": "v22-B",
     "palette": "",
     "background": "flat",
-    "temperament": "editorial",
+    "temperament": "smooth",
     "captions": "editorial",
     "transitions": [
       "push",
       "mask",
       "zoom"
     ],
-    "outfit": "#0f766e",
+    "outfit": "#1f2937",
     "hair": "#3b2a21",
     "music": {
       "progression": 2,
-      "bpm": 84
+      "bpm": 100
     },
     "camera": 1.0,
     "theme": "fieldnotes-premium",
@@ -122,7 +122,7 @@
   "layouts": [
     "hookBold",
     "terminal",
-    "heroWord",
+    "splitCompare",
     "steps",
     "codeBlock",
     "outroCTA",
@@ -132,6 +132,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792143648.7946796,
+  "created_at": 1792144044.650056,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }
