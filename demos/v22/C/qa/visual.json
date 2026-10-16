@@ -1,0 +1,401 @@
+{
+ "layout_checks": [
+  {
+   "check": "stage_inside_safe_area",
+   "passed": true,
+   "detail": "stage {'left': 120, 'top': 360, 'width': 840, 'height': 700} within {'left': 120, 'right': 960, 'top': 290, 'bottom': 1248}",
+   "scene": null,
+   "mandatory": true,
+   "basis": "deterministic",
+   "kind": "layout"
+  },
+  {
+   "check": "contrast_ink",
+   "passed": true,
+   "detail": "fieldnotes-premium ink/bg 17.05:1 (min 4.5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_muted",
+   "passed": true,
+   "detail": "fieldnotes-premium muted/bg 7.2:1 (min 4.5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_accent",
+   "passed": true,
+   "detail": "fieldnotes-premium accent/bg 8.21:1 (min 3.0)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_surface",
+   "passed": true,
+   "detail": "ink/surface 15.46:1",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "code_font_size",
+   "passed": true,
+   "detail": "longest line 33 chars -> 36px",
+   "scene": "scene_004",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "headline_size",
+   "passed": true,
+   "detail": "kinetic headline 60px (caption min 48)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "meta_size",
+   "passed": true,
+   "detail": "masthead 32px, meta 32px (min 32)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "hook_frame0",
+   "passed": true,
+   "detail": "first beat hookBold / cut: 'MCP is how agents get tools'",
+   "scene": "scene_001",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_staged",
+   "passed": true,
+   "detail": "every beat has a staging decision",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_scales",
+   "passed": true,
+   "detail": "scales used ['closeup', 'companion', 'medium']",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "signature_entrance",
+   "passed": true,
+   "detail": "hook scale closeup",
+   "scene": "scene_001",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "signature_cta",
+   "passed": true,
+   "detail": "points at the keyword and winks",
+   "scene": "scene_007",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "one_reveal_reaction",
+   "passed": true,
+   "detail": "0 big reaction(s): []",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_present",
+   "passed": true,
+   "detail": "present on every non-footage beat",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "no_unapproved_name",
+   "passed": true,
+   "detail": "provisional name 'Mochi' absent from on-screen text",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "cta_keyword",
+   "passed": true,
+   "detail": "keyword 'GUIDE' spoken",
+   "scene": "scene_007",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "cta_truthful",
+   "passed": true,
+   "detail": "no DM promise without a delivery integration",
+   "scene": "scene_007",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "min_hold",
+   "passed": true,
+   "detail": "all beats hold long enough",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "pacing"
+  },
+  {
+   "check": "cuts_per_10s",
+   "passed": true,
+   "detail": "busiest 10 s window has 4 cuts (target \u2264 5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "pacing"
+  },
+  {
+   "check": "no_back_to_back_layouts",
+   "passed": true,
+   "detail": "0 repeat(s)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "repetition"
+  },
+  {
+   "check": "layout_variety",
+   "passed": true,
+   "detail": "9 distinct layouts over 9 beats",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "repetition"
+  },
+  {
+   "check": "single_theme",
+   "passed": true,
+   "detail": "theme=fieldnotes-premium",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "consistency"
+  }
+ ],
+ "frame_samples": [
+  {
+   "t": 0.0,
+   "kind": "first_frame",
+   "scene": "",
+   "mean_luma": 27.1,
+   "stage_std": 58.35
+  },
+  {
+   "t": 0.15,
+   "kind": "scene_entrance",
+   "scene": "scene_001",
+   "mean_luma": 41.9,
+   "stage_std": 58.42
+  },
+  {
+   "t": 2.333,
+   "kind": "scene_mid",
+   "scene": "scene_001",
+   "mean_luma": 43.3,
+   "stage_std": 58.94
+  },
+  {
+   "t": 4.467,
+   "kind": "scene_exit",
+   "scene": "scene_001",
+   "mean_luma": 43.5,
+   "stage_std": 59.45
+  },
+  {
+   "t": 4.817,
+   "kind": "scene_entrance",
+   "scene": "scene_002",
+   "mean_luma": 33.7,
+   "stage_std": 68.23
+  },
+  {
+   "t": 7.467,
+   "kind": "scene_mid",
+   "scene": "scene_002",
+   "mean_luma": 26.6,
+   "stage_std": 62.28
+  },
+  {
+   "t": 10.067,
+   "kind": "scene_exit",
+   "scene": "scene_002",
+   "mean_luma": 26.2,
+   "stage_std": 62.77
+  },
+  {
+   "t": 10.417,
+   "kind": "scene_entrance",
+   "scene": "scene_003",
+   "mean_luma": 22.5,
+   "stage_std": 24.96
+  },
+  {
+   "t": 12.983,
+   "kind": "scene_mid",
+   "scene": "scene_003",
+   "mean_luma": 24.4,
+   "stage_std": 40.88
+  },
+  {
+   "t": 15.5,
+   "kind": "scene_exit",
+   "scene": "scene_003",
+   "mean_luma": 24.5,
+   "stage_std": 41.2
+  },
+  {
+   "t": 15.85,
+   "kind": "scene_entrance",
+   "scene": "scene_004",
+   "mean_luma": 21.4,
+   "stage_std": 15.17
+  },
+  {
+   "t": 18.617,
+   "kind": "scene_mid",
+   "scene": "scene_004",
+   "mean_luma": 22.9,
+   "stage_std": 25.4
+  },
+  {
+   "t": 21.333,
+   "kind": "scene_exit",
+   "scene": "scene_004",
+   "mean_luma": 22.3,
+   "stage_std": 18.2
+  },
+  {
+   "t": 21.683,
+   "kind": "scene_entrance",
+   "scene": "scene_005",
+   "mean_luma": 21.2,
+   "stage_std": 13.08
+  },
+  {
+   "t": 24.667,
+   "kind": "scene_mid",
+   "scene": "scene_005",
+   "mean_luma": 25.6,
+   "stage_std": 49.17
+  },
+  {
+   "t": 27.6,
+   "kind": "scene_exit",
+   "scene": "scene_005",
+   "mean_luma": 26.8,
+   "stage_std": 51.17
+  },
+  {
+   "t": 27.95,
+   "kind": "scene_entrance",
+   "scene": "scene_006",
+   "mean_luma": 26.6,
+   "stage_std": 38.07
+  },
+  {
+   "t": 30.25,
+   "kind": "scene_mid",
+   "scene": "scene_006",
+   "mean_luma": 25.4,
+   "stage_std": 26.81
+  },
+  {
+   "t": 30.393,
+   "kind": "beat_boundary",
+   "scene": "scene_006",
+   "mean_luma": 25.7,
+   "stage_std": 19.2
+  },
+  {
+   "t": 32.5,
+   "kind": "scene_exit",
+   "scene": "scene_006",
+   "mean_luma": 29.3,
+   "stage_std": 39.13
+  },
+  {
+   "t": 32.85,
+   "kind": "scene_entrance",
+   "scene": "scene_007",
+   "mean_luma": 28.0,
+   "stage_std": 29.95
+  },
+  {
+   "t": 34.133,
+   "kind": "scene_mid",
+   "scene": "scene_007",
+   "mean_luma": 29.2,
+   "stage_std": 60.26
+  },
+  {
+   "t": 34.667,
+   "kind": "beat_boundary",
+   "scene": "scene_007",
+   "mean_luma": 34.2,
+   "stage_std": 58.6
+  },
+  {
+   "t": 35.367,
+   "kind": "scene_exit",
+   "scene": "scene_007",
+   "mean_luma": 39.5,
+   "stage_std": 59.33
+  },
+  {
+   "t": 35.467,
+   "kind": "final_frame",
+   "scene": "",
+   "mean_luma": 35.1,
+   "stage_std": 59.44
+  }
+ ],
+ "issues": [],
+ "layout_order": [
+  "hookBold",
+  "nodeGraph",
+  "steps",
+  "codeBlock",
+  "flowDiagram",
+  "warningCard",
+  "heroWord",
+  "outroCTA",
+  "loop"
+ ],
+ "contact_sheet": "/home/user/automated-videos/data/jobs/41a14bee4d0f/qa/contact_sheet.jpg"
+}

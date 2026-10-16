@@ -1,0 +1,24 @@
+{
+  "note": "Repositories checked for the series and not produced. They never take an episode number.",
+  "candidates": [
+    {
+      "repository": "fikriaf/HandCam-Control",
+      "checked": "2026-10-16",
+      "commit": "0d1dd5b",
+      "license": "MIT",
+      "intended": "EP. 001 'I controlled my computer without touching it'",
+      "verdict": "rejected for the briefed episode (producer chose a different repository)",
+      "verified": [
+        "Hand tracking via @mediapipe/tasks-vision HandLandmarker (21 landmarks per hand) in a browser page or an Electron wrapper.",
+        "Gesture recognition: ran the project's own GestureEngine and detectors (src/js/recognition) in Node on scripted landmark sequences; swipe, pinch start/move/end, OK and open-palm events fired."
+      ],
+      "blockers": [
+        "No operating-system input code: the cursor is never moved and no click is injected (no robotjs / nut.js / native module; electron/preload.js exposes only platform info and three IPC channels).",
+        "Actions run only inside the app's own page (src/js/actions/actionRegistry.js): swipe up/down = window.scrollBy, swipe left/right = synthetic KeyboardEvent on its own document, push/open palm = pause <video> elements on the page, peace = fullscreen.",
+        "Pinch start/move/end, pinch volume and OK are log-only TODO stubs.",
+        "The briefed hook (cursor follows the hand, pinch to click, 'controlled my computer') is therefore not supported by the code."
+      ],
+      "not_tested": "No webcam is available in the build environment; MediaPipe inference was not run on real video."
+    }
+  ]
+}

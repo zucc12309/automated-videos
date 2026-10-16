@@ -1,0 +1,6 @@
+Hey! Here's what you asked for from "4 repos that fix Claude Code's gaps":
+
+• lidge-jun/opencodex: https://github.com/lidge-jun/opencodex
+• yetone/magpie: https://github.com/yetone/magpie
+• Vincentwei1021/video-shotcraft: https://github.com/Vincentwei1021/video-shotcraft
+• google/artemis: https://github.com/google/artemis

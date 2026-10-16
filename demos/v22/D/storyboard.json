@@ -1,0 +1,587 @@
+{
+  "schema_version": "2.0",
+  "video_id": "729055280714",
+  "title": "The future of AI-powered coding",
+  "format": "explainer",
+  "duration_target_seconds": 40.0,
+  "aspect_ratio": "9:16",
+  "series": "FIELD REPORT",
+  "creative_direction": {
+    "audience": "working developers and engineering leads",
+    "core_message": "As agents take over typing, the valuable work moves to intent, review and judgment.",
+    "viewer_benefit": "Know which skills to invest in as coding agents improve.",
+    "hook": "Coding is turning into a conversation.",
+    "tone": "cinematic editorial",
+    "pacing": "measured",
+    "theme": "fieldnotes-premium",
+    "visual_identity": "night-studio footage graded warm, precise graphics on top",
+    "sound_design": "low impact on the hook, restrained ticks, ducked bed",
+    "call_to_action": "Save this for your next sprint.",
+    "character": "on"
+  },
+  "sources": [],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Coding agents can plan a change, edit files and run tests.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "Agent output is only as reliable as the tests and review around it.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": ""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene_001",
+      "role": "hook",
+      "narration": "Coding is turning into a conversation.",
+      "heading": "Coding is a conversation",
+      "points": [],
+      "emphasis": "conversation",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "Establishing mood: the late-night developer desk, quiet and focused",
+      "intent": "real_world",
+      "render_engine": "cinematic",
+      "layout": "hookBold",
+      "motion": {
+        "entrance": "mask",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "dolly",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "emphasis",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": {
+        "prompt": "Slow dolly toward a developer desk at night, monitor glow on a face out of focus, shallow depth of field, warm practical lights, premium technology commercial look, clean composition with empty space in the upper third for titles",
+        "duration_seconds": 4.0,
+        "negative_guidance": [
+          "unreadable text",
+          "random logos",
+          "watermarks",
+          "excessive camera shake",
+          "distorted hands"
+        ],
+        "reference_images": [],
+        "overlay_text": true,
+        "fallback_layout": "heroWord"
+      },
+      "assets": [
+        {
+          "kind": "cinematic",
+          "path": "jobs/729055280714/cinematic/scene_001.mp4",
+          "sha256": "f83c988f1561eb1235107afd778f950eebe2b7d6e229254d5c56ac54d610bde1",
+          "provider": "mock",
+          "provenance": {
+            "cache_key": "a42a9b6a384e7896d747175e271289897b32946136393272384e9ca5165707da",
+            "remote_id": "mock_a42a9b6a384e7896",
+            "cached": true,
+            "duration": 4.0,
+            "mock": true,
+            "generated_at": 1792132135.493678
+          }
+        }
+      ],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_002",
+      "role": "body",
+      "narration": "You describe the change. An agent plans it, edits the files, and runs the tests.",
+      "heading": "From request to tested change",
+      "points": [
+        "Describe",
+        "Plan and edit",
+        "Run the tests"
+      ],
+      "emphasis": "agent",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "The new loop as clear ordered steps",
+      "intent": "process",
+      "render_engine": "remotion",
+      "layout": "steps",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "static",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c1"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [
+          "Describe",
+          "Plan and edit",
+          "Run the tests"
+        ],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_003",
+      "role": "body",
+      "narration": "Your job shifts to review: reading diffs instead of typing boilerplate.",
+      "heading": "Review the diff",
+      "points": [],
+      "emphasis": "review",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "A real-looking diff as the object of attention",
+      "intent": "code",
+      "render_engine": "remotion",
+      "layout": "codeBlock",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "static",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [
+          "- const user = getUser(id)",
+          "+ const user = await getUser(id)",
+          "+ if (!user) throw new NotFound(id)",
+          "  return render(user)"
+        ],
+        "code_language": "diff",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_004",
+      "role": "body",
+      "narration": "Teams will spend more time on intent, architecture, and judgment.",
+      "heading": "Intent, architecture, judgment",
+      "points": [],
+      "emphasis": "judgment",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "People thinking together, not typing",
+      "intent": "real_world",
+      "render_engine": "cinematic",
+      "layout": "cinematic",
+      "motion": {
+        "entrance": "fade",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "pan_left",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": {
+        "prompt": "Wide shot of a small product team around a whiteboard in a sunlit studio, slow lateral camera move, soft natural light, cinematic color grade, no readable writing, no logos",
+        "duration_seconds": 4.0,
+        "negative_guidance": [
+          "unreadable text",
+          "random logos",
+          "watermarks",
+          "excessive camera shake",
+          "distorted hands"
+        ],
+        "reference_images": [],
+        "overlay_text": true,
+        "fallback_layout": "quote"
+      },
+      "assets": [
+        {
+          "kind": "cinematic",
+          "path": "jobs/729055280714/cinematic/scene_004.mp4",
+          "sha256": "4ab7abd6d65827a55fdd11b82a355e5e7dcbfef408e6fc6d6535dfc58d0978b7",
+          "provider": "mock",
+          "provenance": {
+            "cache_key": "880920c8afaab76c13d57796a720da464f92fccc4aaa4da631deec777fb0aa8c",
+            "remote_id": "mock_880920c8afaab76c",
+            "cached": true,
+            "duration": 4.0,
+            "mock": true,
+            "generated_at": 1792132151.2119524
+          }
+        }
+      ],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_005",
+      "role": "body",
+      "narration": "Typing speed matters less. Clear thinking matters more.",
+      "heading": "What gets valuable",
+      "points": [],
+      "emphasis": "thinking",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "A simple before/after of where effort goes",
+      "intent": "comparison",
+      "render_engine": "remotion",
+      "layout": "splitCompare",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [
+          "Typing speed",
+          "Boilerplate"
+        ],
+        "compare_right": [
+          "Clear specs",
+          "Careful review"
+        ],
+        "compare_titles": [
+          "Less",
+          "More"
+        ],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_006",
+      "role": "body",
+      "narration": "The catch: an agent is only as good as your tests and your review.",
+      "heading": "Only as good as your tests",
+      "points": [
+        "Tests and review are the guardrails"
+      ],
+      "emphasis": "tests",
+      "stat": "",
+      "label": "The catch",
+      "item": 0,
+      "visual_intent": "Grounded caution",
+      "intent": "warning",
+      "render_engine": "remotion",
+      "layout": "warningCard",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c2"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_007",
+      "role": "outro",
+      "narration": "Want the step-by-step? Comment GUIDE.",
+      "heading": "Comment GUIDE",
+      "points": [],
+      "emphasis": "GUIDE",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "Crisp takeaway that loops to the hook",
+      "intent": "recap",
+      "render_engine": "remotion",
+      "layout": "outroCTA",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "pause",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "pointing",
+      "cta": {
+        "keyword": "GUIDE",
+        "secondary": "Get the step-by-step guide",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    }
+  ],
+  "repos": [],
+  "director": {
+    "provider": "claude-code-interactive",
+    "model": "claude-opus-5-5 (interactive Claude Code session)",
+    "interactive": true,
+    "note": "Authored during development in an interactive session; footage requests rendered by the MOCK cinematic provider.",
+    "supplied": true
+  },
+  "seed": "v22-D",
+  "hook_candidates": [
+    {
+      "text": "This changes how you use your AI workflow.",
+      "score": 3.61,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 0.4,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "0 things to know about The future of AI-powered coding.",
+      "score": 3.35,
+      "parts": {
+        "clarity": 0.85,
+        "specificity": 0.8,
+        "relevance": 0.8,
+        "curiosity": 0.4,
+        "visual_potential": 0.4,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "The future of AI-powered coding.",
+      "score": 3.11,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.35,
+        "relevance": 0.8,
+        "curiosity": 0.4,
+        "visual_potential": 0.4,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "Coding is turning into a conversation.",
+      "score": 2.22,
+      "parts": {
+        "clarity": 0.9,
+        "specificity": 0.0,
+        "relevance": 0.4,
+        "curiosity": 0.4,
+        "visual_potential": 0.4,
+        "credibility": 1.0
+      },
+      "unsupported": [],
+      "origin": "director"
+    }
+  ],
+  "cta": {
+    "keyword": "GUIDE",
+    "secondary": "Get the step-by-step guide",
+    "narration": "Want the step-by-step? Comment GUIDE.",
+    "series_label": "FIELD REPORT",
+    "content_type": "story",
+    "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+    "dm_promised": false
+  }
+}

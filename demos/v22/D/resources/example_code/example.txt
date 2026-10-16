@@ -1,0 +1,6 @@
+- const user = getUser(id)
++ const user = await getUser(id)
++ if (!user) throw new NotFound(id)
+  return render(user)
+
+# Illustrative snippet from the video; not executed by this pipeline.

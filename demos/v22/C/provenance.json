@@ -1,0 +1,142 @@
+{
+  "schema_version": "2.0",
+  "mode": "local",
+  "dry_run": false,
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+      "title": "Model Context Protocol: architecture overview",
+      "kind": "article",
+      "retrieved_at": 1792149145.317209
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "MCP uses a client-server architecture: a host application creates one MCP client per MCP server.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "MCP servers expose tools, resources and prompts.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c3",
+      "text": "MCP messages use JSON-RPC 2.0.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "unverified",
+      "note": "automatic check found no source wording support (overlap 0.333)"
+    },
+    {
+      "id": "c4",
+      "text": "Local servers commonly use the stdio transport; remote servers use Streamable HTTP.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c5",
+      "text": "One rule: only connect servers you trust, because their tools act with your permissions.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.889)"
+    }
+  ],
+  "director": {
+    "supplied": true
+  },
+  "decisions": [
+    {
+      "stage": "direction",
+      "provider": "supplied",
+      "used": true,
+      "note": "storyboard supplied by caller",
+      "at": 1792149145.319884
+    },
+    {
+      "stage": "narration",
+      "engine": "kokoro_onnx",
+      "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+      "at": 1792149145.3260663
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -1.77,
+      "basis": "reference bed level",
+      "at": 1792149164.6590755
+    },
+    {
+      "stage": "render",
+      "concurrency": 2,
+      "memory_available_gb": 13.44,
+      "at": 1792149164.7807472
+    }
+  ],
+  "model": "qwen2.5:14b",
+  "voice_model": "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)",
+  "voice": "am_adam",
+  "voice_engines": [
+    "kokoro_onnx"
+  ],
+  "caption_timing": [
+    "energy_snapped"
+  ],
+  "narration_language": "English (US)",
+  "visual_style": "premium",
+  "theme": "fieldnotes-premium",
+  "variant": {
+    "seed": "v22-C",
+    "palette": "",
+    "background": "grid",
+    "temperament": "snappy",
+    "captions": "bold",
+    "transitions": [
+      "cut",
+      "zoom",
+      "push"
+    ],
+    "outfit": "#2f3b52",
+    "hair": "#a16207",
+    "music": {
+      "progression": 3,
+      "bpm": 84
+    },
+    "camera": 0.8,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "layouts": [
+    "hookBold",
+    "nodeGraph",
+    "steps",
+    "codeBlock",
+    "flowDiagram",
+    "warningCard",
+    "heroWord",
+    "outroCTA",
+    "loop"
+  ],
+  "scene_transitions": "beat-level 9-frame transitions; scenes butt-joined",
+  "assets": [],
+  "music": "procedural bed generated locally (no third-party audio)",
+  "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
+  "created_at": 1792149342.7298396,
+  "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
+}

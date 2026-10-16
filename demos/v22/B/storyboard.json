@@ -1,0 +1,518 @@
+{
+  "schema_version": "2.0",
+  "video_id": "61c97bf927f5",
+  "title": "Stop your coding agent from breaking your UI",
+  "format": "vibe_coding",
+  "duration_target_seconds": 40.0,
+  "aspect_ratio": "9:16",
+  "series": "BUILD SMARTER",
+  "creative_direction": {
+    "audience": "developers who build with AI coding agents",
+    "core_message": "Replace 'make the dashboard look better' with a scoped, checkable prompt.",
+    "viewer_benefit": "",
+    "hook": "",
+    "tone": "premium editorial",
+    "pacing": "dynamic",
+    "theme": "fieldnotes-premium",
+    "visual_identity": "minimal technology",
+    "sound_design": "restrained UI accents under narration",
+    "call_to_action": "",
+    "character": "on"
+  },
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+      "title": "Stop your coding agent from breaking your UI",
+      "kind": "manual",
+      "retrieved_at": 1792148696.849441
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Most people type something like: make the dashboard look better.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.5)"
+    },
+    {
+      "id": "c2",
+      "text": "The agent has to guess what you mean.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": "auto-mapped (word overlap 0.333)"
+    },
+    {
+      "id": "c3",
+      "text": "Instead, give it a scope, constraints, and a way to check the result.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": "auto-mapped (word overlap 0.286)"
+    },
+    {
+      "id": "c4",
+      "text": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.556)"
+    },
+    {
+      "id": "c5",
+      "text": "Here's the kind of focused change you should expect back.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": "auto-mapped (word overlap 0.143)"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene_001",
+      "role": "hook",
+      "narration": "Your coding agent keeps breaking your UI?",
+      "heading": "Your coding agent keeps breaking your UI?",
+      "points": [],
+      "emphasis": "",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "hook",
+      "render_engine": "remotion",
+      "layout": "",
+      "motion": {
+        "entrance": "mask",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "emphasis",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": true,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_002",
+      "role": "body",
+      "narration": "Most people type something like: make the dashboard look better. The agent has to guess what you mean.",
+      "heading": "The vague prompt",
+      "points": [
+        "Guesswork"
+      ],
+      "emphasis": "guess",
+      "stat": "",
+      "label": "Vague",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "warning",
+      "render_engine": "remotion",
+      "layout": "terminal",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c1",
+        "c2"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [
+          "> make the dashboard look better"
+        ],
+        "code_language": "prompt",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": true,
+      "character_action": "confused",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_003",
+      "role": "body",
+      "narration": "Instead, give it a scope, constraints, and a way to check the result.",
+      "heading": "The better prompt",
+      "points": [
+        "Only edit DashboardHeader.tsx."
+      ],
+      "emphasis": "scope",
+      "stat": "",
+      "label": "Better",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "comparison",
+      "render_engine": "remotion",
+      "layout": "splitCompare",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "static",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c3"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [
+          "Before",
+          "After"
+        ],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [
+          "make the dashboard look better"
+        ],
+        "prompt_after": [
+          "Only edit DashboardHeader.tsx.",
+          "Keep its props and tests unchanged.",
+          "Use existing design tokens, no new colors.",
+          "Show the diff before applying."
+        ]
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": true,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_004",
+      "role": "body",
+      "narration": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+      "heading": "Why it works",
+      "points": [
+        "Scope: one file",
+        "Constraints: props and tokens",
+        "Check: review the diff"
+      ],
+      "emphasis": "works",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "list",
+      "render_engine": "remotion",
+      "layout": "steps",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "medium",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c4"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [
+          "Scope: one file",
+          "Constraints: props and tokens",
+          "Check: review the diff"
+        ],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": true,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_005",
+      "role": "body",
+      "narration": "Here's the kind of focused change you should expect back.",
+      "heading": "Expected kind of change",
+      "points": [],
+      "emphasis": "focused",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "code",
+      "render_engine": "remotion",
+      "layout": "codeBlock",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "static",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c5"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [
+          "- <h1 className=\"text-xl\">",
+          "+ <h1 className=\"text-heading\">",
+          "  {title}",
+          "  </h1>"
+        ],
+        "code_language": "diff",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": true,
+      "character_action": "celebrating",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "repaired",
+        "issues": [],
+        "repairs": 1
+      }
+    },
+    {
+      "id": "scene_006",
+      "role": "outro",
+      "narration": "Want the full template? Comment PROMPT.",
+      "heading": "Comment PROMPT",
+      "points": [],
+      "emphasis": "PROMPT",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "",
+      "intent": "recap",
+      "render_engine": "remotion",
+      "layout": "outroCTA",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "pause",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": true,
+      "character_action": "pointing",
+      "cta": {
+        "keyword": "PROMPT",
+        "secondary": "Get the full prompt template",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    }
+  ],
+  "repos": [],
+  "director": {
+    "provider": "local",
+    "script_provider": "vibe_library",
+    "model": "vibe-template-v1",
+    "created_at": 1792148696.849443
+  },
+  "seed": "v22-B",
+  "hook_candidates": [
+    {
+      "text": "Your coding agent keeps breaking your UI?",
+      "score": 4.01,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 0.8,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": [],
+      "origin": "director"
+    },
+    {
+      "text": "Your coding agent keeps breaking your UI?",
+      "score": 4.01,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 0.8,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "Your coding agent keeps breaking your UI?",
+      "score": 4.01,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 0.8,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "One prompt change fixes this in your AI workflow.",
+      "score": 4.01,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 0.8,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    }
+  ],
+  "cta": {
+    "keyword": "PROMPT",
+    "secondary": "Get the full prompt template",
+    "narration": "Want the full template? Comment PROMPT.",
+    "series_label": "BUILD SMARTER",
+    "content_type": "vibe_coding",
+    "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+    "dm_promised": false
+  }
+}

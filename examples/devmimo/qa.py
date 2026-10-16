@@ -1,0 +1,130 @@
+"""DevMimo intro QA. The deterministic checks reuse the V2.2 QA modules; the visual review is a separate, labelled section.
+
+- technical: `video_validation.technical` (resolution, fps, duration, decode, black / frozen frames, silence);
+- audio: `audio_profile.compare` against the brand's reference audio profile;
+- timing: every scene is at least as long as its narration (lead + speech);
+- hook: frame 0 has readable, high-contrast content (luma spread);
+- motion: share of frame-to-frame changes at 4 fps, longest static stretch;
+- palette: share of on-brand pixels (charcoal / ivory / orange) on sampled frames;
+- logo: technical checks on the 5 s sting.
+
+The visual review (`visual_review.json`) holds what a person or agent saw on the extracted frames. It is never computed.
+"""
+from __future__ import annotations
+
+import json
+import subprocess
+from pathlib import Path
+
+import numpy as np
+
+from video_mcp import audio_profile
+from video_mcp.quality import video_validation
+
+HERE = Path(__file__).resolve().parent
+PALETTE = {"ground": (10, 11, 15), "ink": (239, 239, 234), "accent": (142, 162, 255), "cheek": (243, 180, 194), "spark": (255, 215, 106)}   # brand/tokens.json + identity.json
+
+
+def _frames(video: Path, fps: float, width: int = 270) -> np.ndarray:
+    h = int(width * 1920 / 1080)
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-vf", f"fps={fps},scale={width}:{h}", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.uint8).reshape(-1, h, width, 3)
+
+
+def _frame_at(video: Path, t: float, width: int = 540) -> np.ndarray:
+    h = int(width * 1920 / 1080)
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1", "-vf", f"scale={width}:{h}",
+                          "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.uint8).reshape(h, width, 3)
+
+
+def _luma(rgb: np.ndarray) -> np.ndarray:
+    return rgb[..., 0] * .2126 + rgb[..., 1] * .7152 + rgb[..., 2] * .0722
+
+
+def palette_share(frames: np.ndarray, tol: float = 60.0) -> float:
+    """Pixels within `tol` (RGB distance) of a brand colour, on the ground→ink neutral axis, or on the accent ramp."""
+    px = frames.reshape(-1, 3).astype(np.float32)[::7]
+    near = np.zeros(len(px), bool)
+    for c in PALETTE.values():
+        near |= np.linalg.norm(px - np.array(c, np.float32), axis=1) < tol
+    r, g, b = px[:, 0], px[:, 1], px[:, 2]
+    neutral = (np.abs(r - g) < 22) & (np.abs(g - b) < 26)                  # charcoal, greys, ivory and their blends
+    accent = (b > r) & (b > g) & (b - g < 120) & (b - r > 15)              # periwinkle accent, its tints and glows
+    return float((near | neutral | accent).mean())
+
+
+def run(intro: Path, logo: Path, props: dict, story: dict, timing: dict) -> dict:
+    checks = []
+
+    def add(group, name, passed, detail, mandatory=True):
+        checks.append({"group": group, "check": name, "passed": bool(passed), "detail": detail, "mandatory": mandatory, "basis": "deterministic"})
+
+    tech = video_validation.technical(intro, width=1080, height=1920, fps=30, expected_seconds=props["durationInFrames"] / 30, dark_theme=True)
+    for c in tech["checks"]:
+        add("technical", c["check"], c["passed"], c["detail"], c.get("mandatory", True))
+    seconds = float(video_validation.probe(intro)["format"]["duration"])
+    pacing = story.get("pacing", {})
+    target = pacing.get("target_s", 30.0)
+    add("technical", "target_length", abs(seconds - target) <= .5, f"{seconds:.2f}s (target {target} ±0.5)")
+    words = sum(len(s["words"]) for s in props["scenes"])
+    speech = sum(s["speech_s"] for s in props["scenes"])
+    wpm = 60 * words / speech
+    lo, hi = pacing.get("wpm_target", [145, 165])
+    add("pacing", "speaking_rate", lo <= wpm <= hi, f"{wpm:.0f} wpm while speaking ({words} words / {speech:.2f}s of measured audio; target {lo}-{hi}); "
+        f"{60 * words / seconds:.0f} wpm over the whole runtime", mandatory=False)
+    outro = next(s for s in props["scenes"] if s["kind"] == "outro")
+    cta_s = (outro["frames"] - round(outro["words"][3]["s"] * 30)) / 30
+    logo_s = (outro["frames"] - 60) / 30                    # LogoReveal settles at frame ~60
+    tail_s = (outro["frames"] - round(outro["words"][-1]["e"] * 30)) / 30
+    need = pacing.get("end_card_min_s", 1.5)
+    add("pacing", "end_card_hold", min(cta_s, logo_s) >= need and tail_s >= need,
+        f"logo complete for {logo_s:.2f}s, CTA on screen {cta_s:.2f}s, held {tail_s:.2f}s after the last word (≥ {need}s)")
+
+    for s in props["scenes"]:
+        need = (s["lead_s"] + s["speech_s"]) * 30
+        add("timing", f"scene_fits_narration:{s['id']}", s["frames"] >= need, f"{s['frames']} frames for {need:.0f} frames of lead + speech")
+
+    audio = audio_profile.compare(intro)
+    for c in audio["checks"]:
+        # Speech share and pauses are a property of a 30 s brand intro with long visual holds, not a defect; reported, not gating.
+        add("audio", c["check"], c["passed"], c["detail"], mandatory=c["check"] in {"loudness", "true_peak", "voice_pitch", "voice_tone"})
+
+    f0 = _frame_at(intro, 0.0)
+    spread = float(np.percentile(_luma(f0), 99) - np.percentile(_luma(f0), 5))
+    add("hook", "frame0_contrast", spread > 120, f"luma p99-p5 spread {spread:.0f} on frame 0 (>120 = bold readable content)")
+    bright = float((_luma(f0) > 200).mean())
+    add("hook", "frame0_has_type", bright > .01, f"{bright * 100:.1f}% of frame 0 is bright type/graphics")
+
+    fr = _frames(intro, 4).astype(np.float32)
+    diff = np.abs(np.diff(fr, axis=0)).mean(axis=(1, 2, 3))
+    moving = diff > 1.2
+    longest, run_ = 0, 0
+    for m in moving:
+        run_ = 0 if m else run_ + 1
+        longest = max(longest, run_)
+    add("motion", "motion_share", moving.mean() > .7, f"{moving.mean() * 100:.0f}% of 0.25 s steps change visibly")
+    add("motion", "longest_static", longest / 4 <= 1.5, f"longest static stretch {longest / 4:.2f}s (≤ 1.5 s)")
+    share = palette_share(fr[::4])
+    add("brand", "palette_share", share > .9, f"{share * 100:.1f}% of sampled pixels are ground / ink / accent (FIELDNOTES tokens) or their blends")
+
+    lt = video_validation.technical(logo, width=1080, height=1920, fps=30, expected_seconds=5.0, dark_theme=True)
+    for c in lt["checks"]:
+        if c["check"] in {"readable", "resolution", "frame_rate", "duration", "decode_integrity", "black_frames", "audio_present"}:
+            add("logo", c["check"], c["passed"], c["detail"])
+
+    review_path = HERE / "visual_review.json"
+    review = json.loads(review_path.read_text()) if review_path.exists() else {"status": "not reviewed"}
+    failed = [c for c in checks if not c["passed"] and c["mandatory"]]
+    advisories = [c for c in checks if not c["passed"] and not c["mandatory"]]
+    return {
+        "video": intro.name, "logo": logo.name, "seconds": round(seconds, 3), "frames": props["durationInFrames"],
+        "voice": timing.get("voice"), "music_bed_gain_db": timing.get("bed_gain_db"),
+        "scenes": [{"id": s["id"], "start_s": round(s["from"] / 30, 2), "seconds": round(s["frames"] / 30, 2), "speech_s": s["speech_s"]} for s in props["scenes"]],
+        "sfx_cues": len(story["sfx"]),
+        "summary": {"passed": not failed, "mandatory_failed": [c["check"] for c in failed], "advisories": [c["check"] for c in advisories],
+                    "checks": len(checks), "visual_review": review.get("status")},
+        "checks": checks, "visual_review": review,
+        "basis": "deterministic checks via ffmpeg/numpy; visual_review is a human/agent inspection of extracted frames, recorded separately",
+    }

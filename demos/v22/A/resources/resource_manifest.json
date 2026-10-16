@@ -1,0 +1,42 @@
+{
+ "keyword": "LINK",
+ "secondary": "Get all 4 GitHub repos",
+ "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+ "dm_promised_in_video": false,
+ "items": [
+  {
+   "type": "repository",
+   "name": "lidge-jun/opencodex",
+   "url": "https://github.com/lidge-jun/opencodex",
+   "description": "Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini,",
+   "verified_by": "GitHub metadata in topic data (see provenance)"
+  },
+  {
+   "type": "repository",
+   "name": "yetone/magpie",
+   "url": "https://github.com/yetone/magpie",
+   "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+   "verified_by": "GitHub metadata in topic data (see provenance)"
+  },
+  {
+   "type": "repository",
+   "name": "Vincentwei1021/video-shotcraft",
+   "url": "https://github.com/Vincentwei1021/video-shotcraft",
+   "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion",
+   "verified_by": "GitHub metadata in topic data (see provenance)"
+  },
+  {
+   "type": "repository",
+   "name": "google/artemis",
+   "url": "https://github.com/google/artemis",
+   "description": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+   "verified_by": "GitHub metadata in topic data (see provenance)"
+  }
+ ],
+ "files": [
+  "guide.md",
+  "dm_message.txt",
+  "resource_manifest.json"
+ ],
+ "note": "No automatic DM delivery is configured. Send dm_message.txt manually to people who comment the keyword."
+}

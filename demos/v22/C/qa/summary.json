@@ -1,0 +1,67 @@
+{
+ "technical_pass": true,
+ "mandatory_failures": [],
+ "scores": {
+  "technical_correctness": {
+   "score": 100,
+   "basis": "deterministic"
+  },
+  "readability": {
+   "score": 100,
+   "basis": "deterministic (layout metadata + tokens)"
+  },
+  "visual_consistency": {
+   "score": 100,
+   "basis": "deterministic"
+  },
+  "motion_quality": {
+   "score": 100,
+   "basis": "heuristic (freeze detection only; motion taste needs manual review)"
+  },
+  "scene_variety": {
+   "score": 100,
+   "basis": "deterministic + heuristic"
+  },
+  "brand_consistency": {
+   "score": 100,
+   "basis": "deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json)"
+  },
+  "audio_quality": {
+   "score": 100,
+   "basis": "deterministic loudness/peak; heuristic caption sync"
+  },
+  "narrative_coherence": {
+   "score": null,
+   "basis": "manual review required (no model opinion collected)"
+  },
+  "source_reliability": {
+   "score": 80,
+   "basis": "deterministic word-overlap support check; share of claims with source support"
+  }
+ },
+ "failing_scenes": [],
+ "issue_count": 0,
+ "manual_review": [
+  "Factual accuracy against the cited sources",
+  "Pronunciation of names and acronyms",
+  "Overall taste / brand fit",
+  "Music licensing (procedural bed is generated locally)"
+ ],
+ "estimated_caption_timing": true,
+ "contact_sheet": "/home/user/automated-videos/data/jobs/41a14bee4d0f/qa/contact_sheet.jpg",
+ "reference_style": {
+  "ground_colour": true,
+  "luminance": true,
+  "change_rate": true
+ },
+ "reference_audio": {
+  "loudness": true,
+  "true_peak": true,
+  "music_bed_level": true,
+  "music_bed_warmth": true,
+  "voice_pitch": true,
+  "speech_share": true,
+  "pause_length": true,
+  "voice_tone": true
+ }
+}

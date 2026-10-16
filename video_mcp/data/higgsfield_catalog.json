@@ -1,0 +1,15 @@
+{
+  "retrieved_at": "2026-10-16",
+  "retrieved_via": "Higgsfield MCP connector models_list(type=video), read-only catalog. The runtime SDK exposes no catalog endpoint; refresh this snapshot manually.",
+  "note": "Catalog ids are Higgsfield web/MCP model ids. The SDK's submit() takes an 'application' endpoint path, which must be configured explicitly (cinematic.application); it is not derived from these ids.",
+  "models": [
+    {"id": "cinematic_studio_3_0", "name": "Cinema Studio Video 3.0", "aspect_ratios": ["auto","21:9","16:9","4:3","1:1","3:4","9:16"], "duration_range": [4, 15], "resolutions": ["480p","720p","1080p","4k"], "media_roles": ["image","start_image","end_image"], "params": ["resolution","genre","generate_audio"]},
+    {"id": "cinematic_studio_video_v2", "name": "Cinema Studio Video (v2)", "aspect_ratios": ["1:1","4:3","3:4","16:9","9:16"], "duration_range": [3, 12], "media_roles": ["image","start_image","end_image"], "params": ["genre","mode","sound","speedramp","cfg_scale"]},
+    {"id": "seedance_2_0", "name": "Seedance 2.0", "aspect_ratios": ["auto","16:9","9:16","4:3","3:4","1:1","21:9"], "duration_range": [4, 15], "resolutions": ["480p","720p","1080p","4k"], "media_roles": ["start_image","end_image","image_references","video_references","audio_references"], "params": ["duration","resolution","mode","genre","generate_audio"]},
+    {"id": "seedance1_5", "name": "Seedance 1.5 Pro", "aspect_ratios": ["auto","16:9","9:16","4:3","3:4","1:1","21:9"], "durations": [4, 8, 12], "resolutions": ["480p","720p","1080p"], "media_roles": ["start_image","end_image"], "params": ["duration","resolution","generate_audio"]},
+    {"id": "minimax_hailuo", "name": "Minimax Hailuo", "aspect_ratios": [], "durations": [6, 10], "resolutions": ["512","768","1080"], "media_roles": ["start_image","end_image"], "params": ["variant","duration","resolution"]},
+    {"id": "grok_video_v15_lite", "name": "Grok Imagine Video 1.5 Lite", "aspect_ratios": ["auto","16:9","9:16","4:3","3:4","1:1","3:2","2:3"], "duration_range": [1, 15], "resolutions": ["480p","720p","1080p"], "media_roles": ["start_image"], "params": ["resolution","duration"]},
+    {"id": "flux_3_video", "name": "FLUX 3 Video", "aspect_ratios": ["auto","21:9","2:1","16:9","4:3","1:1","3:4","9:16"], "duration_range": [5, 20], "resolutions": ["720p","1080p","2k","4k"], "media_roles": ["start_image","end_image","image_references","video_references"], "params": ["duration","resolution","generate_audio"]}
+  ],
+  "account_at_audit": {"credits": 0, "plan": "free"}
+}

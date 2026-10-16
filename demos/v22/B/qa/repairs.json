@@ -1,0 +1,21 @@
+[
+  {
+    "attempt": 1,
+    "overrides": {
+      "avoid": {},
+      "hide_character": [],
+      "drop_media": [],
+      "shorten": {
+        "scene_005": {
+          "heading": 26
+        }
+      },
+      "notes": [
+        "scene_005: overflow -> shorten heading to 26 chars at a word boundary"
+      ],
+      "reseed": null
+    },
+    "issues_before": 1,
+    "technical_pass_before": true
+  }
+]

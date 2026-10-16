@@ -1,0 +1,249 @@
+{
+ "id": "claude-game",
+ "title": "I built this game with Claude",
+ "note": "Creator reel. All footage is real gameplay recorded from the game's own builds with Godot's movie writer (examples/game_reel/capture_gameplay.gd). The finished reel never names the game's repository, account, branches or internal docs (checked by qa_game_reel.py against the terms in private_terms_file, which is git-ignored so the names never enter this repository).",
+ "pacing": {
+  "target_s": 29.5,
+  "range": [
+   25,
+   30
+  ],
+  "wpm_target": [
+   150,
+   175
+  ]
+ },
+ "voice_speed": 1.0,
+ "pronounce": {
+  "LINK": "link",
+  "DM": "D M",
+  "Claude": "Claude"
+ },
+ "emphasis": [
+  "Claude",
+  "prompt",
+  "LINK"
+ ],
+ "source": {
+  "latest_build": "5b6cecb",
+  "first_playable_build": "04e1734",
+  "engine": "Godot 4.5.1 (official Linux build), GL Compatibility renderer, Xvfb + Mesa llvmpipe",
+  "prompt_excerpt_from": "the first development prompt (2026-10-15), section 1 PRODUCT OVERVIEW, quoted verbatim with the title line omitted"
+ },
+ "clips": {
+  "hook": "Level 33 (Space Logistics): last taps, Run, delivery, crew celebration",
+  "first": "Level 1 with the onboarding coach",
+  "solve": "Level 20 (Parcel Station) from a fresh board",
+  "neon": "Level 26 (Neon Circuit) crossing",
+  "big": "Level 36: final taps, Run, celebration (title bar cropped)",
+  "menus": "The Crew collection, character detail, Levels",
+  "fail_fix": "Level 8: early Run fails with an explanation, hint, fix, deliver",
+  "c06-new": "Level 6, latest build",
+  "c06-old": "Level 6, first playable build (same taps, same timing)"
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "lead_s": 0.0,
+   "min_tail_s": 0.12,
+   "hold": 0.6,
+   "narration": "Making games used to feel impossible without a whole development team.",
+   "segs": [
+    {
+     "clip": "hook",
+     "src": 6.1
+    }
+   ],
+   "headline": {
+    "lines": [
+     "I BUILT THIS GAME",
+     "WITH CLAUDE."
+    ],
+    "accent": [
+     1
+    ]
+   }
+  },
+  {
+   "id": "idea",
+   "kind": "idea",
+   "lead_s": 0.08,
+   "min_tail_s": 0.15,
+   "hold": 0.8,
+   "narration": "But I wanted to see what I could build with Claude.",
+   "segs": [
+    {
+     "clip": "first",
+     "reveal_src": 3.85
+    }
+   ],
+   "prompt": {
+    "label": "MY FIRST PROMPT · EXCERPT",
+    "out_frac": 0.68,
+    "lines": [
+     "Players rotate conveyor belt tiles to guide packages from sources to matching destinations.",
+     "The game should feel: Immediately understandable · Visually satisfying · Extremely responsive"
+    ]
+   }
+  },
+  {
+   "id": "build",
+   "kind": "build",
+   "lead_s": 0.08,
+   "min_tail_s": 0.15,
+   "hold": 1.2,
+   "narration": "So I gave it my game idea, and started making it playable.",
+   "segs": [
+    {
+     "clip": "solve",
+     "src": 1.9
+    },
+    {
+     "clip": "neon",
+     "src": 4.2,
+     "at": "started"
+    },
+    {
+     "clip": "big",
+     "src": 4.6,
+     "at": "playable",
+     "crop_y": 210
+    }
+   ]
+  },
+  {
+   "id": "features",
+   "kind": "features",
+   "lead_s": 0.08,
+   "min_tail_s": 0.85,
+   "hold": 1.2,
+   "narration": "Characters with personalities. Thirty-six puzzles, five worlds, and hints that teach.",
+   "segs": [
+    {
+     "clip": "menus",
+     "src": 3.75
+    },
+    {
+     "clip": "menus",
+     "src": 8.6,
+     "at": "Thirty"
+    },
+    {
+     "clip": "fail_fix",
+     "src": 5.0,
+     "at": "hints"
+    }
+   ],
+   "label": [
+    {
+     "text": "CHARACTERS",
+     "at": ""
+    },
+    {
+     "text": "36 PUZZLES · 5 WORLDS",
+     "at": "Thirty"
+    },
+    {
+     "text": "HINTS THAT TEACH",
+     "at": "hints"
+    }
+   ]
+  },
+  {
+   "id": "iteration",
+   "kind": "iteration",
+   "lead_s": 0.08,
+   "min_tail_s": 0.2,
+   "hold": 1.2,
+   "narration": "I kept reviewing it, finding problems, and asking Claude to improve things.",
+   "split": {
+    "left": {
+     "clip": "c06-old",
+     "src": 4.1,
+     "label": "FIRST PLAYABLE BUILD"
+    },
+    "right": {
+     "clip": "c06-new",
+     "src": 4.1,
+     "label": "LATEST BUILD"
+    },
+    "note": "same level · same taps · two real builds"
+   }
+  },
+  {
+   "id": "result",
+   "kind": "result",
+   "lead_s": 0.08,
+   "min_tail_s": 0.25,
+   "hold": 1.0,
+   "narration": "And this is what I ended up building.",
+   "segs": [
+    {
+     "clip": "big",
+     "src": 5.5,
+     "crop_y": 210
+    }
+   ],
+   "headline": {
+    "lines": [
+     "BUILT WITH CLAUDE."
+    ],
+    "accent": [
+     0
+    ],
+    "at": "this"
+   },
+   "pill": {
+    "text": "STILL IN DEVELOPMENT",
+    "at": "building"
+   }
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "lead_s": 0.08,
+   "min_tail_s": 0.35,
+   "hold": 1.0,
+   "narration": "Want the prompt? Comment LINK, or DM me LINK.",
+   "segs": [
+    {
+     "clip": "hook",
+     "src_end": 6.1
+    }
+   ],
+   "cta": {
+    "big": "COMMENT ‘LINK’",
+    "small": "OR DM ME ‘LINK’",
+    "handle": "@DEVMIMO",
+    "at": "Comment"
+   }
+  }
+ ],
+ "cover": {
+  "frame_clip": "hook",
+  "frame_t": 9.2,
+  "crop": [
+   432,
+   1650
+  ],
+  "lines": [
+   "I BUILT THIS GAME",
+   "WITH CLAUDE."
+  ],
+  "accent": [
+   1
+  ],
+  "tag": "REAL GAMEPLAY",
+  "handle": "@DEVMIMO"
+ },
+ "claims": {
+  "36 puzzles": "36 curated levels in apps/game/data/levels/curated.json at the latest build",
+  "5 worlds": "Little Workshop, Candy Factory, Parcel Station, Neon Circuit, Space Logistics (scripts/ui/worlds.gd)",
+  "characters with personalities": "The Crew: Bloop, Zip, Glitch, Mochi, Captain Naps, Dr. Rix (docs character system); reactions recorded in the clips",
+  "hints that teach": "three-step hints (area, tile, rotation); 'Hint 1 of 3' recorded in fail_fix",
+  "built with Claude": "every commit after the initial README is co-authored by Claude Code, from the creator's five written briefs",
+  "still in development": "not published; no device testing; iOS not compiled (known limitations)"
+ },
+ "private_terms_file": "data/game-reel/private_terms.json"
+}

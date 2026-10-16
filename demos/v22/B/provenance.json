@@ -1,0 +1,151 @@
+{
+  "schema_version": "2.0",
+  "mode": "local",
+  "dry_run": false,
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+      "title": "Stop your coding agent from breaking your UI",
+      "kind": "manual",
+      "retrieved_at": 1792148696.849441
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Most people type something like: make the dashboard look better.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.5)"
+    },
+    {
+      "id": "c2",
+      "text": "The agent has to guess what you mean.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": "auto-mapped (word overlap 0.333)"
+    },
+    {
+      "id": "c3",
+      "text": "Instead, give it a scope, constraints, and a way to check the result.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": "auto-mapped (word overlap 0.286)"
+    },
+    {
+      "id": "c4",
+      "text": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": "auto-mapped (word overlap 0.556)"
+    },
+    {
+      "id": "c5",
+      "text": "Here's the kind of focused change you should expect back.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": "auto-mapped (word overlap 0.143)"
+    }
+  ],
+  "director": {
+    "provider": "local",
+    "script_provider": "vibe_library",
+    "model": "vibe-template-v1",
+    "created_at": 1792148696.849443
+  },
+  "decisions": [
+    {
+      "stage": "script",
+      "provider": "vibe_library",
+      "used": true,
+      "notes": [
+        "curated tip; deterministic storyboard"
+      ]
+    },
+    {
+      "stage": "narration",
+      "engine": "kokoro_onnx",
+      "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+      "at": 1792148696.9419096
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -1.68,
+      "basis": "reference bed level",
+      "at": 1792148710.1157358
+    },
+    {
+      "stage": "render",
+      "concurrency": 2,
+      "memory_available_gb": 13.57,
+      "at": 1792148710.2392468
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -0.95,
+      "basis": "reference bed level",
+      "at": 1792148828.6282873
+    },
+    {
+      "stage": "render",
+      "concurrency": 2,
+      "memory_available_gb": 13.52,
+      "at": 1792148828.7524388
+    }
+  ],
+  "model": "vibe-template-v1",
+  "voice_model": "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)",
+  "voice": "am_adam",
+  "voice_engines": [
+    "kokoro_onnx"
+  ],
+  "caption_timing": [
+    "energy_snapped"
+  ],
+  "narration_language": "English (US)",
+  "visual_style": "premium",
+  "theme": "fieldnotes-premium",
+  "variant": {
+    "seed": "v22-B",
+    "palette": "",
+    "background": "flat",
+    "temperament": "editorial",
+    "captions": "editorial",
+    "transitions": [
+      "push",
+      "mask",
+      "zoom"
+    ],
+    "outfit": "#6d28d9",
+    "hair": "#3b2a21",
+    "music": {
+      "progression": 2,
+      "bpm": 84
+    },
+    "camera": 1.0,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "layouts": [
+    "hookBold",
+    "terminal",
+    "splitCompare",
+    "steps",
+    "codeBlock",
+    "outroCTA",
+    "loop"
+  ],
+  "scene_transitions": "beat-level 9-frame transitions; scenes butt-joined",
+  "assets": [],
+  "music": "procedural bed generated locally (no third-party audio)",
+  "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
+  "created_at": 1792148942.8867285,
+  "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
+}

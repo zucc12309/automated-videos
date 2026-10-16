@@ -1,0 +1,12 @@
+{
+  "note": "Internal series concepts. Public brand and series names are configurable; nothing here is a final account name.",
+  "brand": {"wordmark": "FIELDNOTES", "lockup_suffix": "PRODUCT NOTES", "configurable": true},
+  "series": {
+    "roundup": {"label": "REPO RADAR", "cta": "LINK"},
+    "vibe_coding": {"label": "BUILD SMARTER", "cta": "PROMPT"},
+    "agents": {"label": "AGENT FILES", "cta": "GUIDE"},
+    "tools": {"label": "TOOL DROP", "cta": "TOOLS"},
+    "debug": {"label": "THE DEBUG LOG", "cta": "CODE"},
+    "story": {"label": "FIELD REPORT", "cta": "GUIDE"}
+  }
+}

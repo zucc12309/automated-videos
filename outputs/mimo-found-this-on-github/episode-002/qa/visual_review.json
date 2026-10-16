@@ -1,0 +1,47 @@
+{
+ "status": "inspected (agent review of contact sheet, Instagram-overlay previews, hook strips, cover crops and key frames); narration not auditioned by a human ear",
+ "inspected": [
+  "qa/contact-sheet.png",
+  "qa/instagram-safe-preview.png",
+  "qa/instagram/*.png",
+  "qa/cover-grid-thumbnail.png",
+  "qa/cover-guides.png",
+  "hook a/b/c frame strips",
+  "frame 0"
+ ],
+ "revisions": [
+  "r1: hook tag covered the screenshot's own caption; first shot held 1.3 s → three shots cut on spoken words (Adobe / using)",
+  "r1: context swap faded both cards (blank frame at 3.53 s) → slide-over without fade-out; PhotoCraft dialog shot replaced by the Starry Night filters shot",
+  "r1: repo title appeared word by word on an empty card and was small → full name from the first frame, 3 lines, words light orange as spoken; description removed",
+  "r1: MCP step on screen < 1 s, lines overflowed → step starts on 'Connect', lines split, 32 px",
+  "r2: disassembly (8 lines) ran into the tag line → 6 key lines",
+  "r3: 3% camera push carried edge content ~15 px past the right safe edge; proof caption wider than the safe area → 1.5% push centred on the safe area, caption 26 px; motion kept with tile zoom, evidence scan bar and compare push",
+  "r3: simulated Instagram overlay showed invented like/comment counts → icons only"
+ ],
+ "brief_checklist": {
+  "1 premise within one second": "yes: frame 0 = PhotoCraft (Great Wave) + 'OPEN-SOURCE RECREATIONS · NOT ADOBE' + '7 ADOBE APPS.'",
+  "2 authentic, accurately labelled Adobe-style visuals": "yes: ArtCraft's own README screenshots, each named with '<App>-style · open source'; no Adobe UI, icons or logos",
+  "3 recreations vs REA distinct": "yes: REA card says 'A DIFFERENT PROJECT'; narration never says REA made them; caption explains",
+  "4 REA demo is genuine evidence": "yes: real MCP calls by a separate agent, real objdump lines, byte-identical rebuild; tagged 'REAL REA RUN · TEST APP MADE FOR THIS DEMO'",
+  "5 payoff understandable": "yes: input → app output, agent findings in plain English, ORIGINAL vs AGENT'S REBUILD with '0 BYTES DIFFERENT'",
+  "6 every scene advances the story": "yes: 7 beats, each 3.3–7.4 s, no repeated content",
+  "7 subtitles readable on a phone": "yes: 50 px, 3–5 words, orange emphasis on seven/Adobe/GitHub/Reverse Engineer/source code",
+  "8 important visuals inside safe zones": "yes: qa/instagram-safe-preview.png; all blocks inside x 60–900, y 250–1520",
+  "9 Mimo consistent": "yes: src/devmimo/Mimo.tsx only — surprised (hook), curious (mystery), excited (repo), thinking (proof), pointing (question)",
+  "10 cover readable in grid view": "yes: qa/cover-grid-thumbnail.png — EP. 002 and headline legible at 357 px",
+  "11 ending short": "yes: question + FOLLOW @DEVMIMO, reel ends 0.55 s after the last word; no outro",
+  "12 export exactly 1080x1920": "yes: both exports and all hook previews (ffprobe)",
+  "13 audio/subtitles synchronized": "yes by construction (subtitles from the TTS word timings; first subtitle within 0.15 s of first word); not auditioned by ear",
+  "14 black frames / clipped text / awkward pauses": "none found: blackdetect clean; longest post-narration silence ≤ 1.6 s check passes",
+  "15 project claims verified": "yes: every on-screen claim cites a verified feature (spec validation); research.md maps each line to evidence"
+ },
+ "hook_choice": {
+  "A · Curiosity (selected)": "real recreation + premise on frame 0, readable without audio, accurate (developer's statement, kept as a question), flows straight into the four app names",
+  "B · Contrarian": "'BIG-TEAM SOFTWARE.' is vaguer and a framing rather than a measured fact; weaker without audio",
+  "C · Discovery": "opens on REA's dense terminal screenshot, unreadable at phone size; the curiosity gap is smaller"
+ },
+ "findings": [
+  "Narration speed 1.0 (160 wpm). Kokoro pronunciation of 'Adobe-style' and 'Premiere' has not been checked by ear.",
+  "Static-looking stretches remain only on reading holds (findings list, 'rebuilding…') and are ≤ 1.5 s."
+ ]
+}

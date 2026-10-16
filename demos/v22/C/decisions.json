@@ -1,0 +1,28 @@
+[
+  {
+    "stage": "direction",
+    "provider": "supplied",
+    "used": true,
+    "note": "storyboard supplied by caller",
+    "at": 1792149145.319884
+  },
+  {
+    "stage": "narration",
+    "engine": "kokoro_onnx",
+    "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+    "at": 1792149145.3260663
+  },
+  {
+    "stage": "music",
+    "style": "warm_pad",
+    "gain_db": -1.77,
+    "basis": "reference bed level",
+    "at": 1792149164.6590755
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 13.44,
+    "at": 1792149164.7807472
+  }
+]

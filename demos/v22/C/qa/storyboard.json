@@ -1,0 +1,57 @@
+{
+ "sources": {
+  "claims": [
+   {
+    "id": "c1",
+    "text": "MCP uses a client-server architecture: a host application creates one MCP client per MCP server.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   {
+    "id": "c2",
+    "text": "MCP servers expose tools, resources and prompts.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   {
+    "id": "c3",
+    "text": "MCP messages use JSON-RPC 2.0.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "unverified",
+    "note": "automatic check found no source wording support (overlap 0.333)"
+   },
+   {
+    "id": "c4",
+    "text": "Local servers commonly use the stdio transport; remote servers use Streamable HTTP.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   {
+    "id": "c5",
+    "text": "One rule: only connect servers you trust, because their tools act with your permissions.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": "auto-mapped (word overlap 0.889)"
+   }
+  ],
+  "summary": {
+   "verified": 4,
+   "interpretation": 0,
+   "unverified": 1,
+   "removed": 0
+  }
+ }
+}

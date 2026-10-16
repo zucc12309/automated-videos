@@ -1,0 +1,371 @@
+{
+ "layout_checks": [
+  {
+   "check": "stage_inside_safe_area",
+   "passed": true,
+   "detail": "stage {'left': 120, 'top': 360, 'width': 840, 'height': 700} within {'left': 120, 'right': 960, 'top': 290, 'bottom': 1248}",
+   "scene": null,
+   "mandatory": true,
+   "basis": "deterministic",
+   "kind": "layout"
+  },
+  {
+   "check": "contrast_ink",
+   "passed": true,
+   "detail": "fieldnotes-premium ink/bg 17.05:1 (min 4.5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_muted",
+   "passed": true,
+   "detail": "fieldnotes-premium muted/bg 7.2:1 (min 4.5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_accent",
+   "passed": true,
+   "detail": "fieldnotes-premium accent/bg 8.21:1 (min 3.0)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_surface",
+   "passed": true,
+   "detail": "ink/surface 15.46:1",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "code_font_size",
+   "passed": true,
+   "detail": "longest line 31 chars -> 39px",
+   "scene": "scene_005",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "headline_size",
+   "passed": true,
+   "detail": "kinetic headline 60px (caption min 48)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "meta_size",
+   "passed": true,
+   "detail": "masthead 32px, meta 32px (min 32)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "hook_frame0",
+   "passed": true,
+   "detail": "first beat hookBold / cut: 'Your coding agent keeps breaking your UI?'",
+   "scene": "scene_001",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_staged",
+   "passed": true,
+   "detail": "every beat has a staging decision",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_scales",
+   "passed": true,
+   "detail": "scales used ['closeup', 'companion', 'medium']",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "signature_entrance",
+   "passed": true,
+   "detail": "hook scale closeup",
+   "scene": "scene_001",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "signature_cta",
+   "passed": true,
+   "detail": "points at the keyword and winks",
+   "scene": "scene_006",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "one_reveal_reaction",
+   "passed": true,
+   "detail": "1 big reaction(s): ['scene_005']",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_present",
+   "passed": true,
+   "detail": "present on every non-footage beat",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "no_unapproved_name",
+   "passed": true,
+   "detail": "provisional name 'Mochi' absent from on-screen text",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "cta_keyword",
+   "passed": true,
+   "detail": "keyword 'PROMPT' spoken",
+   "scene": "scene_006",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "cta_truthful",
+   "passed": true,
+   "detail": "no DM promise without a delivery integration",
+   "scene": "scene_006",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "min_hold",
+   "passed": true,
+   "detail": "all beats hold long enough",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "pacing"
+  },
+  {
+   "check": "cuts_per_10s",
+   "passed": true,
+   "detail": "busiest 10 s window has 4 cuts (target \u2264 5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "pacing"
+  },
+  {
+   "check": "no_back_to_back_layouts",
+   "passed": true,
+   "detail": "0 repeat(s)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "repetition"
+  },
+  {
+   "check": "layout_variety",
+   "passed": true,
+   "detail": "7 distinct layouts over 7 beats",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "repetition"
+  },
+  {
+   "check": "single_theme",
+   "passed": true,
+   "detail": "theme=fieldnotes-premium",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "consistency"
+  }
+ ],
+ "frame_samples": [
+  {
+   "t": 0.0,
+   "kind": "first_frame",
+   "scene": "",
+   "mean_luma": 28.9,
+   "stage_std": 65.6
+  },
+  {
+   "t": 0.15,
+   "kind": "scene_entrance",
+   "scene": "scene_001",
+   "mean_luma": 43.8,
+   "stage_std": 65.58
+  },
+  {
+   "t": 1.217,
+   "kind": "scene_mid",
+   "scene": "scene_001",
+   "mean_luma": 45.0,
+   "stage_std": 66.08
+  },
+  {
+   "t": 2.233,
+   "kind": "scene_exit",
+   "scene": "scene_001",
+   "mean_luma": 45.3,
+   "stage_std": 66.38
+  },
+  {
+   "t": 2.583,
+   "kind": "scene_entrance",
+   "scene": "scene_002",
+   "mean_luma": 30.6,
+   "stage_std": 52.87
+  },
+  {
+   "t": 5.15,
+   "kind": "scene_mid",
+   "scene": "scene_002",
+   "mean_luma": 20.1,
+   "stage_std": 17.23
+  },
+  {
+   "t": 7.667,
+   "kind": "scene_exit",
+   "scene": "scene_002",
+   "mean_luma": 20.3,
+   "stage_std": 21.73
+  },
+  {
+   "t": 8.017,
+   "kind": "scene_entrance",
+   "scene": "scene_003",
+   "mean_luma": 20.2,
+   "stage_std": 8.04
+  },
+  {
+   "t": 9.833,
+   "kind": "scene_mid",
+   "scene": "scene_003",
+   "mean_luma": 22.2,
+   "stage_std": 14.1
+  },
+  {
+   "t": 11.6,
+   "kind": "scene_exit",
+   "scene": "scene_003",
+   "mean_luma": 23.9,
+   "stage_std": 33.18
+  },
+  {
+   "t": 11.95,
+   "kind": "scene_entrance",
+   "scene": "scene_004",
+   "mean_luma": 21.4,
+   "stage_std": 14.63
+  },
+  {
+   "t": 14.35,
+   "kind": "scene_mid",
+   "scene": "scene_004",
+   "mean_luma": 23.4,
+   "stage_std": 40.49
+  },
+  {
+   "t": 16.7,
+   "kind": "scene_exit",
+   "scene": "scene_004",
+   "mean_luma": 23.7,
+   "stage_std": 40.34
+  },
+  {
+   "t": 17.05,
+   "kind": "scene_entrance",
+   "scene": "scene_005",
+   "mean_luma": 21.1,
+   "stage_std": 14.65
+  },
+  {
+   "t": 18.367,
+   "kind": "scene_mid",
+   "scene": "scene_005",
+   "mean_luma": 22.9,
+   "stage_std": 25.48
+  },
+  {
+   "t": 19.633,
+   "kind": "scene_exit",
+   "scene": "scene_005",
+   "mean_luma": 22.6,
+   "stage_std": 22.78
+  },
+  {
+   "t": 19.983,
+   "kind": "scene_entrance",
+   "scene": "scene_006",
+   "mean_luma": 24.3,
+   "stage_std": 21.63
+  },
+  {
+   "t": 21.267,
+   "kind": "scene_mid",
+   "scene": "scene_006",
+   "mean_luma": 29.3,
+   "stage_std": 60.18
+  },
+  {
+   "t": 21.8,
+   "kind": "beat_boundary",
+   "scene": "scene_006",
+   "mean_luma": 34.0,
+   "stage_std": 65.71
+  },
+  {
+   "t": 22.5,
+   "kind": "scene_exit",
+   "scene": "scene_006",
+   "mean_luma": 42.6,
+   "stage_std": 66.26
+  },
+  {
+   "t": 22.6,
+   "kind": "final_frame",
+   "scene": "",
+   "mean_luma": 38.4,
+   "stage_std": 66.39
+  }
+ ],
+ "issues": [],
+ "layout_order": [
+  "hookBold",
+  "terminal",
+  "splitCompare",
+  "steps",
+  "codeBlock",
+  "outroCTA",
+  "loop"
+ ],
+ "contact_sheet": "/home/user/automated-videos/data/jobs/61c97bf927f5/qa/contact_sheet.jpg"
+}

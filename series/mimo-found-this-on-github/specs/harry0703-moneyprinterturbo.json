@@ -1,0 +1,255 @@
+{
+  "series": "mimo-found-this-on-github",
+  "repository": "harry0703/MoneyPrinterTurbo",
+  "title": "This GitHub repo turns a topic into a video",
+  "cover_headline": [
+    "TOPIC IN.",
+    "VIDEO OUT."
+  ],
+  "category": "AI video",
+  "mascot_expression": "surprised",
+  "project_visual": "phone-fan",
+  "project_visual_assets": {
+    "frames": [
+      "series/mimo-found-this-on-github/episode-001/demo-coffee.jpg",
+      "series/mimo-found-this-on-github/episode-001/demo-robotics.jpg",
+      "series/mimo-found-this-on-github/episode-001/demo-creative.jpg"
+    ]
+  },
+  "repo_card": {
+    "description": "Give it a topic (with your own AI key) or a script, and it builds the footage, voice, subtitles, music and edit of a short video.",
+    "language": "Python",
+    "license": "MIT"
+  },
+  "verification": {
+    "checked": "2026-10-16",
+    "commit": "c3634de",
+    "version": "1.3.8 (pyproject.toml)",
+    "license": "MIT (LICENSE)",
+    "method": "Cloned the repository, read README-en.md, LICENSE, requirements.txt, cli.py and app/services; installed requirements.txt in an isolated venv (Python 3.13; pyproject requires >= 3.11); ran the unmodified CLI end to end; ran the Streamlit WebUI on 127.0.0.1 and screenshotted it with headless Chromium.",
+    "run_command": "python cli.py --video-script \"<the 3-sentence fractal script>\" --video-terms mandelbrot,fractal --video-source local --video-materials fractal_a.mp4,fractal_b.mp4,fractal_c.mp4 --video-concat-mode sequential --video-clip-duration 4 --voice-name kokoro:af_heart --video-aspect 9:16 --subtitle-enabled --font-size 78 --subtitle-background-enabled --rounded-subtitle-background --bgm-type random",
+    "run_result": "exit 0; log stages: generating audio -> kokoro tts succeeded -> generating subtitle -> subtitle file created -> preprocess local materials -> combining video -> generating video -> finished, generated 1 videos; output 1080x1920 H.264/AAC, 10.0 s, 4 subtitle cues; the bundled background track fills the 3 pauses of the voice-only track.",
+    "environment_limits": [
+      "Edge TTS, Hugging Face (Whisper models) and stock-footage APIs are not reachable from the build environment, and no paid LLM / footage API was used.",
+      "Voice: MPT's own [kokoro] provider (OpenAI-compatible /v1/audio/speech) pointed at a local 127.0.0.1:8880 server backed by Kokoro-82M via kokoro-onnx, standing in for remsky/Kokoro-FastAPI. MPT's code was not modified.",
+      "Footage: original Mandelbrot zoom clips rendered with ffmpeg (no stock footage), passed with --video-source local.",
+      "Script: supplied with --video-script, so the LLM script step was skipped (that feature is verified in source only).",
+      "Not tested: Windows / macOS (README lists Windows, macOS, Linux; the run was on Linux), GPU, Docker, the API server, uploads."
+    ],
+    "sources": [
+      "https://github.com/harry0703/MoneyPrinterTurbo (README-en.md, LICENSE, requirements.txt, pyproject.toml)",
+      "Official demo videos linked from README-en.md ('Video Demos'), hosted at github.com/harry0703/mpt-assets releases: 09-en-portrait-future-robotics, 13-en-portrait-creative-work, 15-en-portrait-coffee-science",
+      "cli.py (--video-script skips LLM script generation; --video-source local; --voice-name; subtitle options)",
+      "app/services/task.py:643 generate_subtitle",
+      "app/services/voice.py:2789 kokoro_tts, :3658 create_subtitle, :1525 azure_tts_v1",
+      "app/services/video.py:877 get_bgm_file, :965 combine_videos, :1558 generate_video",
+      "app/services/llm.py:880 generate_script, :1009 generate_terms",
+      "app/services/material.py:339 search_videos_pexels, :445 search_videos_pixabay",
+      "app/controllers/v1/video.py:212 POST /videos; webui/Main.py"
+    ],
+    "showcase_note": "The videos shown are the project's own published examples (made by the maintainer with MoneyPrinterTurbo; stock footage). They are shown muted, tagged OFFICIAL DEMO and credited in the caption. mpt-assets has no stated licence: confirm reuse terms with the maintainer before publishing."
+  },
+  "verified_features": [
+    {
+      "id": "footage",
+      "label": "FOOTAGE",
+      "status": "verified-source",
+      "claim": "Searches stock-footage libraries (Pexels, Pixabay and others) for clips that match the script and downloads them.",
+      "evidence": "app/services/material.py:339 search_videos_pexels, :445 search_videos_pixabay, :2134 download_videos; visible in the official demos (not run here: stock APIs blocked)"
+    },
+    {
+      "id": "voice",
+      "label": "VOICE",
+      "status": "verified-run",
+      "claim": "Turns the script into a voice-over (here through its Kokoro provider; Edge, Azure and other voices in source).",
+      "evidence": "run: 'kokoro tts succeeded' -> audio.mp3; app/services/voice.py:2789 kokoro_tts, :1525 azure_tts_v1"
+    },
+    {
+      "id": "subtitles",
+      "label": "SUBTITLES",
+      "status": "verified-run",
+      "claim": "Writes sentence-timed subtitles and burns them into the video.",
+      "evidence": "run: subtitle.srt with 4 cues, visible in final-1.mp4; app/services/task.py:643, voice.py:3658"
+    },
+    {
+      "id": "music",
+      "label": "MUSIC",
+      "status": "verified-run",
+      "claim": "Mixes a background track under the voice.",
+      "evidence": "run: --bgm-type random; final mix has no silences where the voice-only track has 3; app/services/video.py:877 get_bgm_file"
+    },
+    {
+      "id": "edit",
+      "label": "EDIT",
+      "status": "verified-run",
+      "claim": "Cuts and fits the clips to a 1080x1920 vertical video that matches the voice length.",
+      "evidence": "run: 'combining video' / 'generating video' -> final-1.mp4 1080x1920 10.0 s; app/services/video.py:965 combine_videos, :1558 generate_video"
+    },
+    {
+      "id": "script",
+      "label": "SCRIPT",
+      "status": "verified-source",
+      "claim": "Can write the script (and footage keywords) from a topic using an LLM provider you configure with your own API key.",
+      "evidence": "app/services/llm.py:880 generate_script, :1009 generate_terms; WebUI 'Generate Script & Keywords with AI' button (screenshot)"
+    },
+    {
+      "id": "interfaces",
+      "label": "WEB UI · CLI · API",
+      "status": "verified-run",
+      "claim": "Has a web UI, a command line and an HTTP API; runs on your own machine.",
+      "evidence": "WebUI run and screenshotted on 127.0.0.1:8501; cli.py run; app/controllers/v1/video.py:212 POST /videos (source)"
+    },
+    {
+      "id": "local_llm",
+      "label": "LOCAL MODEL",
+      "status": "verified-source",
+      "claim": "Script writing can use your own API key for one of ~37 LLM providers (OpenAI, Gemini, DeepSeek, Anthropic, …) or a local model through Ollama.",
+      "evidence": "app/models/llm_provider.py LLM_PROVIDER_REGISTRY (openai, gemini, deepseek, anthropic, ollama, …); app/services/llm.py:880 generate_script"
+    },
+    {
+      "id": "oss",
+      "label": "OPEN SOURCE",
+      "status": "verified-source",
+      "claim": "MIT licensed, Python.",
+      "evidence": "LICENSE (MIT); pyproject.toml license = MIT, requires-python >= 3.11"
+    }
+  ],
+  "narration": {
+    "hook": "This GitHub repo turns a topic into a finished video.",
+    "discovery": "It's called MoneyPrinterTurbo.",
+    "demo": "Give it a topic. It writes the script, finds footage, adds voice and subtitles, then edits the video.",
+    "tech": "It's open source. Use your own AI key, or a local model.",
+    "payoff": "Would you let AI make your next Reel? Follow Mimo for more GitHub discoveries."
+  },
+  "emphasis": [
+    "GitHub",
+    "topic",
+    "video.",
+    "MoneyPrinterTurbo.",
+    "script,",
+    "footage,",
+    "voice",
+    "subtitles,",
+    "open",
+    "source.",
+    "AI",
+    "Reel?"
+  ],
+  "pacing": {
+    "target_s": 24.0
+  },
+  "flow": [
+    {
+      "label": "OPEN SOURCE",
+      "sub": "MIT · Python",
+      "feature": "oss"
+    },
+    {
+      "label": "YOUR AI KEY",
+      "sub": "or a local model (Ollama)",
+      "feature": "local_llm"
+    },
+    {
+      "label": "FINISHED VIDEO",
+      "sub": "voice · subtitles · 9:16",
+      "feature": "edit"
+    }
+  ],
+  "demo": {
+    "status": "project-showcase",
+    "tag": "OFFICIAL MPT DEMO",
+    "notes": [
+      "Every video shown is an official MoneyPrinterTurbo demo from the project's README (muted).",
+      "The topic card shows the demo's published title ('The Future of Everyday Robotics'), labelled as such; the exact input the maintainer used is not published.",
+      "The stage list mirrors MPT's pipeline stages (cli.py _PIPELINE_STAGES: script, terms, audio, subtitle, materials, video), ticking on the narration; it is an illustration, not a capture of that run.",
+      "Voice, subtitles, music and editing were also verified by running MoneyPrinterTurbo v1.3.8 locally; script writing and stock-footage search are verified in source only."
+    ],
+    "hook": {
+      "panels": [
+        {
+          "kind": "video",
+          "src": "series/mimo-found-this-on-github/episode-001/demo-robotics.mp4",
+          "label": "OUTPUT",
+          "startFrom": 0.0
+        },
+        {
+          "kind": "video",
+          "src": "series/mimo-found-this-on-github/episode-001/demo-coffee.mp4",
+          "label": "OUTPUT",
+          "startFrom": 0.5
+        }
+      ],
+      "labels": []
+    },
+    "demo": {
+      "input": {
+        "label": "TOPIC",
+        "text": "The future of everyday robotics",
+        "note": "title of the official demo"
+      },
+      "output": {
+        "kind": "video",
+        "src": "series/mimo-found-this-on-github/episode-001/demo-robotics.mp4",
+        "label": "OUTPUT",
+        "startFrom": 1.0
+      },
+      "labels": [
+        {
+          "text": "SCRIPT",
+          "feature": "script",
+          "at": 7
+        },
+        {
+          "text": "FOOTAGE",
+          "feature": "footage",
+          "at": 9
+        },
+        {
+          "text": "VOICE",
+          "feature": "voice",
+          "at": 11
+        },
+        {
+          "text": "SUBTITLES",
+          "feature": "subtitles",
+          "at": 13
+        },
+        {
+          "text": "EDIT",
+          "feature": "edit",
+          "at": 15
+        }
+      ]
+    },
+    "payoff": {
+      "question": "WOULD YOU LET AI MAKE YOUR NEXT REEL?",
+      "replay_from": 0,
+      "panel": {
+        "kind": "video",
+        "src": "series/mimo-found-this-on-github/episode-001/demo-creative.mp4",
+        "label": "OUTPUT",
+        "startFrom": 5.0
+      }
+    }
+  },
+  "caption": {
+    "hook": "This GitHub repo turns a topic into a finished vertical video",
+    "body": "MoneyPrinterTurbo writes the script, finds stock footage, adds voice, subtitles and music, and edits it. Open source (MIT): bring your own AI key or run a local model.\n\nClips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.",
+    "question": "Would you let AI make your next Reel?"
+  },
+  "hashtags": [
+    "#AIVideo",
+    "#Python",
+    "#ContentCreation"
+  ],
+  "media_sources": {
+    "series/mimo-found-this-on-github/episode-001/demo-robotics.mp4": "https://github.com/harry0703/mpt-assets/releases/download/assets/09-en-portrait-future-robotics.mp4",
+    "series/mimo-found-this-on-github/episode-001/demo-coffee.mp4": "https://github.com/harry0703/mpt-assets/releases/download/assets/15-en-portrait-coffee-science.mp4",
+    "series/mimo-found-this-on-github/episode-001/demo-creative.mp4": "https://github.com/harry0703/mpt-assets/releases/download/assets/13-en-portrait-creative-work.mp4"
+  },
+  "hook_headline": [
+    "THIS GITHUB REPO",
+    "TURNS A TOPIC",
+    "INTO A VIDEO."
+  ]
+}

@@ -38,7 +38,8 @@
   "music": true,
   "formats": [
     "roundup",
-    "story"
+    "story",
+    "vibe_coding"
   ],
   "story_points": 4,
   "roundup_size": 4,
@@ -72,5 +73,71 @@
       "min_stars": 300,
       "must": "agent"
     }
-  ]
+  ],
+  "production": {
+    "mode": "local",
+    "quality": "premium",
+    "target_duration_seconds": 40,
+    "theme": "fieldnotes-premium",
+    "character": "on",
+    "style": "premium"
+  },
+  "creative_director": {
+    "provider": "ollama",
+    "preferred_claude_model": "opus-5.5",
+    "fallback_provider": "ollama",
+    "max_revisions": 2,
+    "max_output_tokens": 12000,
+    "effort": "medium"
+  },
+  "cinematic": {
+    "enabled": true,
+    "provider": "higgsfield_mcp",
+    "application": "",
+    "model_label": "",
+    "max_scenes": 2,
+    "max_duration_seconds": 8,
+    "cache_assets": true,
+    "usd_per_second_upper_bound": null,
+    "mcp_model": "seedance_2_0",
+    "mcp_params": {
+      "mode": "fast",
+      "resolution": "720p",
+      "generate_audio": false
+    }
+  },
+  "budget": {
+    "allow_paid_generation": false,
+    "approval_policy": "explicit",
+    "on_missing_approval": "fallback",
+    "max_usd_per_video": 1.0,
+    "max_usd_per_day": 5.0,
+    "max_claude_calls_per_video": 3,
+    "max_higgsfield_scenes": 2,
+    "max_higgsfield_duration_seconds": 8
+  },
+  "quality_control": {
+    "enabled": true,
+    "max_repairs": 2,
+    "require_technical_pass": true
+  },
+  "narration": {
+    "engine": "auto",
+    "espeak_voice": "en-us",
+    "pronunciations": {
+      "Kokoro": "Ko-ko-ro",
+      "Remotion": "Ree-motion"
+    },
+    "expand_acronyms": true
+  },
+  "renderer": {
+    "browser_executable": "",
+    "concurrency": 2,
+    "timeout_seconds": 1800
+  },
+  "brand_profile": {
+    "wordmark": "FIELDNOTES",
+    "public_character_name": null,
+    "cta_dm_delivery_enabled": false
+  }
 }

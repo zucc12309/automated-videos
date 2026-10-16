@@ -1,0 +1,155 @@
+{
+  "schema_version": "2.0",
+  "mode": "hybrid",
+  "dry_run": false,
+  "sources": [],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Coding agents can plan a change, edit files and run tests.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "Agent output is only as reliable as the tests and review around it.",
+      "source_ids": [],
+      "status": "interpretation",
+      "note": ""
+    }
+  ],
+  "director": {
+    "provider": "claude-code-interactive",
+    "model": "claude-opus-5-5 (interactive Claude Code session)",
+    "interactive": true,
+    "note": "Authored during development in an interactive session; footage requests rendered by the MOCK cinematic provider.",
+    "supplied": true
+  },
+  "decisions": [
+    {
+      "stage": "direction",
+      "provider": "claude-code-interactive",
+      "used": true,
+      "note": "storyboard supplied by caller",
+      "at": 1792148524.2719777
+    },
+    {
+      "stage": "cinematic",
+      "scene": "scene_001",
+      "used": true,
+      "cached": true,
+      "provider": "mock",
+      "mock": true,
+      "at": 1792148524.278043
+    },
+    {
+      "stage": "cinematic",
+      "scene": "scene_004",
+      "used": true,
+      "cached": true,
+      "provider": "mock",
+      "mock": true,
+      "at": 1792148524.278865
+    },
+    {
+      "stage": "narration",
+      "engine": "kokoro_onnx",
+      "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+      "at": 1792148524.369798
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -0.92,
+      "basis": "reference bed level",
+      "at": 1792148538.21027
+    },
+    {
+      "stage": "render",
+      "concurrency": 2,
+      "memory_available_gb": 13.57,
+      "at": 1792148538.333277
+    }
+  ],
+  "model": "claude-opus-5-5 (interactive Claude Code session)",
+  "voice_model": "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)",
+  "voice": "am_adam",
+  "voice_engines": [
+    "kokoro_onnx"
+  ],
+  "caption_timing": [
+    "energy_snapped"
+  ],
+  "narration_language": "English (US)",
+  "visual_style": "premium",
+  "theme": "fieldnotes-premium",
+  "variant": {
+    "seed": "v22-D",
+    "palette": "",
+    "background": "flat",
+    "temperament": "editorial",
+    "captions": "bold",
+    "transitions": [
+      "cut",
+      "push",
+      "mask"
+    ],
+    "outfit": "#c2410c",
+    "hair": "#7c4a2d",
+    "music": {
+      "progression": 2,
+      "bpm": 92
+    },
+    "camera": 1.0,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "layouts": [
+    "hookBold",
+    "steps",
+    "codeBlock",
+    "cinematic",
+    "splitCompare",
+    "warningCard",
+    "outroCTA",
+    "loop"
+  ],
+  "scene_transitions": "beat-level 9-frame transitions; scenes butt-joined",
+  "assets": [
+    {
+      "scene": "scene_001",
+      "kind": "cinematic",
+      "path": "jobs/729055280714/cinematic/scene_001.mp4",
+      "sha256": "f83c988f1561eb1235107afd778f950eebe2b7d6e229254d5c56ac54d610bde1",
+      "provider": "mock",
+      "provenance": {
+        "cache_key": "a42a9b6a384e7896d747175e271289897b32946136393272384e9ca5165707da",
+        "remote_id": "mock_a42a9b6a384e7896",
+        "cached": true,
+        "duration": 4.0,
+        "mock": true,
+        "generated_at": 1792132135.493678
+      }
+    },
+    {
+      "scene": "scene_004",
+      "kind": "cinematic",
+      "path": "jobs/729055280714/cinematic/scene_004.mp4",
+      "sha256": "4ab7abd6d65827a55fdd11b82a355e5e7dcbfef408e6fc6d6535dfc58d0978b7",
+      "provider": "mock",
+      "provenance": {
+        "cache_key": "880920c8afaab76c13d57796a720da464f92fccc4aaa4da631deec777fb0aa8c",
+        "remote_id": "mock_880920c8afaab76c",
+        "cached": true,
+        "duration": 4.0,
+        "mock": true,
+        "generated_at": 1792132151.2119524
+      }
+    }
+  ],
+  "music": "procedural bed generated locally (no third-party audio)",
+  "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
+  "created_at": 1792148680.1995938,
+  "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
+}

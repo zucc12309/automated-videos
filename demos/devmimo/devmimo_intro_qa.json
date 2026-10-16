@@ -1,0 +1,440 @@
+{
+ "video": "devmimo_intro.mp4",
+ "logo": "devmimo_logo.mp4",
+ "seconds": 26.0,
+ "frames": 780,
+ "voice": {
+  "engine": "kokoro_onnx",
+  "voice": "am_adam @ 0.95"
+ },
+ "music_bed_gain_db": -1.54,
+ "scenes": [
+  {
+   "id": "hook",
+   "start_s": 0.0,
+   "seconds": 3.17,
+   "speech_s": 2.665
+  },
+  {
+   "id": "reveal",
+   "start_s": 3.17,
+   "seconds": 2.43,
+   "speech_s": 0.876
+  },
+  {
+   "id": "build",
+   "start_s": 5.6,
+   "seconds": 5.7,
+   "speech_s": 5.18
+  },
+  {
+   "id": "topics",
+   "start_s": 11.3,
+   "seconds": 5.0,
+   "speech_s": 4.733
+  },
+  {
+   "id": "nofluff",
+   "start_s": 16.3,
+   "seconds": 4.23,
+   "speech_s": 3.192
+  },
+  {
+   "id": "outro",
+   "start_s": 20.53,
+   "seconds": 5.47,
+   "speech_s": 3.717
+  }
+ ],
+ "sfx_cues": 29,
+ "summary": {
+  "passed": true,
+  "mandatory_failed": [],
+  "advisories": [],
+  "checks": 39,
+  "visual_review": "reviewed"
+ },
+ "checks": [
+  {
+   "group": "technical",
+   "check": "readable",
+   "passed": true,
+   "detail": "ffprobe parsed the container",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "resolution",
+   "passed": true,
+   "detail": "1080x1920 (want 1080x1920)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "aspect_ratio",
+   "passed": true,
+   "detail": "9:16",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "frame_rate",
+   "passed": true,
+   "detail": "30.000 fps (want 30)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "duration",
+   "passed": true,
+   "detail": "26.00s (expected 26.00s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "audio_present",
+   "passed": true,
+   "detail": "aac 48000",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "decode_integrity",
+   "passed": true,
+   "detail": "clean full decode",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "black_frames",
+   "passed": true,
+   "detail": "none",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "frozen_frames",
+   "passed": true,
+   "detail": "none",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "unexpected_silence",
+   "passed": true,
+   "detail": "none",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "technical",
+   "check": "target_length",
+   "passed": true,
+   "detail": "26.00s (target 26.0 \u00b10.5)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "pacing",
+   "check": "speaking_rate",
+   "passed": true,
+   "detail": "159 wpm while speaking (54 words / 20.36s of measured audio; target 145-165); 125 wpm over the whole runtime",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "pacing",
+   "check": "end_card_hold",
+   "passed": true,
+   "detail": "logo complete for 3.47s, CTA on screen 3.93s, held 1.60s after the last word (\u2265 1.5s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:hook",
+   "passed": true,
+   "detail": "95 frames for 81 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:reveal",
+   "passed": true,
+   "detail": "73 frames for 37 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:build",
+   "passed": true,
+   "detail": "171 frames for 158 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:topics",
+   "passed": true,
+   "detail": "150 frames for 145 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:nofluff",
+   "passed": true,
+   "detail": "127 frames for 99 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "timing",
+   "check": "scene_fits_narration:outro",
+   "passed": true,
+   "detail": "164 frames for 116 frames of lead + speech",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "loudness",
+   "passed": true,
+   "detail": "-14.5 vs reference -14.1 LUFS (\u00b11.0)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "true_peak",
+   "passed": true,
+   "detail": "-1.2 dBTP (\u2264 -1.0)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "music_bed_level",
+   "passed": true,
+   "detail": "bed -21.4 vs reference -22.2 dB under speech (\u00b13.0)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "music_bed_warmth",
+   "passed": true,
+   "detail": "bed centroid 313 vs reference 355 Hz (\u00b170.0)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "voice_pitch",
+   "passed": true,
+   "detail": "median F0 125.0 vs reference 118.5 Hz; range 87.0\u2013153.6 vs 93.0\u2013144.1",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "speech_share",
+   "passed": true,
+   "detail": "0.698 vs reference 0.656 of the runtime is speech (\u00b10.08)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "pause_length",
+   "passed": true,
+   "detail": "median pause 0.28 vs reference 0.32 s (\u00b10.08)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "group": "audio",
+   "check": "voice_tone",
+   "passed": true,
+   "detail": "largest band difference: air +2.9 dB (\u00b13.0); render {'low': -4.0, 'mid': -3.5, 'presence': -11.4, 'air': -13.8} vs {'low': -4.1, 'mid': -2.8, 'presence': -12.7, 'air': -16.7}",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "hook",
+   "check": "frame0_contrast",
+   "passed": true,
+   "detail": "luma p99-p5 spread 230 on frame 0 (>120 = bold readable content)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "hook",
+   "check": "frame0_has_type",
+   "passed": true,
+   "detail": "3.8% of frame 0 is bright type/graphics",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "motion",
+   "check": "motion_share",
+   "passed": true,
+   "detail": "82% of 0.25 s steps change visibly",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "motion",
+   "check": "longest_static",
+   "passed": true,
+   "detail": "longest static stretch 0.75s (\u2264 1.5 s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "brand",
+   "check": "palette_share",
+   "passed": true,
+   "detail": "100.0% of sampled pixels are ground / ink / accent (FIELDNOTES tokens) or their blends",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "readable",
+   "passed": true,
+   "detail": "ffprobe parsed the container",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "resolution",
+   "passed": true,
+   "detail": "1080x1920 (want 1080x1920)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "frame_rate",
+   "passed": true,
+   "detail": "30.000 fps (want 30)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "duration",
+   "passed": true,
+   "detail": "5.00s (expected 5.00s)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "audio_present",
+   "passed": true,
+   "detail": "aac 48000",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "decode_integrity",
+   "passed": true,
+   "detail": "clean full decode",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "group": "logo",
+   "check": "black_frames",
+   "passed": true,
+   "detail": "none",
+   "mandatory": true,
+   "basis": "deterministic"
+  }
+ ],
+ "visual_review": {
+  "status": "reviewed",
+  "basis": "agent inspection of extracted frames (contact sheet + 28 frames at scene boundaries and key words); not computed",
+  "frames_inspected_s": [
+   0.0,
+   1.0,
+   2.55,
+   2.7,
+   2.9,
+   3.1,
+   3.6,
+   4.4,
+   5.0,
+   5.3,
+   6.5,
+   9.5,
+   10.8,
+   11.3,
+   12.5,
+   14.4,
+   15.8,
+   16.4,
+   18.0,
+   19.6,
+   20.6,
+   21.5,
+   23.0,
+   24.5,
+   25.9
+  ],
+  "findings": [
+   {
+    "frame_s": 1.0,
+    "ok": true,
+    "note": "Hook: counter hits 10,000 on 'tutorials' within the first second."
+   },
+   {
+    "frame_s": 2.7,
+    "ok": true,
+    "note": "Fixed: after tightening, STILL STUCK? was on screen ~0.27 s before the cut; the hook tail is now 0.45 s so the punch word reads for ~0.6 s."
+   },
+   {
+    "frame_s": 3.6,
+    "ok": true,
+    "note": "Reveal starts 0.2 s sooner (terminal bursts 6 frames before 'Meet'); total reveal 2.4 s instead of 3.6 s; character still lands, blinks and waves."
+   },
+   {
+    "frame_s": 12.5,
+    "ok": true,
+    "note": "Topics move faster (5.0 s for three panels); each panel lands on its spoken word."
+   },
+   {
+    "frame_s": 19.6,
+    "ok": true,
+    "note": "Terminal checklist stays readable: all three lines plus '$ ship it' on screen ~1 s after 'works'."
+   },
+   {
+    "frame_s": 25.9,
+    "ok": true,
+    "note": "Logo complete for 3.6 s, Follow along CTA on screen 4.0 s, 1.7 s hold after the last word."
+   }
+  ],
+  "known_limits": [
+   "The on-screen name 'Mimo' comes from the DevMimo brief; identity.json public_name is still null, so other formats never show a name.",
+   "Word timings inside a sentence are estimated (kokoro-onnx returns no timestamps); sentence starts are exact."
+  ],
+  "revision": "3: Instagram pacing pass (30.03 s -> 26.0 s) on the brand character + FIELDNOTES premium colours"
+ },
+ "basis": "deterministic checks via ffmpeg/numpy; visual_review is a human/agent inspection of extracted frames, recorded separately"
+}

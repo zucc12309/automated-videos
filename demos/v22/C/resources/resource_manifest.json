@@ -1,0 +1,21 @@
+{
+ "keyword": "GUIDE",
+ "secondary": "Get the step-by-step guide",
+ "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+ "dm_promised_in_video": false,
+ "items": [
+  {
+   "type": "source",
+   "name": "Model Context Protocol: architecture overview",
+   "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+   "verified_by": "source src1"
+  }
+ ],
+ "files": [
+  "example_code/example.txt",
+  "guide.md",
+  "dm_message.txt",
+  "resource_manifest.json"
+ ],
+ "note": "No automatic DM delivery is configured. Send dm_message.txt manually to people who comment the keyword."
+}

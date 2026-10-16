@@ -45,7 +45,8 @@ export const Captions: React.FC<{scene: Scene; beat?: Beat; local: number; P: Pa
   const emphasis = (scene.emphasis ?? '').toLowerCase().split(/\s+/);
   const style = v.captions;
   const pop = interpolate(t - words[a].s, [0, .12], [.9, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  return <div style={{position: 'absolute', left: SAFE.left, right: 1080 - SAFE.right, top: CAPTION_Y, display: 'flex', justifyContent: 'center'}}>
+  // Anchored to the safe-area bottom so a two-line chunk grows upward and never enters the platform UI zone.
+  return <div style={{position: 'absolute', left: SAFE.left, right: 1080 - SAFE.right, bottom: 1920 - SAFE.bottom, minHeight: SAFE.bottom - CAPTION_Y, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
     <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: style === 'bold' ? 16 : 12, padding: style === 'pill' ? '14px 26px' : 0, borderRadius: 30,
       background: style === 'pill' ? (P.dark ? '#000000a8' : '#fffdf8e8') : undefined, transform: `scale(${pop})`}}>
       {words.slice(a, b + 1).map((w, k) => {

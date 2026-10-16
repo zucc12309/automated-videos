@@ -1,0 +1,51 @@
+{
+ "available": true,
+ "basis": "deterministic pixel statistics; taste judgments need human review of the side-by-side sheet",
+ "reference": {
+  "source": "Reference A (FIELDNOTES reel supplied by the owner)",
+  "motion_mean_diff": 1.29,
+  "duration_s": 40.0,
+  "ground_rgb": [
+   11,
+   13,
+   16
+  ],
+  "mean_luma": 19.5,
+  "ink_share": 0.0061,
+  "accent_share": 0.0016,
+  "change_events": 13,
+  "changes_per_10s": 3.25
+ },
+ "render": {
+  "motion_mean_diff": 2.38,
+  "duration_s": 25.28,
+  "ground_rgb": [
+   11,
+   13,
+   16
+  ],
+  "mean_luma": 23.3,
+  "ink_share": 0.0203,
+  "accent_share": 0.0009,
+  "change_events": 9,
+  "changes_per_10s": 3.56
+ },
+ "checks": [
+  {
+   "check": "ground_colour",
+   "passed": true,
+   "detail": "max channel delta 0 (\u2264 18)"
+  },
+  {
+   "check": "luminance",
+   "passed": true,
+   "detail": "mean luma 23.3 vs reference 19.5 (ratio 1.19)"
+  },
+  {
+   "check": "change_rate",
+   "passed": true,
+   "detail": "3.56 vs reference 3.25 visual changes per 10 s (ratio 1.10); motion 2.38 vs 1.29"
+  }
+ ],
+ "side_by_side": "/home/user/automated-videos/data/jobs/729055280714/qa/reference_side_by_side.jpg"
+}

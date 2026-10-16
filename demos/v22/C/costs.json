@@ -1,0 +1,31 @@
+{
+  "job_id": "41a14bee4d0f",
+  "total_external_usd": 0,
+  "reserved_open_usd": 0,
+  "reservations": [],
+  "pricing_source": "Anthropic API list prices as cached 2026-10-06; verify at https://www.anthropic.com/pricing",
+  "caps": {
+    "per_video": 1.0,
+    "per_day": 5.0
+  },
+  "spent_today_usd": 0.8,
+  "estimate": {
+    "job_id": "41a14bee4d0f",
+    "mode": "local",
+    "claude_actual_usd": 0,
+    "cinematic": [],
+    "cinematic_usd": 0,
+    "uncertainty": "no paid generation planned",
+    "local_only": true
+  },
+  "local_timings_seconds": {
+    "creative_direction": 0.01,
+    "narration": 17.03,
+    "render": 141.28,
+    "qa": 39.08,
+    "total_wall_clock": 197.41
+  },
+  "cache_hits": 0,
+  "claude_usage": [],
+  "note": "Local stages (Ollama, Kokoro/espeak, Remotion, FFmpeg) have no external cost."
+}

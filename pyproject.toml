@@ -4,10 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "local-video-mcp"
-version = "0.1.0"
+version = "0.2.0"
 description = "Local English explainer video production over MCP"
 requires-python = ">=3.12,<3.13"
-dependencies = ["mcp>=1.12,<2", "pydantic>=2,<3", "httpx", "feedparser", "kokoro", "soundfile"]
+dependencies = ["mcp>=1.12,<2", "pydantic>=2,<3", "httpx", "feedparser", "kokoro", "soundfile", "numpy"]
+
+[project.optional-dependencies]
+# CLAUDE / HYBRID creative direction (runtime API path)
+claude = ["anthropic>=1.15,<2"]
+# HYBRID cinematic footage via the official Higgsfield SDK
+higgsfield = ["higgsfield-client>=0.2,<0.3"]
+dev = ["pytest"]
 
 [project.scripts]
 local-video-mcp = "video_mcp.server:main"
@@ -15,3 +22,6 @@ local-video = "video_mcp.engine:main"
 
 [tool.setuptools.packages.find]
 include = ["video_mcp*"]
+
+[tool.setuptools.package-data]
+video_mcp = ["data/*.json"]

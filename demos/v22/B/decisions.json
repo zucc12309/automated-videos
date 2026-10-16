@@ -1,0 +1,42 @@
+[
+  {
+    "stage": "script",
+    "provider": "vibe_library",
+    "used": true,
+    "notes": [
+      "curated tip; deterministic storyboard"
+    ]
+  },
+  {
+    "stage": "narration",
+    "engine": "kokoro_onnx",
+    "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+    "at": 1792148696.9419096
+  },
+  {
+    "stage": "music",
+    "style": "warm_pad",
+    "gain_db": -1.68,
+    "basis": "reference bed level",
+    "at": 1792148710.1157358
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 13.57,
+    "at": 1792148710.2392468
+  },
+  {
+    "stage": "music",
+    "style": "warm_pad",
+    "gain_db": -0.95,
+    "basis": "reference bed level",
+    "at": 1792148828.6282873
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 13.52,
+    "at": 1792148828.7524388
+  }
+]

@@ -1,0 +1,87 @@
+{
+ "passed": true,
+ "checks": [
+  {
+   "check": "loudness",
+   "passed": true,
+   "detail": "-14.1 LUFS (target -14.0 \u00b12)",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "check": "true_peak",
+   "passed": true,
+   "detail": "-1.8 dBTP (limit -0.5)",
+   "mandatory": true,
+   "basis": "deterministic"
+  },
+  {
+   "check": "clipping",
+   "passed": true,
+   "detail": "true peak -1.8 dBTP",
+   "mandatory": false,
+   "basis": "deterministic"
+  },
+  {
+   "check": "scene_001_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.865, 'inside_ratio': 0.951} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_002_caption_sync",
+   "passed": false,
+   "detail": "{'covered_speech': 0.786, 'inside_ratio': 0.818} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_003_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.896, 'inside_ratio': 0.834} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_004_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.877, 'inside_ratio': 0.815} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_005_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.926, 'inside_ratio': 0.923} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_006_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.801, 'inside_ratio': 0.875} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  },
+  {
+   "check": "scene_007_caption_sync",
+   "passed": true,
+   "detail": "{'covered_speech': 0.922, 'inside_ratio': 0.887} via energy_snapped",
+   "mandatory": false,
+   "basis": "heuristic"
+  }
+ ],
+ "loudness": {
+  "integrated_lufs": -14.1,
+  "lra": 1.3,
+  "true_peak_dbtp": -1.8
+ },
+ "timing_sources": [
+  "energy_snapped"
+ ],
+ "estimated_timings": true,
+ "engines": [
+  "kokoro_onnx"
+ ]
+}

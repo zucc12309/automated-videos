@@ -1,0 +1,345 @@
+{
+ "series": "Mimo Found This on GitHub",
+ "series_slug": "mimo-found-this-on-github",
+ "episode": 2,
+ "episode_label": "EP. 002",
+ "title": "7 Adobe-style apps rebuilt with AI, and the tool that helps agents understand apps",
+ "format": "reel-v2",
+ "cover_headline": "7 ADOBE APPS. REBUILT WITH AI?",
+ "github_url": "https://github.com/morluto/rea",
+ "repository": "morluto/rea",
+ "repository_description": "One MCP for reverse engineering across binaries, applications, and runtime behavior.",
+ "category": "Reverse engineering",
+ "verified_features": [
+  {
+   "id": "artcraft_apps",
+   "label": "Seven Adobe-style open-source apps",
+   "status": "verified-source",
+   "claim": "ArtCraft publishes seven open-source apps, each described as a clean-room reimplementation of an Adobe app: PhotoCraft (Photoshop), FilmCraft (Premiere Pro), VectorCraft (Illustrator), EffectCraft (After Effects), LightCraft (Lightroom), DesignCraft (InDesign), PdfCraft (Acrobat).",
+   "evidence": "README taglines of github.com/storytold/{photocraft,filmcraft,vectorcraft,effectcraft,lightcraft,designcraft,printcraft} at the commits in verification.artcraft_commits; screenshots are the repos' own docs/images (MIT OR Apache-2.0 per NOTICE / ATTRIBUTION.md)"
+  },
+  {
+   "id": "artcraft_ai",
+   "label": "Built with AI help (developer's statement)",
+   "status": "verified-source",
+   "claim": "The developer told reporters he used Anthropic's Claude to write the apps; every repo ships AGENTS.md / CLAUDE.md guides for AI agents.",
+   "evidence": "PetaPixel 2026-10-07, Notebookcheck, TechRepublic (verification.sources); AGENTS.md and CLAUDE.md in each repo. The repos' READMEs themselves do not state how much was AI-written, so the hook keeps a question mark."
+  },
+  {
+   "id": "mcp_agents",
+   "label": "Plugs into AI coding agents over MCP",
+   "status": "verified-run",
+   "claim": "REA runs as an MCP server that AI coding agents call.",
+   "evidence": "rea --mcp answered initialize + tools/list with 207 tools; an agent then called capture_process_scenario and inspect_with_objdump through it (transcript-trimmed.jsonl). README: setup supports Claude Code, Codex, Cursor, Gemini CLI."
+  },
+  {
+   "id": "no_source",
+   "label": "Works without the source code",
+   "status": "verified-run",
+   "claim": "REA inspected a stripped binary whose source had been deleted before the investigation.",
+   "evidence": "mystery-filter sha256 fa577326…632c, ELF stripped; source removed before the agent started; disasm-main-loop.txt is REA's inspect_with_objdump output"
+  },
+  {
+   "id": "observe",
+   "label": "Observes what an app does",
+   "status": "verified-run",
+   "claim": "capture_process_scenario ran the app and recorded its output and exit.",
+   "evidence": "capture evidence: exit code 0, terminal output 'filtered 600x600 (13600 px locked)' (transcript-trimmed.jsonl, call 1)"
+  },
+  {
+   "id": "inspect",
+   "label": "Inspects compiled code",
+   "status": "verified-run",
+   "claim": "inspect_with_objdump returned the disassembly the agent read the filter's rules from.",
+   "evidence": "disasm-main-loop.txt lines 0x1290–0x1334; findings.md cites each address"
+  },
+  {
+   "id": "trace",
+   "label": "Traces behaviour",
+   "status": "verified-source",
+   "claim": "REA has commands that trace a feature through analysed references and captured behaviour.",
+   "evidence": "rea --help: trace, trace-application-feature, trace-javascript-semantics, capture-process (rea-agents 6.5.0). This episode ran capture_process_scenario, not the trace commands."
+  },
+  {
+   "id": "rebuild",
+   "label": "Helps recreate a specific feature",
+   "status": "verified-run",
+   "claim": "From REA's evidence the agent rewrote the filter; its output matched the original byte for byte.",
+   "evidence": "rebuild.py; cmp original-out.ppm rebuilt-out.ppm: 0 of 1,080,015 bytes differ (both sha256 71d30378…c74c1f)"
+  },
+  {
+   "id": "not_cloner",
+   "label": "Not a one-click cloner",
+   "status": "verified-source",
+   "claim": "REA is an investigation tool; the project does not support copying proprietary software.",
+   "evidence": "DISCLAIMER.md (Responsible use): 'does not support … copying proprietary software or reproducing its protected code and assets'"
+  },
+  {
+   "id": "oss",
+   "label": "Open source (MIT)",
+   "status": "verified-source",
+   "claim": "REA is MIT-licensed.",
+   "evidence": "LICENSE, package.json license MIT"
+  }
+ ],
+ "demonstration": {
+  "status": "captured",
+  "meaning": "a real screen/webcam capture of the project running",
+  "on_screen_tag": "REAL REA RUN",
+  "notes": [
+   "Shock / context / mystery beats show ArtCraft's own published screenshots (MIT OR Apache-2.0; artwork in them is public domain), labelled as open-source recreations, not Adobe.",
+   "Proof / possibility beats show a real REA 6.5.0 investigation captured for this episode: a separate AI agent with only a stripped test binary called REA over MCP and rebuilt the filter; outputs compared byte for byte.",
+   "The test app was written by the DevMimo pipeline for this demo (its source was deleted before the investigation); it is not third-party software.",
+   "REA was not used on ArtCraft or on any Adobe product."
+  ]
+ },
+ "verification": {
+  "repository_commit": "5eaef92 (morluto/rea main, 2026-10-17)",
+  "package": "rea-agents 6.5.0 from registry.npmjs.org",
+  "environment": "Ubuntu 24.04 container, Node 22.22.0, GNU objdump; no Hopper / Ghidra / IDA",
+  "run": "REA's MCP stdio server (rea --mcp) driven over JSON-RPC by a separate AI agent that had only a stripped binary; evidence in series/mimo-found-this-on-github/evidence/episode-002-rea/",
+  "artcraft_commits": {
+   "photocraft": "2a952f1",
+   "vectorcraft": "8bc6532",
+   "filmcraft": "09aaf9b",
+   "effectcraft": "8f02f52",
+   "lightcraft": "f34c7a8",
+   "designcraft": "c2609f9",
+   "printcraft (PdfCraft)": "9e5b70d"
+  },
+  "relationship": "ArtCraft (github.com/storytold) and REA (github.com/morluto/rea) are separate projects by different people. ArtCraft describes its apps as clean-room reimplementations; nothing says REA was used to build them. The reel presents them as two separate discoveries.",
+  "sources": [
+   "https://github.com/morluto/rea (README, DISCLAIMER.md, LICENSE)",
+   "https://github.com/storytold/photocraft and the six sibling repositories (README taglines, NOTICE, ATTRIBUTION.md)",
+   "https://petapixel.com/2026/10/07/someone-rebuilt-free-open-source-versions-of-photoshop-premiere-and-lightroom-using-ai/",
+   "https://www.notebookcheck.net/Photoshop-Premiere-more-Experienced-Rust-developer-recreates-Adobe-suite-with-AI-assistance-as-open-source.1419230.0.html",
+   "https://www.techrepublic.com/article/news-developer-ai-free-adobe-creative-cloud-alternatives/"
+  ]
+ },
+ "source_references": [
+  "https://github.com/morluto/rea (README, DISCLAIMER.md, LICENSE)",
+  "https://github.com/storytold/photocraft and the six sibling repositories (README taglines, NOTICE, ATTRIBUTION.md)",
+  "https://petapixel.com/2026/10/07/someone-rebuilt-free-open-source-versions-of-photoshop-premiere-and-lightroom-using-ai/",
+  "https://www.notebookcheck.net/Photoshop-Premiere-more-Experienced-Rust-developer-recreates-Adobe-suite-with-AI-assistance-as-open-source.1419230.0.html",
+  "https://www.techrepublic.com/article/news-developer-ai-free-adobe-creative-cloud-alternatives/"
+ ],
+ "narration_script": {
+  "shock": "Someone recreated seven Adobe-style apps using AI.",
+  "context": "Photoshop. Premiere. Illustrator. Even After Effects.",
+  "mystery": "And people are rebuilding more software every day.",
+  "discovery": "I found a GitHub project called Reverse Engineer Anything.",
+  "proof": "Connect it to an AI coding agent, and it can investigate how software works, even without the original source code.",
+  "possibility": "It can inspect code, trace behavior, and help recreate specific features.",
+  "question": "But imagine what you could build. What app would you reverse engineer?"
+ },
+ "narration_word_count": 73,
+ "speaking_rate_wpm": 160.1,
+ "word_timing_source": "energy_snapped",
+ "voice": {
+  "engine": "kokoro_onnx",
+  "voice": "am_adam @ 1.0",
+  "speed": 1.0,
+  "speed_search": [
+   {
+    "speed": 1.0,
+    "wpm": 160.1
+   }
+  ]
+ },
+ "duration_s": 31.5,
+ "beats": [
+  {
+   "id": "shock",
+   "start_s": 0.0,
+   "seconds": 3.53
+  },
+  {
+   "id": "context",
+   "start_s": 3.53,
+   "seconds": 4.17
+  },
+  {
+   "id": "mystery",
+   "start_s": 7.7,
+   "seconds": 3.47
+  },
+  {
+   "id": "discovery",
+   "start_s": 11.17,
+   "seconds": 3.6
+  },
+  {
+   "id": "proof",
+   "start_s": 14.77,
+   "seconds": 7.4
+  },
+  {
+   "id": "possibility",
+   "start_s": 22.17,
+   "seconds": 5.27
+  },
+  {
+   "id": "question",
+   "start_s": 27.43,
+   "seconds": 4.07
+  }
+ ],
+ "hook_variants": [
+  {
+   "id": "a",
+   "name": "Curiosity",
+   "narration": "Someone recreated seven Adobe-style apps using AI.",
+   "headline": [
+    "7 ADOBE APPS.",
+    "REBUILT WITH AI?"
+   ],
+   "file": "episode-002-hook-a.mp4",
+   "seconds": 4.7,
+   "loudness": {
+    "integrated_lufs": -14.2,
+    "lra_lu": 1.0,
+    "true_peak_dbtp": -2.0
+   },
+   "caveat": null,
+   "bed_gain_db": -0.27
+  },
+  {
+   "id": "b",
+   "name": "Contrarian",
+   "narration": "People are rebuilding software that used to take entire teams to make.",
+   "headline": [
+    "BIG-TEAM SOFTWARE.",
+    "REBUILT WITH AI?"
+   ],
+   "file": "episode-002-hook-b.mp4",
+   "seconds": 5.37,
+   "loudness": {
+    "integrated_lufs": -14.2,
+    "lra_lu": 1.2,
+    "true_peak_dbtp": -2.0
+   },
+   "caveat": "Framing, not a measured comparison: no team sizes are quoted for Adobe or ArtCraft.",
+   "bed_gain_db": -0.34
+  },
+  {
+   "id": "c",
+   "name": "Discovery",
+   "narration": "There's a GitHub project that helps AI figure out how apps work.",
+   "headline": [
+    "HOW DOES AN APP WORK?",
+    "ASK REA."
+   ],
+   "file": "episode-002-hook-c.mp4",
+   "seconds": 4.8,
+   "loudness": {
+    "integrated_lufs": -14.2,
+    "lra_lu": 0.7,
+    "true_peak_dbtp": -2.0
+   },
+   "caveat": null,
+   "bed_gain_db": -0.46
+  }
+ ],
+ "selected_hook": "a",
+ "instagram_caption": "Someone recreated seven Adobe-style apps using AI. 👀\n\nAnd there's a GitHub project that helps AI agents investigate how software actually works.\n\nMeet REA — Reverse Engineer Anything.\n\nNot a magic app cloner. But a fascinating tool for understanding and rebuilding software behavior.\n\n(The seven apps are ArtCraft's open-source projects, a separate project. In the Reel, an AI agent used REA on a small test app we built, without its source, and rebuilt one feature exactly.)\n\n👾 Mimo Found This on GitHub — EP. 002\n\nRepo: github.com/morluto/rea\n\nWhat app would you reverse engineer?\n\n#GitHub #OpenSource #AIAgents #ReverseEngineering #DevMimo\n",
+ "pinned_comment": "👾 REA repo: github.com/morluto/rea\n\nWhat should Mimo investigate next?",
+ "hashtags": [
+  "#GitHub",
+  "#OpenSource",
+  "#AIAgents",
+  "#ReverseEngineering",
+  "#DevMimo"
+ ],
+ "instagram_previews": [
+  {
+   "label": "hook-0.5s",
+   "t": 0.5,
+   "file": "qa/instagram/hook-0.5s-guides.png"
+  },
+  {
+   "label": "hook-headline",
+   "t": 3.4,
+   "file": "qa/instagram/hook-headline-guides.png"
+  },
+  {
+   "label": "context-header",
+   "t": 6.03,
+   "file": "qa/instagram/context-header-guides.png"
+  },
+  {
+   "label": "mystery-question",
+   "t": 10.97,
+   "file": "qa/instagram/mystery-question-guides.png"
+  },
+  {
+   "label": "repository",
+   "t": 14.57,
+   "file": "qa/instagram/repository-guides.png"
+  },
+  {
+   "label": "demo-disassembly",
+   "t": 18.3,
+   "file": "qa/instagram/demo-disassembly-guides.png"
+  },
+  {
+   "label": "demo-findings",
+   "t": 22.03,
+   "file": "qa/instagram/demo-findings-guides.png"
+  },
+  {
+   "label": "rebuild-match",
+   "t": 27.3,
+   "file": "qa/instagram/rebuild-match-guides.png"
+  },
+  {
+   "label": "cta",
+   "t": 31.4,
+   "file": "qa/instagram/cta-guides.png"
+  }
+ ],
+ "safe_zone": {
+  "note": "Instagram Reels UI margins in px at 1080x1920 (configurable). Critical content stays inside; backgrounds may fill the frame.",
+  "top": 250,
+  "bottom": 400,
+  "left": 60,
+  "right": 180
+ },
+ "publication_status": "draft",
+ "outputs": {
+  "final": "outputs/mimo-found-this-on-github/episode-002/episode-002-final.mp4",
+  "no_music": "outputs/mimo-found-this-on-github/episode-002/episode-002-no-music.mp4",
+  "cover": "outputs/mimo-found-this-on-github/episode-002/episode-002-cover.png",
+  "cover_4x5": "outputs/mimo-found-this-on-github/episode-002/episode-002-cover-4x5.png",
+  "cover_square": "outputs/mimo-found-this-on-github/episode-002/episode-002-cover-square.png",
+  "script": "outputs/mimo-found-this-on-github/episode-002/episode-002-script.md",
+  "caption": "outputs/mimo-found-this-on-github/episode-002/episode-002-caption.md",
+  "research": "outputs/mimo-found-this-on-github/episode-002/episode-002-research.md",
+  "metadata": "outputs/mimo-found-this-on-github/episode-002/episode-002-metadata.json",
+  "qa_report": "outputs/mimo-found-this-on-github/episode-002/episode-002-qa-report.md",
+  "hook_a": "outputs/mimo-found-this-on-github/episode-002/episode-002-hook-a.mp4",
+  "hook_b": "outputs/mimo-found-this-on-github/episode-002/episode-002-hook-b.mp4",
+  "hook_c": "outputs/mimo-found-this-on-github/episode-002/episode-002-hook-c.mp4"
+ },
+ "loudness": {
+  "final": {
+   "integrated_lufs": -14.2,
+   "lra_lu": 2.2,
+   "true_peak_dbtp": -1.9
+  },
+  "no_music": {
+   "integrated_lufs": -14.2,
+   "lra_lu": 2.3,
+   "true_peak_dbtp": -1.8
+  }
+ },
+ "music_bed_gain_db": -0.95,
+ "qa_summary": {
+  "passed": true,
+  "mandatory_failed": [],
+  "advisories": [],
+  "checks": 70,
+  "visual_review": "inspected (agent review of contact sheet, Instagram-overlay previews, hook strips, cover crops and key frames); narration not auditioned by a human ear"
+ },
+ "build_seconds": 303.6,
+ "never_included": "no GitHub stars, forks, downloads, contributor counts or other repository statistics; no engagement predictions"
+}

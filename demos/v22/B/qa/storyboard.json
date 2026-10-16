@@ -1,0 +1,51 @@
+{
+ "sources": {
+  "claims": [
+   {
+    "id": "c1",
+    "text": "Most people type something like: make the dashboard look better.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": "auto-mapped (word overlap 0.5)"
+   },
+   {
+    "id": "c2",
+    "text": "The agent has to guess what you mean.",
+    "source_ids": [],
+    "status": "interpretation",
+    "note": "auto-mapped (word overlap 0.333)"
+   },
+   {
+    "id": "c3",
+    "text": "Instead, give it a scope, constraints, and a way to check the result.",
+    "source_ids": [],
+    "status": "interpretation",
+    "note": "auto-mapped (word overlap 0.286)"
+   },
+   {
+    "id": "c4",
+    "text": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": "auto-mapped (word overlap 0.556)"
+   },
+   {
+    "id": "c5",
+    "text": "Here's the kind of focused change you should expect back.",
+    "source_ids": [],
+    "status": "interpretation",
+    "note": "auto-mapped (word overlap 0.143)"
+   }
+  ],
+  "summary": {
+   "verified": 2,
+   "interpretation": 3,
+   "unverified": 0,
+   "removed": 0
+  }
+ }
+}

@@ -1,0 +1,64 @@
+{
+ "reviewed": "contact sheet (24 frames), 9 frames under the simulated Instagram UI with safe-area guides, full-size CTA crop, cover master + mask + 4:5 + square",
+ "items": [
+  {
+   "item": "Hook: gameplay in the first 0.5 s",
+   "result": "frame 0 is Level 33 mid-run with packages moving; the headline I BUILT THIS GAME / WITH CLAUDE. is already on screen; no logo, terminal or title card"
+  },
+  {
+   "item": "Idea: genuine prompt",
+   "result": "verbatim excerpt from the creator's first development prompt types out over the dimmed game, then slides away to Level 1 being solved"
+  },
+  {
+   "item": "Prompt → game",
+   "result": "3 quick cuts: Level 20 taps, Neon Circuit crossing run, Level 36 run"
+  },
+  {
+   "item": "Features",
+   "result": "CHARACTERS (The Crew screen), 36 PUZZLES · 5 WORLDS (level list scrolling through all five worlds), HINTS THAT TEACH (Hint 1 of 3 with the highlighted area) — all implemented features, labels large"
+  },
+  {
+   "item": "Iteration",
+   "result": "same level, same taps, first playable build (plain package blocks, smaller board) beside the latest build (characters, celebration); labelled FIRST PLAYABLE BUILD / LATEST BUILD"
+  },
+  {
+   "item": "Result",
+   "result": "Level 36 delivery + celebration with BUILT WITH CLAUDE. and STILL IN DEVELOPMENT"
+  },
+  {
+   "item": "CTA",
+   "result": "COMMENT ‘LINK’ / OR DM ME ‘LINK’ over active gameplay (last taps before Run), small Mimo + @DEVMIMO; no repository mentioned"
+  },
+  {
+   "item": "Loop",
+   "result": "the last frame is the same recording 0.03 s before the first frame's moment, so the replay continues the run"
+  },
+  {
+   "item": "Instagram safe zones",
+   "result": "headline, card, labels, CTA, Mimo, handle and subtitles all clear of the simulated top bar, action rail and caption block"
+  },
+  {
+   "item": "Privacy",
+   "result": "on-screen titles seen: Tri-Color, First Tap, Pair Up, Right of Way, Junction, The Crew, Levels, world names; the level titled with the project's name is cropped below its title bar; home/title screens never used"
+  },
+  {
+   "item": "Cover",
+   "result": "real frame (crew celebration) under the two-line statement; checked in all five crops (master, 3:4 grid, 4:5, 1:1, 4:5 used as the 9:16 Reel cover) with nothing cut"
+  }
+ ],
+ "fixed": [
+  "CTA and 36 PUZZLES · 5 WORLDS plates overflowed the side margins: text now auto-fits the safe width; QA measures the margins on 58 frames",
+  "BUILT WITH CLAUDE. headline never appeared (absolute vs. beat-local frame): fixed",
+  "HINTS THAT TEACH shot lasted ~1 s: beat tail lengthened, now ~1.9 s",
+  "Two cuts would have shown the game's title screen (CTA pre-roll, frame behind the prompt): re-recorded the hook with more taps and moved the reveal",
+  "Levels shot too short for its line: re-recorded with a scroll through all five worlds",
+  "Cover board's bottom row was cut: card proportions changed",
+  "Simulated Instagram caption showed the emoji as a box: stripped for the preview font",
+  "Cover was cut off in Instagram's crops (headline and board ran nearly edge to edge): all content moved into x 180–900, y 430–1490, which the 1:1, 4:5, 3:4 profile-grid and 4:5-as-9:16 crops all keep; added a 3:4 file and a measured QA check"
+ ],
+ "not_verified": [
+  "Narration not listened to by a person (pronunciation of 'Claude', 'DM', 'LINK' unchecked by ear)",
+  "Instagram UI is a simulation, not the real app",
+  "The game itself was recorded in a desktop renderer (Mesa llvmpipe), not on a phone"
+ ]
+}

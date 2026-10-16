@@ -1,0 +1,3585 @@
+{
+  "title": "How MCP connects agents to your tools",
+  "style": "premium",
+  "brand": "FIELDNOTES",
+  "series": "AGENTS",
+  "direction": {
+    "notes": [],
+    "reveal_scene": null
+  },
+  "repos": [],
+  "music": "jobs/41a14bee4d0f/music.wav",
+  "variant": {
+    "seed": "v22-C",
+    "palette": "",
+    "background": "grid",
+    "temperament": "snappy",
+    "captions": "bold",
+    "transitions": [
+      "cut",
+      "zoom",
+      "push"
+    ],
+    "outfit": "#2f3b52",
+    "hair": "#a16207",
+    "music": {
+      "progression": 3,
+      "bpm": 84
+    },
+    "camera": 0.8,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "scenes": [
+    {
+      "heading": "MCP is how agents get tools",
+      "narration": "Your AI agent only knows the tools you plug in. MCP is the plug.",
+      "caption": "Your AI agent only knows the tools you plug in. MCP is the plug.",
+      "points": [],
+      "visual": "hook",
+      "item": 0,
+      "label": "",
+      "emphasis": "MCP",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-0.wav",
+      "frames": 140,
+      "audioFrames": 131,
+      "uiAudio": "jobs/41a14bee4d0f/scene-0-ui.wav",
+      "words": [
+        {
+          "w": "Your",
+          "s": 0.0,
+          "e": 0.15
+        },
+        {
+          "w": "AI",
+          "s": 0.15,
+          "e": 0.456
+        },
+        {
+          "w": "agent",
+          "s": 0.59,
+          "e": 0.913
+        },
+        {
+          "w": "only",
+          "s": 1.07,
+          "e": 1.388
+        },
+        {
+          "w": "knows",
+          "s": 1.42,
+          "e": 1.645
+        },
+        {
+          "w": "the",
+          "s": 1.73,
+          "e": 1.85
+        },
+        {
+          "w": "tools",
+          "s": 1.85,
+          "e": 2.121
+        },
+        {
+          "w": "you",
+          "s": 2.18,
+          "e": 2.358
+        },
+        {
+          "w": "plug",
+          "s": 2.4,
+          "e": 2.596
+        },
+        {
+          "w": "in.",
+          "s": 2.6,
+          "e": 2.834
+        },
+        {
+          "w": "MCP",
+          "s": 3.013,
+          "e": 3.624
+        },
+        {
+          "w": "is",
+          "s": 3.793,
+          "e": 3.881
+        },
+        {
+          "w": "the",
+          "s": 3.963,
+          "e": 4.102
+        },
+        {
+          "w": "plug.",
+          "s": 4.233,
+          "e": 4.324
+        }
+      ],
+      "mouth": [
+        0.61,
+        0.93,
+        0.94,
+        0.71,
+        0.58,
+        0.78,
+        0.95,
+        0.93,
+        0.91,
+        0.93,
+        0.92,
+        0.86,
+        0.79,
+        0.76,
+        0.75,
+        0.78,
+        0.75,
+        0.58,
+        0.53,
+        0.71,
+        0.85,
+        0.83,
+        0.66,
+        0.47,
+        0.51,
+        0.71,
+        0.8,
+        0.71,
+        0.47,
+        0.19,
+        0.03,
+        0.0,
+        0.0,
+        0.0,
+        0.18,
+        0.59,
+        0.85,
+        0.9,
+        0.91,
+        0.92,
+        0.91,
+        0.88,
+        0.9,
+        0.95,
+        0.95,
+        0.89,
+        0.84,
+        0.83,
+        0.77,
+        0.69,
+        0.59,
+        0.38,
+        0.37,
+        0.52,
+        0.34,
+        0.23,
+        0.43,
+        0.56,
+        0.75,
+        0.93,
+        0.9,
+        0.78,
+        0.68,
+        0.63,
+        0.56,
+        0.55,
+        0.61,
+        0.62,
+        0.65,
+        0.67,
+        0.44,
+        0.15,
+        0.1,
+        0.35,
+        0.73,
+        0.8,
+        0.57,
+        0.39,
+        0.45,
+        0.59,
+        0.55,
+        0.39,
+        0.26,
+        0.16,
+        0.07,
+        0.03,
+        0.01,
+        0.0,
+        0.0,
+        0.11,
+        0.45,
+        0.75,
+        0.81,
+        0.79,
+        0.77,
+        0.76,
+        0.77,
+        0.81,
+        0.92,
+        0.94,
+        0.82,
+        0.54,
+        0.25,
+        0.22,
+        0.46,
+        0.81,
+        0.97,
+        0.92,
+        0.85,
+        0.81,
+        0.82,
+        0.88,
+        0.82,
+        0.66,
+        0.49,
+        0.5,
+        0.67,
+        0.5,
+        0.19,
+        0.3,
+        0.69,
+        0.93,
+        0.92,
+        0.78,
+        0.66,
+        0.56,
+        0.43,
+        0.27,
+        0.17,
+        0.1,
+        0.04
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          3,
+          "D"
+        ],
+        [
+          8,
+          "C"
+        ],
+        [
+          14,
+          "X"
+        ],
+        [
+          16,
+          "D"
+        ],
+        [
+          18,
+          "B"
+        ],
+        [
+          20,
+          "C"
+        ],
+        [
+          22,
+          "B"
+        ],
+        [
+          27,
+          "X"
+        ],
+        [
+          31,
+          "E"
+        ],
+        [
+          33,
+          "B"
+        ],
+        [
+          35,
+          "H"
+        ],
+        [
+          38,
+          "B"
+        ],
+        [
+          42,
+          "X"
+        ],
+        [
+          44,
+          "E"
+        ],
+        [
+          46,
+          "B"
+        ],
+        [
+          49,
+          "X"
+        ],
+        [
+          52,
+          "C"
+        ],
+        [
+          54,
+          "B"
+        ],
+        [
+          56,
+          "X"
+        ],
+        [
+          58,
+          "H"
+        ],
+        [
+          60,
+          "B"
+        ],
+        [
+          64,
+          "X"
+        ],
+        [
+          66,
+          "E"
+        ],
+        [
+          70,
+          "A"
+        ],
+        [
+          72,
+          "H"
+        ],
+        [
+          75,
+          "B"
+        ],
+        [
+          77,
+          "C"
+        ],
+        [
+          80,
+          "B"
+        ],
+        [
+          85,
+          "X"
+        ],
+        [
+          89,
+          "A"
+        ],
+        [
+          95,
+          "B"
+        ],
+        [
+          101,
+          "A"
+        ],
+        [
+          109,
+          "X"
+        ],
+        [
+          112,
+          "C"
+        ],
+        [
+          114,
+          "B"
+        ],
+        [
+          116,
+          "X"
+        ],
+        [
+          119,
+          "C"
+        ],
+        [
+          123,
+          "X"
+        ],
+        [
+          125,
+          "A"
+        ],
+        [
+          127,
+          "F"
+        ],
+        [
+          130,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 4.667,
+          "w": [
+            0,
+            13
+          ],
+          "text": "Your AI agent only knows the tools you plug in. MCP is the plug.",
+          "focus": "agent",
+          "layout": "hookBold",
+          "layoutReason": {
+            "score": 6.6,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 1.0,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "hook",
+            "runner_up": "heroWord"
+          },
+          "anchor": "right",
+          "transition": "cut",
+          "punch": true,
+          "held": true,
+          "character": {
+            "state": "speaking",
+            "scale": "closeup",
+            "anchor": "centre"
+          },
+          "direction": {
+            "transition": "first frame: the hook must be readable immediately",
+            "character": "signature entrance: pops up under the hook and acknowledges the viewer",
+            "layout": "hook"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 0,
+      "id": "scene_001",
+      "role": "hook",
+      "intent": "hook",
+      "pace": "emphasis",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "hookBold",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": []
+    },
+    {
+      "heading": "One client per server",
+      "narration": "The host app, like Claude Code, creates one MCP client for every server it connects to.",
+      "caption": "The host app, like Claude Code, creates one MCP client for every server it connects to.",
+      "points": [
+        "GitHub server",
+        "Database server",
+        "Files server"
+      ],
+      "visual": "cards",
+      "item": 0,
+      "label": "",
+      "emphasis": "one MCP client",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-1.wav",
+      "frames": 168,
+      "audioFrames": 155,
+      "uiAudio": "jobs/41a14bee4d0f/scene-1-ui.wav",
+      "words": [
+        {
+          "w": "The",
+          "s": 0.0,
+          "e": 0.195
+        },
+        {
+          "w": "host",
+          "s": 0.32,
+          "e": 0.408
+        },
+        {
+          "w": "app,",
+          "s": 0.54,
+          "e": 0.737
+        },
+        {
+          "w": "like",
+          "s": 0.75,
+          "e": 0.959
+        },
+        {
+          "w": "Claude",
+          "s": 1.08,
+          "e": 1.14
+        },
+        {
+          "w": "Code,",
+          "s": 1.14,
+          "e": 1.501
+        },
+        {
+          "w": "creates",
+          "s": 1.52,
+          "e": 1.919
+        },
+        {
+          "w": "one",
+          "s": 2.05,
+          "e": 2.12
+        },
+        {
+          "w": "MCP",
+          "s": 2.12,
+          "e": 2.751
+        },
+        {
+          "w": "client",
+          "s": 2.92,
+          "e": 2.997
+        },
+        {
+          "w": "for",
+          "s": 3.13,
+          "e": 3.209
+        },
+        {
+          "w": "every",
+          "s": 3.21,
+          "e": 3.812
+        },
+        {
+          "w": "server",
+          "s": 3.85,
+          "e": 4.253
+        },
+        {
+          "w": "it",
+          "s": 4.27,
+          "e": 4.483
+        },
+        {
+          "w": "connects",
+          "s": 4.49,
+          "e": 4.89
+        },
+        {
+          "w": "to.",
+          "s": 4.91,
+          "e": 5.119
+        }
+      ],
+      "mouth": [
+        0.59,
+        0.74,
+        0.77,
+        0.9,
+        0.98,
+        0.97,
+        0.86,
+        0.7,
+        0.53,
+        0.47,
+        0.74,
+        0.92,
+        0.86,
+        0.76,
+        0.58,
+        0.3,
+        0.12,
+        0.32,
+        0.68,
+        0.79,
+        0.58,
+        0.24,
+        0.08,
+        0.13,
+        0.34,
+        0.74,
+        0.96,
+        0.92,
+        0.87,
+        0.71,
+        0.43,
+        0.18,
+        0.16,
+        0.4,
+        0.72,
+        0.91,
+        0.95,
+        0.89,
+        0.8,
+        0.7,
+        0.62,
+        0.5,
+        0.29,
+        0.12,
+        0.03,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.03,
+        0.19,
+        0.54,
+        0.86,
+        0.95,
+        0.95,
+        0.87,
+        0.59,
+        0.39,
+        0.48,
+        0.54,
+        0.56,
+        0.72,
+        0.88,
+        0.9,
+        0.82,
+        0.77,
+        0.78,
+        0.75,
+        0.52,
+        0.25,
+        0.33,
+        0.66,
+        0.82,
+        0.82,
+        0.79,
+        0.71,
+        0.65,
+        0.68,
+        0.7,
+        0.75,
+        0.84,
+        0.81,
+        0.57,
+        0.25,
+        0.18,
+        0.47,
+        0.82,
+        0.86,
+        0.64,
+        0.33,
+        0.18,
+        0.22,
+        0.38,
+        0.67,
+        0.78,
+        0.68,
+        0.63,
+        0.61,
+        0.64,
+        0.66,
+        0.58,
+        0.38,
+        0.18,
+        0.23,
+        0.56,
+        0.72,
+        0.53,
+        0.48,
+        0.75,
+        0.89,
+        0.69,
+        0.51,
+        0.65,
+        0.8,
+        0.7,
+        0.61,
+        0.67,
+        0.7,
+        0.76,
+        0.92,
+        1.0,
+        0.98,
+        0.83,
+        0.57,
+        0.53,
+        0.69,
+        0.77,
+        0.7,
+        0.48,
+        0.19,
+        0.08,
+        0.28,
+        0.59,
+        0.74,
+        0.8,
+        0.82,
+        0.72,
+        0.47,
+        0.19,
+        0.15,
+        0.4,
+        0.54,
+        0.38,
+        0.3,
+        0.5,
+        0.63,
+        0.54,
+        0.36,
+        0.19,
+        0.09,
+        0.05
+      ],
+      "visemes": [
+        [
+          0,
+          "H"
+        ],
+        [
+          6,
+          "X"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          12,
+          "X"
+        ],
+        [
+          15,
+          "D"
+        ],
+        [
+          17,
+          "A"
+        ],
+        [
+          21,
+          "H"
+        ],
+        [
+          23,
+          "C"
+        ],
+        [
+          29,
+          "X"
+        ],
+        [
+          31,
+          "B"
+        ],
+        [
+          34,
+          "X"
+        ],
+        [
+          38,
+          "B"
+        ],
+        [
+          41,
+          "C"
+        ],
+        [
+          44,
+          "B"
+        ],
+        [
+          48,
+          "C"
+        ],
+        [
+          51,
+          "B"
+        ],
+        [
+          53,
+          "C"
+        ],
+        [
+          58,
+          "X"
+        ],
+        [
+          60,
+          "E"
+        ],
+        [
+          62,
+          "A"
+        ],
+        [
+          64,
+          "X"
+        ],
+        [
+          68,
+          "B"
+        ],
+        [
+          75,
+          "A"
+        ],
+        [
+          83,
+          "X"
+        ],
+        [
+          86,
+          "B"
+        ],
+        [
+          90,
+          "X"
+        ],
+        [
+          92,
+          "G"
+        ],
+        [
+          94,
+          "B"
+        ],
+        [
+          96,
+          "X"
+        ],
+        [
+          98,
+          "G"
+        ],
+        [
+          102,
+          "C"
+        ],
+        [
+          106,
+          "B"
+        ],
+        [
+          114,
+          "X"
+        ],
+        [
+          116,
+          "C"
+        ],
+        [
+          118,
+          "B"
+        ],
+        [
+          120,
+          "G"
+        ],
+        [
+          122,
+          "C"
+        ],
+        [
+          124,
+          "B"
+        ],
+        [
+          127,
+          "C"
+        ],
+        [
+          130,
+          "B"
+        ],
+        [
+          134,
+          "X"
+        ],
+        [
+          136,
+          "B"
+        ],
+        [
+          139,
+          "C"
+        ],
+        [
+          141,
+          "B"
+        ],
+        [
+          147,
+          "X"
+        ],
+        [
+          149,
+          "E"
+        ],
+        [
+          154,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.6,
+          "w": [
+            0,
+            15
+          ],
+          "text": "The host app, like Claude Code, creates one MCP client for every server it connects to.",
+          "focus": "one MCP client",
+          "layout": "nodeGraph",
+          "layoutReason": {
+            "score": 6.2,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "architecture",
+            "runner_up": "flowDiagram"
+          },
+          "anchor": "left",
+          "transition": "blurDissolve",
+          "punch": true,
+          "character": {
+            "state": "explaining",
+            "scale": "companion",
+            "anchor": "home",
+            "point": "right",
+            "dim": 0.1
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "gestures toward the connection being drawn",
+            "layout": "architecture"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 140,
+      "id": "scene_002",
+      "role": "body",
+      "intent": "architecture",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "nodeGraph",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c1"
+      ]
+    },
+    {
+      "heading": "Tools, resources, prompts",
+      "narration": "Each server exposes three things: tools to call, resources to read, and prompts to reuse.",
+      "caption": "Each server exposes three things: tools to call, resources to read, and prompts to reuse.",
+      "points": [
+        "Tools: actions",
+        "Resources: context",
+        "Prompts: templates"
+      ],
+      "visual": "cards",
+      "item": 0,
+      "label": "",
+      "emphasis": "three things",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-2.wav",
+      "frames": 163,
+      "audioFrames": 154,
+      "uiAudio": "jobs/41a14bee4d0f/scene-2-ui.wav",
+      "words": [
+        {
+          "w": "Each",
+          "s": 0.0,
+          "e": 0.11
+        },
+        {
+          "w": "server",
+          "s": 0.11,
+          "e": 0.666
+        },
+        {
+          "w": "exposes",
+          "s": 0.75,
+          "e": 1.35
+        },
+        {
+          "w": "three",
+          "s": 1.35,
+          "e": 1.622
+        },
+        {
+          "w": "things:",
+          "s": 1.76,
+          "e": 1.94
+        },
+        {
+          "w": "tools",
+          "s": 1.94,
+          "e": 2.14
+        },
+        {
+          "w": "to",
+          "s": 2.14,
+          "e": 2.46
+        },
+        {
+          "w": "call,",
+          "s": 2.46,
+          "e": 2.83
+        },
+        {
+          "w": "resources",
+          "s": 2.93,
+          "e": 3.5
+        },
+        {
+          "w": "to",
+          "s": 3.5,
+          "e": 3.779
+        },
+        {
+          "w": "read,",
+          "s": 3.91,
+          "e": 4.13
+        },
+        {
+          "w": "and",
+          "s": 4.13,
+          "e": 4.388
+        },
+        {
+          "w": "prompts",
+          "s": 4.45,
+          "e": 4.56
+        },
+        {
+          "w": "to",
+          "s": 4.56,
+          "e": 4.857
+        },
+        {
+          "w": "reuse.",
+          "s": 4.95,
+          "e": 5.091
+        }
+      ],
+      "mouth": [
+        0.64,
+        0.85,
+        0.58,
+        0.36,
+        0.53,
+        0.69,
+        0.66,
+        0.72,
+        0.9,
+        0.98,
+        0.93,
+        0.73,
+        0.64,
+        0.83,
+        0.98,
+        0.97,
+        0.76,
+        0.38,
+        0.31,
+        0.53,
+        0.43,
+        0.14,
+        0.25,
+        0.72,
+        0.97,
+        0.95,
+        0.86,
+        0.7,
+        0.59,
+        0.69,
+        0.76,
+        0.67,
+        0.49,
+        0.23,
+        0.17,
+        0.43,
+        0.73,
+        0.86,
+        0.79,
+        0.57,
+        0.27,
+        0.24,
+        0.58,
+        0.78,
+        0.66,
+        0.55,
+        0.45,
+        0.34,
+        0.27,
+        0.22,
+        0.25,
+        0.27,
+        0.14,
+        0.02,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.16,
+        0.54,
+        0.89,
+        1.0,
+        0.97,
+        0.92,
+        0.82,
+        0.66,
+        0.4,
+        0.25,
+        0.47,
+        0.61,
+        0.31,
+        0.16,
+        0.43,
+        0.74,
+        0.92,
+        0.96,
+        0.94,
+        0.92,
+        0.87,
+        0.79,
+        0.63,
+        0.49,
+        0.53,
+        0.75,
+        0.86,
+        0.68,
+        0.54,
+        0.6,
+        0.78,
+        0.93,
+        0.96,
+        0.82,
+        0.56,
+        0.42,
+        0.54,
+        0.72,
+        0.69,
+        0.46,
+        0.24,
+        0.33,
+        0.65,
+        0.81,
+        0.73,
+        0.68,
+        0.79,
+        0.87,
+        0.84,
+        0.79,
+        0.75,
+        0.68,
+        0.56,
+        0.46,
+        0.5,
+        0.61,
+        0.68,
+        0.68,
+        0.47,
+        0.2,
+        0.19,
+        0.42,
+        0.61,
+        0.63,
+        0.57,
+        0.44,
+        0.31,
+        0.33,
+        0.31,
+        0.22,
+        0.41,
+        0.69,
+        0.76,
+        0.76,
+        0.78,
+        0.76,
+        0.74,
+        0.79,
+        0.86,
+        0.88,
+        0.8,
+        0.66,
+        0.48,
+        0.33,
+        0.22,
+        0.18,
+        0.26,
+        0.3,
+        0.16,
+        0.03
+      ],
+      "visemes": [
+        [
+          0,
+          "C"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          5,
+          "C"
+        ],
+        [
+          7,
+          "B"
+        ],
+        [
+          10,
+          "G"
+        ],
+        [
+          13,
+          "C"
+        ],
+        [
+          16,
+          "B"
+        ],
+        [
+          20,
+          "X"
+        ],
+        [
+          24,
+          "B"
+        ],
+        [
+          26,
+          "A"
+        ],
+        [
+          29,
+          "E"
+        ],
+        [
+          31,
+          "B"
+        ],
+        [
+          34,
+          "C"
+        ],
+        [
+          36,
+          "B"
+        ],
+        [
+          39,
+          "H"
+        ],
+        [
+          42,
+          "B"
+        ],
+        [
+          49,
+          "X"
+        ],
+        [
+          51,
+          "H"
+        ],
+        [
+          53,
+          "B"
+        ],
+        [
+          58,
+          "F"
+        ],
+        [
+          60,
+          "H"
+        ],
+        [
+          63,
+          "B"
+        ],
+        [
+          68,
+          "E"
+        ],
+        [
+          72,
+          "B"
+        ],
+        [
+          74,
+          "X"
+        ],
+        [
+          78,
+          "H"
+        ],
+        [
+          85,
+          "X"
+        ],
+        [
+          88,
+          "C"
+        ],
+        [
+          90,
+          "B"
+        ],
+        [
+          92,
+          "E"
+        ],
+        [
+          94,
+          "F"
+        ],
+        [
+          96,
+          "B"
+        ],
+        [
+          100,
+          "C"
+        ],
+        [
+          102,
+          "B"
+        ],
+        [
+          105,
+          "X"
+        ],
+        [
+          108,
+          "E"
+        ],
+        [
+          113,
+          "X"
+        ],
+        [
+          116,
+          "B"
+        ],
+        [
+          119,
+          "D"
+        ],
+        [
+          121,
+          "B"
+        ],
+        [
+          124,
+          "X"
+        ],
+        [
+          128,
+          "B"
+        ],
+        [
+          132,
+          "X"
+        ],
+        [
+          134,
+          "A"
+        ],
+        [
+          137,
+          "X"
+        ],
+        [
+          140,
+          "E"
+        ],
+        [
+          146,
+          "X"
+        ],
+        [
+          148,
+          "C"
+        ],
+        [
+          150,
+          "B"
+        ],
+        [
+          153,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.433,
+          "w": [
+            0,
+            14
+          ],
+          "text": "Each server exposes three things: tools to call, resources to read, and prompts to reuse.",
+          "focus": "three things",
+          "layout": "steps",
+          "layoutReason": {
+            "score": 5.5018,
+            "parts": {
+              "relevance": 1.1,
+              "narrative": 0.5,
+              "readability": 0.882,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.6,
+              "brand": 0.0
+            },
+            "intent": "list",
+            "runner_up": "listStack"
+          },
+          "anchor": "left",
+          "transition": "blurDissolve",
+          "punch": true,
+          "held": true,
+          "character": {
+            "state": "speaking",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "dense demonstration: small companion",
+            "layout": "list"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 308,
+      "id": "scene_003",
+      "role": "body",
+      "intent": "list",
+      "pace": "medium",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [
+          "Tools: actions the model can call",
+          "Resources: data it can read",
+          "Prompts: reusable templates"
+        ],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "steps",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c2"
+      ]
+    },
+    {
+      "heading": "It's just JSON-RPC",
+      "narration": "Under the hood, every request is a JSON-RPC message: a method, parameters, and an ID.",
+      "caption": "Under the hood, every request is a JSON-RPC message: a method, parameters, and an ID.",
+      "points": [],
+      "visual": "terminal",
+      "item": 0,
+      "label": "",
+      "emphasis": "JSON-RPC",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-3.wav",
+      "frames": 175,
+      "audioFrames": 162,
+      "uiAudio": "jobs/41a14bee4d0f/scene-3-ui.wav",
+      "words": [
+        {
+          "w": "Under",
+          "s": 0.0,
+          "e": 0.375
+        },
+        {
+          "w": "the",
+          "s": 0.52,
+          "e": 0.595
+        },
+        {
+          "w": "hood,",
+          "s": 0.67,
+          "e": 0.912
+        },
+        {
+          "w": "every",
+          "s": 0.98,
+          "e": 1.5
+        },
+        {
+          "w": "request",
+          "s": 1.5,
+          "e": 1.925
+        },
+        {
+          "w": "is",
+          "s": 1.95,
+          "e": 2.145
+        },
+        {
+          "w": "a",
+          "s": 2.15,
+          "e": 2.28
+        },
+        {
+          "w": "JSON-RPC",
+          "s": 2.28,
+          "e": 2.553
+        },
+        {
+          "w": "message:",
+          "s": 2.65,
+          "e": 3.03
+        },
+        {
+          "w": "a",
+          "s": 3.03,
+          "e": 3.287
+        },
+        {
+          "w": "method,",
+          "s": 3.33,
+          "e": 3.791
+        },
+        {
+          "w": "parameters,",
+          "s": 3.95,
+          "e": 4.68
+        },
+        {
+          "w": "and",
+          "s": 4.68,
+          "e": 4.959
+        },
+        {
+          "w": "an",
+          "s": 5.09,
+          "e": 5.162
+        },
+        {
+          "w": "ID.",
+          "s": 5.28,
+          "e": 5.366
+        }
+      ],
+      "mouth": [
+        0.49,
+        0.65,
+        0.7,
+        0.76,
+        0.73,
+        0.8,
+        0.84,
+        0.77,
+        0.84,
+        0.96,
+        1.0,
+        0.99,
+        0.82,
+        0.54,
+        0.37,
+        0.27,
+        0.44,
+        0.82,
+        0.9,
+        0.63,
+        0.45,
+        0.63,
+        0.82,
+        0.82,
+        0.75,
+        0.77,
+        0.83,
+        0.59,
+        0.21,
+        0.11,
+        0.27,
+        0.57,
+        0.86,
+        0.89,
+        0.7,
+        0.5,
+        0.4,
+        0.3,
+        0.32,
+        0.5,
+        0.58,
+        0.65,
+        0.69,
+        0.53,
+        0.42,
+        0.54,
+        0.76,
+        0.9,
+        0.87,
+        0.76,
+        0.66,
+        0.62,
+        0.66,
+        0.72,
+        0.78,
+        0.74,
+        0.67,
+        0.65,
+        0.67,
+        0.71,
+        0.71,
+        0.66,
+        0.5,
+        0.23,
+        0.07,
+        0.24,
+        0.54,
+        0.62,
+        0.58,
+        0.65,
+        0.68,
+        0.66,
+        0.71,
+        0.76,
+        0.78,
+        0.81,
+        0.78,
+        0.67,
+        0.52,
+        0.49,
+        0.6,
+        0.62,
+        0.55,
+        0.46,
+        0.29,
+        0.16,
+        0.21,
+        0.35,
+        0.29,
+        0.1,
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.11,
+        0.38,
+        0.64,
+        0.82,
+        0.95,
+        1.0,
+        0.94,
+        0.78,
+        0.6,
+        0.37,
+        0.16,
+        0.27,
+        0.67,
+        0.83,
+        0.6,
+        0.31,
+        0.15,
+        0.07,
+        0.02,
+        0.0,
+        0.02,
+        0.16,
+        0.5,
+        0.84,
+        0.95,
+        0.89,
+        0.79,
+        0.71,
+        0.67,
+        0.7,
+        0.79,
+        0.7,
+        0.55,
+        0.62,
+        0.7,
+        0.68,
+        0.58,
+        0.49,
+        0.47,
+        0.4,
+        0.42,
+        0.61,
+        0.78,
+        0.83,
+        0.8,
+        0.78,
+        0.76,
+        0.68,
+        0.64,
+        0.69,
+        0.63,
+        0.4,
+        0.28,
+        0.47,
+        0.71,
+        0.75,
+        0.68,
+        0.53,
+        0.33,
+        0.17,
+        0.07,
+        0.02
+      ],
+      "visemes": [
+        [
+          0,
+          "F"
+        ],
+        [
+          3,
+          "B"
+        ],
+        [
+          5,
+          "C"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          11,
+          "X"
+        ],
+        [
+          14,
+          "H"
+        ],
+        [
+          18,
+          "X"
+        ],
+        [
+          21,
+          "F"
+        ],
+        [
+          23,
+          "B"
+        ],
+        [
+          27,
+          "X"
+        ],
+        [
+          31,
+          "G"
+        ],
+        [
+          34,
+          "C"
+        ],
+        [
+          37,
+          "B"
+        ],
+        [
+          45,
+          "X"
+        ],
+        [
+          47,
+          "B"
+        ],
+        [
+          49,
+          "F"
+        ],
+        [
+          51,
+          "C"
+        ],
+        [
+          53,
+          "B"
+        ],
+        [
+          57,
+          "C"
+        ],
+        [
+          60,
+          "B"
+        ],
+        [
+          63,
+          "D"
+        ],
+        [
+          67,
+          "B"
+        ],
+        [
+          69,
+          "E"
+        ],
+        [
+          72,
+          "B"
+        ],
+        [
+          77,
+          "X"
+        ],
+        [
+          80,
+          "C"
+        ],
+        [
+          83,
+          "B"
+        ],
+        [
+          85,
+          "D"
+        ],
+        [
+          88,
+          "C"
+        ],
+        [
+          91,
+          "X"
+        ],
+        [
+          98,
+          "A"
+        ],
+        [
+          101,
+          "C"
+        ],
+        [
+          104,
+          "H"
+        ],
+        [
+          107,
+          "E"
+        ],
+        [
+          109,
+          "B"
+        ],
+        [
+          114,
+          "X"
+        ],
+        [
+          117,
+          "A"
+        ],
+        [
+          119,
+          "D"
+        ],
+        [
+          121,
+          "B"
+        ],
+        [
+          124,
+          "D"
+        ],
+        [
+          126,
+          "A"
+        ],
+        [
+          128,
+          "C"
+        ],
+        [
+          130,
+          "B"
+        ],
+        [
+          132,
+          "C"
+        ],
+        [
+          135,
+          "B"
+        ],
+        [
+          139,
+          "D"
+        ],
+        [
+          142,
+          "B"
+        ],
+        [
+          149,
+          "X"
+        ],
+        [
+          151,
+          "D"
+        ],
+        [
+          155,
+          "X"
+        ],
+        [
+          157,
+          "C"
+        ],
+        [
+          161,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.833,
+          "w": [
+            0,
+            14
+          ],
+          "text": "Under the hood, every request is a JSON-RPC message: a method, parameters, and an ID.",
+          "focus": "JSON-RPC",
+          "layout": "codeBlock",
+          "layoutReason": {
+            "score": 6.2,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "code",
+            "runner_up": "terminal"
+          },
+          "anchor": "left",
+          "transition": "blurDissolve",
+          "punch": true,
+          "held": true,
+          "character": {
+            "state": "typing",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "small companion typing while code/commands run",
+            "layout": "code"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 471,
+      "id": "scene_004",
+      "role": "body",
+      "intent": "code",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [
+          "{ \"jsonrpc\": \"2.0\",",
+          "  \"id\": 7,",
+          "  \"method\": \"tools/call\",",
+          "  \"params\": {",
+          "    \"name\": \"search_issues\",",
+          "    \"arguments\": {\"q\": \"bug\"} } }"
+        ],
+        "code_language": "json",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "codeBlock",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c3"
+      ]
+    },
+    {
+      "heading": "Two transports",
+      "narration": "Local servers usually talk over standard input and output. Remote servers use streamable HTTP.",
+      "caption": "Local servers usually talk over standard input and output. Remote servers use streamable HTTP.",
+      "points": [],
+      "visual": "cards",
+      "item": 0,
+      "label": "",
+      "emphasis": "streamable HTTP",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-4.wav",
+      "frames": 188,
+      "audioFrames": 175,
+      "uiAudio": "jobs/41a14bee4d0f/scene-4-ui.wav",
+      "words": [
+        {
+          "w": "Local",
+          "s": 0.0,
+          "e": 0.31
+        },
+        {
+          "w": "servers",
+          "s": 0.31,
+          "e": 0.742
+        },
+        {
+          "w": "usually",
+          "s": 0.88,
+          "e": 1.307
+        },
+        {
+          "w": "talk",
+          "s": 1.32,
+          "e": 1.531
+        },
+        {
+          "w": "over",
+          "s": 1.55,
+          "e": 1.87
+        },
+        {
+          "w": "standard",
+          "s": 1.87,
+          "e": 2.289
+        },
+        {
+          "w": "input",
+          "s": 2.42,
+          "e": 2.675
+        },
+        {
+          "w": "and",
+          "s": 2.68,
+          "e": 2.884
+        },
+        {
+          "w": "output.",
+          "s": 3.01,
+          "e": 3.255
+        },
+        {
+          "w": "Remote",
+          "s": 3.446,
+          "e": 3.726
+        },
+        {
+          "w": "servers",
+          "s": 3.726,
+          "e": 4.201
+        },
+        {
+          "w": "use",
+          "s": 4.216,
+          "e": 4.413
+        },
+        {
+          "w": "streamable",
+          "s": 4.496,
+          "e": 4.971
+        },
+        {
+          "w": "HTTP.",
+          "s": 5.046,
+          "e": 5.742
+        }
+      ],
+      "mouth": [
+        0.58,
+        0.9,
+        0.96,
+        0.75,
+        0.36,
+        0.3,
+        0.63,
+        0.82,
+        0.71,
+        0.61,
+        0.66,
+        0.69,
+        0.74,
+        0.9,
+        0.99,
+        0.96,
+        0.78,
+        0.53,
+        0.55,
+        0.75,
+        0.78,
+        0.66,
+        0.53,
+        0.46,
+        0.39,
+        0.22,
+        0.06,
+        0.06,
+        0.32,
+        0.73,
+        0.96,
+        0.9,
+        0.71,
+        0.66,
+        0.74,
+        0.79,
+        0.84,
+        0.76,
+        0.46,
+        0.27,
+        0.42,
+        0.67,
+        0.82,
+        0.83,
+        0.67,
+        0.36,
+        0.23,
+        0.52,
+        0.77,
+        0.63,
+        0.52,
+        0.62,
+        0.63,
+        0.64,
+        0.62,
+        0.41,
+        0.44,
+        0.72,
+        0.75,
+        0.65,
+        0.65,
+        0.67,
+        0.76,
+        0.83,
+        0.66,
+        0.46,
+        0.44,
+        0.6,
+        0.82,
+        0.9,
+        0.76,
+        0.41,
+        0.16,
+        0.32,
+        0.65,
+        0.69,
+        0.41,
+        0.12,
+        0.01,
+        0.0,
+        0.03,
+        0.23,
+        0.58,
+        0.75,
+        0.74,
+        0.72,
+        0.71,
+        0.69,
+        0.62,
+        0.41,
+        0.15,
+        0.02,
+        0.03,
+        0.15,
+        0.36,
+        0.47,
+        0.34,
+        0.15,
+        0.04,
+        0.0,
+        0.0,
+        0.0,
+        0.1,
+        0.46,
+        0.81,
+        0.92,
+        0.96,
+        0.96,
+        0.89,
+        0.8,
+        0.58,
+        0.29,
+        0.32,
+        0.58,
+        0.68,
+        0.75,
+        0.91,
+        0.99,
+        0.96,
+        0.76,
+        0.55,
+        0.64,
+        0.82,
+        0.82,
+        0.65,
+        0.46,
+        0.42,
+        0.59,
+        0.79,
+        0.8,
+        0.66,
+        0.59,
+        0.64,
+        0.53,
+        0.27,
+        0.37,
+        0.76,
+        0.89,
+        0.82,
+        0.84,
+        0.82,
+        0.68,
+        0.65,
+        0.79,
+        0.86,
+        0.75,
+        0.55,
+        0.52,
+        0.74,
+        0.82,
+        0.56,
+        0.35,
+        0.45,
+        0.41,
+        0.21,
+        0.35,
+        0.65,
+        0.68,
+        0.45,
+        0.25,
+        0.35,
+        0.59,
+        0.68,
+        0.58,
+        0.3,
+        0.11,
+        0.22,
+        0.51,
+        0.7,
+        0.63,
+        0.45,
+        0.28,
+        0.16,
+        0.07,
+        0.02
+      ],
+      "visemes": [
+        [
+          0,
+          "H"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          4,
+          "D"
+        ],
+        [
+          6,
+          "H"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          10,
+          "C"
+        ],
+        [
+          12,
+          "B"
+        ],
+        [
+          15,
+          "C"
+        ],
+        [
+          17,
+          "B"
+        ],
+        [
+          22,
+          "X"
+        ],
+        [
+          25,
+          "F"
+        ],
+        [
+          27,
+          "B"
+        ],
+        [
+          29,
+          "F"
+        ],
+        [
+          32,
+          "H"
+        ],
+        [
+          36,
+          "B"
+        ],
+        [
+          39,
+          "X"
+        ],
+        [
+          41,
+          "H"
+        ],
+        [
+          43,
+          "B"
+        ],
+        [
+          45,
+          "E"
+        ],
+        [
+          47,
+          "G"
+        ],
+        [
+          50,
+          "C"
+        ],
+        [
+          52,
+          "B"
+        ],
+        [
+          56,
+          "X"
+        ],
+        [
+          58,
+          "D"
+        ],
+        [
+          61,
+          "B"
+        ],
+        [
+          69,
+          "X"
+        ],
+        [
+          71,
+          "C"
+        ],
+        [
+          73,
+          "B"
+        ],
+        [
+          76,
+          "F"
+        ],
+        [
+          79,
+          "D"
+        ],
+        [
+          81,
+          "B"
+        ],
+        [
+          87,
+          "X"
+        ],
+        [
+          89,
+          "E"
+        ],
+        [
+          91,
+          "B"
+        ],
+        [
+          94,
+          "F"
+        ],
+        [
+          98,
+          "X"
+        ],
+        [
+          102,
+          "B"
+        ],
+        [
+          105,
+          "A"
+        ],
+        [
+          107,
+          "B"
+        ],
+        [
+          109,
+          "C"
+        ],
+        [
+          112,
+          "X"
+        ],
+        [
+          114,
+          "B"
+        ],
+        [
+          116,
+          "G"
+        ],
+        [
+          118,
+          "C"
+        ],
+        [
+          120,
+          "B"
+        ],
+        [
+          125,
+          "F"
+        ],
+        [
+          127,
+          "B"
+        ],
+        [
+          129,
+          "C"
+        ],
+        [
+          132,
+          "X"
+        ],
+        [
+          135,
+          "B"
+        ],
+        [
+          138,
+          "C"
+        ],
+        [
+          141,
+          "A"
+        ],
+        [
+          145,
+          "H"
+        ],
+        [
+          149,
+          "X"
+        ],
+        [
+          155,
+          "B"
+        ],
+        [
+          166,
+          "A"
+        ],
+        [
+          172,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 6.267,
+          "w": [
+            0,
+            13
+          ],
+          "text": "Local servers usually talk over standard input and output. Remote servers use streamable HTTP.",
+          "focus": "standard",
+          "layout": "flowDiagram",
+          "layoutReason": {
+            "score": 6.2,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "api_flow",
+            "runner_up": "nodeGraph"
+          },
+          "anchor": "peek",
+          "transition": "blurDissolve",
+          "punch": true,
+          "held": true,
+          "character": {
+            "state": "explaining",
+            "scale": "companion",
+            "anchor": "home",
+            "point": "right",
+            "dim": 0.1
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "gestures toward the connection being drawn",
+            "layout": "api_flow"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 646,
+      "id": "scene_005",
+      "role": "body",
+      "intent": "api_flow",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [
+          "Claude Code",
+          "MCP client",
+          "stdio or HTTP",
+          "MCP server",
+          "Your tool"
+        ],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "flowDiagram",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c4"
+      ]
+    },
+    {
+      "heading": "Only trust servers you'd run",
+      "narration": "One rule: only connect servers you trust, because their tools act with your permissions.",
+      "caption": "One rule: only connect servers you trust, because their tools act with your permissions.",
+      "points": [],
+      "visual": "cards",
+      "item": 0,
+      "label": "",
+      "emphasis": "trust",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-5.wav",
+      "frames": 147,
+      "audioFrames": 138,
+      "uiAudio": "jobs/41a14bee4d0f/scene-5-ui.wav",
+      "words": [
+        {
+          "w": "One",
+          "s": 0.0,
+          "e": 0.17
+        },
+        {
+          "w": "rule:",
+          "s": 0.17,
+          "e": 0.7
+        },
+        {
+          "w": "only",
+          "s": 0.78,
+          "e": 1.12
+        },
+        {
+          "w": "connect",
+          "s": 1.12,
+          "e": 1.44
+        },
+        {
+          "w": "servers",
+          "s": 1.44,
+          "e": 1.949
+        },
+        {
+          "w": "you",
+          "s": 2.04,
+          "e": 2.172
+        },
+        {
+          "w": "trust,",
+          "s": 2.29,
+          "e": 2.493
+        },
+        {
+          "w": "because",
+          "s": 2.55,
+          "e": 2.899
+        },
+        {
+          "w": "their",
+          "s": 3.05,
+          "e": 3.122
+        },
+        {
+          "w": "tools",
+          "s": 3.14,
+          "e": 3.328
+        },
+        {
+          "w": "act",
+          "s": 3.45,
+          "e": 3.535
+        },
+        {
+          "w": "with",
+          "s": 3.67,
+          "e": 3.741
+        },
+        {
+          "w": "your",
+          "s": 3.75,
+          "e": 3.948
+        },
+        {
+          "w": "permissions.",
+          "s": 3.98,
+          "e": 4.534
+        }
+      ],
+      "mouth": [
+        0.57,
+        0.86,
+        0.86,
+        0.78,
+        0.77,
+        0.8,
+        0.82,
+        0.87,
+        0.96,
+        1.0,
+        0.97,
+        0.92,
+        0.87,
+        0.82,
+        0.69,
+        0.48,
+        0.22,
+        0.05,
+        0.01,
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.22,
+        0.65,
+        0.86,
+        0.85,
+        0.85,
+        0.86,
+        0.9,
+        0.93,
+        0.76,
+        0.38,
+        0.17,
+        0.38,
+        0.7,
+        0.82,
+        0.82,
+        0.8,
+        0.74,
+        0.56,
+        0.26,
+        0.1,
+        0.29,
+        0.58,
+        0.67,
+        0.74,
+        0.91,
+        1.0,
+        0.97,
+        0.79,
+        0.56,
+        0.6,
+        0.78,
+        0.79,
+        0.63,
+        0.51,
+        0.56,
+        0.69,
+        0.66,
+        0.42,
+        0.29,
+        0.39,
+        0.55,
+        0.77,
+        0.81,
+        0.62,
+        0.41,
+        0.35,
+        0.48,
+        0.49,
+        0.27,
+        0.09,
+        0.04,
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.25,
+        0.49,
+        0.46,
+        0.57,
+        0.7,
+        0.55,
+        0.49,
+        0.71,
+        0.91,
+        0.88,
+        0.61,
+        0.24,
+        0.17,
+        0.37,
+        0.52,
+        0.72,
+        0.91,
+        0.94,
+        0.87,
+        0.79,
+        0.75,
+        0.73,
+        0.66,
+        0.57,
+        0.57,
+        0.56,
+        0.55,
+        0.65,
+        0.71,
+        0.58,
+        0.32,
+        0.09,
+        0.03,
+        0.23,
+        0.52,
+        0.53,
+        0.49,
+        0.68,
+        0.67,
+        0.34,
+        0.16,
+        0.39,
+        0.69,
+        0.78,
+        0.8,
+        0.78,
+        0.66,
+        0.58,
+        0.57,
+        0.56,
+        0.51,
+        0.39,
+        0.26,
+        0.19,
+        0.15,
+        0.25,
+        0.39,
+        0.29,
+        0.08
+      ],
+      "visemes": [
+        [
+          0,
+          "E"
+        ],
+        [
+          2,
+          "C"
+        ],
+        [
+          4,
+          "B"
+        ],
+        [
+          8,
+          "F"
+        ],
+        [
+          12,
+          "H"
+        ],
+        [
+          16,
+          "C"
+        ],
+        [
+          21,
+          "X"
+        ],
+        [
+          24,
+          "B"
+        ],
+        [
+          27,
+          "H"
+        ],
+        [
+          30,
+          "B"
+        ],
+        [
+          33,
+          "E"
+        ],
+        [
+          35,
+          "B"
+        ],
+        [
+          38,
+          "C"
+        ],
+        [
+          40,
+          "B"
+        ],
+        [
+          43,
+          "X"
+        ],
+        [
+          46,
+          "B"
+        ],
+        [
+          48,
+          "G"
+        ],
+        [
+          50,
+          "C"
+        ],
+        [
+          53,
+          "B"
+        ],
+        [
+          58,
+          "X"
+        ],
+        [
+          60,
+          "B"
+        ],
+        [
+          62,
+          "F"
+        ],
+        [
+          65,
+          "X"
+        ],
+        [
+          67,
+          "B"
+        ],
+        [
+          70,
+          "F"
+        ],
+        [
+          72,
+          "B"
+        ],
+        [
+          75,
+          "X"
+        ],
+        [
+          78,
+          "B"
+        ],
+        [
+          81,
+          "F"
+        ],
+        [
+          84,
+          "C"
+        ],
+        [
+          87,
+          "X"
+        ],
+        [
+          90,
+          "H"
+        ],
+        [
+          92,
+          "B"
+        ],
+        [
+          94,
+          "X"
+        ],
+        [
+          96,
+          "H"
+        ],
+        [
+          100,
+          "X"
+        ],
+        [
+          102,
+          "D"
+        ],
+        [
+          104,
+          "B"
+        ],
+        [
+          106,
+          "X"
+        ],
+        [
+          109,
+          "F"
+        ],
+        [
+          111,
+          "B"
+        ],
+        [
+          114,
+          "F"
+        ],
+        [
+          118,
+          "A"
+        ],
+        [
+          121,
+          "B"
+        ],
+        [
+          124,
+          "C"
+        ],
+        [
+          127,
+          "B"
+        ],
+        [
+          130,
+          "E"
+        ],
+        [
+          133,
+          "B"
+        ],
+        [
+          136,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 2.493,
+          "w": [
+            0,
+            6
+          ],
+          "text": "One rule: only connect servers you trust,",
+          "focus": "trust",
+          "layout": "warningCard",
+          "layoutReason": {
+            "score": 6.2,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "warning",
+            "runner_up": "quote"
+          },
+          "anchor": "right",
+          "transition": "blurDissolve",
+          "punch": true,
+          "character": {
+            "state": "warning",
+            "scale": "medium",
+            "anchor": "home"
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "reacts to the mistake/caution",
+            "layout": "warning"
+          }
+        },
+        {
+          "s": 2.493,
+          "e": 4.9,
+          "w": [
+            7,
+            13
+          ],
+          "text": "because their tools act with your permissions.",
+          "focus": "permissions",
+          "layout": "heroWord",
+          "layoutReason": {
+            "score": 3.52,
+            "parts": {
+              "relevance": 0.53,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "warning",
+            "runner_up": "quote"
+          },
+          "anchor": "right",
+          "transition": "focus",
+          "punch": false,
+          "character": {
+            "state": "warning",
+            "scale": "medium",
+            "anchor": "home"
+          },
+          "direction": {
+            "transition": "camera focuses into a detail of the same idea",
+            "character": "reacts to the mistake/caution",
+            "layout": "warning"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 834,
+      "id": "scene_006",
+      "role": "body",
+      "intent": "warning",
+      "pace": "medium",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "warningCard",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c5"
+      ]
+    },
+    {
+      "heading": "Comment GUIDE",
+      "narration": "Want the step-by-step? Comment GUIDE.",
+      "caption": "Want the step-by-step? Comment GUIDE.",
+      "points": [],
+      "visual": "outro",
+      "item": 0,
+      "label": "",
+      "emphasis": "GUIDE",
+      "stat": "",
+      "audio": "jobs/41a14bee4d0f/scene-6.wav",
+      "frames": 86,
+      "audioFrames": 67,
+      "uiAudio": "jobs/41a14bee4d0f/scene-6-ui.wav",
+      "words": [
+        {
+          "w": "Want",
+          "s": 0.0,
+          "e": 0.223
+        },
+        {
+          "w": "the",
+          "s": 0.26,
+          "e": 0.43
+        },
+        {
+          "w": "step-by-step?",
+          "s": 0.43,
+          "e": 1.153
+        },
+        {
+          "w": "Comment",
+          "s": 1.371,
+          "e": 1.892
+        },
+        {
+          "w": "GUIDE.",
+          "s": 2.001,
+          "e": 2.198
+        }
+      ],
+      "mouth": [
+        0.56,
+        0.91,
+        0.95,
+        0.86,
+        0.8,
+        0.72,
+        0.5,
+        0.45,
+        0.67,
+        0.75,
+        0.72,
+        0.6,
+        0.44,
+        0.62,
+        0.88,
+        0.8,
+        0.46,
+        0.22,
+        0.4,
+        0.73,
+        0.78,
+        0.73,
+        0.69,
+        0.61,
+        0.6,
+        0.51,
+        0.37,
+        0.58,
+        0.85,
+        0.79,
+        0.6,
+        0.47,
+        0.29,
+        0.11,
+        0.06,
+        0.05,
+        0.02,
+        0.0,
+        0.0,
+        0.0,
+        0.11,
+        0.34,
+        0.59,
+        0.8,
+        0.81,
+        0.76,
+        0.81,
+        0.91,
+        0.91,
+        0.76,
+        0.51,
+        0.3,
+        0.46,
+        0.8,
+        0.85,
+        0.71,
+        0.65,
+        0.63,
+        0.61,
+        0.6,
+        0.63,
+        0.65,
+        0.51,
+        0.31,
+        0.23,
+        0.16,
+        0.06
+      ],
+      "visemes": [
+        [
+          0,
+          "F"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          6,
+          "H"
+        ],
+        [
+          9,
+          "C"
+        ],
+        [
+          11,
+          "B"
+        ],
+        [
+          13,
+          "X"
+        ],
+        [
+          16,
+          "C"
+        ],
+        [
+          18,
+          "A"
+        ],
+        [
+          22,
+          "B"
+        ],
+        [
+          29,
+          "C"
+        ],
+        [
+          31,
+          "A"
+        ],
+        [
+          35,
+          "X"
+        ],
+        [
+          40,
+          "B"
+        ],
+        [
+          42,
+          "E"
+        ],
+        [
+          44,
+          "A"
+        ],
+        [
+          49,
+          "C"
+        ],
+        [
+          51,
+          "B"
+        ],
+        [
+          57,
+          "X"
+        ],
+        [
+          59,
+          "B"
+        ],
+        [
+          61,
+          "C"
+        ],
+        [
+          66,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 1.867,
+          "w": [
+            0,
+            3
+          ],
+          "text": "Want the step-by-step? Comment",
+          "focus": "step-by-step",
+          "layout": "outroCTA",
+          "layoutReason": {
+            "score": 6.4135,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 1.0,
+              "readability": 0.933,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.4,
+              "brand": 0.0
+            },
+            "intent": "recap",
+            "runner_up": null
+          },
+          "anchor": "right",
+          "transition": "blurDissolve",
+          "punch": false,
+          "character": {
+            "state": "pointing",
+            "scale": "medium",
+            "anchor": "right",
+            "point": "left",
+            "wink": true
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "signature CTA: points at the keyword and winks",
+            "layout": "recap"
+          }
+        },
+        {
+          "s": 1.867,
+          "e": 2.867,
+          "w": [
+            4,
+            4
+          ],
+          "text": "GUIDE.",
+          "focus": "GUIDE",
+          "layout": "loop",
+          "layoutReason": {
+            "rule": "final beat loops to the opening frame"
+          },
+          "anchor": "right",
+          "transition": "cut",
+          "punch": true,
+          "character": {
+            "state": "speaking",
+            "scale": "closeup",
+            "anchor": "centre"
+          },
+          "direction": {
+            "transition": "loop tail cuts back to the opening frame so the CTA never overlaps the hook and the replay is seamless",
+            "character": "loop returns to the opening composition",
+            "layout": null
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 981,
+      "id": "scene_007",
+      "role": "outro",
+      "intent": "recap",
+      "pace": "pause",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "outroCTA",
+      "avoidLayouts": [],
+      "cta": {
+        "keyword": "GUIDE",
+        "secondary": "Get the step-by-step guide",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "character_action": "pointing",
+      "motionClip": false,
+      "character": true,
+      "claimIds": []
+    }
+  ],
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 1067,
+  "schemaVersion": "2.0",
+  "theme": "fieldnotes-premium",
+  "characterMode": "on"
+}

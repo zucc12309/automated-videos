@@ -1,0 +1,22 @@
+{
+ "keyword": "PROMPT",
+ "secondary": "Get the full prompt template",
+ "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+ "dm_promised_in_video": false,
+ "items": [
+  {
+   "type": "source",
+   "name": "Stop your coding agent from breaking your UI",
+   "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "verified_by": "source src1"
+  }
+ ],
+ "files": [
+  "example_code/example.txt",
+  "prompt.md",
+  "guide.md",
+  "dm_message.txt",
+  "resource_manifest.json"
+ ],
+ "note": "No automatic DM delivery is configured. Send dm_message.txt manually to people who comment the keyword."
+}

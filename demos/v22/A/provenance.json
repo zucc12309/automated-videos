@@ -1,0 +1,168 @@
+{
+  "schema_version": "2.0",
+  "mode": "local",
+  "dry_run": false,
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://github.com/lidge-jun/opencodex",
+      "title": "lidge-jun/opencodex",
+      "kind": "repository",
+      "retrieved_at": 1792148944.3544393
+    },
+    {
+      "id": "src2",
+      "url": "https://github.com/yetone/magpie",
+      "title": "yetone/magpie",
+      "kind": "repository",
+      "retrieved_at": 1792148944.3544452
+    },
+    {
+      "id": "src3",
+      "url": "https://github.com/Vincentwei1021/video-shotcraft",
+      "title": "Vincentwei1021/video-shotcraft",
+      "kind": "repository",
+      "retrieved_at": 1792148944.354448
+    },
+    {
+      "id": "src4",
+      "url": "https://github.com/google/artemis",
+      "title": "google/artemis",
+      "kind": "repository",
+      "retrieved_at": 1792148944.3544507
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini,",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "source_ids": [
+        "src2"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c3",
+      "text": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion",
+      "source_ids": [
+        "src3"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c4",
+      "text": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+      "source_ids": [
+        "src4"
+      ],
+      "status": "verified",
+      "note": ""
+    }
+  ],
+  "director": {
+    "provider": "claude-code-interactive",
+    "model": "claude-opus-5-5 (interactive Claude Code session)",
+    "interactive": true,
+    "note": "Directed in the interactive session from the user's review notes; hook footage via the MOCK cinematic provider.",
+    "supplied": true
+  },
+  "decisions": [
+    {
+      "stage": "direction",
+      "provider": "claude-code-interactive",
+      "used": true,
+      "note": "storyboard supplied by caller",
+      "at": 1792148944.356916
+    },
+    {
+      "stage": "cinematic",
+      "scene": "scene_001",
+      "used": false,
+      "reason": "local mode renders everything in Remotion",
+      "fallback": "remotion:hookBold",
+      "at": 1792148944.361735
+    },
+    {
+      "stage": "narration",
+      "engine": "kokoro_onnx",
+      "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+      "at": 1792148944.3643992
+    },
+    {
+      "stage": "music",
+      "style": "warm_pad",
+      "gain_db": -2.13,
+      "basis": "reference bed level",
+      "at": 1792148963.0794845
+    },
+    {
+      "stage": "render",
+      "concurrency": 2,
+      "memory_available_gb": 13.46,
+      "at": 1792148963.202236
+    }
+  ],
+  "model": "claude-opus-5-5 (interactive Claude Code session)",
+  "voice_model": "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)",
+  "voice": "am_adam",
+  "voice_engines": [
+    "kokoro_onnx"
+  ],
+  "caption_timing": [
+    "energy_snapped"
+  ],
+  "narration_language": "English (US)",
+  "visual_style": "premium",
+  "theme": "fieldnotes-premium",
+  "variant": {
+    "seed": "v22-A",
+    "palette": "",
+    "background": "mesh",
+    "temperament": "smooth",
+    "captions": "pill",
+    "transitions": [
+      "mask",
+      "zoom",
+      "whip"
+    ],
+    "outfit": "#1f2937",
+    "hair": "#1c1917",
+    "music": {
+      "progression": 0,
+      "bpm": 84
+    },
+    "camera": 0.8,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "layouts": [
+    "hookBold",
+    "repoCard",
+    "readmeScroll",
+    "repoCard",
+    "repoConnect",
+    "heroWord",
+    "repoCard",
+    "readmeScroll",
+    "repoCard",
+    "outroCTA",
+    "loop"
+  ],
+  "scene_transitions": "beat-level 9-frame transitions; scenes butt-joined",
+  "assets": [],
+  "music": "procedural bed generated locally (no third-party audio)",
+  "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
+  "created_at": 1792149142.9113462,
+  "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
+}

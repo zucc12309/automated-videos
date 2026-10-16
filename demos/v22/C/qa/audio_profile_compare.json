@@ -1,0 +1,138 @@
+{
+ "reference": {
+  "integrated_lufs": -14.1,
+  "lra_lu": 2.8,
+  "true_peak_dbtp": -1.6,
+  "duration_s": 39.91,
+  "speech_level_db": -10.0,
+  "bed_minus_speech_db": -22.2,
+  "floor_minus_speech_db": -27.6,
+  "speech_fraction": 0.656,
+  "pause_median_s": 0.32,
+  "pauses_per_10s": 5.26,
+  "f0_median": 118.5,
+  "f0_p10": 93.0,
+  "f0_p90": 144.1,
+  "voice_bands_db": {
+   "low": -4.1,
+   "mid": -2.8,
+   "presence": -12.7,
+   "air": -16.7
+  },
+  "bed_centroid_hz": 355
+ },
+ "render": {
+  "integrated_lufs": -14.1,
+  "lra_lu": 1.3,
+  "true_peak_dbtp": -1.7,
+  "duration_s": 35.63,
+  "speech_level_db": -10.1,
+  "bed_minus_speech_db": -22.3,
+  "floor_minus_speech_db": -23.7,
+  "speech_fraction": 0.729,
+  "pause_median_s": 0.31,
+  "pauses_per_10s": 5.61,
+  "f0_median": 123.1,
+  "f0_p10": 94.1,
+  "f0_p90": 151.5,
+  "voice_bands_db": {
+   "low": -4.1,
+   "mid": -2.9,
+   "presence": -11.8,
+   "air": -14.7
+  },
+  "bed_centroid_hz": 298
+ },
+ "targets": {
+  "voice": {
+   "kokoro": {
+    "voice": "am_adam",
+    "speed": 1.05,
+    "note": "Reference A's own engine and voice (am_adam, speed 1.05). Timbre and pitch are Kokoro's; the ONNX path adds sentence_pause_s between sentences (calibrated so comma-heavy and sentence-heavy scripts both land near the reference median pause).",
+    "sentence_pause_s": 0.16
+   },
+   "espeak": {
+    "variant": "en-us+m3",
+    "pitch": "+14%",
+    "range": "x-high",
+    "rate_wpm": 173,
+    "sentence_pause_s": 0.42,
+    "comma_pause_s": 0.26,
+    "note": "Calibrated against Reference A: median F0 118.5 Hz (reference 118.5), range ~89-147 Hz (reference 93-144); pauses tuned so speech share and median pause match. Timbre stays synthetic."
+   }
+  },
+  "narration_eq": {
+   "mode": "match_reference_voice_bands",
+   "limit_db": 6,
+   "kokoro_strength": 0.5
+  },
+  "scene_tail_s": {
+   "default": 0.3,
+   "demonstration": 0.45,
+   "pause": 0.62,
+   "note": "Silence after each scene's narration; calibrated so scene-boundary pauses match Reference A's median pause. The CTA ('pause' pace) keeps a longer beat."
+  },
+  "music": {
+   "style": "warm_pad",
+   "duck_db": -6,
+   "note": "Reference bed: tonal low pad (centroid ~310 Hz, energy 140-340 Hz), no hats or plucks, about 22 dB under the voice.",
+   "level": "un-ducked bed placed measured.bed_minus_speech_db under the narration's speech peaks (audio_profile.bed_gain_db)"
+  },
+  "master": {
+   "integrated_lufs": -14,
+   "true_peak_dbtp": -1.5,
+   "mode": "linear gain + limiter (no dynamic loudnorm, so pauses keep their dynamics)"
+  }
+ },
+ "checks": [
+  {
+   "check": "loudness",
+   "passed": true,
+   "detail": "-14.1 vs reference -14.1 LUFS (\u00b11.0)",
+   "basis": "deterministic"
+  },
+  {
+   "check": "true_peak",
+   "passed": true,
+   "detail": "-1.7 dBTP (\u2264 -1.0)",
+   "basis": "deterministic"
+  },
+  {
+   "check": "music_bed_level",
+   "passed": true,
+   "detail": "bed -22.3 vs reference -22.2 dB under speech (\u00b13.0)",
+   "basis": "deterministic"
+  },
+  {
+   "check": "music_bed_warmth",
+   "passed": true,
+   "detail": "bed centroid 298 vs reference 355 Hz (\u00b170.0)",
+   "basis": "deterministic"
+  },
+  {
+   "check": "voice_pitch",
+   "passed": true,
+   "detail": "median F0 123.1 vs reference 118.5 Hz; range 94.1\u2013151.5 vs 93.0\u2013144.1",
+   "basis": "deterministic"
+  },
+  {
+   "check": "speech_share",
+   "passed": true,
+   "detail": "0.729 vs reference 0.656 of the runtime is speech (\u00b10.08)",
+   "basis": "deterministic"
+  },
+  {
+   "check": "pause_length",
+   "passed": true,
+   "detail": "median pause 0.31 vs reference 0.32 s (\u00b10.08)",
+   "basis": "deterministic"
+  },
+  {
+   "check": "voice_tone",
+   "passed": true,
+   "detail": "largest band difference: air +2.0 dB (\u00b13.0); render {'low': -4.1, 'mid': -2.9, 'presence': -11.8, 'air': -14.7} vs {'low': -4.1, 'mid': -2.8, 'presence': -12.7, 'air': -16.7}",
+   "basis": "deterministic"
+  }
+ ],
+ "basis": "deterministic signal statistics; timbre beyond these numbers needs listening"
+}

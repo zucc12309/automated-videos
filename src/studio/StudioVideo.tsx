@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Easing, interpolate, Sequence, spring, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Audio, Easing, interpolate, OffthreadVideo, Sequence, spring, staticFile, useCurrentFrame} from 'remotion';
 import {Character, Expression, Pose, Viseme} from '../Character';
 import {Beat, Props, Scene} from '../shared';
 import {Backdrop, Captions} from './Backdrop';
@@ -7,13 +7,22 @@ import {LayoutProps, cl} from './kit';
 import {BigNumber, Compare, HeroWord, ListStack, MascotCloseup, Quote, Steps} from './LayoutsText';
 import {Chat, Chips, DeviceMock, NodeGraph, RepoCard, StarMeter, Terminal} from './LayoutsData';
 import {DocStamp, HookStack, Recap} from './LayoutsStory';
-import {DEFAULT_VARIANT, FONT, PALETTES, Palette, STAGE, Variant, punch} from './tokens';
+import {BrowserMock, ChartBars, Cinematic, CodeBlock, FlowDiagram, SplitCompare, Timeline, WarningCard} from './LayoutsV2';
+import {GENERATED} from './generated';
+import {HookBold, MotionClip, OutroCTA, ReadmeScroll, RepoConnect} from './LayoutsRetention';
+import {DEFAULT_VARIANT, FONT, PALETTES, Palette, STAGE, THEMES, Variant, punch} from './tokens';
 
 const LAYOUTS: Record<string, React.FC<LayoutProps>> = {heroWord: HeroWord, bigNumber: BigNumber, quote: Quote, mascotCloseup: MascotCloseup, listStack: ListStack,
   steps: Steps, compare: Compare, repoCard: RepoCard, terminal: Terminal, chips: Chips, starMeter: StarMeter, deviceMock: DeviceMock, chat: Chat, nodeGraph: NodeGraph,
-  hookStack: HookStack, docStamp: DocStamp, recap: Recap};
-const TEXT_FORWARD = new Set(['heroWord', 'quote', 'hookStack', 'loop', 'mascotCloseup']);
-const DEICTIC = new Set(['repoCard', 'terminal', 'deviceMock', 'starMeter', 'chips', 'nodeGraph', 'docStamp', 'chat', 'steps', 'listStack', 'bigNumber']);
+  hookStack: HookStack, docStamp: DocStamp, recap: Recap,
+  codeBlock: CodeBlock, flowDiagram: FlowDiagram, timeline: Timeline, chartBars: ChartBars, browserMock: BrowserMock, warningCard: WarningCard,
+  splitCompare: SplitCompare, cinematic: Cinematic, hookBold: HookBold, readmeScroll: ReadmeScroll, repoConnect: RepoConnect, outroCTA: OutroCTA,
+  motionClip: MotionClip, ...GENERATED};
+const TEXT_FORWARD = new Set(['heroWord', 'quote', 'hookStack', 'loop', 'mascotCloseup', 'hookBold', 'outroCTA']);
+const DEICTIC = new Set(['repoCard', 'terminal', 'deviceMock', 'starMeter', 'chips', 'nodeGraph', 'docStamp', 'chat', 'steps', 'listStack', 'bigNumber',
+  'codeBlock', 'flowDiagram', 'timeline', 'chartBars', 'browserMock', 'splitCompare', 'readmeScroll', 'repoConnect']);
+// Camera grammar (storyboard motion.camera) -> push-in strength over a beat.
+const CAMERA: Record<string, number> = {static: 0, subtle_push: 1, parallax: 1, dolly: 1.6, pan_left: .6, pan_right: .6};
 const T = 9;  // transition length in frames
 
 type GBeat = Beat & {scene: Scene; si: number; bi: number; start: number; end: number; hit: number | null};
@@ -49,14 +58,22 @@ const BeatView: React.FC<{b: GBeat; next?: GBeat; props: Props; P: Palette; v: V
   const tout = next && next.transition !== 'cut' && f > dur ? transitionStyle(next.transition, interpolate(f, [dur, dur + T], [0, 1], cl), 'out') : {};
   if (next && next.transition === 'cut' && f >= dur) return null;
   const cutPunch = b.transition === 'cut' && b.start > 0 ? interpolate(f, [0, 6], [1.06, 1], {...cl, easing: Easing.out(Easing.cubic)}) : 1;
-  const push = 1 + .05 * v.camera * Math.min(1, f / Math.max(1, dur));
+  const cam = b.scene.motion?.camera ?? 'subtle_push';
+  const push = 1 + .05 * v.camera * (CAMERA[cam] ?? 1) * Math.min(1, f / Math.max(1, dur));
+  const pan = cam === 'pan_left' || cam === 'pan_right' ? (cam === 'pan_left' ? -1 : 1) * 24 * Math.min(1, f / Math.max(1, dur)) : 0;
   const k = punch(f, b.hit ?? -99, .07 * v.camera);
   const isLoop = b.layout === 'loop';
   const L = LAYOUTS[isLoop ? first.layout : b.layout] ?? ListStack;
   const lp: LayoutProps = isLoop ? {beat: first, scene: first.scene, props, P, v, index: 0, hit: null, dur} : {beat: b, scene: b.scene, props, P, v, index: b.si, hit: b.hit, dur};
   return <AbsoluteFill style={{...tin, ...tout}}>
-    {b.transition === 'mask' && <Backdrop P={P} kind={v.background} shift={{x: 0, y: 0}}/>}
-    <AbsoluteFill style={{transform: `scale(${push * k * cutPunch})`, transformOrigin: '50% 42%'}}>
+    {b.transition === 'mask' && <Backdrop P={P} kind={v.theme && THEMES[v.theme] ? THEMES[v.theme].background : v.background} shift={{x: 0, y: 0}}/>}
+    {b.scene.media && b.layout !== 'cinematic' && b.layout !== 'motionClip' && !isLoop && <AbsoluteFill>
+      {/* Footage as a graded backdrop behind typography layouts (e.g. the bold hook over a Higgsfield establishing shot). */}
+      <OffthreadVideo src={staticFile(b.scene.media)} muted playbackRate={b.scene.mediaSeconds ? Math.max(.5, Math.min(1, b.scene.mediaSeconds / Math.max(.1, dur / 30))) : 1}
+        style={{width: '100%', height: '100%', objectFit: 'cover', filter: `saturate(.8) brightness(${P.dark ? .55 : .8})`}}/>
+      <AbsoluteFill style={{background: `linear-gradient(180deg, ${P.bg}99 0%, ${P.bg}55 40%, ${P.bg}dd 85%)`}}/>
+    </AbsoluteFill>}
+    <AbsoluteFill style={{transform: `translateX(${pan}px) scale(${push * k * cutPunch})`, transformOrigin: '50% 42%'}}>
       <div style={{position: 'absolute', left: STAGE.left, top: STAGE.top, width: STAGE.width, height: STAGE.height}}><L {...lp}/></div>
     </AbsoluteFill>
   </AbsoluteFill>;
@@ -79,7 +96,9 @@ export const StudioVideo: React.FC<Props> = props => {
   const frame = useCurrentFrame();
   const fps = 30;
   const v: Variant = {...DEFAULT_VARIANT, ...(props.variant ?? {})};
-  const P = PALETTES[v.palette] ?? PALETTES['paper-red'];
+  const theme = v.theme ? THEMES[v.theme] : undefined;
+  const P: Palette = theme ?? PALETTES[v.palette] ?? PALETTES['paper-red'];
+  const background = theme ? theme.background : v.background;
   const beats = flatten(props.scenes, fps);
   let ai = 0;
   beats.forEach((b, i) => { if (frame >= b.start) ai = i; });
@@ -117,11 +136,16 @@ export const StudioVideo: React.FC<Props> = props => {
   const audioDone = local > (scene.audioFrames ?? scene.frames);
   const expression: Expression = audioDone || cur.layout === 'loop' ? 'happy' : cur.punch && since < 40 ? 'smug' : 'talk';
 
+  // Presenter only where the storyboard motivates it (V2); V1 props keep the always-on character.
+  const shows = (s?: Scene) => props.characterMode === 'off' ? 0 : s?.character === undefined ? 1 : s.character ? 1 : 0;
+  const prevScene = props.scenes[props.scenes.indexOf(scene) - 1];
+  const enterT = spring({frame: frame - scene.from + 4, fps, config: {damping: 20, stiffness: 120}});
+  const presence = shows(prevScene ?? scene) + (shows(scene) - shows(prevScene ?? scene)) * enterT;
   const count = props.scenes.filter(s => (s.item ?? 0) > 0).length;
   const item = scene.item ?? 0;
   const doneItems = props.scenes.filter(s => (s.item ?? 0) > 0 && frame >= s.from + 18).length;
   return <AbsoluteFill style={{background: P.bg, overflow: 'hidden'}}>
-    <Backdrop P={P} kind={v.background} shift={{x: -pos.x * .1, y: 0}}/>
+    <Backdrop P={P} kind={background} shift={{x: -pos.x * .1, y: 0}}/>
     {beats.map((b, i) => {
       // The opening beat starts its animation 44 frames "early" so frame 0 (the cover and the hook) is already fully composed.
       const pre = i === 0 ? 44 : 0;
@@ -134,11 +158,11 @@ export const StudioVideo: React.FC<Props> = props => {
       {Array.from({length: count}, (_, i) => <span key={i} style={{flex: 1, height: 12, borderRadius: 6, background: i < doneItems ? P.accent : P.line, transition: 'none'}}/>)}
     </div>}
     {!TEXT_FORWARD.has(cur.layout) && <Captions scene={scene} beat={cur} local={local} P={P} v={v}/>}
-    <div style={{position: 'absolute', left: pos.x, top: pos.y, transform: `scale(1, ${squash})`, transformOrigin: 'bottom'}}>
+    {presence > .01 && <div style={{position: 'absolute', left: pos.x, top: pos.y + (1 - presence) * 820, transform: `scale(1, ${squash})`, transformOrigin: 'bottom'}}>
       <Character width={pos.w} mouth={scene.mouth?.[local] ?? 0} viseme={audioDone ? 'X' : vis} pose={target} prevPose={from} poseT={poseT}
         expression={expression} look={look} accent={P.accent} hoodie={v.outfit} hair={v.hair} emphasis={!!cur.hit && since >= cur.hit - 4 && since < cur.hit + 24}
         nod={nod} blink={frame - lastBlink} seed={seedNum}/>
-    </div>
+    </div>}
     {props.scenes.map((s, i) => <Sequence key={i} from={s.from} durationInFrames={s.frames}>
       {s.audio && <Audio src={staticFile(s.audio)}/>}
       {s.uiAudio && <Audio src={staticFile(s.uiAudio)} volume={.55}/>}

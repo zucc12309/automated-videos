@@ -1,0 +1,8 @@
+Hey! Here's what you asked for from "The future of AI-powered coding":
+
+1. From request to tested change
+2. Review the diff
+3. Intent, architecture, judgment
+4. What gets valuable
+5. Only as good as your tests
+

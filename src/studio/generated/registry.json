@@ -1,0 +1,41 @@
+{
+ "components": {
+  "StatRing": {
+   "name": "StatRing",
+   "intents": [
+    "statistic",
+    "growth"
+   ],
+   "needs": [
+    "number"
+   ],
+   "submitted_at": 1792130999.4151666,
+   "status": "approved",
+   "steps": [
+    {
+     "step": "static_scan",
+     "passed": true,
+     "problems": []
+    },
+    {
+     "step": "typecheck",
+     "passed": true,
+     "output": ""
+    },
+    {
+     "step": "render_smoke_test",
+     "passed": true,
+     "output": ""
+    },
+    {
+     "step": "screenshot_validation",
+     "passed": true,
+     "stage_std": 43.84
+    }
+   ],
+   "screenshot": "src/studio/generated/pending/StatRing.png",
+   "promoted_at": 1792131004.4376984,
+   "reviewer": "claude-code interactive session (development review of examples/components/StatRing.tsx)"
+  }
+ }
+}

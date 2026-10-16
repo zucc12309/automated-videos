@@ -1,0 +1,11 @@
+{
+  "demo": "B",
+  "job": "61c97bf927f5",
+  "state": "completed",
+  "phase": "COMPLETED",
+  "degraded": [],
+  "wall_seconds": 247.5,
+  "mock_cinematic": false,
+  "live_provider_tested": false,
+  "qa": "/home/user/automated-videos/data/jobs/61c97bf927f5/qa/summary.md"
+}

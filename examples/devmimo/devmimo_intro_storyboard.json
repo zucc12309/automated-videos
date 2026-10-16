@@ -1,0 +1,334 @@
+{
+ "title": "Meet Mimo — DevMimo intro",
+ "format": "reel 9:16, 1080x1920, 30 fps, 30 s",
+ "brand": {
+  "name": "DevMimo",
+  "mascot": "Mimo",
+  "palette": {
+   "source": "brand/tokens.json (FIELDNOTES premium)",
+   "ground": "#0a0b0f",
+   "ink": "#efefea",
+   "accent": "#8ea2ff"
+  },
+  "type": {
+   "display": "Figtree 900",
+   "editorial": "Instrument Serif italic",
+   "code": "JetBrains Mono"
+  }
+ },
+ "voice": "Kokoro am_adam (kokoro-onnx), reference EQ, -14 LUFS master",
+ "music": "warm pad (brand audio profile), ducked under the voice",
+ "mascot_note": "Mimo is the brand's recurring character from brand/character/identity.json (same design as src/premium/Blob.tsx), drawn by src/devmimo/Mimo.tsx with the intro's animation controls. The on-screen name 'Mimo' comes from the DevMimo brief; identity.json public_name is unchanged.",
+ "scenes": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "lead_s": 0.05,
+   "min_tail_s": 0.45,
+   "hold": 0.0,
+   "narration": "Ten thousand tutorials. And you're still stuck?",
+   "on_screen": {
+    "counter": "10,000",
+    "label": "TUTORIALS",
+    "punch": "STILL STUCK?"
+   },
+   "visual": "Frame 0: an avalanche of tutorial tabs and a counter racing to 10,000. On 'stuck?' the stack freezes, a terminal error glitches through and STILL STUCK? slams in.",
+   "camera": "slow push-in, hard freeze on the punch word"
+  },
+  {
+   "id": "reveal",
+   "kind": "reveal",
+   "lead_s": 0.35,
+   "min_tail_s": 1.2,
+   "hold": 0.0,
+   "narration": "Meet Mimo.",
+   "on_screen": {
+    "title": "Meet Mimo"
+   },
+   "visual": "The error terminal cracks open in accent light; Mimo pops out of the window, lands, blinks twice and waves. 'Meet Mimo' in serif + heavy sans.",
+   "camera": "light burst, then a settle with a small overshoot"
+  },
+  {
+   "id": "build",
+   "kind": "build",
+   "lead_s": 0.1,
+   "min_tail_s": 0.3,
+   "hold": 0.4,
+   "narration": "Mimo takes real developer tools, and turns them into short builds you can actually follow.",
+   "on_screen": {
+    "tools": [
+     "terminal",
+     "git",
+     "agents",
+     "API"
+    ],
+    "card": "BUILD 01",
+    "progress": "follow along"
+   },
+   "visual": "Tool chips fly into Mimo's hands, an editor types a short script, the result folds into a vertical build card with a progress bar.",
+   "camera": "lateral drift following the chips"
+  },
+  {
+   "id": "topics",
+   "kind": "topics",
+   "lead_s": 0.1,
+   "min_tail_s": 0.15,
+   "hold": 0.1,
+   "narration": "AI agents. MCP servers. Open-source repos worth your time.",
+   "on_screen": {
+    "items": [
+     "AI agents",
+     "MCP servers",
+     "Open-source repos"
+    ]
+   },
+   "visual": "Three word-synced panels: an agent loop graph, an MCP hub with plugs snapping in, a repository tree that unfolds.",
+   "camera": "whip between panels on each stressed word"
+  },
+  {
+   "id": "nofluff",
+   "kind": "nofluff",
+   "lead_s": 0.1,
+   "min_tail_s": 0.9,
+   "hold": 0.2,
+   "narration": "No fluff. Just the commands, the code, and why it works.",
+   "on_screen": {
+    "crossed": "FLUFF",
+    "lines": [
+     "the commands",
+     "the code",
+     "why it works"
+    ]
+   },
+   "visual": "FLUFF is struck through and crushed; a terminal checklist ticks commands, code and why it works as they are spoken.",
+   "camera": "static, tight"
+  },
+  {
+   "id": "outro",
+   "kind": "outro",
+   "lead_s": 0.15,
+   "min_tail_s": 1.5,
+   "hold": 0.3,
+   "narration": "This is DevMimo. Follow along, and let's build something real.",
+   "on_screen": {
+    "wordmark": "DevMimo",
+    "tagline": "real builds, explained",
+    "follow": "Follow along"
+   },
+   "visual": "The DevMimo logo assembles (same animation as the 5 s logo sting); Mimo waves beside it; Follow along button pulses.",
+   "camera": "pull back to the lockup"
+  }
+ ],
+ "sfx": [
+  {
+   "scene": "hook",
+   "frame": 0,
+   "sound": "keys",
+   "seconds": 1.6,
+   "rate": 22,
+   "gain": 0.55
+  },
+  {
+   "scene": "hook",
+   "frame": 0,
+   "sound": "whoosh",
+   "gain": 0.4
+  },
+  {
+   "scene": "hook",
+   "word": 6,
+   "frame": 0,
+   "sound": "glitch",
+   "gain": 0.8
+  },
+  {
+   "scene": "hook",
+   "word": 6,
+   "frame": 2,
+   "sound": "stamp",
+   "gain": 0.7
+  },
+  {
+   "scene": "reveal",
+   "frame": -6,
+   "sound": "riser",
+   "seconds": 0.9,
+   "gain": 0.55,
+   "word": 0
+  },
+  {
+   "scene": "reveal",
+   "frame": -6,
+   "sound": "boom",
+   "gain": 0.9,
+   "word": 0
+  },
+  {
+   "scene": "reveal",
+   "frame": -4,
+   "sound": "whoosh",
+   "gain": 0.45,
+   "word": 0
+  },
+  {
+   "scene": "reveal",
+   "frame": 10,
+   "sound": "pop",
+   "gain": 0.55,
+   "word": 0
+  },
+  {
+   "scene": "reveal",
+   "word": 1,
+   "frame": 10,
+   "sound": "chime",
+   "gain": 0.35
+  },
+  {
+   "scene": "build",
+   "frame": 0,
+   "sound": "whoosh",
+   "gain": 0.45
+  },
+  {
+   "scene": "build",
+   "frame": 1,
+   "sound": "pop",
+   "gain": 0.35
+  },
+  {
+   "scene": "build",
+   "frame": 5,
+   "sound": "pop",
+   "gain": 0.35
+  },
+  {
+   "scene": "build",
+   "frame": 9,
+   "sound": "pop",
+   "gain": 0.35
+  },
+  {
+   "scene": "build",
+   "frame": 13,
+   "sound": "pop",
+   "gain": 0.35
+  },
+  {
+   "scene": "build",
+   "frame": 40,
+   "sound": "keys",
+   "seconds": 2.2,
+   "rate": 16,
+   "gain": 0.45
+  },
+  {
+   "scene": "build",
+   "word": 10,
+   "frame": 0,
+   "sound": "plug",
+   "gain": 0.6
+  },
+  {
+   "scene": "topics",
+   "word": 0,
+   "frame": -3,
+   "sound": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "scene": "topics",
+   "word": 2,
+   "frame": -3,
+   "sound": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "scene": "topics",
+   "word": 2,
+   "frame": 14,
+   "sound": "plug",
+   "gain": 0.45
+  },
+  {
+   "scene": "topics",
+   "word": 4,
+   "frame": -3,
+   "sound": "whoosh",
+   "gain": 0.5
+  },
+  {
+   "scene": "nofluff",
+   "word": 1,
+   "frame": 0,
+   "sound": "stamp",
+   "gain": 0.75
+  },
+  {
+   "scene": "nofluff",
+   "word": 4,
+   "frame": 2,
+   "sound": "tick",
+   "gain": 0.8
+  },
+  {
+   "scene": "nofluff",
+   "word": 6,
+   "frame": 2,
+   "sound": "tick",
+   "gain": 0.8
+  },
+  {
+   "scene": "nofluff",
+   "word": 8,
+   "frame": 2,
+   "sound": "tick",
+   "gain": 0.8
+  },
+  {
+   "scene": "nofluff",
+   "word": 8,
+   "frame": 14,
+   "sound": "keys",
+   "seconds": 0.55,
+   "rate": 13,
+   "gain": 0.45
+  },
+  {
+   "scene": "outro",
+   "frame": 0,
+   "sound": "whoosh",
+   "gain": 0.45
+  },
+  {
+   "scene": "outro",
+   "frame": 12,
+   "sound": "boom",
+   "gain": 0.55
+  },
+  {
+   "scene": "outro",
+   "word": 2,
+   "frame": 0,
+   "sound": "chime",
+   "gain": 0.35
+  },
+  {
+   "scene": "outro",
+   "word": 3,
+   "frame": 0,
+   "sound": "pop",
+   "gain": 0.4
+  }
+ ],
+ "voice_speed": 0.95,
+ "pacing": {
+  "target_s": 26.0,
+  "wpm_target": [
+   145,
+   165
+  ],
+  "end_card_min_s": 1.5,
+  "note": "Instagram pacing pass: hook pulled forward, shorter reveal pause, faster topics, terminal kept readable, logo + CTA held >= 1.5 s."
+ }
+}

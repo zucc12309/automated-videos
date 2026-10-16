@@ -1,0 +1,183 @@
+{
+ "schema_version": "2.0",
+ "title": "How MCP connects agents to your tools",
+ "format": "story",
+ "series": "AGENTS",
+ "duration_target_seconds": 40,
+ "creative_direction": {
+  "audience": "developers using coding agents",
+  "core_message": "MCP gives an agent a standard way to reach tools and data: host, client, server, JSON-RPC.",
+  "viewer_benefit": "Understand what happens when you add an MCP server.",
+  "hook": "Your AI agent only knows the tools you plug in.",
+  "tone": "bold editorial",
+  "pacing": "dynamic",
+  "theme": "fieldnotes-premium",
+  "visual_identity": "FIELDNOTES premium",
+  "sound_design": "impact on hook, ticks, chime on CTA",
+  "call_to_action": "Comment GUIDE",
+  "character": "on"
+ },
+ "sources": [
+  {
+   "id": "src1",
+   "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+   "title": "Model Context Protocol: architecture overview",
+   "kind": "article"
+  }
+ ],
+ "claims": [
+  {
+   "id": "c1",
+   "text": "MCP uses a client-server architecture: a host application creates one MCP client per MCP server.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  },
+  {
+   "id": "c2",
+   "text": "MCP servers expose tools, resources and prompts.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  },
+  {
+   "id": "c3",
+   "text": "MCP messages use JSON-RPC 2.0.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  },
+  {
+   "id": "c4",
+   "text": "Local servers commonly use the stdio transport; remote servers use Streamable HTTP.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "scene_001",
+   "role": "hook",
+   "narration": "Your AI agent only knows the tools you plug in. MCP is the plug.",
+   "heading": "MCP is how agents get tools",
+   "emphasis": "MCP",
+   "intent": "hook",
+   "layout": "hookBold",
+   "pace": "emphasis"
+  },
+  {
+   "id": "scene_002",
+   "role": "body",
+   "narration": "The host app, like Claude Code, creates one MCP client for every server it connects to.",
+   "heading": "One client per server",
+   "emphasis": "one MCP client",
+   "intent": "architecture",
+   "layout": "nodeGraph",
+   "pace": "demonstration",
+   "points": [
+    "GitHub server",
+    "Database server",
+    "Files server"
+   ],
+   "claim_ids": [
+    "c1"
+   ]
+  },
+  {
+   "id": "scene_003",
+   "role": "body",
+   "narration": "Each server exposes three things: tools to call, resources to read, and prompts to reuse.",
+   "heading": "Tools, resources, prompts",
+   "emphasis": "three things",
+   "intent": "list",
+   "layout": "steps",
+   "pace": "medium",
+   "points": [
+    "Tools: actions",
+    "Resources: context",
+    "Prompts: templates"
+   ],
+   "visual": {
+    "steps": [
+     "Tools: actions the model can call",
+     "Resources: data it can read",
+     "Prompts: reusable templates"
+    ]
+   },
+   "claim_ids": [
+    "c2"
+   ]
+  },
+  {
+   "id": "scene_004",
+   "role": "body",
+   "narration": "Under the hood, every request is a JSON-RPC message: a method, parameters, and an ID.",
+   "heading": "It's just JSON-RPC",
+   "emphasis": "JSON-RPC",
+   "intent": "code",
+   "layout": "codeBlock",
+   "pace": "demonstration",
+   "visual": {
+    "code_language": "json",
+    "code": [
+     "{ \"jsonrpc\": \"2.0\",",
+     "  \"id\": 7,",
+     "  \"method\": \"tools/call\",",
+     "  \"params\": {",
+     "    \"name\": \"search_issues\",",
+     "    \"arguments\": {\"q\": \"bug\"} } }"
+    ]
+   },
+   "claim_ids": [
+    "c3"
+   ]
+  },
+  {
+   "id": "scene_005",
+   "role": "body",
+   "narration": "Local servers usually talk over standard input and output. Remote servers use streamable HTTP.",
+   "heading": "Two transports",
+   "emphasis": "streamable HTTP",
+   "intent": "api_flow",
+   "layout": "flowDiagram",
+   "pace": "demonstration",
+   "visual": {
+    "nodes": [
+     "Claude Code",
+     "MCP client",
+     "stdio or HTTP",
+     "MCP server",
+     "Your tool"
+    ]
+   },
+   "claim_ids": [
+    "c4"
+   ]
+  },
+  {
+   "id": "scene_006",
+   "role": "body",
+   "narration": "One rule: only connect servers you trust, because their tools act with your permissions.",
+   "heading": "Only trust servers you'd run",
+   "emphasis": "trust",
+   "intent": "warning",
+   "layout": "warningCard",
+   "pace": "medium"
+  },
+  {
+   "id": "scene_007",
+   "role": "outro",
+   "narration": "Want the setup guide? Comment GUIDE.",
+   "heading": "Comment GUIDE",
+   "emphasis": "GUIDE",
+   "intent": "recap",
+   "layout": "outroCTA",
+   "pace": "pause"
+  }
+ ]
+}

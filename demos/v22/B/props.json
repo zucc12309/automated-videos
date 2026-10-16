@@ -1,0 +1,2537 @@
+{
+  "title": "Stop your coding agent from breaking your UI",
+  "style": "premium",
+  "brand": "FIELDNOTES",
+  "series": "BUILD SMARTER",
+  "direction": {
+    "notes": [],
+    "reveal_scene": "scene_003"
+  },
+  "repos": [],
+  "music": "jobs/61c97bf927f5/music.wav",
+  "variant": {
+    "seed": "v22-B",
+    "palette": "",
+    "background": "flat",
+    "temperament": "editorial",
+    "captions": "editorial",
+    "transitions": [
+      "push",
+      "mask",
+      "zoom"
+    ],
+    "outfit": "#6d28d9",
+    "hair": "#3b2a21",
+    "music": {
+      "progression": 2,
+      "bpm": 84
+    },
+    "camera": 1.0,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "scenes": [
+    {
+      "heading": "Your coding agent keeps breaking your UI?",
+      "narration": "Your coding agent keeps breaking your UI?",
+      "caption": "Your coding agent keeps breaking your UI?",
+      "points": [],
+      "visual": "hook",
+      "item": 0,
+      "label": "",
+      "emphasis": "",
+      "stat": "",
+      "audio": "jobs/61c97bf927f5/scene-0.wav",
+      "frames": 73,
+      "audioFrames": 64,
+      "uiAudio": "jobs/61c97bf927f5/scene-0-ui.wav",
+      "words": [
+        {
+          "w": "Your",
+          "s": 0.0,
+          "e": 0.12
+        },
+        {
+          "w": "coding",
+          "s": 0.12,
+          "e": 0.51
+        },
+        {
+          "w": "agent",
+          "s": 0.51,
+          "e": 1.027
+        },
+        {
+          "w": "keeps",
+          "s": 1.17,
+          "e": 1.257
+        },
+        {
+          "w": "breaking",
+          "s": 1.33,
+          "e": 1.63
+        },
+        {
+          "w": "your",
+          "s": 1.63,
+          "e": 1.894
+        },
+        {
+          "w": "UI?",
+          "s": 1.97,
+          "e": 2.106
+        }
+      ],
+      "mouth": [
+        0.65,
+        0.76,
+        0.36,
+        0.24,
+        0.59,
+        0.9,
+        0.99,
+        1.0,
+        0.96,
+        0.88,
+        0.86,
+        0.86,
+        0.78,
+        0.64,
+        0.45,
+        0.46,
+        0.72,
+        0.87,
+        0.84,
+        0.68,
+        0.55,
+        0.63,
+        0.78,
+        0.77,
+        0.56,
+        0.3,
+        0.21,
+        0.37,
+        0.64,
+        0.68,
+        0.44,
+        0.39,
+        0.56,
+        0.45,
+        0.15,
+        0.25,
+        0.7,
+        0.89,
+        0.63,
+        0.28,
+        0.26,
+        0.51,
+        0.72,
+        0.81,
+        0.83,
+        0.82,
+        0.77,
+        0.69,
+        0.65,
+        0.75,
+        0.89,
+        0.91,
+        0.89,
+        0.93,
+        0.93,
+        0.79,
+        0.63,
+        0.53,
+        0.45,
+        0.37,
+        0.31,
+        0.23,
+        0.13,
+        0.05
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          4,
+          "X"
+        ],
+        [
+          6,
+          "B"
+        ],
+        [
+          8,
+          "C"
+        ],
+        [
+          10,
+          "B"
+        ],
+        [
+          14,
+          "D"
+        ],
+        [
+          17,
+          "B"
+        ],
+        [
+          20,
+          "C"
+        ],
+        [
+          23,
+          "B"
+        ],
+        [
+          31,
+          "X"
+        ],
+        [
+          34,
+          "B"
+        ],
+        [
+          38,
+          "X"
+        ],
+        [
+          40,
+          "B"
+        ],
+        [
+          42,
+          "D"
+        ],
+        [
+          44,
+          "C"
+        ],
+        [
+          46,
+          "B"
+        ],
+        [
+          49,
+          "X"
+        ],
+        [
+          51,
+          "F"
+        ],
+        [
+          53,
+          "B"
+        ],
+        [
+          57,
+          "X"
+        ],
+        [
+          60,
+          "C"
+        ],
+        [
+          63,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 2.433,
+          "w": [
+            0,
+            6
+          ],
+          "text": "Your coding agent keeps breaking your UI?",
+          "focus": "breaking",
+          "layout": "hookBold",
+          "layoutReason": {
+            "score": 5.8,
+            "parts": {
+              "relevance": 1.0,
+              "narrative": 1.0,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "hook",
+            "runner_up": "heroWord"
+          },
+          "anchor": "right",
+          "transition": "cut",
+          "punch": false,
+          "character": {
+            "state": "speaking",
+            "scale": "closeup",
+            "anchor": "centre"
+          },
+          "direction": {
+            "transition": "first frame: the hook must be readable immediately",
+            "character": "signature entrance: pops up under the hook and acknowledges the viewer",
+            "layout": "hook"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 0,
+      "id": "scene_001",
+      "role": "hook",
+      "intent": "hook",
+      "pace": "emphasis",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "mask",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": []
+    },
+    {
+      "heading": "The vague prompt",
+      "narration": "Most people type something like: make the dashboard look better. The agent has to guess what you mean.",
+      "caption": "Most people type something like: make the dashboard look better. The agent has to guess what you mean.",
+      "points": [
+        "Guesswork"
+      ],
+      "visual": "cards",
+      "item": 0,
+      "label": "Vague",
+      "emphasis": "guess",
+      "stat": "",
+      "audio": "jobs/61c97bf927f5/scene-1.wav",
+      "frames": 163,
+      "audioFrames": 154,
+      "uiAudio": "jobs/61c97bf927f5/scene-1-ui.wav",
+      "words": [
+        {
+          "w": "Most",
+          "s": 0.0,
+          "e": 0.181
+        },
+        {
+          "w": "people",
+          "s": 0.22,
+          "e": 0.559
+        },
+        {
+          "w": "type",
+          "s": 0.57,
+          "e": 0.771
+        },
+        {
+          "w": "something",
+          "s": 0.82,
+          "e": 1.33
+        },
+        {
+          "w": "like:",
+          "s": 1.47,
+          "e": 1.667
+        },
+        {
+          "w": "make",
+          "s": 1.69,
+          "e": 1.87
+        },
+        {
+          "w": "the",
+          "s": 1.87,
+          "e": 1.99
+        },
+        {
+          "w": "dashboard",
+          "s": 1.99,
+          "e": 2.448
+        },
+        {
+          "w": "look",
+          "s": 2.46,
+          "e": 2.65
+        },
+        {
+          "w": "better.",
+          "s": 2.65,
+          "e": 3.038
+        },
+        {
+          "w": "The",
+          "s": 3.229,
+          "e": 3.423
+        },
+        {
+          "w": "agent",
+          "s": 3.549,
+          "e": 3.759
+        },
+        {
+          "w": "has",
+          "s": 3.759,
+          "e": 4.009
+        },
+        {
+          "w": "to",
+          "s": 4.009,
+          "e": 4.264
+        },
+        {
+          "w": "guess",
+          "s": 4.399,
+          "e": 4.475
+        },
+        {
+          "w": "what",
+          "s": 4.559,
+          "e": 4.619
+        },
+        {
+          "w": "you",
+          "s": 4.619,
+          "e": 4.895
+        },
+        {
+          "w": "mean.",
+          "s": 5.029,
+          "e": 5.106
+        }
+      ],
+      "mouth": [
+        0.64,
+        0.91,
+        0.89,
+        0.78,
+        0.56,
+        0.22,
+        0.1,
+        0.4,
+        0.8,
+        0.95,
+        0.77,
+        0.39,
+        0.3,
+        0.62,
+        0.81,
+        0.64,
+        0.39,
+        0.38,
+        0.59,
+        0.76,
+        0.79,
+        0.8,
+        0.79,
+        0.55,
+        0.32,
+        0.45,
+        0.7,
+        0.78,
+        0.79,
+        0.66,
+        0.46,
+        0.51,
+        0.72,
+        0.76,
+        0.76,
+        0.8,
+        0.77,
+        0.73,
+        0.69,
+        0.61,
+        0.39,
+        0.16,
+        0.08,
+        0.05,
+        0.01,
+        0.0,
+        0.01,
+        0.01,
+        0.0,
+        0.0,
+        0.03,
+        0.3,
+        0.73,
+        0.82,
+        0.55,
+        0.22,
+        0.3,
+        0.71,
+        0.76,
+        0.68,
+        0.87,
+        0.95,
+        0.84,
+        0.76,
+        0.68,
+        0.61,
+        0.61,
+        0.47,
+        0.19,
+        0.24,
+        0.65,
+        0.91,
+        0.84,
+        0.65,
+        0.65,
+        0.83,
+        0.9,
+        0.68,
+        0.29,
+        0.06,
+        0.05,
+        0.29,
+        0.72,
+        0.94,
+        0.86,
+        0.66,
+        0.52,
+        0.54,
+        0.53,
+        0.36,
+        0.18,
+        0.07,
+        0.02,
+        0.0,
+        0.0,
+        0.0,
+        0.19,
+        0.62,
+        0.89,
+        0.92,
+        0.95,
+        0.99,
+        0.99,
+        0.92,
+        0.73,
+        0.51,
+        0.52,
+        0.71,
+        0.88,
+        0.91,
+        0.78,
+        0.58,
+        0.38,
+        0.31,
+        0.47,
+        0.67,
+        0.67,
+        0.57,
+        0.48,
+        0.29,
+        0.33,
+        0.58,
+        0.57,
+        0.4,
+        0.46,
+        0.76,
+        0.93,
+        0.83,
+        0.62,
+        0.51,
+        0.59,
+        0.51,
+        0.31,
+        0.45,
+        0.82,
+        0.83,
+        0.43,
+        0.23,
+        0.45,
+        0.74,
+        0.84,
+        0.83,
+        0.84,
+        0.88,
+        0.87,
+        0.84,
+        0.78,
+        0.67,
+        0.52,
+        0.39,
+        0.26,
+        0.16,
+        0.09,
+        0.04
+      ],
+      "visemes": [
+        [
+          0,
+          "A"
+        ],
+        [
+          3,
+          "B"
+        ],
+        [
+          5,
+          "A"
+        ],
+        [
+          7,
+          "C"
+        ],
+        [
+          10,
+          "A"
+        ],
+        [
+          12,
+          "H"
+        ],
+        [
+          14,
+          "C"
+        ],
+        [
+          16,
+          "B"
+        ],
+        [
+          19,
+          "A"
+        ],
+        [
+          23,
+          "B"
+        ],
+        [
+          25,
+          "E"
+        ],
+        [
+          27,
+          "A"
+        ],
+        [
+          29,
+          "C"
+        ],
+        [
+          31,
+          "H"
+        ],
+        [
+          33,
+          "C"
+        ],
+        [
+          35,
+          "B"
+        ],
+        [
+          40,
+          "X"
+        ],
+        [
+          43,
+          "H"
+        ],
+        [
+          46,
+          "B"
+        ],
+        [
+          49,
+          "A"
+        ],
+        [
+          51,
+          "D"
+        ],
+        [
+          53,
+          "C"
+        ],
+        [
+          55,
+          "H"
+        ],
+        [
+          58,
+          "B"
+        ],
+        [
+          60,
+          "X"
+        ],
+        [
+          62,
+          "B"
+        ],
+        [
+          65,
+          "E"
+        ],
+        [
+          67,
+          "D"
+        ],
+        [
+          69,
+          "B"
+        ],
+        [
+          72,
+          "H"
+        ],
+        [
+          74,
+          "F"
+        ],
+        [
+          76,
+          "B"
+        ],
+        [
+          78,
+          "A"
+        ],
+        [
+          80,
+          "X"
+        ],
+        [
+          82,
+          "B"
+        ],
+        [
+          86,
+          "C"
+        ],
+        [
+          88,
+          "B"
+        ],
+        [
+          91,
+          "X"
+        ],
+        [
+          95,
+          "H"
+        ],
+        [
+          98,
+          "C"
+        ],
+        [
+          103,
+          "X"
+        ],
+        [
+          105,
+          "D"
+        ],
+        [
+          107,
+          "C"
+        ],
+        [
+          109,
+          "B"
+        ],
+        [
+          113,
+          "X"
+        ],
+        [
+          116,
+          "B"
+        ],
+        [
+          120,
+          "X"
+        ],
+        [
+          123,
+          "E"
+        ],
+        [
+          128,
+          "X"
+        ],
+        [
+          130,
+          "B"
+        ],
+        [
+          134,
+          "X"
+        ],
+        [
+          136,
+          "B"
+        ],
+        [
+          139,
+          "X"
+        ],
+        [
+          143,
+          "F"
+        ],
+        [
+          147,
+          "X"
+        ],
+        [
+          149,
+          "A"
+        ],
+        [
+          151,
+          "D"
+        ],
+        [
+          153,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.433,
+          "w": [
+            0,
+            17
+          ],
+          "text": "Most people type something like: make the dashboard look better. The agent has to guess what you mean.",
+          "focus": "something",
+          "layout": "terminal",
+          "layoutReason": {
+            "score": 5.4835,
+            "parts": {
+              "relevance": 1.1,
+              "narrative": 0.5,
+              "readability": 0.834,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.5,
+              "brand": 0.0
+            },
+            "intent": "warning",
+            "runner_up": "warningCard"
+          },
+          "anchor": "left",
+          "transition": "blurDissolve",
+          "punch": true,
+          "held": true,
+          "character": {
+            "state": "confused",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "storyboard asked for 'confused'",
+            "layout": "warning"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 73,
+      "id": "scene_002",
+      "role": "body",
+      "intent": "warning",
+      "pace": "medium",
+      "visualData": {
+        "code": [
+          "> make the dashboard look better"
+        ],
+        "code_language": "prompt",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "terminal",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "confused",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c1",
+        "c2"
+      ]
+    },
+    {
+      "heading": "The better prompt",
+      "narration": "Instead, give it a scope, constraints, and a way to check the result.",
+      "caption": "Instead, give it a scope, constraints, and a way to check the result.",
+      "points": [
+        "Only edit DashboardHeader.tsx."
+      ],
+      "visual": "cards",
+      "item": 0,
+      "label": "Better",
+      "emphasis": "scope",
+      "stat": "",
+      "audio": "jobs/61c97bf927f5/scene-2.wav",
+      "frames": 118,
+      "audioFrames": 104,
+      "uiAudio": "jobs/61c97bf927f5/scene-2-ui.wav",
+      "words": [
+        {
+          "w": "Instead,",
+          "s": 0.0,
+          "e": 0.38
+        },
+        {
+          "w": "give",
+          "s": 0.38,
+          "e": 0.685
+        },
+        {
+          "w": "it",
+          "s": 0.74,
+          "e": 0.879
+        },
+        {
+          "w": "a",
+          "s": 0.9,
+          "e": 1.074
+        },
+        {
+          "w": "scope,",
+          "s": 1.18,
+          "e": 1.375
+        },
+        {
+          "w": "constraints,",
+          "s": 1.52,
+          "e": 1.865
+        },
+        {
+          "w": "and",
+          "s": 1.97,
+          "e": 2.085
+        },
+        {
+          "w": "a",
+          "s": 2.16,
+          "e": 2.279
+        },
+        {
+          "w": "way",
+          "s": 2.35,
+          "e": 2.474
+        },
+        {
+          "w": "to",
+          "s": 2.53,
+          "e": 2.63
+        },
+        {
+          "w": "check",
+          "s": 2.63,
+          "e": 2.863
+        },
+        {
+          "w": "the",
+          "s": 2.89,
+          "e": 3.057
+        },
+        {
+          "w": "result.",
+          "s": 3.15,
+          "e": 3.431
+        }
+      ],
+      "mouth": [
+        0.61,
+        0.85,
+        0.8,
+        0.66,
+        0.45,
+        0.39,
+        0.72,
+        0.96,
+        0.94,
+        0.86,
+        0.63,
+        0.43,
+        0.4,
+        0.5,
+        0.72,
+        0.87,
+        0.78,
+        0.75,
+        0.82,
+        0.81,
+        0.79,
+        0.67,
+        0.54,
+        0.59,
+        0.65,
+        0.47,
+        0.26,
+        0.44,
+        0.8,
+        0.95,
+        0.94,
+        0.84,
+        0.66,
+        0.37,
+        0.11,
+        0.03,
+        0.02,
+        0.06,
+        0.3,
+        0.62,
+        0.75,
+        0.7,
+        0.64,
+        0.63,
+        0.49,
+        0.25,
+        0.36,
+        0.75,
+        0.91,
+        0.79,
+        0.67,
+        0.64,
+        0.62,
+        0.51,
+        0.35,
+        0.33,
+        0.45,
+        0.39,
+        0.15,
+        0.02,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.05,
+        0.27,
+        0.57,
+        0.72,
+        0.76,
+        0.75,
+        0.74,
+        0.84,
+        0.94,
+        0.92,
+        0.85,
+        0.75,
+        0.7,
+        0.6,
+        0.38,
+        0.36,
+        0.53,
+        0.69,
+        0.82,
+        0.65,
+        0.27,
+        0.05,
+        0.03,
+        0.26,
+        0.62,
+        0.73,
+        0.71,
+        0.77,
+        0.73,
+        0.58,
+        0.56,
+        0.75,
+        0.83,
+        0.69,
+        0.5,
+        0.35,
+        0.2,
+        0.08,
+        0.03,
+        0.03
+      ],
+      "visemes": [
+        [
+          0,
+          "C"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          5,
+          "C"
+        ],
+        [
+          7,
+          "D"
+        ],
+        [
+          10,
+          "B"
+        ],
+        [
+          12,
+          "C"
+        ],
+        [
+          14,
+          "G"
+        ],
+        [
+          17,
+          "C"
+        ],
+        [
+          21,
+          "X"
+        ],
+        [
+          23,
+          "B"
+        ],
+        [
+          26,
+          "D"
+        ],
+        [
+          32,
+          "X"
+        ],
+        [
+          34,
+          "B"
+        ],
+        [
+          36,
+          "E"
+        ],
+        [
+          39,
+          "C"
+        ],
+        [
+          41,
+          "X"
+        ],
+        [
+          44,
+          "B"
+        ],
+        [
+          50,
+          "D"
+        ],
+        [
+          52,
+          "B"
+        ],
+        [
+          56,
+          "X"
+        ],
+        [
+          58,
+          "D"
+        ],
+        [
+          60,
+          "B"
+        ],
+        [
+          63,
+          "X"
+        ],
+        [
+          69,
+          "F"
+        ],
+        [
+          71,
+          "B"
+        ],
+        [
+          74,
+          "X"
+        ],
+        [
+          76,
+          "E"
+        ],
+        [
+          79,
+          "X"
+        ],
+        [
+          81,
+          "B"
+        ],
+        [
+          85,
+          "H"
+        ],
+        [
+          88,
+          "C"
+        ],
+        [
+          92,
+          "X"
+        ],
+        [
+          94,
+          "C"
+        ],
+        [
+          96,
+          "B"
+        ],
+        [
+          99,
+          "H"
+        ],
+        [
+          103,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 3.933,
+          "w": [
+            0,
+            12
+          ],
+          "text": "Instead, give it a scope, constraints, and a way to check the result.",
+          "focus": "scope",
+          "layout": "splitCompare",
+          "layoutReason": {
+            "score": 6.2,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "comparison",
+            "runner_up": "heroWord"
+          },
+          "anchor": "peek",
+          "transition": "blurDissolve",
+          "punch": true,
+          "character": {
+            "state": "thinking",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.1
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "considers before vs after without covering it",
+            "layout": "comparison"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 236,
+      "id": "scene_003",
+      "role": "body",
+      "intent": "comparison",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [
+          "Before",
+          "After"
+        ],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [
+          "make the dashboard look better"
+        ],
+        "prompt_after": [
+          "Only edit DashboardHeader.tsx.",
+          "Keep its props and tests unchanged.",
+          "Use existing design tokens, no new colors.",
+          "Show the diff before applying."
+        ]
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "static",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "splitCompare",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c3"
+      ]
+    },
+    {
+      "heading": "Why it works",
+      "narration": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+      "caption": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+      "points": [
+        "Scope: one file",
+        "Constraints: props and tokens",
+        "Check: review the diff"
+      ],
+      "visual": "cards",
+      "item": 0,
+      "label": "",
+      "emphasis": "works",
+      "stat": "",
+      "audio": "jobs/61c97bf927f5/scene-3.wav",
+      "frames": 153,
+      "audioFrames": 144,
+      "uiAudio": "jobs/61c97bf927f5/scene-3-ui.wav",
+      "words": [
+        {
+          "w": "Why",
+          "s": 0.0,
+          "e": 0.195
+        },
+        {
+          "w": "it",
+          "s": 0.25,
+          "e": 0.406
+        },
+        {
+          "w": "works:",
+          "s": 0.48,
+          "e": 0.7
+        },
+        {
+          "w": "scope:",
+          "s": 0.7,
+          "e": 1.073
+        },
+        {
+          "w": "one",
+          "s": 1.19,
+          "e": 1.28
+        },
+        {
+          "w": "file,",
+          "s": 1.28,
+          "e": 1.818
+        },
+        {
+          "w": "constraints:",
+          "s": 1.91,
+          "e": 2.368
+        },
+        {
+          "w": "props",
+          "s": 2.53,
+          "e": 2.59
+        },
+        {
+          "w": "and",
+          "s": 2.59,
+          "e": 2.818
+        },
+        {
+          "w": "tokens,",
+          "s": 2.82,
+          "e": 3.27
+        },
+        {
+          "w": "and",
+          "s": 3.27,
+          "e": 3.58
+        },
+        {
+          "w": "check:",
+          "s": 3.66,
+          "e": 3.909
+        },
+        {
+          "w": "review",
+          "s": 3.97,
+          "e": 4.325
+        },
+        {
+          "w": "the",
+          "s": 4.47,
+          "e": 4.553
+        },
+        {
+          "w": "diff.",
+          "s": 4.66,
+          "e": 4.765
+        }
+      ],
+      "mouth": [
+        0.59,
+        0.87,
+        0.86,
+        0.83,
+        0.88,
+        0.86,
+        0.71,
+        0.62,
+        0.75,
+        0.94,
+        1.0,
+        0.97,
+        0.76,
+        0.39,
+        0.25,
+        0.47,
+        0.68,
+        0.71,
+        0.72,
+        0.55,
+        0.31,
+        0.47,
+        0.85,
+        0.99,
+        0.9,
+        0.67,
+        0.35,
+        0.11,
+        0.02,
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.09,
+        0.42,
+        0.83,
+        0.96,
+        0.89,
+        0.86,
+        0.8,
+        0.55,
+        0.3,
+        0.42,
+        0.72,
+        0.77,
+        0.71,
+        0.73,
+        0.75,
+        0.75,
+        0.73,
+        0.55,
+        0.27,
+        0.19,
+        0.47,
+        0.8,
+        0.85,
+        0.76,
+        0.74,
+        0.6,
+        0.34,
+        0.42,
+        0.8,
+        0.92,
+        0.79,
+        0.71,
+        0.72,
+        0.67,
+        0.49,
+        0.41,
+        0.46,
+        0.3,
+        0.07,
+        0.03,
+        0.23,
+        0.57,
+        0.73,
+        0.73,
+        0.67,
+        0.45,
+        0.21,
+        0.29,
+        0.61,
+        0.82,
+        0.85,
+        0.69,
+        0.45,
+        0.48,
+        0.73,
+        0.91,
+        0.97,
+        0.86,
+        0.54,
+        0.23,
+        0.29,
+        0.6,
+        0.71,
+        0.64,
+        0.61,
+        0.58,
+        0.53,
+        0.6,
+        0.74,
+        0.77,
+        0.68,
+        0.54,
+        0.52,
+        0.58,
+        0.65,
+        0.85,
+        0.88,
+        0.63,
+        0.38,
+        0.18,
+        0.05,
+        0.03,
+        0.05,
+        0.18,
+        0.5,
+        0.78,
+        0.77,
+        0.6,
+        0.65,
+        0.86,
+        0.92,
+        0.77,
+        0.66,
+        0.73,
+        0.67,
+        0.48,
+        0.59,
+        0.83,
+        0.79,
+        0.57,
+        0.37,
+        0.2,
+        0.1,
+        0.07,
+        0.05,
+        0.02
+      ],
+      "visemes": [
+        [
+          0,
+          "F"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          6,
+          "X"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          12,
+          "X"
+        ],
+        [
+          14,
+          "E"
+        ],
+        [
+          16,
+          "B"
+        ],
+        [
+          21,
+          "X"
+        ],
+        [
+          24,
+          "E"
+        ],
+        [
+          26,
+          "A"
+        ],
+        [
+          28,
+          "C"
+        ],
+        [
+          32,
+          "X"
+        ],
+        [
+          34,
+          "E"
+        ],
+        [
+          36,
+          "C"
+        ],
+        [
+          38,
+          "X"
+        ],
+        [
+          41,
+          "C"
+        ],
+        [
+          45,
+          "H"
+        ],
+        [
+          49,
+          "C"
+        ],
+        [
+          55,
+          "X"
+        ],
+        [
+          57,
+          "E"
+        ],
+        [
+          60,
+          "B"
+        ],
+        [
+          63,
+          "D"
+        ],
+        [
+          65,
+          "C"
+        ],
+        [
+          67,
+          "B"
+        ],
+        [
+          71,
+          "X"
+        ],
+        [
+          74,
+          "A"
+        ],
+        [
+          76,
+          "B"
+        ],
+        [
+          78,
+          "X"
+        ],
+        [
+          81,
+          "B"
+        ],
+        [
+          85,
+          "X"
+        ],
+        [
+          88,
+          "B"
+        ],
+        [
+          90,
+          "C"
+        ],
+        [
+          92,
+          "B"
+        ],
+        [
+          97,
+          "D"
+        ],
+        [
+          100,
+          "B"
+        ],
+        [
+          107,
+          "X"
+        ],
+        [
+          110,
+          "C"
+        ],
+        [
+          112,
+          "B"
+        ],
+        [
+          117,
+          "X"
+        ],
+        [
+          119,
+          "C"
+        ],
+        [
+          121,
+          "G"
+        ],
+        [
+          123,
+          "C"
+        ],
+        [
+          126,
+          "F"
+        ],
+        [
+          130,
+          "X"
+        ],
+        [
+          133,
+          "H"
+        ],
+        [
+          137,
+          "X"
+        ],
+        [
+          139,
+          "C"
+        ],
+        [
+          141,
+          "G"
+        ],
+        [
+          143,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.1,
+          "w": [
+            0,
+            14
+          ],
+          "text": "Why it works: scope: one file, constraints: props and tokens, and check: review the diff.",
+          "focus": "works",
+          "layout": "steps",
+          "layoutReason": {
+            "score": 5.4464,
+            "parts": {
+              "relevance": 1.1,
+              "narrative": 0.5,
+              "readability": 0.826,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.6,
+              "brand": 0.0
+            },
+            "intent": "list",
+            "runner_up": "listStack"
+          },
+          "anchor": "left",
+          "transition": "blurDissolve",
+          "punch": true,
+          "held": true,
+          "character": {
+            "state": "speaking",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "dense demonstration: small companion",
+            "layout": "list"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 354,
+      "id": "scene_004",
+      "role": "body",
+      "intent": "list",
+      "pace": "medium",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [
+          "Scope: one file",
+          "Constraints: props and tokens",
+          "Check: review the diff"
+        ],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "steps",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c4"
+      ]
+    },
+    {
+      "heading": "Expected kind of change",
+      "narration": "Here's the kind of focused change you should expect back.",
+      "caption": "Here's the kind of focused change you should expect back.",
+      "points": [],
+      "visual": "terminal",
+      "item": 0,
+      "label": "",
+      "emphasis": "focused",
+      "stat": "",
+      "audio": "jobs/61c97bf927f5/scene-4.wav",
+      "frames": 88,
+      "audioFrames": 74,
+      "uiAudio": "jobs/61c97bf927f5/scene-4-ui.wav",
+      "words": [
+        {
+          "w": "Here's",
+          "s": 0.0,
+          "e": 0.324
+        },
+        {
+          "w": "the",
+          "s": 0.33,
+          "e": 0.514
+        },
+        {
+          "w": "kind",
+          "s": 0.61,
+          "e": 0.691
+        },
+        {
+          "w": "of",
+          "s": 0.81,
+          "e": 0.867
+        },
+        {
+          "w": "focused",
+          "s": 1.0,
+          "e": 1.367
+        },
+        {
+          "w": "change",
+          "s": 1.41,
+          "e": 1.53
+        },
+        {
+          "w": "you",
+          "s": 1.53,
+          "e": 1.748
+        },
+        {
+          "w": "should",
+          "s": 1.87,
+          "e": 1.924
+        },
+        {
+          "w": "expect",
+          "s": 2.04,
+          "e": 2.262
+        },
+        {
+          "w": "back.",
+          "s": 2.41,
+          "e": 2.46
+        }
+      ],
+      "mouth": [
+        0.6,
+        0.91,
+        0.98,
+        0.95,
+        0.82,
+        0.63,
+        0.52,
+        0.63,
+        0.69,
+        0.48,
+        0.47,
+        0.71,
+        0.75,
+        0.72,
+        0.79,
+        0.78,
+        0.5,
+        0.19,
+        0.19,
+        0.51,
+        0.86,
+        0.92,
+        0.69,
+        0.35,
+        0.28,
+        0.56,
+        0.72,
+        0.63,
+        0.53,
+        0.31,
+        0.15,
+        0.32,
+        0.5,
+        0.59,
+        0.73,
+        0.74,
+        0.69,
+        0.71,
+        0.74,
+        0.77,
+        0.76,
+        0.65,
+        0.53,
+        0.6,
+        0.69,
+        0.61,
+        0.5,
+        0.56,
+        0.68,
+        0.7,
+        0.68,
+        0.55,
+        0.38,
+        0.47,
+        0.54,
+        0.29,
+        0.26,
+        0.63,
+        0.81,
+        0.58,
+        0.24,
+        0.05,
+        0.01,
+        0.06,
+        0.34,
+        0.71,
+        0.76,
+        0.61,
+        0.49,
+        0.36,
+        0.22,
+        0.09,
+        0.03,
+        0.02
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          4,
+          "C"
+        ],
+        [
+          6,
+          "B"
+        ],
+        [
+          8,
+          "H"
+        ],
+        [
+          10,
+          "X"
+        ],
+        [
+          17,
+          "B"
+        ],
+        [
+          21,
+          "X"
+        ],
+        [
+          23,
+          "E"
+        ],
+        [
+          26,
+          "X"
+        ],
+        [
+          28,
+          "G"
+        ],
+        [
+          30,
+          "E"
+        ],
+        [
+          32,
+          "B"
+        ],
+        [
+          36,
+          "C"
+        ],
+        [
+          38,
+          "B"
+        ],
+        [
+          41,
+          "X"
+        ],
+        [
+          43,
+          "B"
+        ],
+        [
+          46,
+          "X"
+        ],
+        [
+          49,
+          "F"
+        ],
+        [
+          52,
+          "X"
+        ],
+        [
+          55,
+          "B"
+        ],
+        [
+          58,
+          "X"
+        ],
+        [
+          60,
+          "C"
+        ],
+        [
+          62,
+          "A"
+        ],
+        [
+          64,
+          "B"
+        ],
+        [
+          68,
+          "X"
+        ],
+        [
+          71,
+          "A"
+        ],
+        [
+          74,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 2.933,
+          "w": [
+            0,
+            9
+          ],
+          "text": "Here's the kind of focused change you should expect back.",
+          "focus": "focused",
+          "layout": "codeBlock",
+          "layoutReason": {
+            "score": 6.2,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "code",
+            "runner_up": "terminal"
+          },
+          "anchor": "left",
+          "transition": "blurDissolve",
+          "punch": true,
+          "character": {
+            "state": "celebrating",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "storyboard asked for 'celebrating'",
+            "layout": "code"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 507,
+      "id": "scene_005",
+      "role": "body",
+      "intent": "code",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [
+          "- <h1 className=\"text-xl\">",
+          "+ <h1 className=\"text-heading\">",
+          "  {title}",
+          "  </h1>"
+        ],
+        "code_language": "diff",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "static",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "codeBlock",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "celebrating",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c5"
+      ]
+    },
+    {
+      "heading": "Comment PROMPT",
+      "narration": "Want the full template? Comment PROMPT.",
+      "caption": "Want the full template? Comment PROMPT.",
+      "points": [],
+      "visual": "outro",
+      "item": 0,
+      "label": "",
+      "emphasis": "PROMPT",
+      "stat": "",
+      "audio": "jobs/61c97bf927f5/scene-5.wav",
+      "frames": 86,
+      "audioFrames": 67,
+      "uiAudio": "jobs/61c97bf927f5/scene-5-ui.wav",
+      "words": [
+        {
+          "w": "Want",
+          "s": 0.0,
+          "e": 0.217
+        },
+        {
+          "w": "the",
+          "s": 0.26,
+          "e": 0.4
+        },
+        {
+          "w": "full",
+          "s": 0.4,
+          "e": 0.65
+        },
+        {
+          "w": "template?",
+          "s": 0.65,
+          "e": 1.139
+        },
+        {
+          "w": "Comment",
+          "s": 1.337,
+          "e": 1.875
+        },
+        {
+          "w": "PROMPT.",
+          "s": 2.037,
+          "e": 2.19
+        }
+      ],
+      "mouth": [
+        0.57,
+        0.89,
+        0.91,
+        0.82,
+        0.76,
+        0.69,
+        0.47,
+        0.3,
+        0.53,
+        0.73,
+        0.52,
+        0.33,
+        0.39,
+        0.64,
+        0.9,
+        0.96,
+        0.86,
+        0.7,
+        0.4,
+        0.32,
+        0.54,
+        0.69,
+        0.81,
+        0.81,
+        0.71,
+        0.61,
+        0.41,
+        0.38,
+        0.58,
+        0.7,
+        0.62,
+        0.43,
+        0.24,
+        0.18,
+        0.11,
+        0.03,
+        0.0,
+        0.0,
+        0.0,
+        0.12,
+        0.41,
+        0.69,
+        0.8,
+        0.77,
+        0.76,
+        0.83,
+        0.93,
+        0.93,
+        0.79,
+        0.53,
+        0.24,
+        0.14,
+        0.38,
+        0.75,
+        0.88,
+        0.75,
+        0.66,
+        0.64,
+        0.63,
+        0.62,
+        0.56,
+        0.36,
+        0.28,
+        0.46,
+        0.47,
+        0.23,
+        0.05
+      ],
+      "visemes": [
+        [
+          0,
+          "F"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          6,
+          "H"
+        ],
+        [
+          8,
+          "C"
+        ],
+        [
+          11,
+          "G"
+        ],
+        [
+          14,
+          "H"
+        ],
+        [
+          18,
+          "B"
+        ],
+        [
+          20,
+          "X"
+        ],
+        [
+          22,
+          "A"
+        ],
+        [
+          25,
+          "H"
+        ],
+        [
+          27,
+          "D"
+        ],
+        [
+          29,
+          "B"
+        ],
+        [
+          31,
+          "C"
+        ],
+        [
+          34,
+          "X"
+        ],
+        [
+          39,
+          "B"
+        ],
+        [
+          41,
+          "E"
+        ],
+        [
+          43,
+          "A"
+        ],
+        [
+          48,
+          "C"
+        ],
+        [
+          50,
+          "B"
+        ],
+        [
+          56,
+          "X"
+        ],
+        [
+          60,
+          "A"
+        ],
+        [
+          63,
+          "B"
+        ],
+        [
+          66,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 1.867,
+          "w": [
+            0,
+            4
+          ],
+          "text": "Want the full template? Comment",
+          "focus": "template",
+          "layout": "outroCTA",
+          "layoutReason": {
+            "score": 6.4135,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 1.0,
+              "readability": 0.933,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.4,
+              "brand": 0.0
+            },
+            "intent": "recap",
+            "runner_up": "heroWord"
+          },
+          "anchor": "right",
+          "transition": "blurDissolve",
+          "punch": false,
+          "character": {
+            "state": "pointing",
+            "scale": "medium",
+            "anchor": "right",
+            "point": "left",
+            "wink": true
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "signature CTA: points at the keyword and winks",
+            "layout": "recap"
+          }
+        },
+        {
+          "s": 1.867,
+          "e": 2.867,
+          "w": [
+            5,
+            5
+          ],
+          "text": "PROMPT.",
+          "focus": "PROMPT",
+          "layout": "loop",
+          "layoutReason": {
+            "rule": "final beat loops to the opening frame"
+          },
+          "anchor": "right",
+          "transition": "cut",
+          "punch": true,
+          "character": {
+            "state": "speaking",
+            "scale": "closeup",
+            "anchor": "centre"
+          },
+          "direction": {
+            "transition": "loop tail cuts back to the opening frame so the CTA never overlaps the hook and the replay is seamless",
+            "character": "loop returns to the opening composition",
+            "layout": null
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 595,
+      "id": "scene_006",
+      "role": "outro",
+      "intent": "recap",
+      "pace": "pause",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "outroCTA",
+      "avoidLayouts": [],
+      "cta": {
+        "keyword": "PROMPT",
+        "secondary": "Get the full prompt template",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "character_action": "pointing",
+      "motionClip": false,
+      "character": true,
+      "claimIds": []
+    }
+  ],
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 681,
+  "schemaVersion": "2.0",
+  "theme": "fieldnotes-premium",
+  "characterMode": "on"
+}

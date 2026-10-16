@@ -1,0 +1,43 @@
+{
+  "series": "mimo-found-this-on-github",
+  "repository": "devmimo-fixtures/series-pipeline-test",
+  "title": "Pipeline test: a hand path moves a cursor",
+  "cover_headline": ["PIPELINE", "TEST RENDER."],
+  "category": "Pipeline test",
+  "mascot_expression": "surprised",
+  "project_visual": "hand-cursor",
+  "repo_card": {"description": "Fixture used to render every series component end to end. Not a real project.", "language": "JSON", "license": "n/a"},
+  "verification": {"method": "fixture", "sources": [], "notes": ["Pipeline test content; never published, never takes a real episode number."]},
+  "verified_features": [
+    {"id": "track", "label": "TRACK", "status": "verified-source", "claim": "The left panel draws a keyed hand path.", "evidence": "fixture"},
+    {"id": "move", "label": "MOVE", "status": "verified-source", "claim": "The right panel moves a cursor along the same path.", "evidence": "fixture"},
+    {"id": "press", "label": "PRESS", "status": "verified-source", "claim": "A pinch in the path draws a press ripple.", "evidence": "fixture"}
+  ],
+  "narration": {
+    "hook": "This is a test render of the series pipeline.",
+    "discovery": "Every episode starts with a find on GitHub.",
+    "demo": "The left panel draws a hand path, and the right panel moves a cursor along it.",
+    "tech": "Camera, tracking, action. Three steps, timed to the voice.",
+    "payoff": "Would you actually use this? Follow Mimo for more GitHub discoveries."
+  },
+  "emphasis": ["GitHub", "cursor", "pipeline"],
+  "flow": [{"label": "CAMERA", "sub": "frames in", "feature": "track"}, {"label": "HAND TRACKING", "sub": "21 landmarks", "feature": "track"},
+           {"label": "CURSOR ACTION", "sub": "move · press", "feature": "move"}],
+  "demo": {
+    "status": "fixture",
+    "hook": {
+      "panels": [
+        {"kind": "cursor", "label": "DESKTOP", "path": [{"t": 0, "x": 0.7, "y": 0.62}, {"t": 0.9, "x": 0.38, "y": 0.35}, {"t": 1.5, "x": 0.36, "y": 0.34, "pinch": 1}, {"t": 1.8, "x": 0.36, "y": 0.34, "pinch": 0}, {"t": 3, "x": 0.62, "y": 0.55}]},
+        {"kind": "hand", "label": "CAM", "path": [{"t": 0, "x": 0.7, "y": 0.62}, {"t": 0.9, "x": 0.38, "y": 0.35}, {"t": 1.5, "x": 0.36, "y": 0.34, "pinch": 1}, {"t": 1.8, "x": 0.36, "y": 0.34, "pinch": 0}, {"t": 3, "x": 0.62, "y": 0.55}]}
+      ],
+      "labels": []
+    },
+    "demo": {
+      "left": {"kind": "hand", "label": "CAM", "path": [{"t": 0, "x": 0.5, "y": 0.5}, {"t": 2, "x": 0.3, "y": 0.3}, {"t": 3.5, "x": 0.7, "y": 0.4}, {"t": 4.3, "x": 0.7, "y": 0.4, "pinch": 1}, {"t": 4.8, "x": 0.7, "y": 0.4}, {"t": 7, "x": 0.45, "y": 0.6}]},
+      "right": {"kind": "cursor", "label": "DESKTOP", "path": [{"t": 0, "x": 0.5, "y": 0.5}, {"t": 2, "x": 0.3, "y": 0.3}, {"t": 3.5, "x": 0.7, "y": 0.4}, {"t": 4.3, "x": 0.7, "y": 0.4, "pinch": 1}, {"t": 4.8, "x": 0.7, "y": 0.4}, {"t": 7, "x": 0.45, "y": 0.6}]},
+      "labels": [{"text": "TRACK", "feature": "track", "at": 3}, {"text": "MOVE", "feature": "move", "at": 11}, {"text": "PRESS", "feature": "press"}]
+    },
+    "payoff": {"question": "WOULD YOU TRY THIS?", "replay_from": 0.6,
+               "panel": {"kind": "cursor", "label": "DESKTOP", "path": [{"t": 0, "x": 0.7, "y": 0.62}, {"t": 0.9, "x": 0.38, "y": 0.35}, {"t": 1.5, "x": 0.36, "y": 0.34, "pinch": 1}, {"t": 1.8, "x": 0.36, "y": 0.34, "pinch": 0}, {"t": 3, "x": 0.62, "y": 0.55}]}}
+  }
+}

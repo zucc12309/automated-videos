@@ -1,0 +1,48 @@
+{
+ "sources": {
+  "claims": [
+   {
+    "id": "c1",
+    "text": "Universal provider proxy for OpenAI Codex & Claude Code \u2014 use any LLM (Claude, Gemini,",
+    "source_ids": [
+     "src1"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   {
+    "id": "c2",
+    "text": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+    "source_ids": [
+     "src2"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   {
+    "id": "c3",
+    "text": "AI video skill for Claude Code & Codex \u2014 cinematic product videos with Remotion",
+    "source_ids": [
+     "src3"
+    ],
+    "status": "verified",
+    "note": ""
+   },
+   {
+    "id": "c4",
+    "text": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+    "source_ids": [
+     "src4"
+    ],
+    "status": "verified",
+    "note": ""
+   }
+  ],
+  "summary": {
+   "verified": 4,
+   "interpretation": 0,
+   "unverified": 0,
+   "removed": 0
+  }
+ }
+}

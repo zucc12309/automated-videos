@@ -1,0 +1,26 @@
+{
+  "job_id": "729055280714",
+  "mode": "hybrid",
+  "claude_actual_usd": 0,
+  "cinematic": [
+    {
+      "scene": "scene_001",
+      "provider": "mock",
+      "seconds": 4.0,
+      "usd": 0.0,
+      "cached": true,
+      "basis": "mock rate"
+    },
+    {
+      "scene": "scene_004",
+      "provider": "mock",
+      "seconds": 4.0,
+      "usd": 0.0,
+      "cached": true,
+      "basis": "mock rate"
+    }
+  ],
+  "cinematic_usd": 0,
+  "uncertainty": "upper bound from configured rates",
+  "local_only": false
+}

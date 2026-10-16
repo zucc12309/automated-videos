@@ -1,0 +1,20 @@
+{
+  "status": "reviewed (agent inspection of extracted frames, not a computed check)",
+  "reviewed": "2026-10-16",
+  "revision": 3,
+  "frames": "contact sheet (24 frames) plus full-resolution frames at 2.4, 5.2, 8.0, 10.5 and 21.5 s; cover master",
+  "findings": [
+    "Revision 3 (producer notes). Hook: 'THIS GITHUB REPO / TURNS A TOPIC / INTO A VIDEO.' slams line by line on the narration over two official demos playing from frame 0.",
+    "Before → after: a TOPIC card ('The future of everyday robotics', labelled 'title of the official demo') types in. SCRIPT, FOOTAGE, VOICE, SUBTITLES and EDIT tick with spinners and checks on the spoken words. A 'GENERATING…' placeholder turns into the official robotics demo in a large phone (530×940) at FOOTAGE, and it glows when EDIT completes. Mimo goes curious → surprised → happy.",
+    "Readability: repo card owner 42 px, name 82 px, description 44 px, meta 36 px. Flow sublines 30 px, series bug 28 px, phone OUTPUT / OFFICIAL MPT DEMO tags at least 22 / 19 px (scaled with the phone). Stage names 52 px.",
+    "Payoff: 'WOULD YOU LET AI MAKE YOUR NEXT REEL?' is fitted full-width across three balanced lines, with Mimo and the 'SAVED TO MIMO'S FINDS' stamp below.",
+    "Fixed in this revision: the hook peek covered 'REPO' on the 3-line headline (the peek is now skipped for 3-line headlines); the enlarged repo card collided with Mimo (card moved up); the topic text clipped its closing quote (now fitted).",
+    "Cover: 'TOPIC IN. / VIDEO OUT.' over a fan of real demo frames; crop-safe.",
+    "Export: 1080×1920 H.264 at about 6 Mbps, AAC 192 kbps (ffprobe; also the technical/resolution QA check). Lower-resolution copies seen elsewhere are previews, not the deliverable."
+  ],
+  "known_limits": [
+    "Reuse rights: harry0703/mpt-assets states no licence. The demos are the maintainer's showcase of an MIT project and are shown muted, tagged and credited, but confirm with the maintainer before publishing.",
+    "Stock-footage search is verified in source only; voice, subtitles, music and editing were verified by a local run (its output is not shown).",
+    "Episode word timings: sentence boundaries exact, words inside a sentence estimated (energy_snapped)."
+  ]
+}

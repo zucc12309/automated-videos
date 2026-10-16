@@ -1,0 +1,55 @@
+    1272:	45 31 ed             	xor    %r13d,%r13d
+    1275:	4d 85 f6             	test   %r14,%r14
+    1278:	0f 84 fb 00 00 00    	je     1379 <__fprintf_chk@plt+0x1e9>
+    127e:	48 89 e8             	mov    %rbp,%rax
+    1281:	45 31 c0             	xor    %r8d,%r8d
+    1284:	45 31 ed             	xor    %r13d,%r13d
+    1287:	eb 66                	jmp    12ef <__fprintf_chk@plt+0x15f>
+    1289:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    1290:	44 69 d7 e4 00 00 00 	imul   $0xe4,%edi,%r10d
+    1297:	8d 3c 7f             	lea    (%rdi,%rdi,2),%edi
+    129a:	6b d1 1c             	imul   $0x1c,%ecx,%edx
+    129d:	44 01 d2             	add    %r10d,%edx
+    12a0:	41 ba ff 00 00 00    	mov    $0xff,%r10d
+    12a6:	c1 fa 08             	sar    $0x8,%edx
+    12a9:	83 c2 18             	add    $0x18,%edx
+    12ac:	44 39 d2             	cmp    %r10d,%edx
+    12af:	41 0f 4f d2          	cmovg  %r10d,%edx
+    12b3:	69 c9 d8 00 00 00    	imul   $0xd8,%ecx,%ecx
+    12b9:	69 f6 b0 00 00 00    	imul   $0xb0,%esi,%esi
+    12bf:	8d 3c f9             	lea    (%rcx,%rdi,8),%edi
+    12c2:	43 8d 0c 89          	lea    (%r9,%r9,4),%ecx
+    12c6:	8d 0c ce             	lea    (%rsi,%rcx,8),%ecx
+    12c9:	c1 ff 08             	sar    $0x8,%edi
+    12cc:	c1 f9 08             	sar    $0x8,%ecx
+    12cf:	83 c7 0a             	add    $0xa,%edi
+    12d2:	83 c1 04             	add    $0x4,%ecx
+    12d5:	49 83 c0 03          	add    $0x3,%r8
+    12d9:	88 10                	mov    %dl,(%rax)
+    12db:	48 83 c0 03          	add    $0x3,%rax
+    12df:	40 88 78 fe          	mov    %dil,-0x2(%rax)
+    12e3:	88 48 ff             	mov    %cl,-0x1(%rax)
+    12e6:	4d 39 e0             	cmp    %r12,%r8
+    12e9:	0f 83 8a 00 00 00    	jae    1379 <__fprintf_chk@plt+0x1e9>
+    12ef:	0f b6 38             	movzbl (%rax),%edi
+    12f2:	0f b6 48 01          	movzbl 0x1(%rax),%ecx
+    12f6:	0f b6 70 02          	movzbl 0x2(%rax),%esi
+    12fa:	44 6b cf 4d          	imul   $0x4d,%edi,%r9d
+    12fe:	69 d1 96 00 00 00    	imul   $0x96,%ecx,%edx
+    1304:	44 01 ca             	add    %r9d,%edx
+    1307:	44 6b ce 1d          	imul   $0x1d,%esi,%r9d
+    130b:	44 01 ca             	add    %r9d,%edx
+    130e:	41 89 d1             	mov    %edx,%r9d
+    1311:	41 c1 f9 08          	sar    $0x8,%r9d
+    1315:	81 fa ff e8 00 00    	cmp    $0xe8ff,%edx
+    131b:	0f 86 6f ff ff ff    	jbe    1290 <__fprintf_chk@plt+0x100>
+    1321:	49 83 c5 01          	add    $0x1,%r13
+    1325:	ba f8 ff ff ff       	mov    $0xfffffff8,%edx
+    132a:	bf f0 ff ff ff       	mov    $0xfffffff0,%edi
+    132f:	b9 e4 ff ff ff       	mov    $0xffffffe4,%ecx
+    1334:	eb 9f                	jmp    12d5 <__fprintf_chk@plt+0x145>
+    1336:	48 8b 0d e3 2c 00 00 	mov    0x2ce3(%rip),%rcx        # 4020 <stderr@GLIBC_2.2.5>
+    133d:	ba 0d 00 00 00       	mov    $0xd,%edx
+    1342:	be 01 00 00 00       	mov    $0x1,%esi
+    1347:	48 8d 3d 16 0d 00 00 	lea    0xd16(%rip),%rdi        # 2064 <__fprintf_chk@plt+0xed4>
+    134e:	e8 2d fe ff ff       	call   1180 <fwrite@plt>
