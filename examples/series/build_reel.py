@@ -169,7 +169,7 @@ def reel_props(spec: dict, cfg: dict, rec: dict, scenes: list[dict], subs: list[
         "episode": {"n": rec["episode"], "label": series.fmt(rec["episode"]), "title": spec["title"], "repo": f"{owner}/{name}",
                     "category": spec.get("category", "Open source"), "headline": spec["cover_headline"], "expression": spec.get("mascot_expression", "curious"),
                     "visual": spec.get("project_visual", "terminal"), "demoStatus": spec["demo"]["status"], "demoTag": spec["demo"].get("tag"),
-                    "visualAssets": spec.get("project_visual_assets", {})},
+                    "visualAssets": spec.get("project_visual_assets", {}), "coverMinimal": bool(spec.get("cover_minimal"))},
         "scenes": scenes, "subtitles": subs, "mouth": mouth,
         "repoCard": {"owner": owner, "name": name, "title": rc.get("title", name), "description": rc["description"], "language": rc.get("language"),
                      "license": rc.get("license")},

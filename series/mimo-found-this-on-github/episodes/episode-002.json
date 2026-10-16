@@ -4,6 +4,24 @@
   "label": "EP. 002",
   "repository": "morluto/rea",
   "title": "7 Adobe-style apps rebuilt with AI, and the tool that helps agents understand apps",
-  "status": "reserved",
-  "reserved_at": "2026-10-16T19:10:27Z"
+  "status": "rendered",
+  "reserved_at": "2026-10-16T19:10:27Z",
+  "rendered_at": "2026-10-16T19:16:22Z",
+  "outputs": {
+    "final": "outputs/mimo-found-this-on-github/episode-002/episode-002-final.mp4",
+    "no_music": "outputs/mimo-found-this-on-github/episode-002/episode-002-no-music.mp4",
+    "cover": "outputs/mimo-found-this-on-github/episode-002/episode-002-cover.png",
+    "cover_4x5": "outputs/mimo-found-this-on-github/episode-002/episode-002-cover-4x5.png",
+    "cover_square": "outputs/mimo-found-this-on-github/episode-002/episode-002-cover-square.png",
+    "script": "outputs/mimo-found-this-on-github/episode-002/episode-002-script.md",
+    "caption": "outputs/mimo-found-this-on-github/episode-002/episode-002-caption.md",
+    "research": "outputs/mimo-found-this-on-github/episode-002/episode-002-research.md",
+    "metadata": "outputs/mimo-found-this-on-github/episode-002/episode-002-metadata.json",
+    "qa_report": "outputs/mimo-found-this-on-github/episode-002/episode-002-qa-report.md",
+    "hook_a": "outputs/mimo-found-this-on-github/episode-002/episode-002-hook-a.mp4",
+    "hook_b": "outputs/mimo-found-this-on-github/episode-002/episode-002-hook-b.mp4",
+    "hook_c": "outputs/mimo-found-this-on-github/episode-002/episode-002-hook-c.mp4"
+  },
+  "demo_status": "captured",
+  "format": "reel-v2"
 }

@@ -13,9 +13,9 @@
   "project_visual": "collage",
   "project_visual_assets": {
     "frames": [
-      "series/mimo-found-this-on-github/episode-002/photocraft-demo.jpg",
+      "series/mimo-found-this-on-github/episode-002/filmcraft-hero.jpg",
       "series/mimo-found-this-on-github/episode-002/vectorcraft-neon.jpg",
-      "series/mimo-found-this-on-github/episode-002/filmcraft-hero.jpg"
+      "series/mimo-found-this-on-github/episode-002/photocraft-demo.jpg"
     ]
   },
   "repo_card": {
@@ -166,12 +166,12 @@
           "name": "PHOTOCRAFT",
           "inspired": "Photoshop",
           "focus": [
-            26,
-            45
+            30,
+            34
           ],
           "zoom": [
-            1.55,
-            1.75
+            1.75,
+            1.95
           ]
         },
         {
@@ -180,13 +180,27 @@
           "inspired": "Illustrator",
           "focus": [
             58,
-            42
+            40
           ],
           "zoom": [
-            1.5,
-            1.7
+            1.55,
+            1.75
           ],
-          "at": "apps"
+          "at": "Adobe"
+        },
+        {
+          "src": "series/mimo-found-this-on-github/episode-002/effectcraft-hero.jpg",
+          "name": "EFFECTCRAFT",
+          "inspired": "After Effects",
+          "focus": [
+            55,
+            40
+          ],
+          "zoom": [
+            1.45,
+            1.65
+          ],
+          "at": "using"
         }
       ],
       "claims": [
@@ -214,10 +228,10 @@
           "at": "Photoshop",
           "name": "PHOTOCRAFT",
           "inspired": "Photoshop",
-          "src": "series/mimo-found-this-on-github/episode-002/photocraft-layer-styles.jpg",
+          "src": "series/mimo-found-this-on-github/episode-002/photocraft-filters.jpg",
           "focus": [
-            40,
-            45
+            62,
+            40
           ]
         },
         {
@@ -335,15 +349,17 @@
       },
       "steps": [
         {
-          "at": "agent",
+          "at": "Connect",
           "kind": "mcp",
           "title": "AGENT → REA · MCP",
           "feature": "mcp_agents",
           "lines": [
-            "→ tools/call capture_process_scenario",
-            "← exit 0 · \"filtered 600x600 (13600 px locked)\"",
-            "→ tools/call inspect_with_objdump",
-            "    {\"operation\": \"disassemble\"}"
+            "→ tools/call",
+            "    capture_process_scenario",
+            "← exit 0",
+            "    \"filtered 600x600 (13600 px locked)\"",
+            "→ tools/call",
+            "    inspect_with_objdump  disassemble"
           ]
         },
         {
@@ -572,5 +588,6 @@
   "hashtags": [
     "#AIAgents",
     "#ReverseEngineering"
-  ]
+  ],
+  "cover_minimal": true
 }

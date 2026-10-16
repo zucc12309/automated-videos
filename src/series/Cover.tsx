@@ -43,7 +43,11 @@ export const CoverSafeZone: React.FC = () =>
     <div style={{position: 'absolute', left: Q.left, top: Q.top, width: Q.right - Q.left, height: Q.bottom - Q.top, border: '3px solid #3f6'}}/>
   </AbsoluteFill>;
 
-const Ground: React.FC<{episode: EpisodeInfo}> = ({episode}) =>
+const Ground: React.FC<{episode: EpisodeInfo}> = ({episode}) => episode.coverMinimal ? <AbsoluteFill>
+    <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+      <defs><radialGradient id="ckey" cx="50%" cy="46%" r="55%"><stop offset="0" stopColor={accentA(.10)}/><stop offset="1" stopColor={accentA(0)}/></radialGradient></defs>
+      <rect width={1080} height={1920} fill="url(#ckey)"/>
+    </svg></AbsoluteFill> :
   <AbsoluteFill>
     <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
       <defs>
@@ -79,7 +83,7 @@ export const SeriesCover: React.FC<CoverProps> = ({series, episode, mask = false
     <Essential mask={mask} style={{position: 'absolute', top: visTop + visH - 230, left: 790, width: 190}}>
       <MimoMascot state={(episode.expression as MimoState) || 'surprised'} size={190} frame={40} amount={1} look={{x: -1, y: -.6}}/></Essential>
     <Essential mask={mask} style={{position: 'absolute', top: Q.bottom - 74, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
-      <BrandFooter text={series.footer}/></Essential>
+      <BrandFooter text={series.footer} size={episode.coverMinimal ? 36 : 30}/></Essential>
   </AbsoluteFill>;
 };
 

@@ -125,17 +125,17 @@ const ContextBeat: React.FC<BP> = ({b, f}) => {
   const nameSize = fitSize([a.name], R.context.name[2], 120);
   return <AbsoluteFill>
     <Bleed src={a.src}/>
-    {cur > 0 && <div style={{...box(R.context.stage), transform: `translateX(${-k * 160}px) scale(${1 - .08 * k})`, opacity: 1 - k}}>
+    {cur > 0 && <div style={{...box(R.context.stage), transform: `translateX(${-k * 160}px) scale(${1 - .08 * k})`, opacity: 1 - .7 * k}}>
       <ShotWindow shot={{src: apps[cur - 1].src, name: apps[cur - 1].name, inspired: apps[cur - 1].inspired, focus: apps[cur - 1].focus}} w={R.context.stage[2]}
         h={R.context.stage[3]} k={1}/></div>}
-    <div style={{...box(R.context.stage), transform: `translateX(${(1 - k) * 260}px) rotate(${(1 - k) * 3}deg)`, opacity: clamp01(k * 2)}}>
+    <div style={{...box(R.context.stage), transform: `translateX(${(1 - k) * 260}px) rotate(${(1 - k) * 3}deg)`}}>
       <ShotWindow shot={{src: a.src, name: a.name, focus: a.focus, zoom: [1.12, 1.3]}} w={R.context.stage[2]} h={R.context.stage[3]} k={clamp01(local / Math.max(1, span))}
         tag={b.text?.[0]}/>
     </div>
     <div style={{...box(R.context.name), display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.sans, fontWeight: 900, fontSize: nameSize,
-      color: S.ink, letterSpacing: -2, transform: `translateY(${(1 - k) * 24}px)`, opacity: clamp01(k * 2)}}>{a.name}</div>
+      color: S.ink, letterSpacing: -2, transform: `translateY(${(1 - k) * 24}px)`, opacity: cur === 0 ? 1 : clamp01(.3 + k)}}>{a.name}</div>
     <div style={{...box(R.context.inspired), display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.sans, fontWeight: 700, fontSize: 46,
-      color: S.inkSoft, opacity: clamp01(k * 2)}}><span style={{color: S.muted}}>inspired by&nbsp;</span><span style={{color: S.accent}}>{a.inspired}</span></div>
+      color: S.inkSoft, opacity: cur === 0 ? 1 : clamp01(.3 + k)}}><span style={{color: S.muted}}>inspired by&nbsp;</span><span style={{color: S.accent}}>{a.inspired}</span></div>
     <div style={{...box(R.context.dots), display: 'flex', justifyContent: 'center', gap: 16}}>
       {apps.map((_, i) => <div key={i} style={{width: i === cur ? 54 : 18, height: 18, borderRadius: 9, background: i <= cur ? S.accent : inkA(.2)}}/>)}
     </div>
@@ -187,10 +187,8 @@ const DiscoveryBeat: React.FC<BP> = ({b, f, p, mouth}) => {
   const r = p.repoCard;
   const card = sp(f, 0, 15, 200);
   const words = r.title.split(' ');
-  const wAt = words.map((w, i) => atWord(b, w, 6 + i * 6));
-  const titleLines = balance(r.title, 2);
-  const ts = fitSize(titleLines, R.discovery.card[2] - 88, 112);
-  let wi = 0;
+  const wAt = words.map((w, i) => atWord(b, w, 20 + i * 8));
+  const ts = fitSize(words, R.discovery.card[2] - 88, 124);
   return <AbsoluteFill>
     <div style={{...box(R.discovery.card), padding: '34px 44px', boxSizing: 'border-box', borderRadius: 30, background: S.panel, border: `2px solid ${inkA(.12)}`,
       boxShadow: '0 40px 90px rgba(0,0,0,.55)', transform: `translateY(${(1 - card) * 500}px) translateY(${Math.sin(f / 13) * 5}px)`}}>
@@ -198,15 +196,12 @@ const DiscoveryBeat: React.FC<BP> = ({b, f, p, mouth}) => {
         <EpisodeNumber label={p.episode.label} size={40}/><SeriesHeader text={p.series.header} size={24} color={S.inkSoft}/></div>
       <div style={{display: 'flex', alignItems: 'center', gap: 16, marginTop: 34, fontFamily: FONT.mono, fontSize: 50, fontWeight: 700, color: S.ink}}>
         <RepoGlyph size={54}/><span>{r.owner}<span style={{color: S.muted}}> / </span>{r.name}</span></div>
-      <div style={{marginTop: 22, fontFamily: FONT.sans, fontWeight: 900, fontSize: ts, lineHeight: 1, letterSpacing: -2}}>
-        {titleLines.map((l, i) => <div key={i} style={{whiteSpace: 'nowrap'}}>{l.split(' ').map((w, j) => {
-          const at = wAt[wi++]; const k = sp(f, at, 12, 260, .5);
-          return <span key={j} style={{display: 'inline-block', marginRight: ts * .26, color: i === titleLines.length - 1 ? S.accent : S.ink, opacity: f >= at ? 1 : 0,
-            transform: `scale(${1.3 - .3 * k})`}}>{w}</span>;
-        })}</div>)}
+      <div style={{marginTop: 18, fontFamily: FONT.sans, fontWeight: 900, fontSize: ts, lineHeight: .98, letterSpacing: -2}}>
+        {words.map((w, i) => { const k = sp(f, wAt[i], 12, 260, .5);
+          return <div key={i} style={{whiteSpace: 'nowrap', color: f >= wAt[i] ? S.accent : S.ink, transform: `scale(${f >= wAt[i] ? 1.08 - .08 * k : 1})`,
+            transformOrigin: '0% 50%'}}>{w}</div>; })}
       </div>
       <div style={{marginTop: 30, fontFamily: FONT.mono, fontSize: 42, fontWeight: 700, color: S.accent, opacity: io(f, 10, 18)}}>github.com/{r.owner}/{r.name}</div>
-      <div style={{marginTop: 18, fontFamily: FONT.sans, fontSize: 34, lineHeight: 1.25, color: S.inkSoft, opacity: io(f, 14, 24)}}>{r.description}</div>
     </div>
     <Mascot r={R.discovery.mimo} on={sp(f, 4, 12, 170)} clip>
       <MimoMascot state="excited" size={R.discovery.mimo[2] - 30} frame={f} mouth={mouth} amount={io(f, 6, 16)}/></Mascot>
@@ -247,7 +242,7 @@ const ProofBeat: React.FC<BP> = ({b, f, mouth}) => {
       <div style={{position: 'absolute', left: 0, top: img + 12, width: aw, fontFamily: FONT.mono, fontSize: 30, color: S.ink, whiteSpace: 'nowrap'}}>
         <span style={{fontWeight: 700}}>{app.name}</span><span style={{color: S.accent}}> · {app.note}</span></div>
     </div>
-    <Mascot r={R.proof.mimo} on={sp(f, 10, 12, 170)}><MimoMascot state="thinking" size={R.proof.mimo[2]} frame={f} mouth={mouth} look={{x: -.4, y: .9}}/></Mascot>
+    <Mascot r={R.proof.mimo} on={sp(f, 10, 12, 170)} clip><MimoMascot state="thinking" size={R.proof.mimo[2]} frame={f} mouth={mouth} look={{x: -.4, y: .9}}/></Mascot>
     <div style={{...box(R.proof.panel), borderRadius: 24, background: '#0A0B0D', border: `2px solid ${cur >= 0 ? accentA(.55) : inkA(.12)}`, overflow: 'hidden',
       boxShadow: '0 30px 80px rgba(0,0,0,.6)'}}>
       <div style={{display: 'flex', alignItems: 'center', gap: 12, padding: '18px 24px', borderBottom: `2px solid ${inkA(.08)}`, fontFamily: FONT.mono, fontWeight: 700,
@@ -256,7 +251,7 @@ const ProofBeat: React.FC<BP> = ({b, f, mouth}) => {
         <span style={{marginLeft: 8}}>{cur >= 0 ? step.title : 'AGENT'}</span>
         <span style={{marginLeft: 'auto', fontSize: 24, color: S.muted}}>{cur >= 0 ? `${cur + 1}/${steps.length}` : ''}</span>
       </div>
-      <div style={{padding: '22px 26px', fontFamily: step?.kind === 'findings' ? FONT.sans : FONT.mono, fontSize: step?.kind === 'findings' ? 46 : 33,
+      <div style={{padding: '22px 26px', fontFamily: step?.kind === 'findings' ? FONT.sans : FONT.mono, fontSize: step?.kind === 'findings' ? 52 : step?.kind === 'mcp' ? 32 : 37,
         fontWeight: step?.kind === 'findings' ? 800 : 500, lineHeight: step?.kind === 'findings' ? 1.5 : 1.45}}>
         {cur < 0 && <div style={{color: S.muted}}>waiting for the agent…<span style={{opacity: Math.round(f / 8) % 2}}>▍</span></div>}
         {cur >= 0 && step.lines.map((l, i) => {
