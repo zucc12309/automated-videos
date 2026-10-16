@@ -20,7 +20,7 @@
 - PASS `resolution` — 1080x1920 (want 1080x1920)
 - PASS `aspect_ratio` — 9:16
 - PASS `frame_rate` — 30.000 fps (want 30)
-- PASS `duration` — 23.66s (expected 23.60s)
+- PASS `duration` — 23.55s (expected 23.50s)
 - PASS `audio_present` — aac 48000
 - PASS `decode_integrity` — clean full decode
 - PASS `black_frames` — none
@@ -34,13 +34,13 @@
 ## Audio
 
 - PASS `loudness` — -14.0 LUFS (target -14.0 ±2) (deterministic)
-- PASS `true_peak` — -1.9 dBTP (limit -0.5) (deterministic)
-- PASS `clipping` — true peak -1.9 dBTP (deterministic)
+- PASS `true_peak` — -1.7 dBTP (limit -0.5) (deterministic)
+- PASS `clipping` — true peak -1.7 dBTP (deterministic)
 - PASS `scene_001_caption_sync` — {'covered_speech': 0.893, 'inside_ratio': 0.908} via energy_snapped (heuristic)
 - PASS `scene_002_caption_sync` — {'covered_speech': 0.873, 'inside_ratio': 0.822} via energy_snapped (heuristic)
 - PASS `scene_003_caption_sync` — {'covered_speech': 0.815, 'inside_ratio': 0.8} via energy_snapped (heuristic)
-- PASS `scene_004_caption_sync` — {'covered_speech': 0.841, 'inside_ratio': 0.787} via energy_snapped (heuristic)
-- FAIL `scene_005_caption_sync` — {'covered_speech': 0.696, 'inside_ratio': 0.826} via energy_snapped (heuristic)
+- PASS `scene_004_caption_sync` — {'covered_speech': 0.841, 'inside_ratio': 0.79} via energy_snapped (heuristic)
+- FAIL `scene_005_caption_sync` — {'covered_speech': 0.697, 'inside_ratio': 0.814} via energy_snapped (heuristic)
 - PASS `scene_006_caption_sync` — {'covered_speech': 0.899, 'inside_ratio': 0.885} via energy_snapped (heuristic)
 - Caption timings are **estimated** (no model timestamps for this voice).
 

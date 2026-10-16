@@ -24,24 +24,24 @@
  "render": {
   "integrated_lufs": -14.0,
   "lra_lu": 2.0,
-  "true_peak_dbtp": -1.9,
-  "duration_s": 23.66,
-  "speech_level_db": -10.0,
-  "bed_minus_speech_db": -22.7,
-  "floor_minus_speech_db": -24.0,
-  "speech_fraction": 0.673,
-  "pause_median_s": 0.38,
-  "pauses_per_10s": 6.34,
-  "f0_median": 124.0,
-  "f0_p10": 94.1,
-  "f0_p90": 148.1,
+  "true_peak_dbtp": -1.7,
+  "duration_s": 23.55,
+  "speech_level_db": -9.9,
+  "bed_minus_speech_db": -22.5,
+  "floor_minus_speech_db": -24.3,
+  "speech_fraction": 0.669,
+  "pause_median_s": 0.33,
+  "pauses_per_10s": 6.79,
+  "f0_median": 126.5,
+  "f0_p10": 92.8,
+  "f0_p90": 152.4,
   "voice_bands_db": {
    "low": -4.2,
-   "mid": -3.0,
-   "presence": -11.6,
-   "air": -14.2
+   "mid": -2.9,
+   "presence": -11.8,
+   "air": -15.0
   },
-  "bed_centroid_hz": 331
+  "bed_centroid_hz": 339
  },
  "targets": {
   "voice": {
@@ -49,7 +49,7 @@
     "voice": "am_adam",
     "speed": 1.05,
     "note": "Reference A's own engine and voice (am_adam, speed 1.05). Timbre and pitch are Kokoro's; the ONNX path adds sentence_pause_s between sentences.",
-    "sentence_pause_s": 0.3
+    "sentence_pause_s": 0.24
    },
    "espeak": {
     "variant": "en-us+m3",
@@ -63,7 +63,8 @@
   },
   "narration_eq": {
    "mode": "match_reference_voice_bands",
-   "limit_db": 6
+   "limit_db": 6,
+   "kokoro_strength": 0.5
   },
   "scene_tail_s": {
    "default": 0.4,
@@ -92,43 +93,43 @@
   {
    "check": "true_peak",
    "passed": true,
-   "detail": "-1.9 dBTP (\u2264 -1.0)",
+   "detail": "-1.7 dBTP (\u2264 -1.0)",
    "basis": "deterministic"
   },
   {
    "check": "music_bed_level",
    "passed": true,
-   "detail": "bed -22.7 vs reference -22.2 dB under speech (\u00b13.0)",
+   "detail": "bed -22.5 vs reference -22.2 dB under speech (\u00b13.0)",
    "basis": "deterministic"
   },
   {
    "check": "music_bed_warmth",
    "passed": true,
-   "detail": "bed centroid 331 vs reference 355 Hz (\u00b170.0)",
+   "detail": "bed centroid 339 vs reference 355 Hz (\u00b170.0)",
    "basis": "deterministic"
   },
   {
    "check": "voice_pitch",
    "passed": true,
-   "detail": "median F0 124.0 vs reference 118.5 Hz; range 94.1\u2013148.1 vs 93.0\u2013144.1",
+   "detail": "median F0 126.5 vs reference 118.5 Hz; range 92.8\u2013152.4 vs 93.0\u2013144.1",
    "basis": "deterministic"
   },
   {
    "check": "speech_share",
    "passed": true,
-   "detail": "0.673 vs reference 0.656 of the runtime is speech (\u00b10.08)",
+   "detail": "0.669 vs reference 0.656 of the runtime is speech (\u00b10.08)",
    "basis": "deterministic"
   },
   {
    "check": "pause_length",
    "passed": true,
-   "detail": "median pause 0.38 vs reference 0.32 s (\u00b10.08)",
+   "detail": "median pause 0.33 vs reference 0.32 s (\u00b10.08)",
    "basis": "deterministic"
   },
   {
    "check": "voice_tone",
    "passed": true,
-   "detail": "largest band difference: air +2.5 dB (\u00b13.0); render {'low': -4.2, 'mid': -3.0, 'presence': -11.6, 'air': -14.2} vs {'low': -4.1, 'mid': -2.8, 'presence': -12.7, 'air': -16.7}",
+   "detail": "largest band difference: air +1.7 dB (\u00b13.0); render {'low': -4.2, 'mid': -2.9, 'presence': -11.8, 'air': -15.0} vs {'low': -4.1, 'mid': -2.8, 'presence': -12.7, 'air': -16.7}",
    "basis": "deterministic"
   }
  ],
