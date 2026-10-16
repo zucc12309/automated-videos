@@ -35,7 +35,7 @@ from video_mcp import audio as fx, audio_profile, settings, tts  # noqa: E402
 from video_mcp.audio import RATE  # noqa: E402
 
 FPS = 30
-TARGET_S = 30.0
+TARGET_S = 26.0          # Instagram pacing pass (was 30 s); overridable by storyboard pacing.target_s
 OUT = ROOT / "demos" / "devmimo"
 WORK = ROOT / "data" / "devmimo"
 HERE = Path(__file__).resolve().parent
@@ -54,6 +54,7 @@ def narrate(story: dict, cfg) -> list[dict]:
     if not engine.startswith("kokoro"):
         raise SystemExit(f"Kokoro is required for the DevMimo voice; resolved engine {engine!r}: {why}")
     cfg.narration.pronunciations = {**cfg.narration.pronunciations, **PRONOUNCE}
+    cfg.voice_speed = story.get("voice_speed", cfg.voice_speed)
     prof = audio_profile.profile()
     strength = prof["targets"]["narration_eq"].get("kokoro_strength", .5)
     WORK.mkdir(parents=True, exist_ok=True)
@@ -80,11 +81,14 @@ def timeline(story: dict, voice: list[dict]) -> list[dict]:
     """Scene length = lead-in + speech + tail. Tails share whatever is left of the 30 s by each scene's `hold` weight, so the
     picture always waits for the voice and the total lands on the target."""
     base = [s.get("lead_s", .1) + v["seconds"] + s.get("min_tail_s", .25) for s, v in zip(story["scenes"], voice)]
-    spare = TARGET_S - sum(base)
+    target = story.get("pacing", {}).get("target_s", TARGET_S)
+    spare = target - sum(base)
     if spare < 0:
-        print(f"  narration overruns {TARGET_S}s by {-spare:.2f}s; tails stay at their minimum")
+        print(f"  narration overruns {target}s by {-spare:.2f}s; tails stay at their minimum")
         spare = 0
     weights = [s.get("hold", 1) for s in story["scenes"]]
+    if sum(weights) <= 0:
+        weights = [1] * len(weights)
     out, t = [], 0
     for s, v, b, w in zip(story["scenes"], voice, base, weights):
         frames = round((b + spare * w / sum(weights)) * FPS)
@@ -261,7 +265,7 @@ def main():
     props["mouth"] = fx.mouth_envelope(vo, FPS)
     (WORK / "props.json").write_text(json.dumps(props))
     shutil.copy(HERE / "devmimo_intro_storyboard.json", OUT / "devmimo_intro_storyboard.json")
-    timing = {"target_s": TARGET_S, "seconds": round(seconds, 3), "frames": frames,
+    timing = {"target_s": story.get("pacing", {}).get("target_s", TARGET_S), "seconds": round(seconds, 3), "frames": frames,
               "scenes": [{"id": s["id"], "from": s["from"], "frames": s["frames"], "speech_s": s["speech_s"]} for s in scenes],
               "voice": {"engine": voice[0]["engine"], "voice": voice[0]["voice"]}, **info}
     (WORK / "timing.json").write_text(json.dumps(timing, indent=1))

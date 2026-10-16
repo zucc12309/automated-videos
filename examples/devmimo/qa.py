@@ -65,7 +65,22 @@ def run(intro: Path, logo: Path, props: dict, story: dict, timing: dict) -> dict
     for c in tech["checks"]:
         add("technical", c["check"], c["passed"], c["detail"], c.get("mandatory", True))
     seconds = float(video_validation.probe(intro)["format"]["duration"])
-    add("technical", "target_length", abs(seconds - 30) <= .5, f"{seconds:.2f}s (target 30 ±0.5)")
+    pacing = story.get("pacing", {})
+    target = pacing.get("target_s", 30.0)
+    add("technical", "target_length", abs(seconds - target) <= .5, f"{seconds:.2f}s (target {target} ±0.5)")
+    words = sum(len(s["words"]) for s in props["scenes"])
+    speech = sum(s["speech_s"] for s in props["scenes"])
+    wpm = 60 * words / speech
+    lo, hi = pacing.get("wpm_target", [145, 165])
+    add("pacing", "speaking_rate", lo <= wpm <= hi, f"{wpm:.0f} wpm while speaking ({words} words / {speech:.2f}s of measured audio; target {lo}-{hi}); "
+        f"{60 * words / seconds:.0f} wpm over the whole runtime", mandatory=False)
+    outro = next(s for s in props["scenes"] if s["kind"] == "outro")
+    cta_s = (outro["frames"] - round(outro["words"][3]["s"] * 30)) / 30
+    logo_s = (outro["frames"] - 60) / 30                    # LogoReveal settles at frame ~60
+    tail_s = (outro["frames"] - round(outro["words"][-1]["e"] * 30)) / 30
+    need = pacing.get("end_card_min_s", 1.5)
+    add("pacing", "end_card_hold", min(cta_s, logo_s) >= need and tail_s >= need,
+        f"logo complete for {logo_s:.2f}s, CTA on screen {cta_s:.2f}s, held {tail_s:.2f}s after the last word (≥ {need}s)")
 
     for s in props["scenes"]:
         need = (s["lead_s"] + s["speech_s"]) * 30

@@ -85,7 +85,7 @@ export const HookScene: React.FC<SceneProps> = ({scene, f}) => {
 // ------------------------------------------------------------------------------------------------ 2. reveal
 export const RevealScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
   const push = 1 + Math.max(0, f - 30) * .0012;
-  const burst = 14;
+  const burst = Math.max(6, wf(scene, 0) - 6);      // the terminal bursts just before "Meet"
   const crack = io(f, 0, burst);
   const blown = io(f, burst, burst + 16, 0, 1, t => t * t);
   const pop = sp(f, burst, 9, 120, .8);

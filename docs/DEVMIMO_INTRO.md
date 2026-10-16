@@ -1,6 +1,6 @@
 # DevMimo intro and logo sting
 
-A 30-second cinematic intro for DevMimo (1080×1920, 30 fps) and a reusable 5-second logo animation. Both are built on the existing V2.2
+A 26-second cinematic intro for DevMimo (1080×1920, 30 fps) and a reusable 5-second logo animation. Both are built on the existing V2.2
 pieces. Nothing in the pipeline was rebuilt, and no other video format was changed.
 
 ```bash
@@ -51,6 +51,19 @@ Compositions: `DevMimoIntro`, `DevMimoLogo`, `DevMimoPoster`, `MimoSheet`.
 Each scene lasts lead-in + measured speech + tail. The tails share what is left of the 30 s by the storyboard's `hold` weights, so the
 picture always waits for the voice. Every animation that lands on a word reads that word's start from `props.scenes[].words`. Sound
 cues can be anchored to a word index (`"word": n` in the storyboard's `sfx` list), so the sound and the picture use the same frames.
+
+## Pacing (Instagram pass)
+
+The first cut ran 30.03 s. The pacing pass brought it to 26.0 s:
+
+- **Hook:** pulled forward. "STILL STUCK?" now holds 0.45 s after the word.
+- **Reveal:** "Meet Mimo" comes 0.2 s sooner and the reveal lasts 2.4 s instead of 3.6 s.
+- **Topics:** faster.
+- **No-fluff terminal:** kept readable.
+- **End card:** the logo and CTA stay on screen for at least 1.5 s.
+
+Narration runs at Kokoro speed 0.95, which measured 159 wpm while speaking (54 words in 20.36 s of audio). The storyboard holds the
+pacing targets (`pacing.target_s`, `wpm_target` 145–165, `end_card_min_s`), and QA checks the speaking rate and the end-card hold.
 
 ## Character and colours
 
