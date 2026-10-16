@@ -25,7 +25,7 @@ LAYOUT_TEXT = {
     "deviceMock": [("heading", 26, 46), ("points", 20, 38)], "chat": [("heading", 44, 42), ("points", 28, 44)],
     "nodeGraph": [("points", 16, 40), ("focus", 14, 52)], "hookBold": [("heading", 46, 104)], "readmeScroll": [("label", 30, 42)],
     "repoConnect": [("points", 14, 40)], "outroCTA": [("heading", 34, 96)], "hookStack": [("heading", 40, 84)], "docStamp": [("heading", 40, 60), ("points", 34, 40)],
-    "recap": [("label", 22, 52)], "codeBlock": [("heading", 30, 52), ("code", 48, 38)], "flowDiagram": [("nodes", 26, 46)],
+    "recap": [("label", 22, 52)], "codeBlock": [("heading", 30, 52), ("code", 48, 38)], "flowDiagram": [("nodes", 22, 40)],
     "timeline": [("timeline", 26, 46)], "chartBars": [("heading", 30, 50)], "browserMock": [("heading", 32, 54), ("points", 30, 42)],
     "warningCard": [("heading", 48, 70), ("points", 38, 44)], "splitCompare": [("compare", 30, 42)], "cinematic": [("heading", 40, 76)],
     "terminal": [("points", 32, 40)], "bigNumber": [("focus", 12, 200)], "starMeter": [("label", 18, 44)], "mascotCloseup": [("focus", 30, 60)],

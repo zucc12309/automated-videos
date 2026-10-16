@@ -348,3 +348,8 @@ def test_single_beat_outro_still_shows_its_call_to_action(tmp_path):
     variety.plan_layouts(scenes, variety.choose_variant("cta", tmp_path / "v.json", theme="carbon"))
     beats = scenes[-1]["beats"]
     assert [b["layout"] for b in beats] == ["outroCTA", "loop"] and beats[1]["e"] - beats[1]["s"] == pytest.approx(1.0)
+
+
+def test_item_markers_are_not_hero_numbers():
+    assert variety._focus({"emphasis": ""}, "Number 4: subagents.") == "subagents"
+    assert variety._focus({"emphasis": ""}, "It grew to 12,000 users.") == "12,000"

@@ -48,7 +48,9 @@ export const Terminal: React.FC<LayoutProps> = p => {
   const {P, v, scene} = p;
   const f = useCurrentFrame();
   const repo = repoOf(p);
-  const lines = [repo ? `git clone github.com/${repo.full_name}` : clampText(scene.heading.toLowerCase(), 30), ...(scene.points.slice(0, 3).map(x => `✓ ${x}`))];
+  const own = ((scene.visualData?.code as string[] | undefined) ?? []).filter(l => l.trim()).slice(0, 5);
+  const lines = own.length ? own.map(l => l.replace(/^\$\s*/, ''))
+    : [repo ? `git clone github.com/${repo.full_name}` : clampText(scene.heading.toLowerCase(), 30), ...(scene.points.slice(0, 3).map(x => `✓ ${x}`))];
   const focusLine = Math.min(lines.length - 1, Math.floor(interpolate(f, [0, 60], [0, lines.length], cl)));
   const e = enter(f, 0, v.temperament);
   return <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center'}}>
@@ -162,6 +164,6 @@ export const NodeGraph: React.FC<LayoutProps> = ({beat, scene, P, v}) => {
         background: P.surface, border: `3px solid ${P.line}`, fontFamily: FONT.sans, fontWeight: 720, fontSize: 40, color: P.ink, whiteSpace: 'nowrap'}}>{clampText(s, 16)}</div>;
     })}
     <div style={{position: 'absolute', left: c[0], top: c[1], transform: `translate(-50%, -50%) scale(${enter(f, 0, v.temperament)})`, padding: '30px 40px', borderRadius: 999,
-      background: P.accent, color: P.bg, fontFamily: FONT.sans, fontWeight: 900, fontSize: 52, whiteSpace: 'nowrap'}}>{clampText(beat.focus, 14)}</div>
+      background: P.accent, color: P.bg, fontFamily: FONT.sans, fontWeight: 900, fontSize: 52, whiteSpace: 'nowrap'}}>{clampText(scene.label || beat.focus, 14)}</div>
   </div>;
 };

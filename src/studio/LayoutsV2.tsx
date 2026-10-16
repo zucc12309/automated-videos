@@ -60,23 +60,26 @@ export const FlowDiagram: React.FC<LayoutProps> = p => {
   const f = useCurrentFrame();
   const nodes = items(p, 'nodes').slice(0, 4);
   const h = STAGE.height, n = nodes.length;
-  const ys = nodes.map((_, i) => 70 + i * ((h - 140) / Math.max(1, n - 1)));
+  // Node height ~120 px at 40 px type; keep >= 50 px of visible connector between nodes and stay inside the stage.
+  const top = 60, bottom = h - 70;
+  const ys = nodes.map((_, i) => top + i * ((bottom - top) / Math.max(1, n - 1)));
+  const fontSize = n >= 4 ? 40 : 46;
   const x = STAGE.width / 2;
   return <div style={{position: 'absolute', inset: 0}}>
     <svg width={STAGE.width} height={h} style={{position: 'absolute', inset: 0}}>
       {ys.slice(1).map((y, i) => <g key={i}>
-        <DrawPath d={`M ${x} ${ys[i] + 46} L ${x} ${y - 46}`} color={P.line} width={8} delay={8 + i * 8}/>
-        <FlowDot x1={x} y1={ys[i] + 46} x2={x} y2={y - 46} color={P.accent} delay={20 + i * 8}/>
+        <DrawPath d={`M ${x} ${ys[i] + 58} L ${x} ${y - 58}`} color={P.line} width={8} delay={8 + i * 8}/>
+        <FlowDot x1={x} y1={ys[i] + 58} x2={x} y2={y - 58} color={P.accent} delay={20 + i * 8}/>
       </g>)}
     </svg>
     {nodes.map((label, i) => {
       const e = progress(f, {delay: 2 + i * 8, duration: 14});
       const first = i === 0, last = i === n - 1;
       return <div key={i} style={{position: 'absolute', left: x, top: ys[i], transform: `translate(-50%, -50%) scale(${.9 + e * .1})`, opacity: e,
-        minWidth: 420, padding: '22px 34px', borderRadius: 24, textAlign: 'center', background: first || last ? P.accent : P.surface,
-        border: `3px solid ${first || last ? P.accent : P.line}`, color: first || last ? P.bg : P.ink, fontFamily: FONT.sans, fontWeight: 760, fontSize: 46}}>
+        minWidth: 420, padding: '14px 30px', borderRadius: 24, textAlign: 'center', background: first || last ? P.accent : P.surface,
+        border: `3px solid ${first || last ? P.accent : P.line}`, color: first || last ? P.bg : P.ink, fontFamily: FONT.sans, fontWeight: 760, fontSize, lineHeight: 1.1, whiteSpace: 'nowrap'}}>
         <div style={{fontFamily: FONT.mono, fontSize: 28, opacity: .75, letterSpacing: 2}}>{first ? 'REQUEST' : last ? 'RESPONSE' : `STEP ${i}`}</div>
-        {clampText(label, 26)}
+        {clampText(label, 22)}
       </div>;
     })}
   </div>;

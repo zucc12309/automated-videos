@@ -244,8 +244,8 @@ def holds_scene(layout: str, pace: str) -> bool:
     spec = CATALOG.get(layout)
     if not spec:
         return False
-    if layout in ("outroCTA", "motionClip"):
+    if layout in ("outroCTA", "motionClip", "hookBold"):    # the hook statement stays up for its whole line
         return True             # the ending and imported clips play through
-    if layout in ("repoCard", "docStamp", "hookStack", "hookBold", "recap"):
+    if layout in ("repoCard", "docStamp", "hookStack", "recap"):
         return False            # structural openers hand over to supporting beats (V1 rhythm)
     return spec.family in HOLD_FAMILIES or layout == "splitCompare" or (pace == "demonstration" and spec.complexity >= .5)

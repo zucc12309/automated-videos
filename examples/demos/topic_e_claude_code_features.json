@@ -1,0 +1,10 @@
+{
+ "id": "demo-e-claude-code-features",
+ "kind": "manual",
+ "title": "4 Claude Code features most people never set up",
+ "summary": "Claude Code reads a CLAUDE.md file in your project into context at the start of every session, so build commands, code style and project rules do not need repeating. Markdown files in .claude/commands become custom slash commands, so a saved prompt like a code review runs as a single slash command. Hooks are shell commands configured in settings.json that run automatically at lifecycle events such as before or after a tool call; a hook can run a linter after every edit or block a tool call. Subagents are defined as Markdown files in .claude/agents with their own instructions and tools, and each one works in its own separate context window, so research or review does not fill up the main conversation.",
+ "url": "https://code.claude.com/docs",
+ "published": 1792139716.4400294,
+ "retrieved_at": 1792139716.4400296,
+ "score": 0
+}

@@ -100,7 +100,7 @@ def _focus(scene: dict, text: str) -> str:
     lower = text.lower()
     if scene.get("emphasis") and scene["emphasis"].lower() in lower:
         return scene["emphasis"]
-    number = re.search(r"\$?\d[\d,.]*\s?(?:%|million|billion|thousand|GB|TB|x)?", text)
+    number = re.search(r"\$?\d[\d,.]*\s?(?:%|million|billion|thousand|GB|TB|x)?", re.sub(r"\b(?:Number|No\.|#)\s*\d+\b:?", " ", text))
     if number:
         return number.group(0).strip()
     if scene.get("label") and scene["label"].lower() in lower:

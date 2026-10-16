@@ -1,0 +1,225 @@
+{
+ "schema_version": "2.0",
+ "title": "4 Claude Code features most people never set up",
+ "format": "story",
+ "series": "FEATURES",
+ "duration_target_seconds": 40,
+ "creative_direction": {
+  "audience": "developers already using Claude Code",
+  "core_message": "Four built-in features turn Claude Code from a chat into a configured teammate.",
+  "viewer_benefit": "Set up one feature tonight and stop repeating yourself.",
+  "hook": "4 Claude Code features most people never set up.",
+  "tone": "bold editorial",
+  "pacing": "dynamic",
+  "theme": "tech-mono",
+  "visual_identity": "terminal-native, code as typography",
+  "sound_design": "impact on hook, typing ticks, chime on the CTA",
+  "call_to_action": "Save this. Set one up.",
+  "character": "off"
+ },
+ "sources": [
+  {
+   "id": "src1",
+   "url": "https://code.claude.com/docs",
+   "title": "Claude Code documentation",
+   "kind": "article"
+  }
+ ],
+ "claims": [
+  {
+   "id": "c1",
+   "text": "Claude Code reads CLAUDE.md into context at the start of every session.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  },
+  {
+   "id": "c2",
+   "text": "Markdown files in .claude/commands become custom slash commands.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  },
+  {
+   "id": "c3",
+   "text": "Hooks are shell commands that run at lifecycle events and can block a tool call.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  },
+  {
+   "id": "c4",
+   "text": "Subagents work in their own separate context window.",
+   "source_ids": [
+    "src1"
+   ],
+   "status": "verified"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "scene_001",
+   "role": "hook",
+   "narration": "Four Claude Code features most people never set up.",
+   "heading": "4 Claude Code features you're skipping",
+   "emphasis": "never",
+   "intent": "hook",
+   "layout": "hookBold",
+   "pace": "emphasis",
+   "character": false
+  },
+  {
+   "id": "scene_002",
+   "role": "item",
+   "item": 1,
+   "narration": "Number 1: CLAUDE.md. Claude reads it at the start of every session, so your build commands and rules never need repeating.",
+   "heading": "Your project's memory",
+   "label": "CLAUDE.md",
+   "emphasis": "every session",
+   "intent": "code",
+   "layout": "codeBlock",
+   "pace": "demonstration",
+   "character": false,
+   "points": [
+    "Build commands",
+    "Code style",
+    "Project rules"
+   ],
+   "visual": {
+    "code_language": "markdown",
+    "code": [
+     "# CLAUDE.md",
+     "## Commands",
+     "- test: npm test",
+     "- lint: npm run lint",
+     "## Rules",
+     "- Never edit generated/"
+    ]
+   },
+   "claim_ids": [
+    "c1"
+   ],
+   "motion": {
+    "entrance": "reveal",
+    "camera": "static"
+   }
+  },
+  {
+   "id": "scene_003",
+   "role": "item",
+   "item": 2,
+   "narration": "Number 2: custom slash commands. Drop a Markdown file in dot claude slash commands, and a saved prompt runs as one command.",
+   "heading": "Prompts as commands",
+   "label": "Slash commands",
+   "emphasis": "one command",
+   "intent": "code",
+   "layout": "codeBlock",
+   "pace": "demonstration",
+   "character": false,
+   "points": [
+    "Saved prompts",
+    "One command"
+   ],
+   "visual": {
+    "code_language": "shell",
+    "code": [
+     "$ cat .claude/commands/review.md",
+     "Review the diff for bugs.",
+     "List risky changes first.",
+     "",
+     "> /review"
+    ]
+   },
+   "claim_ids": [
+    "c2"
+   ],
+   "motion": {
+    "entrance": "reveal",
+    "camera": "static"
+   }
+  },
+  {
+   "id": "scene_004",
+   "role": "item",
+   "item": 3,
+   "narration": "Number 3: hooks. Shell commands that run automatically before or after a tool call, like a linter after every edit.",
+   "heading": "Automate the guardrails",
+   "label": "Hooks",
+   "emphasis": "automatically",
+   "intent": "api_flow",
+   "layout": "flowDiagram",
+   "pace": "demonstration",
+   "character": false,
+   "points": [
+    "Tool call",
+    "Hook runs",
+    "Lint or block"
+   ],
+   "visual": {
+    "nodes": [
+     "Claude edits a file",
+     "PostToolUse hook",
+     "Linter runs",
+     "Claude sees the result"
+    ]
+   },
+   "claim_ids": [
+    "c3"
+   ],
+   "motion": {
+    "entrance": "reveal",
+    "camera": "static"
+   }
+  },
+  {
+   "id": "scene_005",
+   "role": "item",
+   "item": 4,
+   "narration": "Number 4: subagents. Each one has its own instructions, tools, and context window, so research never clutters your main chat.",
+   "heading": "Specialists on call",
+   "label": "Subagents",
+   "emphasis": "context window",
+   "intent": "architecture",
+   "layout": "nodeGraph",
+   "pace": "demonstration",
+   "character": false,
+   "points": [
+    "Researcher",
+    "Reviewer",
+    "Tester"
+   ],
+   "visual": {},
+   "claim_ids": [
+    "c4"
+   ],
+   "motion": {
+    "entrance": "reveal",
+    "camera": "static"
+   }
+  },
+  {
+   "id": "scene_006",
+   "role": "outro",
+   "narration": "Save this, and set one up before your next session.",
+   "heading": "Save this. Set one up.",
+   "emphasis": "Save",
+   "intent": "recap",
+   "layout": "outroCTA",
+   "pace": "medium",
+   "character": false,
+   "points": [
+    "Save this",
+    "Set one up"
+   ]
+  }
+ ],
+ "director": {
+  "provider": "claude-code-interactive",
+  "model": "claude-opus-5-5 (interactive Claude Code session)",
+  "interactive": true,
+  "note": "Directed in the interactive session; claims verified against the attached documentation notes."
+ }
+}
