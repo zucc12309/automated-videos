@@ -304,3 +304,68 @@ def test_warm_pad_register_is_the_same_for_every_progression(tmp_path):
         f = np.fft.rfftfreq(len(x), 1 / sr)
         cents.append((f * X).sum() / X.sum())
     assert max(cents) - min(cents) < 40, cents
+
+
+# ---------------------------------------------------------------- Higgsfield via MCP (agent-brokered footage)
+def _hybrid_board():
+    from video_mcp.schemas.storyboard import Storyboard
+    return Storyboard.model_validate(json.loads((ROOT / "examples/demos/v22/storyboard_d_future_hybrid.json").read_text()))
+
+
+def test_plan_footage_lists_shots_with_stable_keys_matching_the_pipeline(tmp_path, make_cfg):
+    from video_mcp.orchestration import footage
+    from video_mcp.orchestration.asset_manager import AssetManager
+    from video_mcp.orchestration.pipeline import Pipeline
+    cfg = make_cfg(cinematic={"enabled": True, "provider": "higgsfield_mcp"})
+    board = _hybrid_board()
+    plan = footage.plan(board, cfg, AssetManager(tmp_path))
+    assert plan["provider"] == "higgsfield_mcp" and len(plan["shots"]) == 2 and plan["missing"] == ["scene_001", "scene_004"]
+    shot = plan["shots"][0]
+    assert shot["higgsfield"]["aspect_ratio"] == "9:16" and 4 <= shot["higgsfield"]["duration_seconds"] <= 15
+    assert footage.plan(board, cfg, AssetManager(tmp_path))["shots"][0]["footage_key"] == shot["footage_key"]   # stable
+    pipe = Pipeline("abcdef123456", root=ROOT, data=tmp_path, cfg=cfg)
+    scene = next(s for s in board.scenes if s.id == "scene_001")
+    assert pipe.cache_key_for(pipe.cinematic_request(scene), pipe.cinematic_provider()) == shot["footage_key"]
+
+
+def test_attach_footage_validates_and_marks_the_shot_attached(tmp_path, make_cfg):
+    import subprocess
+    from video_mcp.orchestration import footage
+    from video_mcp.orchestration.asset_manager import AssetManager
+    cfg = make_cfg(cinematic={"enabled": True, "provider": "higgsfield_mcp"})
+    assets = AssetManager(tmp_path)
+    key = footage.plan(_hybrid_board(), cfg, assets)["shots"][0]["footage_key"]
+    clip = tmp_path / "clip.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "color=c=navy:s=360x640:r=30:d=2", "-c:v", "libx264",
+                    "-pix_fmt", "yuv420p", str(clip)], check=True)
+    out = footage.attach(assets, key, file_path=str(clip), generation_id="gen_123", model_id="seedance_2_0", credits_used=12)
+    assert out["stored"] and out["probe"]["height"] == 640 and not out["warnings"]
+    hit = assets.lookup(key)
+    assert hit["provider"] == "higgsfield_mcp" and hit["generation_id"] == "gen_123" and hit["credits_used"] == 12
+    plan = footage.plan(_hybrid_board(), cfg, assets)
+    assert plan["shots"][0]["attached"] and plan["missing"] == ["scene_004"]
+    bad = tmp_path / "bad.mp4"
+    bad.write_bytes(b"not a video")
+    with pytest.raises(ValueError):
+        footage.attach(assets, plan["shots"][1]["footage_key"], file_path=str(bad))
+    with pytest.raises(ValueError):
+        footage.attach(assets, "short", file_path=str(clip))
+
+
+def test_attach_footage_refuses_unsafe_urls(tmp_path, make_cfg):
+    from video_mcp import security
+    from video_mcp.orchestration import footage
+    from video_mcp.orchestration.asset_manager import AssetManager
+    for url in ("http://example.com/a.mp4", "https://127.0.0.1/a.mp4", "file:///etc/passwd"):
+        with pytest.raises((security.UnsafeURL, ValueError)):
+            footage.attach(AssetManager(tmp_path), "a" * 64, video_url=url)
+
+
+def test_brokered_provider_never_spends_and_falls_back_when_missing(make_cfg):
+    from video_mcp.orchestration.footage import HiggsfieldMCPProvider
+    from video_mcp.providers.base import CinematicRequest, ProviderError
+    p = HiggsfieldMCPProvider(make_cfg(cinematic={"provider": "higgsfield_mcp"}))
+    req = CinematicRequest(scene_id="scene_001", prompt="x", duration_seconds=4)
+    assert p.brokered and p.estimate_cost(req).usd == 0.0
+    with pytest.raises(ProviderError):
+        p.submit(req, "k")

@@ -91,14 +91,20 @@
     "effort": "medium"
   },
   "cinematic": {
-    "enabled": false,
-    "provider": "higgsfield",
+    "enabled": true,
+    "provider": "higgsfield_mcp",
     "application": "",
     "model_label": "",
     "max_scenes": 2,
     "max_duration_seconds": 8,
     "cache_assets": true,
-    "usd_per_second_upper_bound": null
+    "usd_per_second_upper_bound": null,
+    "mcp_model": "seedance_2_0",
+    "mcp_params": {
+      "mode": "fast",
+      "resolution": "720p",
+      "generate_audio": false
+    }
   },
   "budget": {
     "allow_paid_generation": false,

@@ -277,7 +277,7 @@ def test_higgsfield_adapter_translates_and_validates(make_cfg):
 
 
 def test_higgsfield_needs_explicit_configuration_and_never_guesses_cost(make_cfg):
-    assert "enabled" in HiggsfieldProvider(make_cfg()).available()[1]
+    assert "enabled" in HiggsfieldProvider(make_cfg(cinematic={"enabled": False, "provider": "higgsfield"})).available()[1]
     assert "application" in HiggsfieldProvider(make_cfg(cinematic={"enabled": True}), sdk=FakeSDK()).available()[1]
     assert HiggsfieldProvider(make_cfg(cinematic={"enabled": True}), sdk=FakeSDK()).estimate_cost(CinematicRequest("s", "p", 4)).usd is None
     assert _find_video_url({"jobs": [{"results": {"raw": {"url": "https://x.y/v.mp4"}}}]}) == "https://x.y/v.mp4"

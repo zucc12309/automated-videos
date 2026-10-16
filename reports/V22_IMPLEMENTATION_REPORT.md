@@ -22,7 +22,7 @@ autopilot and QA/repair are unchanged in behaviour. The studio renderer still wo
 | 10 Brand package | Tokens, character, voice, motion, series labels, CTA templates, reference stats | `brand/` |
 | 11 Reference QA | Pixel statistics against Reference A plus a side-by-side sheet; premium brand checks; no model judgments | `video_mcp/quality/reference_compare.py`, `premium_checks.py` |
 | 12 Demos | A–D rendered through the real pipeline (see below) | `demos/v22/`, `examples/demos/v22/` |
-| 13 Tests | 23 new V2.2 tests (incl. audio profile); full suite 122 passed, 1 skipped | `tests/test_v22.py` |
+| 13 Tests | 23 new V2.2 tests (incl. audio profile); full suite 129 passed, 1 skipped | `tests/test_v22.py` |
 
 ## Reference audio profile (follow-up request)
 
@@ -61,6 +61,23 @@ The table above was measured with the espeak fallback.
 - **Match on demo B, before the final trim.** Kokoro passes all eight reference audio checks: pitch 124 Hz (reference 118.5), speech
   share 67% (66%), bed 22.7 dB under the voice (22.2), loudness −14.0 LUFS. The tone EQ now runs at half strength for Kokoro, because it
   is already the reference voice.
+
+## Higgsfield as an MCP plugin (follow-up request)
+
+`cinematic.provider` is now `"higgsfield_mcp"`, and the local video MCP has two new tools:
+
+- `plan_footage`: returns the shot list.
+- `attach_footage`: attaches a Higgsfield clip URL or file to a planned shot.
+
+The agent generates with the Higgsfield MCP in between, only after you approve the credit cost. This server never spends
+anything. Full flow, safety and defaults: `docs/HIGGSFIELD_INTEGRATION.md`.
+
+| | |
+|---|---|
+| Verified | plan, attach and validation, and a full hybrid render using attached footage (with a local test clip), plus a recorded Remotion fallback for an unattached shot |
+| Not done | a real Higgsfield generation. Your connector is on a free plan with 0 credits and no history, and the connector in this session exposes no generate tool |
+
+Demo D still uses the mock provider and is labelled as such.
 
 ## Problems found by looking at the renders, and fixed
 
@@ -154,7 +171,7 @@ cd /Users/priyanshupatel/Downloads/VIDEOS/local-video-mcp
 git fetch origin && git checkout claude/hybrid-video-v2
 npm ci                                       # adds @remotion/fonts (fonts themselves are in public/fonts)
 .venv/bin/pip install -e . --no-deps         # existing venv; no new Python dependencies
-.venv/bin/python -m pytest -q                # expect 122 passed, 1 skipped
+.venv/bin/python -m pytest -q                # expect 129 passed, 1 skipped
 # Render the four demos (Kokoro am_adam is used automatically on the Mac):
 .venv/bin/python examples/demos/v22/run_demo.py A B C D
 open demos/v22/A/video.mp4

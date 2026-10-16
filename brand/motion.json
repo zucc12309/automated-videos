@@ -1,11 +1,16 @@
 {
-  "signature": "Editorial calm: words resolve from blur in reading order; one object at a time resolves from blur at centre; exits blur and dim; continuity transitions (expand, focus) only when the next visual continues the same object.",
-  "transitions": {
-    "blurDissolve": "default between unrelated objects (14 frames)",
-    "expand": "card grows into the demo of the same item (same scene)",
-    "focus": "camera pushes into a detail of the current object",
-    "push": "between numbered items (object exits left, next enters right)",
-    "cut": "hook punch only"
-  },
-  "rhythm": {"min_hold_seconds": 1.6, "max_cuts_per_10s": 5, "demonstration_hold": true}
+ "signature": "Editorial calm: words resolve from blur in reading order; one object at a time resolves from blur at centre; exits blur and dim; continuity transitions (expand, focus) only when the next visual continues the same object.",
+ "transitions": {
+  "blurDissolve": "default between unrelated objects (14 frames)",
+  "expand": "card grows into the demo of the same item (same scene)",
+  "focus": "camera pushes into a detail of the current object",
+  "push": "between numbered items (object exits left, next enters right)",
+  "cut": "hook punch only"
+ },
+ "rhythm": {
+  "min_hold_seconds": 1.6,
+  "max_cuts_per_10s": 5,
+  "demonstration_hold": true
+ },
+ "footage_style": "Graded toward deep blue-black shadows with soft cool highlights, low-key contrast, shallow depth of field, slow steady camera move, calm cinematic pacing, vertical 9:16 framing, no on-screen text"
 }

@@ -2,6 +2,68 @@
 
 Higgsfield is optional. LOCAL and CLAUDE modes never import it, and every HYBRID failure falls back to a Remotion scene.
 
+There are two ways in:
+
+| Route | Who calls Higgsfield | Credentials | Config |
+|---|---|---|---|
+| **MCP (default since V2.2)** | the agent (Claude Code / Claude app / Codex) through the Higgsfield MCP connector | your Higgsfield login in the connector; no keys in this repo | `cinematic.provider: "higgsfield_mcp"` |
+| API adapter | this Python worker through `higgsfield-client` | `HF_KEY` in `.env` | `cinematic.provider: "higgsfield"` |
+
+## Higgsfield as an MCP plugin (agent-brokered footage)
+
+The Higgsfield MCP server runs in the agent, not in this Python process. So the local video MCP never calls Higgsfield and
+never spends credits. The agent brokers between the two MCP servers:
+
+```
+local video MCP  plan_footage(storyboard)          -> shots: footage_key, 9:16 prompt (brand-styled), duration,
+                                                      recommended model + params, attached?
+Higgsfield MCP   balance / models_get               -> confirm credits and the model's parameters
+(person)         approves the shots and credit cost
+Higgsfield MCP   generate the shot (or pick one from show_generations)
+local video MCP  attach_footage(footage_key, video_url, generation_id, model_id, credits_used)
+local video MCP  create_hybrid_video(mode="hybrid", storyboard=...)  -> real footage in those scenes
+```
+
+How `attach_footage` handles a clip:
+
+- **Download.** https only, SSRF-checked, no redirects, size cap `cinematic.max_download_mb`. A local `file_path` also works,
+  for clips downloaded from higgsfield.ai.
+- **Validation.** The clip is fully decoded. Landscape clips get a warning; they will be centre-cropped to 9:16.
+- **Storage.** The clip goes into the content-addressed cache under the shot's key. Provenance records the generation id, model, credits,
+  and the source URL without its query string.
+- **Render.** The render sees a cache hit for that scene. Shots with nothing attached fall back to their Remotion layout, and
+  `decisions.json` records why.
+
+The shot list and the render use the same request and key functions (`orchestration/footage.py`), so they always agree.
+Re-plan after editing a cinematic prompt or duration, or after changing `cinematic.mcp_model`.
+
+**Defaults** (`config.json → cinematic`):
+
+| Setting | Value |
+|---|---|
+| `mcp_model` | `seedance_2_0` |
+| `mcp_params` | `{"mode": "fast", "resolution": "720p", "generate_audio": false}` |
+| Clip length | 4–15 s |
+| Brand grading suffix | `brand/motion.json → footage_style`, added to every prompt so footage matches the publication look |
+
+Set `generate_audio` to false because the reel has its own narration and bed. The plan's `steps` tell the agent the
+approval rule: never generate before the person approves the shots and credits.
+
+**Verified in this delivery:**
+
+- `plan_footage`, `attach_footage` (file and URL validation), the cache-key match, and a full hybrid render. In that render, scene
+  1 used attached footage (provider `higgsfield_mcp`, $0 spent by the pipeline) and scene 4 fell back to the Remotion
+  pull-quote.
+- The footage used in that test was a locally generated test clip, **not Higgsfield output**.
+
+**Not done yet:** a real Higgsfield generation.
+
+- Your connector reports a free plan with 0 credits and no generation history.
+- The connector attached to this session exposes only catalog, history, balance and import tools, not generation.
+
+Once your connector offers generation and your workspace has credits, the same flow runs unchanged. Footage generated on
+higgsfield.ai works today: take its URL from `show_generations` and pass it to `attach_footage`.
+
 ## What was discovered (2026-10-16)
 
 * **Higgsfield MCP connector** (available to the interactive Claude session): catalog and balance are readable

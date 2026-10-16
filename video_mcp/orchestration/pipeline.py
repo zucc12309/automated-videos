@@ -71,7 +71,10 @@ class Pipeline:
 
     def cinematic_provider(self):
         if self._cinematic is None:
-            if self.cfg.cinematic.provider == "mock":
+            if self.cfg.cinematic.provider == "higgsfield_mcp":
+                from .footage import HiggsfieldMCPProvider
+                self._cinematic = HiggsfieldMCPProvider(self.cfg)
+            elif self.cfg.cinematic.provider == "mock":
                 from ..providers.higgsfield_provider import MockCinematicProvider
                 self._cinematic = MockCinematicProvider(self.cfg, self.data / "mock_cinematic")
             else:
@@ -202,35 +205,17 @@ class Pipeline:
 
     # ---------- stage: cinematic assets ----------
     def cinematic_scenes(self, board: Storyboard):
-        limit = min(self.cfg.cinematic.max_scenes, self.cfg.budget.max_higgsfield_scenes)
-        seconds_cap = min(self.cfg.cinematic.max_duration_seconds, self.cfg.budget.max_higgsfield_duration_seconds)
-        picked, total = [], 0.0
-        for scene in board.scenes:
-            if scene.render_engine == "cinematic" and scene.cinematic and len(picked) < limit:
-                if total + scene.cinematic.duration_seconds <= seconds_cap + 1e-9:
-                    picked.append(scene)
-                    total += scene.cinematic.duration_seconds
-        return picked
+        from . import footage
+        return footage.selected_scenes(board, self.cfg)
 
     def cinematic_request(self, scene) -> CinematicRequest:
-        spec = scene.cinematic
-        refs = []
-        for url in spec.reference_images:
-            try:
-                refs.append(security.check_url(url, resolve=False, allowed_schemes=("https",)))
-            except security.UnsafeURL:
-                self.decide(stage="cinematic", scene=scene.id, dropped_reference=url[:120], reason="unsafe URL")
-        return CinematicRequest(scene_id=scene.id, prompt=spec.prompt, duration_seconds=spec.duration_seconds,
-                                aspect_ratio="9:16", negative_guidance=spec.negative_guidance, reference_images=refs,
-                                fallback=spec.fallback_layout, seed=int(hashlib.sha256(scene.id.encode()).hexdigest()[:6], 16))
+        from . import footage
+        return footage.request_for(scene, on_unsafe=lambda url: self.decide(stage="cinematic", scene=scene.id, dropped_reference=url[:120],
+                                                                             reason="unsafe URL"))
 
     def cache_key_for(self, req: CinematicRequest, provider) -> str:
-        caps = provider.capabilities()
-        return cache_key(provider=provider.name, model=json.dumps(caps.get("model") or {}, sort_keys=True) + "|" + str(caps.get("application", "")),
-                         prompt=req.prompt, params={"d": req.duration_seconds, "ar": req.aspect_ratio, "res": req.resolution,
-                                                    "neg": req.negative_guidance, "extra": req.params},
-                         reference_hashes=[hashlib.sha256(r.encode()).hexdigest() for r in req.reference_images], seed=req.seed,
-                         config={"application": self.cfg.cinematic.application})
+        from . import footage
+        return footage.key_for(req, provider, self.cfg)
 
     def fallback_scene(self, board: Storyboard, scene, reason: str):
         scene.render_engine = "remotion"
@@ -275,6 +260,10 @@ class Pipeline:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(hit["path"], target)
                 self.attach(scene, target, hit, cached=True)
+                continue
+            if getattr(provider, "brokered", False):
+                # Higgsfield via MCP: the agent attaches footage before rendering; nothing to submit from here.
+                self.fallback_scene(board, scene, "no Higgsfield footage attached for this shot (plan_footage → attach_footage)")
                 continue
             entry = journal.get(scene.id, {})
             if entry.get("state") == "submitting":

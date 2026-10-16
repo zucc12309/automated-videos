@@ -53,7 +53,7 @@ class CreativeDirector(_Section):
 
 class Cinematic(_Section):
     enabled: bool = False
-    provider: Literal["higgsfield", "mock"] = "higgsfield"
+    provider: Literal["higgsfield", "higgsfield_mcp", "mock"] = "higgsfield"   # higgsfield_mcp = footage via the agent's MCP
     application: str = ""          # Higgsfield application/endpoint id; must be set explicitly, never guessed
     model_label: str = ""          # human-readable model name for provenance
     max_scenes: int = Field(default=2, ge=0, le=8)
@@ -63,6 +63,9 @@ class Cinematic(_Section):
     poll_interval_seconds: float = 5
     timeout_seconds: float = 900
     max_download_mb: int = 300
+    mcp_model: str = "seedance_2_0"                  # recommended Higgsfield model for plan_footage (agent-brokered)
+    mcp_params: dict = Field(default_factory=lambda: {"mode": "fast", "resolution": "720p", "generate_audio": False})
+    mcp_duration_range: tuple[float, float] = (4, 15)
 
 
 class Brand(_Section):

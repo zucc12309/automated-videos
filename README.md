@@ -64,6 +64,8 @@ New tools:
 | `list_assets` | Cached generated media with provenance |
 | `get_video_report` | Creative decisions, sources and claims, spend, provider usage, timings, QA |
 | `cancel_job` / `resume_job` | Cancel; resume from checkpoints after a crash, failure or approval pause |
+| `plan_footage` | Higgsfield via MCP, step 1: shot list (footage keys, 9:16 prompts, model + params) for the agent to generate with the Higgsfield MCP |
+| `attach_footage` | Higgsfield via MCP, step 2: attach a Higgsfield clip URL/file to a planned shot (validated, cached, provenance kept) |
 | `import_motion_clip` | Add a local motion-graphics clip (e.g. exported from Claude's motion tools) for use in a scene |
 
 Long work always returns a job ID immediately; one heavy job runs at a time.
