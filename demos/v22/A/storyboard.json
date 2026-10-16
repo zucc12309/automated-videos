@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "video_id": "feca2a2df601",
+  "video_id": "a4885cd4c54f",
   "title": "4 repos that fix Claude Code's gaps",
   "format": "roundup",
   "duration_target_seconds": 38.0,
@@ -25,28 +25,28 @@
       "url": "https://github.com/lidge-jun/opencodex",
       "title": "lidge-jun/opencodex",
       "kind": "repository",
-      "retrieved_at": 1792147326.247446
+      "retrieved_at": 1792148944.3544393
     },
     {
       "id": "src2",
       "url": "https://github.com/yetone/magpie",
       "title": "yetone/magpie",
       "kind": "repository",
-      "retrieved_at": 1792147326.2474535
+      "retrieved_at": 1792148944.3544452
     },
     {
       "id": "src3",
       "url": "https://github.com/Vincentwei1021/video-shotcraft",
       "title": "Vincentwei1021/video-shotcraft",
       "kind": "repository",
-      "retrieved_at": 1792147326.2474566
+      "retrieved_at": 1792148944.354448
     },
     {
       "id": "src4",
       "url": "https://github.com/google/artemis",
       "title": "google/artemis",
       "kind": "repository",
-      "retrieved_at": 1792147326.2474594
+      "retrieved_at": 1792148944.3544507
     }
   ],
   "claims": [

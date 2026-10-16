@@ -11,14 +11,14 @@
   {
    "check": "true_peak",
    "passed": true,
-   "detail": "-1.4 dBTP (limit -0.5)",
+   "detail": "-1.5 dBTP (limit -0.5)",
    "mandatory": true,
    "basis": "deterministic"
   },
   {
    "check": "clipping",
    "passed": true,
-   "detail": "true peak -1.4 dBTP",
+   "detail": "true peak -1.5 dBTP",
    "mandatory": false,
    "basis": "deterministic"
   },
@@ -39,7 +39,7 @@
   {
    "check": "scene_003_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.876, 'inside_ratio': 0.824} via energy_snapped",
+   "detail": "{'covered_speech': 0.875, 'inside_ratio': 0.823} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
@@ -53,7 +53,7 @@
   {
    "check": "scene_005_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.923, 'inside_ratio': 0.877} via energy_snapped",
+   "detail": "{'covered_speech': 0.925, 'inside_ratio': 0.877} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
@@ -67,8 +67,8 @@
  ],
  "loudness": {
   "integrated_lufs": -14.1,
-  "lra": 1.9,
-  "true_peak_dbtp": -1.4
+  "lra": 1.6,
+  "true_peak_dbtp": -1.5
  },
  "timing_sources": [
   "energy_snapped"

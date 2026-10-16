@@ -205,7 +205,7 @@
    "kind": "first_frame",
    "scene": "",
    "mean_luma": 26.9,
-   "stage_std": 57.1
+   "stage_std": 57.11
   },
   {
    "t": 0.15,
@@ -215,161 +215,161 @@
    "stage_std": 57.12
   },
   {
-   "t": 1.533,
+   "t": 1.483,
    "kind": "scene_mid",
    "scene": "scene_001",
    "mean_luma": 45.7,
    "stage_std": 63.97
   },
   {
-   "t": 2.867,
+   "t": 2.767,
    "kind": "scene_exit",
    "scene": "scene_001",
    "mean_luma": 46.0,
-   "stage_std": 64.3
+   "stage_std": 64.31
   },
   {
-   "t": 3.217,
+   "t": 3.117,
    "kind": "scene_entrance",
    "scene": "scene_002",
    "mean_luma": 34.4,
-   "stage_std": 38.34
+   "stage_std": 38.4
   },
   {
-   "t": 7.117,
+   "t": 6.883,
    "kind": "scene_mid",
    "scene": "scene_002",
-   "mean_luma": 29.6,
-   "stage_std": 40.73
+   "mean_luma": 29.5,
+   "stage_std": 40.72
   },
   {
-   "t": 8.797,
+   "t": 8.617,
    "kind": "beat_boundary",
    "scene": "scene_002",
    "mean_luma": 26.8,
-   "stage_std": 27.08
+   "stage_std": 27.14
   },
   {
-   "t": 10.967,
+   "t": 10.6,
    "kind": "scene_exit",
    "scene": "scene_002",
    "mean_luma": 22.6,
-   "stage_std": 21.84
+   "stage_std": 21.85
   },
   {
-   "t": 11.317,
+   "t": 10.95,
    "kind": "scene_entrance",
    "scene": "scene_003",
-   "mean_luma": 24.3,
+   "mean_luma": 24.2,
    "stage_std": 16.5
   },
   {
-   "t": 14.974,
+   "t": 14.527,
    "kind": "beat_boundary",
    "scene": "scene_003",
-   "mean_luma": 28.4,
-   "stage_std": 50.23
+   "mean_luma": 29.0,
+   "stage_std": 51.8
   },
   {
-   "t": 15.217,
+   "t": 14.717,
    "kind": "scene_mid",
    "scene": "scene_003",
-   "mean_luma": 24.5,
+   "mean_luma": 25.6,
    "stage_std": 45.0
   },
   {
-   "t": 17.384,
+   "t": 16.937,
    "kind": "beat_boundary",
    "scene": "scene_003",
-   "mean_luma": 23.5,
-   "stage_std": 30.01
+   "mean_luma": 23.8,
+   "stage_std": 25.17
   },
   {
-   "t": 19.067,
+   "t": 18.433,
    "kind": "scene_exit",
    "scene": "scene_003",
    "mean_luma": 28.3,
-   "stage_std": 32.34
+   "stage_std": 32.33
   },
   {
-   "t": 19.417,
+   "t": 18.783,
    "kind": "scene_entrance",
    "scene": "scene_004",
    "mean_luma": 27.0,
-   "stage_std": 19.29
+   "stage_std": 19.28
   },
   {
-   "t": 23.383,
+   "t": 22.633,
    "kind": "scene_mid",
    "scene": "scene_004",
    "mean_luma": 30.4,
-   "stage_std": 43.19
+   "stage_std": 43.0
   },
   {
-   "t": 25.17,
+   "t": 24.456,
    "kind": "beat_boundary",
    "scene": "scene_004",
-   "mean_luma": 25.4,
-   "stage_std": 20.97
+   "mean_luma": 26.1,
+   "stage_std": 25.44
   },
   {
-   "t": 27.3,
+   "t": 26.433,
    "kind": "scene_exit",
    "scene": "scene_004",
    "mean_luma": 23.7,
-   "stage_std": 26.78
+   "stage_std": 26.75
   },
   {
-   "t": 27.65,
+   "t": 26.783,
    "kind": "scene_entrance",
    "scene": "scene_005",
-   "mean_luma": 24.4,
-   "stage_std": 16.2
+   "mean_luma": 24.3,
+   "stage_std": 16.19
   },
   {
-   "t": 30.8,
+   "t": 29.8,
    "kind": "scene_mid",
    "scene": "scene_005",
    "mean_luma": 28.9,
-   "stage_std": 37.86
+   "stage_std": 37.84
   },
   {
-   "t": 33.9,
+   "t": 32.767,
    "kind": "scene_exit",
    "scene": "scene_005",
    "mean_luma": 29.9,
-   "stage_std": 41.21
+   "stage_std": 41.16
   },
   {
-   "t": 34.25,
+   "t": 33.117,
    "kind": "scene_entrance",
    "scene": "scene_006",
    "mean_luma": 25.1,
    "stage_std": 15.49
   },
   {
-   "t": 35.8,
+   "t": 34.633,
    "kind": "scene_mid",
    "scene": "scene_006",
-   "mean_luma": 29.3,
+   "mean_luma": 29.4,
    "stage_std": 61.14
   },
   {
-   "t": 36.6,
+   "t": 35.4,
    "kind": "beat_boundary",
    "scene": "scene_006",
-   "mean_luma": 34.6,
-   "stage_std": 63.75
+   "mean_luma": 34.7,
+   "stage_std": 63.77
   },
   {
-   "t": 37.3,
+   "t": 36.1,
    "kind": "scene_exit",
    "scene": "scene_006",
    "mean_luma": 43.3,
-   "stage_std": 64.2
+   "stage_std": 64.19
   },
   {
-   "t": 37.4,
+   "t": 36.2,
    "kind": "final_frame",
    "scene": "",
    "mean_luma": 39.1,
@@ -390,5 +390,5 @@
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/feca2a2df601/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/a4885cd4c54f/qa/contact_sheet.jpg"
 }
