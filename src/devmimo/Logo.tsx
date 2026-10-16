@@ -1,30 +1,35 @@
 import React from 'react';
 import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {ensureFonts} from '../premium/tokens';
+import {ensureFonts, ID} from '../premium/tokens';
 import {Backdrop} from './Backdrop';
 import {DM, FONT, io, sp} from './theme';
 
-/* DevMimo logo: the mark is Mimo's head reduced to a badge (ivory shell, charcoal screen, two orange LED eyes, antenna bulb) between
-   code brackets; the wordmark is "Dev" ivory + "Mimo" orange in Figtree 900. `LogoReveal` is the reusable 5 s animation (150
+/* DevMimo logo: the mark is the brand character (identity.json) between code brackets; the wordmark is "Dev" in ink + "Mimo" in
+   the accent, Figtree 900 (FIELDNOTES premium tokens). `LogoReveal` is the reusable 5 s animation (150
    frames at 30 fps); the outro of the intro plays the same component. */
 
+const P = ID.palette;
+const BAND = 79 * (1 - ID.proportions.band_height);
+const BODY = 'M0,34 A34,34 0 0 1 34,0 L66,0 A34,34 0 0 1 100,34 L100,64 A15,15 0 0 1 85,79 L15,79 A15,15 0 0 1 0,64 Z';
+
+/** The mark is the brand character itself (identity.json): marshmallow body, base band, pill eyes, cheeks. */
 export const LogoMark: React.FC<{size: number; eyes?: number; happy?: boolean; glow?: number}> = ({size, eyes = 1, happy = false, glow = 1}) => {
-  const open = Math.max(.08, eyes);
+  const open = Math.max(.1, eyes);
   const eye = (cx: number) => happy
-    ? <path d={`M ${cx - 16} ${118} Q ${cx} ${92} ${cx + 16} ${118}`} fill="none" stroke={DM.orange} strokeWidth={10} strokeLinecap="round"/>
-    : <rect x={cx - 14} y={110 - 26 * open} width={28} height={Math.max(5, 52 * open)} rx={Math.min(14, 26 * open)} fill={DM.orange}/>;
-  return <svg width={size} height={size} viewBox="0 0 240 240" style={{overflow: 'visible', display: 'block'}}>
+    ? <path d={`M${cx - 4.2},38.5 Q${cx},32 ${cx + 4.2},38.5`} stroke={P.eye} strokeWidth={2.6} fill="none" strokeLinecap="round"/>
+    : <rect x={cx - 3.5} y={37 - 7.75 * open} width={7} height={15.5 * open} rx={3.5} fill={P.eye}/>;
+  return <svg width={size} height={size} viewBox="-10 -20 120 120" style={{overflow: 'visible', display: 'block'}}>
     <defs>
-      <radialGradient id="lmGlow"><stop offset="0" stopColor={DM.orange} stopOpacity=".6"/><stop offset="1" stopColor={DM.orange} stopOpacity="0"/></radialGradient>
-      <filter id="lmBloom" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation={5}/></filter>
+      <radialGradient id="lmGlow"><stop offset="0" stopColor={DM.orange} stopOpacity=".45"/><stop offset="1" stopColor={DM.orange} stopOpacity="0"/></radialGradient>
+      <clipPath id="lmClip"><path d={BODY}/></clipPath>
     </defs>
-    <line x1={120} y1={36} x2={120} y2={10} stroke={DM.ivorySoft} strokeWidth={8} strokeLinecap="round"/>
-    <circle cx={120} cy={4} r={30} fill="url(#lmGlow)" opacity={glow}/>
-    <circle cx={120} cy={4} r={12} fill={DM.orange}/>
-    <rect x={20} y={34} width={200} height={170} rx={64} fill={DM.ivory}/>
-    <rect x={44} y={58} width={152} height={118} rx={44} fill={DM.charcoal2}/>
-    <g filter="url(#lmBloom)" opacity={.8 * glow}>{eye(94)}{eye(146)}</g>
-    {eye(94)}{eye(146)}
+    <circle cx={50} cy={40} r={70} fill="url(#lmGlow)" opacity={glow * .8}/>
+    <ellipse cx={50} cy={85} rx={36} ry={4} fill={P.shadow}/>
+    <path d={BODY} fill={P.body}/>
+    <rect x={0} y={BAND} width={100} height={79 - BAND} fill={P.band} clipPath="url(#lmClip)"/>
+    {eye(41)}{eye(59)}
+    <ellipse cx={28} cy={BAND + 1} rx={5.2} ry={2.6} fill={P.cheek}/>
+    <ellipse cx={72} cy={BAND + 1} rx={5.2} ry={2.6} fill={P.cheek}/>
   </svg>;
 };
 
@@ -74,7 +79,7 @@ export const LogoReveal: React.FC<{f: number; scale?: number; tagline?: string; 
 /** 5 s logo sting: 150 frames, 1080x1920. */
 export const DevMimoLogo: React.FC = () => {
   const f = useCurrentFrame();
-  const flash = f >= 30 && f < 36 ? io(f, 30, 36, .35, 0) : 0;
+  const flash = f >= 30 && f < 36 ? io(f, 30, 36, .12, 0) : 0;
   const out = io(f, 138, 150);
   return <AbsoluteFill style={{background: DM.charcoal}}>
     <Backdrop f={f} intensity={io(f, 20, 60) * .9}/>

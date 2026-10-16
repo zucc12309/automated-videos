@@ -70,18 +70,25 @@ def test_word_anchored_cue_follows_narration():
 
 def test_palette_metric_separates_on_and_off_brand():
     on = np.zeros((1, 40, 40, 3), np.uint8)
-    on[..., :] = (20, 20, 22)
-    on[:, :10] = (255, 122, 26)
-    on[:, 10:20] = (244, 239, 228)
+    on[..., :] = (10, 11, 15)
+    on[:, :10] = (142, 162, 255)
+    on[:, 10:20] = (239, 239, 234)
     off = np.zeros((1, 40, 40, 3), np.uint8)
-    off[..., :] = (40, 90, 220)
+    off[..., :] = (255, 122, 26)
     assert qa.palette_share(on) > .95
     assert qa.palette_share(off) < .05
 
 
-def test_mascot_note_and_no_paid_calls():
+def test_mimo_is_the_brand_character_in_brand_colours():
     s = story()
-    assert "original" in s["mascot_note"]
+    assert "identity.json" in s["mascot_note"]
+    mimo = (ROOT / "src" / "devmimo" / "Mimo.tsx").read_text()
+    theme = (ROOT / "src" / "devmimo" / "theme.ts").read_text()
+    assert "ID.palette" in mimo and "tokens.color" in theme
+    assert "#ff7a1a" not in theme.lower()
+
+
+def test_no_paid_calls():
     src = (ROOT / "examples" / "devmimo" / "build_intro.py").read_text()
     for banned in ("anthropic", "higgsfield", "requests.post", "urlopen"):
         assert banned not in src.lower()

@@ -3,7 +3,7 @@ import {AbsoluteFill} from 'remotion';
 import {Backdrop} from './Backdrop';
 import {LogoMark, LogoReveal} from './Logo';
 import {Mimo} from './Mimo';
-import {DM, DMScene, FONT, io, rand, sp, wf} from './theme';
+import {DM, DMScene, FONT, io, rand, sp, wf, accentA} from './theme';
 
 export type SceneProps = {scene: DMScene; f: number; mouth: number};
 
@@ -99,9 +99,9 @@ export const RevealScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
   const wave = io(f, land + 22, land + 30) * (1 - io(f, scene.frames - 12, scene.frames - 2));
   return <AbsoluteFill style={{transform: `scale(${push})`, transformOrigin: '50% 60%'}}>
     {/* light rays */}
-    <AbsoluteFill style={{opacity: rays * .9, background: `repeating-conic-gradient(from ${f * .6}deg at 50% 62%, rgba(255,122,26,.13) 0deg 7deg, transparent 7deg 20deg)`,
+    <AbsoluteFill style={{opacity: rays * .9, background: `repeating-conic-gradient(from ${f * .6}deg at 50% 62%, ${accentA(.13)} 0deg 7deg, transparent 7deg 20deg)`,
       maskImage: 'radial-gradient(circle at 50% 62%, black 10%, transparent 62%)', WebkitMaskImage: 'radial-gradient(circle at 50% 62%, black 10%, transparent 62%)'}}/>
-    <AbsoluteFill style={{background: `radial-gradient(circle at 50% 62%, rgba(255,140,50,${.55 * (1 - io(f, burst, burst + 14))}), transparent ${20 + 50 * io(f, burst, burst + 14)}%)`}}/>
+    <AbsoluteFill style={{background: `radial-gradient(circle at 50% 62%, ${accentA(.55 * (1 - io(f, burst, burst + 14)))}, transparent ${20 + 50 * io(f, burst, burst + 14)}%)`}}/>
     {/* leftover punch word drifts away */}
     <div style={abs({left: 0, right: 0, top: 830 - f * 6, textAlign: 'center', fontFamily: FONT.sans, fontWeight: 900, fontSize: 236, color: DM.orange, letterSpacing: '-0.035em',
       opacity: 1 - io(f, 2, burst), filter: `blur(${io(f, 2, burst) * 10}px)`})}>STUCK?</div>
@@ -137,8 +137,8 @@ export const RevealScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
         display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.mono, fontWeight: 700, fontSize: 40, color: DM.ivory,
         opacity: k * (front ? 1 : .55), transform: `scale(${front ? 1 : .8})`, zIndex: front ? 2 : 0})}>{g}</div> : null;
     })}
-    {f >= burst && <MimoAt x={540} y={mimoY} size={560 * (.3 + .7 * pop)} rotate={f < land ? (1 - arc) * -18 : 0}>
-      <Mimo size={560 * (.3 + .7 * pop)} frame={f} mouth={mouth} squash={squash - (f < land ? .35 * (1 - arc) : 0)} expression={f < land + 8 ? 'surprised' : 'happy'}
+    {f >= burst && <MimoAt x={540} y={mimoY} size={520 * (.3 + .7 * pop)} rotate={f < land ? (1 - arc) * -18 : 0}>
+      <Mimo size={520 * (.3 + .7 * pop)} frame={f} mouth={mouth} squash={squash - (f < land ? .35 * (1 - arc) : 0)} expression={f < land + 8 ? 'surprised' : 'happy'}
         blinkAt={[land + 10, land + 17]} wave={wave} glow={1 + .5 * (1 - io(f, burst, burst + 20))} look={{x: 0, y: f < land ? -.6 : 0}}/>
     </MimoAt>}
   </AbsoluteFill>;
@@ -212,8 +212,8 @@ export const BuildScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
     </div>
     <div style={abs({left: 80, right: 80, top: 1500, textAlign: 'right', fontFamily: FONT.serif, fontStyle: 'italic', fontSize: 80, color: DM.ivory,
       paddingLeft: 300, opacity: io(f, follow - 14, follow - 6), transform: `translateY(${(1 - io(f, follow - 14, follow - 4)) * 30}px)`})}>you can actually <span style={{color: DM.orange}}>follow.</span></div>
-    <MimoAt x={210} y={1760} size={330}>
-      <Mimo size={330} frame={f + 200} mouth={mouth} typing={io(f, 44, 50) * (1 - io(f, short - 6, short))} look={{x: .8, y: -.6}}
+    <MimoAt x={200} y={1760} size={260}>
+      <Mimo size={260} frame={f + 200} mouth={mouth} typing={io(f, 44, 50) * (1 - io(f, short - 6, short))} look={{x: .8, y: -.6}}
         expression={f > follow ? 'happy' : 'neutral'} blinkAt={[real]}/>
     </MimoAt>
   </AbsoluteFill>;
@@ -274,7 +274,7 @@ const RepoPanel: React.FC<{f: number; worth: number}> = ({f, worth}) =>
   <>
     <div style={abs({left: 110, top: 600, width: 860, padding: '40px 50px', borderRadius: 36, background: DM.panel, border: `2px solid ${DM.line}`,
       transform: `translateY(${(1 - sp(f, 0, 13, 160)) * 200}px)`})}>
-      {f > 28 && <div style={abs({left: 30, right: 30, top: 40 + 86 * (1 + Math.floor((f - 28) / 9) % 4), height: 86, borderRadius: 16, background: 'rgba(255,122,26,.14)'})}/>}
+      {f > 28 && <div style={abs({left: 30, right: 30, top: 40 + 86 * (1 + Math.floor((f - 28) / 9) % 4), height: 86, borderRadius: 16, background: `${accentA(.14)}`})}/>}
       {TREE.map((line, i) => <div key={line} style={{position: 'relative', fontFamily: FONT.mono, fontSize: 54, lineHeight: 1.6, color: i ? DM.ivory : DM.orange, fontWeight: i ? 500 : 700,
         opacity: io(f, 4 + i * 4, 8 + i * 4), transform: `translateX(${(1 - io(f, 4 + i * 4, 10 + i * 4)) * 40}px)`, whiteSpace: 'nowrap'}}>{line}</div>)}
       <div style={abs({right: 46, top: 40, fontSize: 80, color: DM.orange, transform: `scale(${sp(f, 24, 8, 200)}) rotate(${f * 2}deg)`,
@@ -298,8 +298,8 @@ export const TopicsScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
       {idx === 1 && <McpPanel f={local}/>}
       {idx === 2 && <RepoPanel f={local} worth={wf(scene, 6) - starts[2]}/>}
     </AbsoluteFill>
-    <MimoAt x={880} y={1800 - hop * 60} size={250}>
-      <Mimo size={250} frame={f + 400} mouth={mouth} look={{x: -.7, y: -.7}} squash={-hop * .4} expression={idx === 2 && f > wf(scene, 6) ? 'happy' : 'neutral'}/>
+    <MimoAt x={880} y={1800 - hop * 60} size={200}>
+      <Mimo size={200} frame={f + 400} mouth={mouth} look={{x: -.7, y: -.7}} squash={-hop * .4} expression={idx === 2 && f > wf(scene, 6) ? 'happy' : 'neutral'}/>
     </MimoAt>
   </AbsoluteFill>;
 };
@@ -330,7 +330,7 @@ export const NoFluffScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
           const on = f >= at[i];
           const last = i === CHECKS.length - 1;
           return <div key={c} style={{display: 'flex', alignItems: 'center', gap: 28, padding: '18px 22px', borderRadius: 20, marginTop: i ? 12 : 0,
-            background: on && last ? 'rgba(255,122,26,.16)' : 'transparent', opacity: on ? 1 : .32}}>
+            background: on && last ? `${accentA(.16)}` : 'transparent', opacity: on ? 1 : .32}}>
             <div style={{width: 70, height: 70, borderRadius: 18, border: `4px solid ${on ? DM.orange : DM.line}`, background: on ? DM.orange : 'transparent',
               display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48, fontWeight: 900, color: DM.charcoal, transform: `scale(${on ? .7 + .3 * k : 1})`}}>{on ? '✓' : ''}</div>
             <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 60, color: on && last ? DM.orangeHot : DM.ivory}}>{c}</div>
@@ -341,8 +341,8 @@ export const NoFluffScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
           <span style={{color: DM.orange, opacity: Math.floor(f / 7) % 2 ? 1 : 0}}>▍</span></div>
       </Terminal>
     </div>
-    <MimoAt x={220} y={1780} size={300}>
-      <Mimo size={300} frame={f + 600} mouth={mouth} look={{x: .6, y: -.6}} expression={f >= at[2] + 6 ? 'happy' : f < fluff + 12 && f > fluff ? 'focused' : 'neutral'}/>
+    <MimoAt x={200} y={1780} size={220}>
+      <Mimo size={220} frame={f + 600} mouth={mouth} look={{x: .6, y: -.6}} expression={f >= at[2] + 6 ? 'happy' : f < fluff + 12 && f > fluff ? 'focused' : 'neutral'}/>
     </MimoAt>
     <AbsoluteFill style={{background: DM.ivory, opacity: flash * .5}}/>
   </AbsoluteFill>;
@@ -358,7 +358,7 @@ export const OutroScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
   const ring = ((f - follow) % 36) / 36;
   return <AbsoluteFill style={{clipPath: `circle(${iris}px at 50% 46%)`}}>
     <Backdrop f={f + 700} keyX={50} keyY={42} intensity={.8}/>
-    <AbsoluteFill style={{background: `radial-gradient(ellipse 70% 40% at 50% 40%, rgba(255,122,26,.10), transparent 70%)`}}/>
+    <AbsoluteFill style={{background: `radial-gradient(ellipse 70% 40% at 50% 40%, ${accentA(.10)}, transparent 70%)`}}/>
     <div style={abs({left: 0, top: 130, width: 1080, display: 'flex', justifyContent: 'center'})}><LogoReveal f={f} scale={.86}/></div>
     <div style={abs({left: 0, right: 0, top: 840, display: 'flex', justifyContent: 'center'})}>
       <div style={{position: 'relative', transform: `scale(${btn * press})`}}>
@@ -370,8 +370,8 @@ export const OutroScene: React.FC<SceneProps> = ({scene, f, mouth}) => {
         </svg>
       </div>
     </div>
-    <MimoAt x={540} y={1610} size={400}>
-      <Mimo size={400} frame={f + 800} mouth={mouth} wave={io(f, 16, 24) * (1 - io(f, follow, follow + 6)) + io(f, real + 4, real + 12)}
+    <MimoAt x={540} y={1600} size={340}>
+      <Mimo size={340} frame={f + 800} mouth={mouth} wave={io(f, 16, 24) * (1 - io(f, follow, follow + 6)) + io(f, real + 4, real + 12)}
         expression={f >= real + 4 ? 'happy' : f >= follow + 14 && f < follow + 34 ? 'wink' : 'neutral'} look={{x: 0, y: f < follow ? -.8 : f < real ? -.3 : 0}}/>
     </MimoAt>
   </AbsoluteFill>;

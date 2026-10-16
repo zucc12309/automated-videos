@@ -5,7 +5,7 @@ import {Backdrop} from './Backdrop';
 import {LogoMark} from './Logo';
 import {Mimo, MimoExpr} from './Mimo';
 import {BuildScene, HookScene, NoFluffScene, OutroScene, RevealScene, SceneProps, TopicsScene} from './Scenes';
-import {DM, FONT, IntroProps, rand} from './theme';
+import {DM, FONT, IntroProps, rand, accentA} from './theme';
 
 /* DevMimo intro: six scenes timed by examples/devmimo/build_intro.py from the real Kokoro narration (props.scenes[].from/frames/words),
    Mimo's mouth driven by the narration loudness (props.mouth, one value per frame). Audio is mixed and mastered outside Remotion
@@ -72,7 +72,7 @@ export const DevMimoPoster: React.FC = () => {
   ensureFonts();
   return <AbsoluteFill style={{background: DM.charcoal}}>
     <Backdrop f={0} keyX={50} keyY={66} intensity={1.3}/>
-    <AbsoluteFill style={{opacity: .8, background: 'repeating-conic-gradient(from 0deg at 50% 70%, rgba(255,122,26,.10) 0deg 7deg, transparent 7deg 20deg)',
+    <AbsoluteFill style={{opacity: .8, background: `repeating-conic-gradient(from 0deg at 50% 70%, ${accentA(.10)} 0deg 7deg, transparent 7deg 20deg)`,
       maskImage: 'radial-gradient(circle at 50% 70%, black 10%, transparent 55%)', WebkitMaskImage: 'radial-gradient(circle at 50% 70%, black 10%, transparent 55%)'}}/>
     <div style={{position: 'absolute', top: 330, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 22}}>
       <LogoMark size={86}/>
@@ -83,8 +83,8 @@ export const DevMimoPoster: React.FC = () => {
       <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 300, color: DM.orange, letterSpacing: '-0.045em', lineHeight: .92}}>Mimo.</div>
       <div style={{fontFamily: FONT.mono, fontWeight: 500, fontSize: 40, letterSpacing: '0.16em', color: DM.ivorySoft, marginTop: 26}}>REAL DEV BUILDS, EXPLAINED</div>
     </div>
-    <div style={{position: 'absolute', left: 540 - 270, top: 1620 - 540 * 1.2, width: 540}}>
-      <Mimo size={540} frame={14} wave={1} expression="happy" autoBlink={false}/>
+    <div style={{position: 'absolute', left: 540 - 250, top: 1600 - 500 * 1.2, width: 500}}>
+      <Mimo size={500} frame={14} wave={1} expression="happy" autoBlink={false} glow={1.5}/>
     </div>
   </AbsoluteFill>;
 };

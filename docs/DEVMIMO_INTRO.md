@@ -37,9 +37,9 @@ The MP4s are git-ignored, like every other render.
 
 | File | Contents |
 |---|---|
-| `theme.ts` | charcoal / ivory / orange tokens, clamped easing helpers, word-frame lookup |
-| `Mimo.tsx` | the mascot as layered SVG: blink (auto + scripted), breathing, head bob, antenna sway, wave, typing, squash; expressions neutral / happy / surprised / wink / focused; mouth driven by narration loudness |
-| `Logo.tsx` | `LogoMark`, `LogoReveal` (the 150-frame animation, reusable at any scale) and the `DevMimoLogo` composition |
+| `theme.ts` | colour roles read from `brand/tokens.json` (FIELDNOTES premium: ground, ink, accent), clamped easing helpers, word-frame lookup |
+| `Mimo.tsx` | the brand's recurring character (`brand/character/identity.json`, same drawing as `src/premium/Blob.tsx`) with the intro's controls: blinks (auto + scripted), breathing, nub wave, typing bob, squash, sparkles; expressions neutral / happy / surprised / wink / focused; mouth driven by narration loudness |
+| `Logo.tsx` | `LogoMark` (the character's face between code brackets), `LogoReveal` (the 150-frame animation, reusable at any scale) and the `DevMimoLogo` composition |
 | `Backdrop.tsx` | dot grid drifting under a warm key light, vignette |
 | `Scenes.tsx` | hook, reveal, build, topics, no-fluff and outro scenes |
 | `DevMimoIntro.tsx` | composition, slab wipe, slow camera push, ambient code glyphs, `DevMimoPoster`, `MimoSheet` |
@@ -52,10 +52,13 @@ Each scene lasts lead-in + measured speech + tail. The tails share what is left 
 picture always waits for the voice. Every animation that lands on a word reads that word's start from `props.scenes[].words`. Sound
 cues can be anchored to a word index (`"word": n` in the storyboard's `sfx` list), so the sound and the picture use the same frames.
 
-## The mascot
+## Character and colours
 
-No approved mascot image was available when this was built. Mimo is therefore an original drawing in the DevMimo palette. To match an
-approved profile image, edit `src/devmimo/Mimo.tsx` only: scenes use nothing but its props.
+Mimo is the repo's recurring character. Its shape and palette come from `brand/character/identity.json`; every colour comes from
+`brand/tokens.json`. Change either file and the intro follows.
+
+The on-screen name "Mimo" comes from the DevMimo brief. `identity.json → public_name` is unchanged (`null`), so other formats still
+never show a name.
 
 ## QA
 

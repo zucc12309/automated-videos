@@ -5,9 +5,10 @@
   "name": "DevMimo",
   "mascot": "Mimo",
   "palette": {
-   "charcoal": "#141416",
-   "ivory": "#f4efe4",
-   "orange": "#ff7a1a"
+   "source": "brand/tokens.json (FIELDNOTES premium)",
+   "ground": "#0a0b0f",
+   "ink": "#efefea",
+   "accent": "#8ea2ff"
   },
   "type": {
    "display": "Figtree 900",
@@ -17,7 +18,7 @@
  },
  "voice": "Kokoro am_adam (kokoro-onnx), reference EQ, -14 LUFS master",
  "music": "warm pad (brand audio profile), ducked under the voice",
- "mascot_note": "Mimo is drawn as an original SVG character (src/devmimo/Mimo.tsx). No approved mascot image was available in this session; replace the artwork in that one component to match the approved profile image.",
+ "mascot_note": "Mimo is the brand's recurring character from brand/character/identity.json (same design as src/premium/Blob.tsx), drawn by src/devmimo/Mimo.tsx with the intro's animation controls. The on-screen name 'Mimo' comes from the DevMimo brief; identity.json public_name is unchanged.",
  "scenes": [
   {
    "id": "hook",
@@ -44,7 +45,7 @@
    "on_screen": {
     "title": "Meet Mimo"
    },
-   "visual": "The error terminal cracks open in orange light; Mimo pops out of the window, lands, blinks twice and waves. 'Meet Mimo' in serif + heavy sans.",
+   "visual": "The error terminal cracks open in accent light; Mimo pops out of the window, lands, blinks twice and waves. 'Meet Mimo' in serif + heavy sans.",
    "camera": "light burst, then a settle with a small overshoot"
   },
   {

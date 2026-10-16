@@ -22,7 +22,7 @@ from video_mcp import audio_profile
 from video_mcp.quality import video_validation
 
 HERE = Path(__file__).resolve().parent
-PALETTE = {"charcoal": (20, 20, 22), "ivory": (244, 239, 228), "orange": (255, 122, 26)}
+PALETTE = {"ground": (10, 11, 15), "ink": (239, 239, 234), "accent": (142, 162, 255), "cheek": (243, 180, 194), "spark": (255, 215, 106)}   # brand/tokens.json + identity.json
 
 
 def _frames(video: Path, fps: float, width: int = 270) -> np.ndarray:
@@ -44,15 +44,15 @@ def _luma(rgb: np.ndarray) -> np.ndarray:
 
 
 def palette_share(frames: np.ndarray, tol: float = 60.0) -> float:
-    """Pixels within `tol` (RGB distance) of a brand colour, or on the charcoal→ivory neutral axis / orange ramp."""
+    """Pixels within `tol` (RGB distance) of a brand colour, on the ground→ink neutral axis, or on the accent ramp."""
     px = frames.reshape(-1, 3).astype(np.float32)[::7]
     near = np.zeros(len(px), bool)
     for c in PALETTE.values():
         near |= np.linalg.norm(px - np.array(c, np.float32), axis=1) < tol
     r, g, b = px[:, 0], px[:, 1], px[:, 2]
     neutral = (np.abs(r - g) < 22) & (np.abs(g - b) < 26)                  # charcoal, greys, ivory and their blends
-    warm = (r > g) & (g > b) & (r - b > 60) & ((g - b) / np.maximum(r - b, 1) < .75)   # orange tints / glows
-    return float((near | neutral | warm).mean())
+    accent = (b > r) & (b > g) & (b - g < 120) & (b - r > 15)              # periwinkle accent, its tints and glows
+    return float((near | neutral | accent).mean())
 
 
 def run(intro: Path, logo: Path, props: dict, story: dict, timing: dict) -> dict:
@@ -92,7 +92,7 @@ def run(intro: Path, logo: Path, props: dict, story: dict, timing: dict) -> dict
     add("motion", "motion_share", moving.mean() > .7, f"{moving.mean() * 100:.0f}% of 0.25 s steps change visibly")
     add("motion", "longest_static", longest / 4 <= 1.5, f"longest static stretch {longest / 4:.2f}s (≤ 1.5 s)")
     share = palette_share(fr[::4])
-    add("brand", "palette_share", share > .9, f"{share * 100:.1f}% of sampled pixels are charcoal / ivory / orange or their blends")
+    add("brand", "palette_share", share > .9, f"{share * 100:.1f}% of sampled pixels are ground / ink / accent (FIELDNOTES tokens) or their blends")
 
     lt = video_validation.technical(logo, width=1080, height=1920, fps=30, expected_seconds=5.0, dark_theme=True)
     for c in lt["checks"]:

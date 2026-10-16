@@ -1,12 +1,17 @@
+import tokens from '../../brand/tokens.json';
 import {Easing, interpolate, spring} from 'remotion';
 
-/* DevMimo identity: charcoal, ivory, orange. Fonts are the bundled OFL files the premium renderer already loads (ensureFonts). */
+/* Colours come from the FIELDNOTES premium tokens (brand/tokens.json), the same file the premium renderer and QA read.
+   The names below are roles: `charcoal` = ground, `ivory` = ink, `orange` = the brand accent. */
+const C = tokens.color;
 export const DM = {
-  charcoal: '#141416', charcoal2: '#1b1b1f', panel: '#222228', panelHi: '#2b2b33', line: '#34343d',
-  ivory: '#f4efe4', ivoryShade: '#e3dccd', ivorySoft: '#cfc8ba', muted: '#8f897e', dim: '#5c5952',
-  orange: '#ff7a1a', orangeHot: '#ff9a3d', orangeDeep: '#d9550a', orangeGlow: 'rgba(255,122,26,0.35)',
-  error: '#ff5a47', ok: '#ffb066',
+  charcoal: C.ground, charcoal2: C.groundLift, panel: C.surface, panelHi: C.surfaceRaised, line: C.line,
+  ivory: C.ink, ivoryShade: '#dcdcd6', ivorySoft: C.inkSoft, muted: C.muted, dim: C.dim,
+  orange: C.accent, orangeHot: '#b3c0ff', orangeDeep: '#5d70d6', orangeGlow: 'rgba(142,162,255,0.35)',
+  error: C.danger, ok: C.success,
 };
+/** Accent as rgba with the given alpha (for glows and tints). */
+export const accentA = (a: number) => `rgba(142,162,255,${a})`;
 export const FONT = {sans: "Figtree, 'Helvetica Neue', sans-serif", serif: "'Instrument Serif', Georgia, serif", mono: "'JetBrains Mono', Menlo, monospace"};
 export const FPS = 30;
 
