@@ -40,12 +40,14 @@ LAYOUT = json.loads((ROOT / "src" / "series" / "layout.json").read_text())
 SCENES = [("hook", "hook", .05, .35, .5), ("discovery", "discovery", .15, .35, .5), ("demo", "demo", .2, .5, 1.6),
           ("tech", "flow", .2, .45, 1.1), ("payoff", "payoff", .15, .55, .5)]
 DEMO_TAGS = {"captured": None, "run-in-sandbox": "RE-DRAWN FROM A SANDBOX RUN", "source-reenactment": "RE-ENACTED FROM SOURCE",
-             "fixture": "PIPELINE TEST · NOT AN EPISODE"}
+             "project-showcase": "OFFICIAL DEMO", "fixture": "PIPELINE TEST · NOT AN EPISODE"}
 
 
 def media_refs(spec: dict) -> list[str]:
     """Every image / video the episode shows (panel sources and cover assets), as paths under public/."""
-    refs = list(spec.get("project_visual_assets", {}).values())
+    refs = []
+    for v in spec.get("project_visual_assets", {}).values():
+        refs += v if isinstance(v, list) else [v]
 
     def walk(x):
         if isinstance(x, dict):
@@ -58,6 +60,18 @@ def media_refs(spec: dict) -> list[str]:
                 walk(v)
     walk(spec.get("demo", {}))
     return sorted(set(refs))
+
+
+def fetch_media(spec: dict):
+    """Download published media the spec cites (spec.media_sources: {public path: URL}) when it is not on disk yet. Renders are
+    git-ignored, so this is how a fresh checkout gets a project's official demo videos back."""
+    for rel, url in spec.get("media_sources", {}).items():
+        dest = ROOT / "public" / rel
+        if dest.exists():
+            continue
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        print(f"fetch {url}")
+        subprocess.run(["curl", "-sSLf", "--max-time", "300", "-o", str(dest), url], check=True)
 
 
 def storyboard(spec: dict, cfg: dict) -> dict:
@@ -253,6 +267,7 @@ def main():
     errs = series.validate(spec, cfg)
     if errs:
         raise SystemExit("spec rejected:\n  - " + "\n  - ".join(errs))
+    fetch_media(spec)
     missing = [m for m in media_refs(spec) if not (ROOT / "public" / m).exists()]
     if missing:
         raise SystemExit("spec rejected: media not found under public/: " + ", ".join(missing))

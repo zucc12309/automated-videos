@@ -50,6 +50,12 @@ const DemoStage: React.FC<{panels: Panel[]; t: number; w: number; h: number; tag
         <HandPanel w={pw} h={ph} path={hand.path} t={t} title={hand.label ?? 'CAM'}/></div>
     </div>;
   }
+  if (panels.length > 1 && panels.every(x => x.kind === 'video')) {   // a row of real outputs, phone by phone
+    const n = panels.length, gap = 36, pw = Math.min(h * 9 / 16, (w - gap * (n - 1)) / n);
+    return <div style={{position: 'relative', width: w, height: h, display: 'flex', justifyContent: 'center', gap}}>
+      {panels.map((x, i) => <PanelView key={i} panel={x} w={pw} h={pw * 16 / 9} t={t} tag={tag}/>)}
+    </div>;
+  }
   const vid = panels.find(x => x.kind === 'video'), other = panels.find(x => x.kind !== 'video');
   if (vid && other) {                                   // input → output: what you give the project, and the real thing it made
     const vw = Math.round(h * 9 / 16), lw = w - vw - 56, lh = h - 90;
@@ -86,8 +92,8 @@ const HookScene: React.FC<SP> = ({scene, f, p, mouth}) => {
     </div>
     {/* Mimo peeks over the stage edge as the punchline lands: a reaction, not an intro */}
     <div style={{position: 'absolute', left: R.hook.peek[0], top: R.hook.peek[1], width: R.hook.peek[2], height: R.hook.peek[3], overflow: 'hidden'}}>
-      <div style={{position: 'absolute', left: 30, top: R.hook.peek[3] - 150 * sp(f, at[at.length - 1] + 4, 12, 180)}}>
-        <MimoMascot state="surprised" size={200} frame={f} mouth={mouth} look={{x: 1, y: -.6}}/></div>
+      <div style={{position: 'absolute', left: 20, top: R.hook.peek[3] - 140 * sp(f, at[at.length - 1] + 4, 12, 180)}}>
+        <MimoMascot state="surprised" size={160} frame={f} mouth={mouth} look={{x: -1, y: -.8}}/></div>
     </div>
   </AbsoluteFill>;
 };
@@ -150,7 +156,7 @@ const DemoScene: React.FC<SP> = ({scene, f, p, mouth}) => {
         strokeDasharray="10 9" strokeDashoffset={-f * 2} opacity={on}/>
       <circle cx={ax} cy={ay} r={8} fill={S.accent} opacity={on}/>
     </svg>;
-  } else {                                                // any other pair: input panel → output panel
+  } else if (left.kind !== 'video') {                     // input panel → output panel (two outputs side by side get no wire)
     const on = io(f, 10, 22), y = top + ph / 2, ax = lx + pw, bx = rx + (right.kind === 'video' ? (pw - ph * 9 / 16) / 2 : 0);
     wire = <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
       <path d={`M${ax - 4},${y} L${bx + 4},${y}`} stroke={S.accent} strokeWidth={5} strokeDasharray="10 8" strokeDashoffset={-f * 2} opacity={on}/>
@@ -169,7 +175,7 @@ const DemoScene: React.FC<SP> = ({scene, f, p, mouth}) => {
     <div style={{position: 'absolute', left: lx, top, opacity: inL, transform: `translateY(${(1 - inL) * 60}px)`}}>
       <PanelView panel={left} w={pw} h={ph} t={t} tag={p.episode.demoTag}/></div>
     <div style={{position: 'absolute', left: rx, top, opacity: inR, transform: `translateY(${(1 - inR) * 60}px)`}}>
-      <PanelView panel={right} w={pw} h={ph} t={t}/></div>
+      <PanelView panel={right} w={pw} h={ph} t={t} tag={right.kind === 'video' ? p.episode.demoTag : undefined}/></div>
     {wire}
     <div style={{position: 'absolute', top: top + ph + 44, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 22}}>
       {labels.map((l, i) => {

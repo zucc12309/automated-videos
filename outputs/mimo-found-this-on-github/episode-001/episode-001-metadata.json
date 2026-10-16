@@ -3,13 +3,20 @@
  "series_slug": "mimo-found-this-on-github",
  "episode": 1,
  "episode_label": "EP. 001",
- "title": "I pasted a script and got back a finished short",
+ "title": "Script in, short out: an open-source video maker",
  "cover_headline": "SCRIPT IN. SHORT OUT.",
  "github_url": "https://github.com/harry0703/MoneyPrinterTurbo",
  "repository": "harry0703/MoneyPrinterTurbo",
  "repository_description": "Give it a script (or a topic and your own AI key) and it builds the voice, subtitles, music and edit of a short video.",
  "category": "AI video",
  "verified_features": [
+  {
+   "id": "footage",
+   "label": "FOOTAGE",
+   "status": "verified-source",
+   "claim": "Searches stock-footage libraries (Pexels, Pixabay and others) for clips that match the script and downloads them.",
+   "evidence": "app/services/material.py:339 search_videos_pexels, :445 search_videos_pixabay, :2134 download_videos; visible in the official demos (not run here: stock APIs blocked)"
+  },
   {
    "id": "voice",
    "label": "VOICE",
@@ -54,13 +61,13 @@
   }
  ],
  "demonstration": {
-  "status": "run-in-sandbox",
-  "meaning": "the project's own code was run in the build environment; the picture re-draws that run",
-  "on_screen_tag": "REAL RUN · MPT v1.3.8",
+  "status": "project-showcase",
+  "meaning": "official output examples published by the project itself (shown muted and credited); the features they show were also verified in source or by a local run",
+  "on_screen_tag": "OFFICIAL MPT DEMO",
   "notes": [
-   "Every video frame inside the phone is MoneyPrinterTurbo's own output (final-1.mp4), shown muted.",
-   "The WebUI image is a screenshot of MoneyPrinterTurbo's real Streamlit UI with the episode's topic, script and keywords typed in; the AI buttons were not pressed.",
-   "Terminal lines are re-typed verbatim fragments of the real run log (stage names), drawn in the series style."
+   "Every video shown is an official MoneyPrinterTurbo demo from the project's README (muted).",
+   "Voice, subtitles, music and editing were also verified by running MoneyPrinterTurbo v1.3.8 locally (see verification.run_command); that test output is not shown.",
+   "Stock-footage search is verified in source only (stock APIs are blocked in the build environment)."
   ]
  },
  "verification": {
@@ -80,6 +87,7 @@
   ],
   "sources": [
    "https://github.com/harry0703/MoneyPrinterTurbo (README-en.md, LICENSE, requirements.txt, pyproject.toml)",
+   "Official demo videos linked from README-en.md ('Video Demos'), hosted at github.com/harry0703/mpt-assets releases: 09-en-portrait-future-robotics, 13-en-portrait-creative-work, 15-en-portrait-coffee-science",
    "cli.py (--video-script skips LLM script generation; --video-source local; --voice-name; subtitle options)",
    "app/services/task.py:643 generate_subtitle",
    "app/services/voice.py:2789 kokoro_tts, :3658 create_subtitle, :1525 azure_tts_v1",
@@ -87,10 +95,12 @@
    "app/services/llm.py:880 generate_script, :1009 generate_terms",
    "app/services/material.py:339 search_videos_pexels, :445 search_videos_pixabay",
    "app/controllers/v1/video.py:212 POST /videos; webui/Main.py"
-  ]
+  ],
+  "showcase_note": "The videos shown are the project's own published examples (made by the maintainer with MoneyPrinterTurbo; stock footage). They are shown muted, tagged OFFICIAL DEMO and credited in the caption. mpt-assets has no stated licence: confirm reuse terms with the maintainer before publishing."
  },
  "source_references": [
   "https://github.com/harry0703/MoneyPrinterTurbo (README-en.md, LICENSE, requirements.txt, pyproject.toml)",
+  "Official demo videos linked from README-en.md ('Video Demos'), hosted at github.com/harry0703/mpt-assets releases: 09-en-portrait-future-robotics, 13-en-portrait-creative-work, 15-en-portrait-coffee-science",
   "cli.py (--video-script skips LLM script generation; --video-source local; --voice-name; subtitle options)",
   "app/services/task.py:643 generate_subtitle",
   "app/services/voice.py:2789 kokoro_tts, :3658 create_subtitle, :1525 azure_tts_v1",
@@ -100,63 +110,59 @@
   "app/controllers/v1/video.py:212 POST /videos; webui/Main.py"
  ],
  "narration_script": {
-  "hook": "An open-source tool put this whole short together.",
+  "hook": "An open-source tool made both of these videos.",
   "discovery": "And I found the project on GitHub.",
-  "demo": "Paste a script. It adds the voice, subtitles and music, and cuts the clips together.",
-  "tech": "No script? Plug in your own AI key, and it writes one.",
+  "demo": "Paste a script. It finds the footage, adds voice, subtitles and music, and edits it.",
+  "tech": "No script? Add your AI key, and it writes one.",
   "payoff": "Would you actually use this? Follow Mimo for more GitHub discoveries."
  },
- "narration_word_count": 53,
- "speaking_rate_wpm": 159.0,
+ "narration_word_count": 51,
+ "speaking_rate_wpm": 147.8,
  "word_timing_source": "energy_snapped",
  "voice": {
   "engine": "kokoro_onnx",
-  "voice": "am_adam @ 0.801",
-  "speed": 0.801,
+  "voice": "am_adam @ 0.799",
+  "speed": 0.799,
   "speed_search": [
    {
     "speed": 0.95,
-    "wpm": 193.4
+    "wpm": 184.3
    },
    {
-    "speed": 0.762,
-    "wpm": 144.8
-   },
-   {
-    "speed": 0.801,
-    "wpm": 159.0
+    "speed": 0.799,
+    "wpm": 147.8
    }
   ]
  },
- "duration_s": 24.967,
+ "duration_s": 25.667,
  "scenes": [
   {
    "id": "hook",
    "start_s": 0.0,
-   "seconds": 3.4
+   "seconds": 3.77
   },
   {
    "id": "discovery",
-   "start_s": 3.4,
-   "seconds": 2.87
+   "start_s": 3.77,
+   "seconds": 2.93
   },
   {
    "id": "demo",
-   "start_s": 6.27,
-   "seconds": 6.63
+   "start_s": 6.7,
+   "seconds": 7.1
   },
   {
    "id": "tech",
-   "start_s": 12.9,
-   "seconds": 4.6
+   "start_s": 13.8,
+   "seconds": 4.3
   },
   {
    "id": "payoff",
-   "start_s": 17.5,
-   "seconds": 5.47
+   "start_s": 18.1,
+   "seconds": 5.57
   }
  ],
- "instagram_caption": "I pasted a script into an open-source GitHub project, and it handed back a finished vertical short 👀\n\nVoice, subtitles, music and the edit: all done by MoneyPrinterTurbo. Give it your own AI key and it can write the script from a topic too.\n\nHow this demo was made: I ran it locally from its CLI with my own script, original fractal clips and a local Kokoro voice. No paid API was used.\n\nWelcome to EP. 001 of Mimo Found This on GitHub. 👾\n\nWould you actually use this?\n\nRepo: harry0703/MoneyPrinterTurbo\nhttps://github.com/harry0703/MoneyPrinterTurbo\n\nFollow @devmimo for more weird finds and real builds.\n\n#GitHub #OpenSource #AIVideo #Python #ContentCreation #Coding #DevMimo\n",
+ "instagram_caption": "I pasted a script into an open-source GitHub project, and it handed back a finished vertical short 👀\n\nFootage, voice, subtitles, music and the edit: MoneyPrinterTurbo does all of it from a script. Give it your own AI key and it can write the script from a topic too.\n\nClips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.\n\nWelcome to EP. 001 of Mimo Found This on GitHub. 👾\n\nWould you actually use this?\n\nRepo: harry0703/MoneyPrinterTurbo\nhttps://github.com/harry0703/MoneyPrinterTurbo\n\nFollow @devmimo for more weird finds and real builds.\n\n#GitHub #OpenSource #AIVideo #Python #ContentCreation #Coding #DevMimo\n",
  "hashtags": [
   "#GitHub",
   "#OpenSource",
@@ -180,17 +186,17 @@
  },
  "loudness": {
   "final": {
-   "integrated_lufs": -14.1,
-   "lra_lu": 2.4,
-   "true_peak_dbtp": -1.7
+   "integrated_lufs": -14.2,
+   "lra_lu": 2.8,
+   "true_peak_dbtp": -1.9
   },
   "no_music": {
    "integrated_lufs": -14.1,
-   "lra_lu": 2.4,
-   "true_peak_dbtp": -1.9
+   "lra_lu": 2.9,
+   "true_peak_dbtp": -2.0
   }
  },
- "music_bed_gain_db": -1.22,
+ "music_bed_gain_db": -1.12,
  "qa_summary": {
   "passed": true,
   "mandatory_failed": [],
@@ -198,6 +204,6 @@
   "checks": 52,
   "visual_review": "reviewed (agent inspection of extracted frames, not a computed check)"
  },
- "build_seconds": 174.5,
+ "build_seconds": 210.1,
  "never_included": "no GitHub stars, forks, downloads, contributor counts or other repository statistics"
 }

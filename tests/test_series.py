@@ -154,8 +154,9 @@ def test_episode_001_spec_is_verified_and_numbered():
     # every claim on screen is backed by evidence; anything not run is labelled source-only
     statuses = {f["id"]: f["status"] for f in spec["verified_features"]}
     assert statuses["script"] == "verified-source"
-    assert all(statuses[l["feature"]] == "verified-run" for l in spec["demo"]["demo"]["labels"])
+    assert all(l["feature"] in statuses for l in spec["demo"]["demo"]["labels"])
+    assert statuses["voice"] == statuses["subtitles"] == statuses["music"] == "verified-run"
     import build_episode as be
     for ref in be.media_refs(spec):
-        if ref.endswith(".png"):                       # mp4 renders are git-ignored; images are committed
+        if ref.endswith((".png", ".jpg")):              # videos are git-ignored (fetched via media_sources); stills are committed
             assert (ROOT / "public" / ref).exists(), ref

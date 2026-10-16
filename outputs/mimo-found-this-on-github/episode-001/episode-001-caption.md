@@ -1,8 +1,8 @@
 I pasted a script into an open-source GitHub project, and it handed back a finished vertical short 👀
 
-Voice, subtitles, music and the edit: all done by MoneyPrinterTurbo. Give it your own AI key and it can write the script from a topic too.
+Footage, voice, subtitles, music and the edit: MoneyPrinterTurbo does all of it from a script. Give it your own AI key and it can write the script from a topic too.
 
-How this demo was made: I ran it locally from its CLI with my own script, original fractal clips and a local Kokoro voice. No paid API was used.
+Clips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.
 
 Welcome to EP. 001 of Mimo Found This on GitHub. 👾
 

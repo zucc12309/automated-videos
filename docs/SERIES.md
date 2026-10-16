@@ -17,33 +17,28 @@ the shared components is specific to one episode.
 - `fikriaf/HandCam-Control` was verified and rejected because it has no OS cursor control. See `candidates/rejected.json`.
 - The pipeline-test fixture (`tests/fixtures/series/pipeline_test_spec.json`) builds against a temporary registry and never takes a number.
 
-### How EP. 001's demonstration was made
+### How EP. 001 was made
 
-MoneyPrinterTurbo (MPT) was installed in an isolated venv and run **unmodified** from its CLI:
+**Clips shown.** Every video in the episode is an official MoneyPrinterTurbo demo, muted and tagged "OFFICIAL MPT DEMO":
+
+- Robotics, Coffee and Creative work, linked from the project README.
+- Hosted in the `harry0703/mpt-assets` releases.
+- Fetched by the builder from `media_sources` in the spec.
+
+**Features verified by a local run.** MPT v1.3.8 was installed in an isolated venv and run unmodified from its CLI, which confirmed
+voice, subtitles, music and editing:
 
 | Input | Source |
 |---|---|
-| Script | Supplied with `--video-script`, so the LLM step was skipped. That feature is verified in source only. |
-| Footage | Original Mandelbrot zooms rendered with ffmpeg, passed with `--video-source local` (no stock footage). |
-| Voice | MPT's own `[kokoro]` provider pointed at `examples/series/tools/kokoro_server.py`: an OpenAI-compatible speech endpoint on 127.0.0.1:8880, backed by the repo's Kokoro model. It stands in for Kokoro-FastAPI because Edge TTS is unreachable from the build environment. |
+| Script | Supplied with `--video-script` |
+| Footage | Local fractal clips |
+| Voice | MPT's own `[kokoro]` provider pointed at `examples/series/tools/kokoro_server.py` on 127.0.0.1:8880 |
 
-MPT produced the rest:
+The output of that run is not shown, because it was only a verification.
 
-- the voice track;
-- sentence-timed, burned-in subtitles;
-- the background music;
-- the 1080×1920 edit (`final-1.mp4`, 10.0 s).
+**Verified from source only.** Stock-footage search and LLM script writing. The stock and LLM APIs are blocked or paid here.
 
-The episode shows that output muted inside a phone frame, together with:
-
-- a real screenshot of MPT's Streamlit WebUI with the topic and script typed in;
-- terminal lines re-typed from the real run log.
-
-The on-screen tag reads "REAL RUN · MPT v1.3.8". The full command, limits and evidence are in the spec's `verification` block and the
-episode metadata.
-
-Assets live in `public/series/mimo-found-this-on-github/episode-001/`. The PNGs are committed. `mpt-output.mp4` is git-ignored; to
-rebuild it, re-run the command recorded in the spec.
+**Rights caveat.** `mpt-assets` states no licence. Confirm reuse with the maintainer before publishing.
 
 ## Layout
 

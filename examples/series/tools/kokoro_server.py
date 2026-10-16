@@ -15,7 +15,7 @@ class H(BaseHTTPRequestHandler):
         self.send_response(code); self.send_header("Content-Type", ctype); self.send_header("Content-Length", str(len(body))); self.end_headers(); self.wfile.write(body)
     def do_GET(self):
         if self.path.rstrip("/").endswith("/audio/voices"):
-            return self._send(200, json.dumps({"voices": ["af_heart", "am_adam", "bf_emma"]}).encode(), "application/json")
+            return self._send(200, json.dumps({"voices": ["af_heart", "af_bella", "af_nicole", "am_adam", "am_michael", "bf_emma"]}).encode(), "application/json")
         self._send(404, b"{}", "application/json")
     def do_POST(self):
         req = json.loads(self.rfile.read(int(self.headers["Content-Length"])))

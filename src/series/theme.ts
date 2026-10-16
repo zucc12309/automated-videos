@@ -35,7 +35,7 @@ export type RepoCard = {owner: string; name: string; description: string; langua
 
 export type SeriesInfo = {header: string; tagline: string; footer: string; handle: string; collection: string};
 export type EpisodeInfo = {n: number; label: string; title: string; repo: string; category: string; headline: string[]; expression: string;
-  visual: string; demoStatus: string; demoTag?: string | null; visualAssets?: {input?: string; output?: string}};
+  visual: string; demoStatus: string; demoTag?: string | null; visualAssets?: {input?: string; output?: string; frames?: string[]}};
 
 export type EpisodeProps = {
   fps: number; durationInFrames: number; series: SeriesInfo; episode: EpisodeInfo; scenes: Scene[]; subtitles: SubGroup[]; mouth: number[];

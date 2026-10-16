@@ -1,20 +1,18 @@
 {
   "status": "reviewed (agent inspection of extracted frames, not a computed check)",
   "reviewed": "2026-10-16",
-  "frames": "contact sheet (24 frames) plus full-resolution frames at 0.0, 1.6, 2.4, 4.6, 9.8, 10.2, 15.5, 20.5 and 23.6 s; cover master, 4:5, 1:1 and the grid thumbnail",
+  "revision": 2,
+  "frames": "contact sheet (24 frames) plus full-resolution frames at 0.3, 2.0, 3.0, 9.5, 13.0 and 21.5 s; cover master",
   "findings": [
-    "Frame 0 opens on the demonstration: MoneyPrinterTurbo's WebUI fields (topic and script) beside its real output playing in a phone, with 'SCRIPT IN.' on screen. No logo intro.",
-    "Discovery: series header, EP. 001 and the harry0703 / MoneyPrinterTurbo card. Mimo (300 px) rises from a hairline, surprised, then points at the card. Fixed: Mimo covering 'found this.' and the card's last line.",
-    "Demo: terminal of real run-log stages beside final-1.mp4. VOICE / SUBTITLES / MUSIC / EDIT chips land in order on the spoken words. Mimo nods on each chip and turns happy on the last. Fixed: one terminal line clipping at 24 px (now 22 px).",
-    "Flow: TOPIC → SCRIPT + VOICE → FINISHED SHORT. Mimo walks down the nodes and turns happy at the end.",
-    "Payoff: the output replays. Mimo is excited and 'WOULD YOU TRY THIS?' is on screen, with the 'EP. 001 — SAVED TO MIMO'S FINDS' stamp on 'Follow'. 2 s outro with 'FOLLOW @devmimo · EP. 002 SOON'.",
-    "Subtitles stay in the band at y 1420 and never cover the demo. Inside the phone, MoneyPrinterTurbo's own burned subtitles are visible (they are part of its output).",
-    "Cover: fixed the phone overlapping 'SHORT OUT.' (the illustration now starts below the measured headline). The real WebUI crop, the real output frame and Mimo all sit inside the square safe region. EP. 001 is legible in the 357 px grid tile.",
-    "Fixed earlier in this pass: the hook WebUI was unreadable (a full-column screenshot), so it was re-captured at a 380 px viewport and cropped to the topic and script fields."
+    "Revision 2 (producer feedback: the locally generated fractal short 'sucks'): every video in the episode is now an official MoneyPrinterTurbo demo from the project's README (robotics, coffee, creative work). They use real stock footage and MPT's own voice, subtitles and edit. They are muted and tagged OFFICIAL MPT DEMO.",
+    "Hook: two official demos play side by side from frame 0, and SCRIPT IN. / SHORT OUT. lands on the narration. Mimo peeks in beside the headline. Fixed: the first peek position covered the left phone's subtitle.",
+    "Demo: two demos with FOOTAGE, VOICE, SUBTITLES and MUSIC chips landing in order on the spoken words. Mimo nods on each chip and turns happy at MUSIC.",
+    "Discovery, flow, payoff and outro are unchanged from revision 1 and still clear of the subtitle band.",
+    "Cover: a fan of three real demo frames with Mimo and the headline. Nothing overlaps; crop-safe (mask check)."
   ],
   "known_limits": [
-    "The WebUI text is still small on a phone (about 16 px). It works as recognisable proof of the real UI, and the headline and narration carry the message.",
-    "MoneyPrinterTurbo's footage here is original fractal clips passed with --video-source local, not stock footage, and the LLM script step was skipped (script supplied). The caption and metadata say so.",
+    "Reuse rights: harry0703/mpt-assets states no licence. The demos are the maintainer's showcase of an MIT project and are shown muted, tagged and credited, but confirm with the maintainer before publishing.",
+    "Stock-footage search is verified in source only; voice, subtitles, music and editing were verified by a local run (its output is not shown).",
     "Episode word timings: sentence boundaries exact, words inside a sentence estimated (energy_snapped)."
   ]
 }

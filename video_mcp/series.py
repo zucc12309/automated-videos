@@ -28,6 +28,7 @@ DEMO_STATUSES = {
     "captured": "a real screen/webcam capture of the project running",
     "run-in-sandbox": "the project's own code was run in the build environment; the picture re-draws that run",
     "source-reenactment": "a deterministic re-enactment of behaviour confirmed in the source; the project was not run",
+    "project-showcase": "official output examples published by the project itself (shown muted and credited); the features they show were also verified in source or by a local run",
     "fixture": "pipeline test content, not an episode",
 }
 FEATURE_STATUSES = {"verified-run", "verified-source"}

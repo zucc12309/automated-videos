@@ -236,8 +236,23 @@ const CoverInputOutput: React.FC<{w: number; h: number; input?: string; output?:
 };
 
 /** The episode's central cover illustration, chosen by `visual`. New kinds slot in here without touching the cover layout. */
-export const ProjectVisual: React.FC<{visual: string; w: number; h: number; assets?: {input?: string; output?: string}}> = ({visual, w, h, assets}) => {
+/** Real output frames in a fan of phones (the project's own published examples). */
+const CoverPhoneFan: React.FC<{w: number; h: number; frames: string[]}> = ({w, h, frames}) => {
+  const ph = h * .96, pw = ph * 9 / 16, n = frames.length;
+  return <div style={{position: 'relative', width: w, height: h}}>
+    {frames.map((src, i) => {
+      const k = n === 1 ? 0 : i / (n - 1) - .5;                    // -0.5 .. 0.5
+      return <div key={i} style={{position: 'absolute', left: w / 2 - pw / 2 + k * pw * 1.35, top: (h - ph) / 2 + Math.abs(k) * 26, width: pw, height: ph,
+        transform: `rotate(${k * 14}deg)`, borderRadius: pw * .1, overflow: 'hidden', border: `5px solid ${S.line}`, background: '#000', zIndex: 10 - Math.round(Math.abs(k) * 4),
+        boxShadow: `0 24px 60px rgba(0,0,0,.65)${k === 0 || n === 2 ? `, 0 0 0 3px ${S.accent}` : ''}`}}>
+        <Img src={staticFile(src)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/></div>;
+    })}
+  </div>;
+};
+
+export const ProjectVisual: React.FC<{visual: string; w: number; h: number; assets?: {input?: string; output?: string; frames?: string[]}}> = ({visual, w, h, assets}) => {
   switch (visual) {
+    case 'phone-fan': return <CoverPhoneFan w={w} h={h} frames={assets?.frames ?? []}/>;
     case 'hand-cursor': return <CoverHandCursor w={w} h={h}/>;
     case 'input-output': return <CoverInputOutput w={w} h={h} input={assets?.input} output={assets?.output}/>;
     default: return <CoverTerminal w={w} h={h}/>;

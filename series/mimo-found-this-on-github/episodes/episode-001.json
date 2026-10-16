@@ -3,10 +3,10 @@
   "episode": 1,
   "label": "EP. 001",
   "repository": "harry0703/MoneyPrinterTurbo",
-  "title": "I pasted a script and got back a finished short",
+  "title": "Script in, short out: an open-source video maker",
   "status": "rendered",
   "reserved_at": "2026-10-16T15:40:52Z",
-  "rendered_at": "2026-10-16T15:59:30Z",
+  "rendered_at": "2026-10-16T17:16:17Z",
   "outputs": {
     "final": "outputs/mimo-found-this-on-github/episode-001/episode-001-final.mp4",
     "no_music": "outputs/mimo-found-this-on-github/episode-001/episode-001-no-music.mp4",
@@ -18,5 +18,5 @@
     "metadata": "outputs/mimo-found-this-on-github/episode-001/episode-001-metadata.json",
     "qa_report": "outputs/mimo-found-this-on-github/episode-001/episode-001-qa-report.md"
   },
-  "demo_status": "run-in-sandbox"
+  "demo_status": "project-showcase"
 }
