@@ -232,10 +232,8 @@ def ig_overlay_filter(guides: bool) -> str:
     t = lambda text, x, y, size, c="white": f"drawtext=fontfile={FONT}:text='{text}':x={x}:y={y}:fontsize={size}:fontcolor={c}"
     parts = ["drawbox=x=0:y=0:w=1080:h=210:color=black@0.35:t=fill", t("Reels", 48, 112, 52), "drawbox=x=966:y=112:w=60:h=48:color=white@0.9:t=4",
              "drawbox=x=0:y=1480:w=1080:h=440:color=black@0.45:t=fill"]
-    for i, (y, label) in enumerate([(1120, "12.3K"), (1270, "214"), (1420, "1,024"), (1570, ""), (1690, "")]):
+    for y in (1120, 1270, 1420, 1570, 1690):                 # action rail (icons only: no invented counts)
         parts.append(f"drawbox=x=930:y={y}:w=76:h=70:color=white@0.92:t=6")
-        if label:
-            parts.append(t(label, 936, y + 82, 30))
     parts += ["drawbox=x=40:y=1612:w=84:h=84:color=white@0.9:t=fill", t("devmimo", 142, 1622, 40), "drawbox=x=330:y=1614:w=150:h=58:color=white@0.9:t=3",
               t("Follow", 350, 1626, 34), t("Someone recreated seven Adobe-style apps…", 40, 1730, 38), t("more", 40, 1780, 36, "white@0.7"),
               t("Original audio · devmimo", 40, 1846, 32, "white@0.85"), "drawbox=x=930:y=1820:w=76:h=76:color=white@0.9:t=4"]
@@ -317,6 +315,7 @@ def main():
     ap.add_argument("--validate-only", action="store_true")
     ap.add_argument("--skip-render", action="store_true")
     ap.add_argument("--skip-hooks", action="store_true", help="keep the hook previews already in the output folder")
+    ap.add_argument("--qa-only", action="store_true", help="re-run QA and rewrite the report/metadata from the last build (e.g. after the visual review)")
     a = ap.parse_args()
     started = time.time()
     spec = json.loads(a.spec.read_text())
@@ -368,6 +367,16 @@ def main():
     if a.skip_render:
         return
 
+    if a.qa_only:
+        meta = json.loads((out / f"{name}-metadata.json").read_text())
+        hooks = json.loads((work / "hooks.json").read_text())
+        import qa_reel
+        report = qa_reel.run(out, name, props, spec, cfg, meta["loudness"], voice, hooks)
+        meta["qa_summary"] = report["summary"]
+        (out / f"{name}-metadata.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False))
+        (out / f"{name}-qa-report.md").write_text(qa_reel.markdown(report, meta))
+        print(json.dumps(report["summary"], indent=1))
+        return
     print("render…")
     silent = work / "silent.mp4"
     bi.remotion("SeriesReel", silent, work / "props.json", vcfg)

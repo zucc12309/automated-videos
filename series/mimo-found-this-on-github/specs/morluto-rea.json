@@ -369,17 +369,15 @@
           "feature": "inspect",
           "lines": [
             "12fa: imul  $0x4d,%edi,%r9d",
-            "12fe: imul  $0x96,%ecx,%edx",
             "1315: cmp   $0xe8ff,%edx",
             "1325: mov   $0xfffffff8,%edx",
-            "1290: imul  $0xe4,%edi,%r10d",
             "12a9: add   $0x18,%edx",
             "12cf: add   $0xa,%edi",
             "12d2: add   $0x4,%ecx"
           ],
           "highlight": [
-            2,
-            5
+            1,
+            3
           ]
         },
         {

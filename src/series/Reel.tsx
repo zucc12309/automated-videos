@@ -239,7 +239,7 @@ const ProofBeat: React.FC<BP> = ({b, f, mouth}) => {
       <svg width={70} height={img} style={{position: 'absolute', left: img, top: 0}}>
         <path d={`M12,${img / 2} L56,${img / 2} M44,${img / 2 - 12} L56,${img / 2} L44,${img / 2 + 12}`} stroke={S.accent} strokeWidth={6} fill="none" strokeLinecap="round"
           strokeLinejoin="round" opacity={warm}/></svg>
-      <div style={{position: 'absolute', left: 0, top: img + 12, width: aw, fontFamily: FONT.mono, fontSize: 30, color: S.ink, whiteSpace: 'nowrap'}}>
+      <div style={{position: 'absolute', left: 0, top: img + 12, width: aw, fontFamily: FONT.mono, fontSize: 26, color: S.ink, whiteSpace: 'nowrap', overflow: 'hidden'}}>
         <span style={{fontWeight: 700}}>{app.name}</span><span style={{color: S.accent}}> · {app.note}</span></div>
     </div>
     <Mascot r={R.proof.mimo} on={sp(f, 10, 12, 170)} clip><MimoMascot state="thinking" size={R.proof.mimo[2]} frame={f} mouth={mouth} look={{x: -.4, y: .9}}/></Mascot>
@@ -394,7 +394,9 @@ const KEYL: Record<string, [number, number]> = {shock: [50, 30], context: [50, 3
 const BeatClock: React.FC<{b: Beat; p: ReelProps; mouth: number; Comp: React.FC<BP>}> = ({b, p, mouth, Comp}) => {
   const f = useCurrentFrame();
   const k = f / Math.max(1, b.frames);
-  return <AbsoluteFill style={{transform: `scale(${1 + .03 * k})`, transformOrigin: '42% 40%'}}><Comp b={b} f={f} p={p} mouth={mouth}/></AbsoluteFill>;
+  // gentle push centred on the safe area, small enough that edge content stays inside it (≤ 7 px growth at the margins)
+  return <AbsoluteFill style={{transform: `scale(${1 + .015 * k})`, transformOrigin: `${(L.safe.left + L.safe.right) / 2}px ${(L.safe.top + L.safe.bottom) / 2}px`}}>
+    <Comp b={b} f={f} p={p} mouth={mouth}/></AbsoluteFill>;
 };
 
 export const SeriesReel: React.FC<ReelProps> = p => {
