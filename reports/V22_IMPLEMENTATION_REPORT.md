@@ -22,7 +22,26 @@ autopilot and QA/repair are unchanged in behaviour. The studio renderer still wo
 | 10 Brand package | Tokens, character, voice, motion, series labels, CTA templates, reference stats | `brand/` |
 | 11 Reference QA | Pixel statistics against Reference A plus a side-by-side sheet; premium brand checks; no model judgments | `video_mcp/quality/reference_compare.py`, `premium_checks.py` |
 | 12 Demos | A–D rendered through the real pipeline (see below) | `demos/v22/`, `examples/demos/v22/` |
-| 13 Tests | 18 new V2.2 tests; full suite 117 passed, 1 skipped | `tests/test_v22.py` |
+| 13 Tests | 23 new V2.2 tests (incl. audio profile); full suite 122 passed, 1 skipped | `tests/test_v22.py` |
+
+## Reference audio profile (follow-up request)
+
+You asked for the reference video's audio profile. `video_mcp/audio_profile.py` measures Reference A and stores the result in
+`brand/audio_profile.json` (`narration.audio_profile: "reference"` is the default; set it to `"off"` for the V2 sound). Every render is
+then compared against the reference, and the result is written to `qa/audio_profile_compare.json`.
+
+| Property | Reference A | Before | After (demo B) | How it is matched |
+|---|---|---|---|---|
+| Loudness | −14.1 LUFS, −1.6 dBTP | −13.8 LUFS | −14.0 LUFS, −1.7 dBTP | linear gain + limiter. The old single-pass `loudnorm` was dynamic and lifted every pause (floor 13 dB under the voice vs. 28 in the reference) |
+| Music bed level | 22.2 dB under speech | 24–27 dB, uneven | 22.3 dB | bed gain computed from the actual narration level (`bed_gain_db`) |
+| Music bed character | warm low pad, centroid ~355 Hz, no drums | lo-fi pad + kick + hats + plucks | warm pad, 321 Hz | new `warm_pad` bed: 130–500 Hz chords, soft root, filtered, slow cross-fades |
+| Voice pitch | median 118.5 Hz, 93–144 Hz | 102 Hz, 88–114 Hz (monotone) | 118.5 Hz, 89–147 Hz | espeak SSML prosody (+14% pitch, x-high range), calibrated |
+| Voice tone (bands vs. total) | low −4.1 / mid −2.8 / presence −12.7 / air −16.7 dB | low −7.4, presence −10.8 | within 0.5 dB | adaptive matching EQ per narration (±6 dB clamp) |
+| Pauses / speech share | 0.32 s median, 66% speech | 0.19 s, 80% | about 0.33 s, about 64% | espeak phrase pauses + scene tails from the profile |
+
+**Not matched: the voice's timbre.** Reference A is Kokoro `am_adam`. On your Mac, Kokoro `am_adam` produces that timbre itself, and the
+profile then only sets the mix, the EQ trim, the bed and mastering. In this container the espeak fallback now has the reference's pitch,
+range, pacing and tonal balance, but it still sounds synthetic. No measurement here can make espeak sound like Kokoro.
 
 ## Problems found by looking at the renders, and fixed
 
@@ -116,7 +135,7 @@ cd /Users/priyanshupatel/Downloads/VIDEOS/local-video-mcp
 git fetch origin && git checkout claude/hybrid-video-v2
 npm ci                                       # adds @remotion/fonts (fonts themselves are in public/fonts)
 .venv/bin/pip install -e . --no-deps         # existing venv; no new Python dependencies
-.venv/bin/python -m pytest -q                # expect 117 passed, 1 skipped
+.venv/bin/python -m pytest -q                # expect 122 passed, 1 skipped
 # Render the four demos (Kokoro am_adam is used automatically on the Mac):
 .venv/bin/python examples/demos/v22/run_demo.py A B C D
 open demos/v22/A/video.mp4
