@@ -1,0 +1,39 @@
+[
+  {
+    "stage": "direction",
+    "provider": "claude-code-interactive",
+    "used": true,
+    "note": "storyboard supplied by caller",
+    "at": 1792144046.4687047
+  },
+  {
+    "stage": "cinematic",
+    "scene": "scene_001",
+    "used": true,
+    "cached": true,
+    "provider": "mock",
+    "mock": true,
+    "at": 1792144046.4772687
+  },
+  {
+    "stage": "cinematic",
+    "scene": "scene_004",
+    "used": true,
+    "cached": true,
+    "provider": "mock",
+    "mock": true,
+    "at": 1792144046.4782155
+  },
+  {
+    "stage": "narration",
+    "engine": "espeak",
+    "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
+    "at": 1792144046.4815283
+  },
+  {
+    "stage": "render",
+    "concurrency": 2,
+    "memory_available_gb": 14.89,
+    "at": 1792144049.0539541
+  }
+]

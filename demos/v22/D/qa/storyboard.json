@@ -1,0 +1,26 @@
+{
+ "sources": {
+  "claims": [
+   {
+    "id": "c1",
+    "text": "Coding agents can plan a change, edit files and run tests.",
+    "source_ids": [],
+    "status": "interpretation",
+    "note": ""
+   },
+   {
+    "id": "c2",
+    "text": "Agent output is only as reliable as the tests and review around it.",
+    "source_ids": [],
+    "status": "interpretation",
+    "note": ""
+   }
+  ],
+  "summary": {
+   "verified": 0,
+   "interpretation": 2,
+   "unverified": 0,
+   "removed": 0
+  }
+ }
+}
