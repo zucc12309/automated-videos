@@ -1,0 +1,599 @@
+{
+  "schema_version": "2.0",
+  "video_id": "84118f87ae29",
+  "title": "4 repos that fix Claude Code's gaps",
+  "format": "roundup",
+  "duration_target_seconds": 38.0,
+  "aspect_ratio": "9:16",
+  "series": "REPOS",
+  "creative_direction": {
+    "audience": "Claude Code and Codex users",
+    "core_message": "Four open-source repos remove real friction from coding agents.",
+    "viewer_benefit": "Leave with one repo to install tonight.",
+    "hook": "Four repos that fix Claude Code's biggest gaps.",
+    "tone": "bold editorial",
+    "pacing": "dynamic",
+    "theme": "fieldnotes-premium",
+    "visual_identity": "dark studio, bold type, moving repo visuals",
+    "sound_design": "impact on the hook, ticks on star counters, ducked bed",
+    "call_to_action": "Save this. Install one.",
+    "character": "on"
+  },
+  "sources": [
+    {
+      "id": "src1",
+      "url": "https://github.com/lidge-jun/opencodex",
+      "title": "lidge-jun/opencodex",
+      "kind": "repository",
+      "retrieved_at": 1792142647.9999402
+    },
+    {
+      "id": "src2",
+      "url": "https://github.com/yetone/magpie",
+      "title": "yetone/magpie",
+      "kind": "repository",
+      "retrieved_at": 1792142647.9999452
+    },
+    {
+      "id": "src3",
+      "url": "https://github.com/Vincentwei1021/video-shotcraft",
+      "title": "Vincentwei1021/video-shotcraft",
+      "kind": "repository",
+      "retrieved_at": 1792142647.9999478
+    },
+    {
+      "id": "src4",
+      "url": "https://github.com/google/artemis",
+      "title": "google/artemis",
+      "kind": "repository",
+      "retrieved_at": 1792142647.9999743
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini,",
+      "source_ids": [
+        "src1"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c2",
+      "text": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "source_ids": [
+        "src2"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c3",
+      "text": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion",
+      "source_ids": [
+        "src3"
+      ],
+      "status": "verified",
+      "note": ""
+    },
+    {
+      "id": "c4",
+      "text": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+      "source_ids": [
+        "src4"
+      ],
+      "status": "verified",
+      "note": ""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene_001",
+      "role": "hook",
+      "narration": "Four repos that fix Claude Code's biggest gaps.",
+      "heading": "4 repos that fix Claude Code's gaps",
+      "points": [],
+      "emphasis": "gaps",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "Bold statement in the first second over a moody establishing shot",
+      "intent": "hook",
+      "render_engine": "remotion",
+      "layout": "hookBold",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "emphasis",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": {
+        "prompt": "Slow push-in across a dark developer desk at night, monitor glow and shallow depth of field, premium technology commercial lighting, large empty area in the upper half for bold titles, no readable text, no logos",
+        "duration_seconds": 4.0,
+        "negative_guidance": [
+          "unreadable text",
+          "random logos",
+          "watermarks",
+          "excessive camera shake",
+          "distorted hands"
+        ],
+        "reference_images": [],
+        "overlay_text": true,
+        "fallback_layout": "hookBold"
+      },
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "fallback",
+        "issues": [
+          "cinematic fallback: local mode renders everything in Remotion"
+        ],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_002",
+      "role": "item",
+      "narration": "Number 1: opencodex. A universal provider proxy for OpenAI Codex and Claude Code, so you can use any LLM.",
+      "heading": "Use any LLM in Codex",
+      "points": [
+        "Any LLM",
+        "Codex",
+        "Claude Code"
+      ],
+      "emphasis": "any LLM",
+      "stat": "",
+      "label": "opencodex",
+      "item": 1,
+      "visual_intent": "Show the real repo, then what it connects to",
+      "intent": "repository",
+      "render_engine": "remotion",
+      "layout": "",
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c1"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_003",
+      "role": "item",
+      "narration": "Number 2: magpie. Every agent's model in one place: Codex on DeepSeek, Claude Code on Kimi, right from the menu bar.",
+      "heading": "Every model, one menu bar",
+      "points": [
+        "DeepSeek",
+        "Kimi",
+        "Menu bar"
+      ],
+      "emphasis": "menu bar",
+      "stat": "",
+      "label": "magpie",
+      "item": 2,
+      "visual_intent": "Show the real repo, then what it connects to",
+      "intent": "repository",
+      "render_engine": "remotion",
+      "layout": "",
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c2"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_004",
+      "role": "item",
+      "narration": "Number 3: video-shotcraft. An AI video skill for Claude Code and Codex that makes cinematic product videos with Remotion.",
+      "heading": "Product videos from your agent",
+      "points": [
+        "Remotion",
+        "Agent skill",
+        "AI video"
+      ],
+      "emphasis": "cinematic",
+      "stat": "",
+      "label": "video-shotcraft",
+      "item": 3,
+      "visual_intent": "Show the real repo, then what it connects to",
+      "intent": "repository",
+      "render_engine": "remotion",
+      "layout": "",
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c3"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_005",
+      "role": "item",
+      "narration": "Number 4: artemis. It turns natural-language instructions into reliable Android automation.",
+      "heading": "Plain English to Android",
+      "points": [
+        "Android",
+        "Plain English",
+        "Automation"
+      ],
+      "emphasis": "Android",
+      "stat": "",
+      "label": "artemis",
+      "item": 4,
+      "visual_intent": "Show the real repo, then what it connects to",
+      "intent": "repository",
+      "render_engine": "remotion",
+      "layout": "",
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "demonstration",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [
+        "c4"
+      ],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "",
+      "cta": {},
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    },
+    {
+      "id": "scene_006",
+      "role": "outro",
+      "narration": "Want all 4 repos? Comment LINK for the list.",
+      "heading": "Comment LINK",
+      "points": [],
+      "emphasis": "LINK",
+      "stat": "",
+      "label": "",
+      "item": 0,
+      "visual_intent": "Fast recap, then one big call to action that loops to the hook",
+      "intent": "recap",
+      "render_engine": "remotion",
+      "layout": "outroCTA",
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "pace": "pause",
+      "priority": "normal",
+      "estimated_duration": 0.0,
+      "claim_ids": [],
+      "depends_on": [],
+      "visual": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "cinematic": null,
+      "assets": [],
+      "character": null,
+      "character_action": "pointing",
+      "cta": {
+        "keyword": "LINK",
+        "secondary": "Get all 4 GitHub repos",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "fallback_layout": "heroWord",
+      "qa": {
+        "status": "pass",
+        "issues": [],
+        "repairs": 0
+      }
+    }
+  ],
+  "repos": [
+    {
+      "full_name": "lidge-jun/opencodex",
+      "owner": "lidge-jun",
+      "name": "opencodex",
+      "stars": 17445,
+      "language": "TypeScript",
+      "topics": [
+        "ai-gateway",
+        "ai-tools",
+        "anthropic"
+      ],
+      "description": "Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini,",
+      "url": "https://github.com/lidge-jun/opencodex",
+      "readme_excerpt": ""
+    },
+    {
+      "full_name": "yetone/magpie",
+      "owner": "yetone",
+      "name": "magpie",
+      "stars": 13420,
+      "language": "Go",
+      "topics": [
+        "claude-code",
+        "codex",
+        "deepseek"
+      ],
+      "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "url": "https://github.com/yetone/magpie",
+      "readme_excerpt": ""
+    },
+    {
+      "full_name": "Vincentwei1021/video-shotcraft",
+      "owner": "Vincentwei1021",
+      "name": "video-shotcraft",
+      "stars": 12058,
+      "language": "TypeScript",
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "ai-video"
+      ],
+      "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion",
+      "url": "https://github.com/Vincentwei1021/video-shotcraft",
+      "readme_excerpt": ""
+    },
+    {
+      "full_name": "google/artemis",
+      "owner": "google",
+      "name": "artemis",
+      "stars": 11839,
+      "language": "Python",
+      "topics": [
+        "ai-agents",
+        "android",
+        "google"
+      ],
+      "description": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+      "url": "https://github.com/google/artemis",
+      "readme_excerpt": ""
+    }
+  ],
+  "director": {
+    "provider": "claude-code-interactive",
+    "model": "claude-opus-5-5 (interactive Claude Code session)",
+    "interactive": true,
+    "note": "Directed in the interactive session from the user's review notes; hook footage via the MOCK cinematic provider.",
+    "supplied": true
+  },
+  "seed": "v22-A",
+  "hook_candidates": [
+    {
+      "text": "Your Claude Code setup is missing these 4 repos.",
+      "score": 4.66,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 1.0,
+        "relevance": 1.0,
+        "curiosity": 0.9,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "4 Claude Code repos worth installing today.",
+      "score": 4.26,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 1.0,
+        "relevance": 1.0,
+        "curiosity": 0.4,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "4 GitHub repos that make Claude Code better.",
+      "score": 4.26,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 1.0,
+        "relevance": 1.0,
+        "curiosity": 0.4,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": []
+    },
+    {
+      "text": "Four repos that fix Claude Code's biggest gaps.",
+      "score": 3.81,
+      "parts": {
+        "clarity": 1.0,
+        "specificity": 0.55,
+        "relevance": 1.0,
+        "curiosity": 0.4,
+        "visual_potential": 0.9,
+        "credibility": 1.0
+      },
+      "unsupported": [],
+      "origin": "director"
+    }
+  ],
+  "cta": {
+    "keyword": "LINK",
+    "secondary": "Get all 4 GitHub repos",
+    "narration": "Want all 4 repos? Comment LINK for the list.",
+    "series_label": "REPO RADAR",
+    "content_type": "roundup",
+    "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand",
+    "dm_promised": false
+  }
+}

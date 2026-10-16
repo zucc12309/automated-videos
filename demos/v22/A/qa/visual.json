@@ -1,0 +1,394 @@
+{
+ "layout_checks": [
+  {
+   "check": "stage_inside_safe_area",
+   "passed": true,
+   "detail": "stage {'left': 120, 'top': 360, 'width': 840, 'height': 700} within {'left': 120, 'right': 960, 'top': 290, 'bottom': 1248}",
+   "scene": null,
+   "mandatory": true,
+   "basis": "deterministic",
+   "kind": "layout"
+  },
+  {
+   "check": "contrast_ink",
+   "passed": true,
+   "detail": "fieldnotes-premium ink/bg 17.05:1 (min 4.5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_muted",
+   "passed": true,
+   "detail": "fieldnotes-premium muted/bg 7.2:1 (min 4.5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_accent",
+   "passed": true,
+   "detail": "fieldnotes-premium accent/bg 8.21:1 (min 3.0)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "contrast_surface",
+   "passed": true,
+   "detail": "ink/surface 15.46:1",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "contrast"
+  },
+  {
+   "check": "headline_size",
+   "passed": true,
+   "detail": "kinetic headline 60px (caption min 48)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "meta_size",
+   "passed": true,
+   "detail": "masthead 32px, meta 32px (min 32)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "tiny_text"
+  },
+  {
+   "check": "hook_frame0",
+   "passed": true,
+   "detail": "first beat hookBold / cut: '4 repos that fix Claude Code's gaps'",
+   "scene": "scene_001",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_staged",
+   "passed": true,
+   "detail": "every beat has a staging decision",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_scales",
+   "passed": true,
+   "detail": "scales used ['closeup', 'companion', 'medium']",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "signature_entrance",
+   "passed": true,
+   "detail": "hook scale closeup",
+   "scene": "scene_001",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "signature_cta",
+   "passed": true,
+   "detail": "points at the keyword and winks",
+   "scene": "scene_006",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "one_reveal_reaction",
+   "passed": true,
+   "detail": "1 big reaction(s): ['scene_002']",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "character_present",
+   "passed": true,
+   "detail": "present on every non-footage beat",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "no_unapproved_name",
+   "passed": true,
+   "detail": "provisional name 'Mochi' absent from on-screen text",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "cta_keyword",
+   "passed": true,
+   "detail": "keyword 'LINK' spoken",
+   "scene": "scene_006",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "cta_truthful",
+   "passed": true,
+   "detail": "no DM promise without a delivery integration",
+   "scene": "scene_006",
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "brand"
+  },
+  {
+   "check": "min_hold",
+   "passed": true,
+   "detail": "all beats hold long enough",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "pacing"
+  },
+  {
+   "check": "cuts_per_10s",
+   "passed": true,
+   "detail": "busiest 10 s window has 4 cuts (target \u2264 5)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "pacing"
+  },
+  {
+   "check": "no_back_to_back_layouts",
+   "passed": true,
+   "detail": "0 repeat(s)",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "repetition"
+  },
+  {
+   "check": "layout_variety",
+   "passed": true,
+   "detail": "7 distinct layouts over 11 beats",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "repetition"
+  },
+  {
+   "check": "single_theme",
+   "passed": true,
+   "detail": "theme=fieldnotes-premium",
+   "scene": null,
+   "mandatory": false,
+   "basis": "deterministic",
+   "kind": "consistency"
+  }
+ ],
+ "frame_samples": [
+  {
+   "t": 0.0,
+   "kind": "first_frame",
+   "scene": "",
+   "mean_luma": 27.0,
+   "stage_std": 57.11
+  },
+  {
+   "t": 0.15,
+   "kind": "scene_entrance",
+   "scene": "scene_001",
+   "mean_luma": 41.9,
+   "stage_std": 57.12
+  },
+  {
+   "t": 1.6,
+   "kind": "scene_mid",
+   "scene": "scene_001",
+   "mean_luma": 45.8,
+   "stage_std": 63.97
+  },
+  {
+   "t": 3.0,
+   "kind": "scene_exit",
+   "scene": "scene_001",
+   "mean_luma": 46.0,
+   "stage_std": 64.29
+  },
+  {
+   "t": 3.35,
+   "kind": "scene_entrance",
+   "scene": "scene_002",
+   "mean_luma": 34.4,
+   "stage_std": 38.32
+  },
+  {
+   "t": 7.217,
+   "kind": "scene_mid",
+   "scene": "scene_002",
+   "mean_luma": 29.3,
+   "stage_std": 40.69
+  },
+  {
+   "t": 9.113,
+   "kind": "beat_boundary",
+   "scene": "scene_002",
+   "mean_luma": 30.8,
+   "stage_std": 56.35
+  },
+  {
+   "t": 11.033,
+   "kind": "scene_exit",
+   "scene": "scene_002",
+   "mean_luma": 24.7,
+   "stage_std": 54.42
+  },
+  {
+   "t": 11.383,
+   "kind": "scene_entrance",
+   "scene": "scene_003",
+   "mean_luma": 24.9,
+   "stage_std": 23.88
+  },
+  {
+   "t": 14.745,
+   "kind": "beat_boundary",
+   "scene": "scene_003",
+   "mean_luma": 24.7,
+   "stage_std": 18.48
+  },
+  {
+   "t": 15.3,
+   "kind": "scene_mid",
+   "scene": "scene_003",
+   "mean_luma": 22.6,
+   "stage_std": 12.41
+  },
+  {
+   "t": 17.383,
+   "kind": "beat_boundary",
+   "scene": "scene_003",
+   "mean_luma": 23.0,
+   "stage_std": 9.53
+  },
+  {
+   "t": 19.167,
+   "kind": "scene_exit",
+   "scene": "scene_003",
+   "mean_luma": 28.3,
+   "stage_std": 32.35
+  },
+  {
+   "t": 19.517,
+   "kind": "scene_entrance",
+   "scene": "scene_004",
+   "mean_luma": 27.0,
+   "stage_std": 19.29
+  },
+  {
+   "t": 23.433,
+   "kind": "scene_mid",
+   "scene": "scene_004",
+   "mean_luma": 30.4,
+   "stage_std": 43.16
+  },
+  {
+   "t": 25.26,
+   "kind": "beat_boundary",
+   "scene": "scene_004",
+   "mean_luma": 31.4,
+   "stage_std": 61.93
+  },
+  {
+   "t": 27.3,
+   "kind": "scene_exit",
+   "scene": "scene_004",
+   "mean_luma": 27.1,
+   "stage_std": 63.89
+  },
+  {
+   "t": 27.65,
+   "kind": "scene_entrance",
+   "scene": "scene_005",
+   "mean_luma": 25.4,
+   "stage_std": 25.92
+  },
+  {
+   "t": 30.533,
+   "kind": "scene_mid",
+   "scene": "scene_005",
+   "mean_luma": 28.9,
+   "stage_std": 37.85
+  },
+  {
+   "t": 33.367,
+   "kind": "scene_exit",
+   "scene": "scene_005",
+   "mean_luma": 29.9,
+   "stage_std": 41.21
+  },
+  {
+   "t": 33.717,
+   "kind": "scene_entrance",
+   "scene": "scene_006",
+   "mean_luma": 25.1,
+   "stage_std": 15.49
+  },
+  {
+   "t": 35.25,
+   "kind": "scene_mid",
+   "scene": "scene_006",
+   "mean_luma": 29.4,
+   "stage_std": 61.13
+  },
+  {
+   "t": 36.034,
+   "kind": "beat_boundary",
+   "scene": "scene_006",
+   "mean_luma": 40.4,
+   "stage_std": 73.01
+  },
+  {
+   "t": 36.733,
+   "kind": "scene_exit",
+   "scene": "scene_006",
+   "mean_luma": 43.3,
+   "stage_std": 64.2
+  },
+  {
+   "t": 36.833,
+   "kind": "final_frame",
+   "scene": "",
+   "mean_luma": 39.1,
+   "stage_std": 64.32
+  }
+ ],
+ "issues": [],
+ "layout_order": [
+  "hookBold",
+  "repoCard",
+  "repoConnect",
+  "repoCard",
+  "readmeScroll",
+  "heroWord",
+  "repoCard",
+  "repoConnect",
+  "repoCard",
+  "outroCTA",
+  "loop"
+ ],
+ "contact_sheet": "/home/user/automated-videos/data/jobs/84118f87ae29/qa/contact_sheet.jpg"
+}

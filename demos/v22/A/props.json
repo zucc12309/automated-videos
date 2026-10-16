@@ -1,0 +1,3732 @@
+{
+  "title": "4 repos that fix Claude Code's gaps",
+  "style": "premium",
+  "brand": "FIELDNOTES",
+  "series": "REPOS",
+  "direction": {
+    "notes": [],
+    "reveal_scene": "scene_002"
+  },
+  "repos": [
+    {
+      "full_name": "lidge-jun/opencodex",
+      "owner": "lidge-jun",
+      "name": "opencodex",
+      "description": "Universal provider proxy for OpenAI Codex & Claude Code — use any LLM (Claude, Gemini,",
+      "stars": 17445,
+      "language": "TypeScript",
+      "topics": [
+        "ai-gateway",
+        "ai-tools",
+        "anthropic"
+      ],
+      "readme": ""
+    },
+    {
+      "full_name": "yetone/magpie",
+      "owner": "yetone",
+      "name": "magpie",
+      "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "stars": 13420,
+      "language": "Go",
+      "topics": [
+        "claude-code",
+        "codex",
+        "deepseek"
+      ],
+      "readme": ""
+    },
+    {
+      "full_name": "Vincentwei1021/video-shotcraft",
+      "owner": "Vincentwei1021",
+      "name": "video-shotcraft",
+      "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion",
+      "stars": 12058,
+      "language": "TypeScript",
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "ai-video"
+      ],
+      "readme": ""
+    },
+    {
+      "full_name": "google/artemis",
+      "owner": "google",
+      "name": "artemis",
+      "description": "ARTEMIS turns natural-language instructions into reliable Android automation.",
+      "stars": 11839,
+      "language": "Python",
+      "topics": [
+        "ai-agents",
+        "android",
+        "google"
+      ],
+      "readme": ""
+    }
+  ],
+  "music": "jobs/84118f87ae29/music.wav",
+  "variant": {
+    "seed": "v22-A",
+    "palette": "",
+    "background": "grid",
+    "temperament": "editorial",
+    "captions": "bold",
+    "transitions": [
+      "mask",
+      "zoom",
+      "whip"
+    ],
+    "outfit": "#6d28d9",
+    "hair": "#1c1917",
+    "music": {
+      "progression": 0,
+      "bpm": 84
+    },
+    "camera": 0.8,
+    "theme": "fieldnotes-premium",
+    "character": true
+  },
+  "scenes": [
+    {
+      "heading": "4 repos that fix Claude Code's gaps",
+      "narration": "Four repos that fix Claude Code's biggest gaps.",
+      "caption": "Four repos that fix Claude Code's biggest gaps.",
+      "points": [],
+      "visual": "hook",
+      "item": 0,
+      "label": "",
+      "emphasis": "gaps",
+      "stat": "",
+      "audio": "jobs/84118f87ae29/scene-0.wav",
+      "frames": 96,
+      "audioFrames": 88,
+      "uiAudio": "jobs/84118f87ae29/scene-0-ui.wav",
+      "words": [
+        {
+          "w": "Four",
+          "s": 0.0,
+          "e": 0.244
+        },
+        {
+          "w": "repos",
+          "s": 0.25,
+          "e": 0.752
+        },
+        {
+          "w": "that",
+          "s": 0.76,
+          "e": 1.038
+        },
+        {
+          "w": "fix",
+          "s": 1.05,
+          "e": 1.23
+        },
+        {
+          "w": "Claude",
+          "s": 1.23,
+          "e": 1.568
+        },
+        {
+          "w": "Code's",
+          "s": 1.58,
+          "e": 2.01
+        },
+        {
+          "w": "biggest",
+          "s": 2.01,
+          "e": 2.606
+        },
+        {
+          "w": "gaps.",
+          "s": 2.68,
+          "e": 2.892
+        }
+      ],
+      "mouth": [
+        0.05,
+        0.21,
+        0.56,
+        0.87,
+        0.88,
+        0.72,
+        0.61,
+        0.61,
+        0.76,
+        0.87,
+        0.73,
+        0.41,
+        0.16,
+        0.26,
+        0.58,
+        0.65,
+        0.44,
+        0.27,
+        0.2,
+        0.23,
+        0.41,
+        0.57,
+        0.44,
+        0.17,
+        0.11,
+        0.12,
+        0.1,
+        0.27,
+        0.67,
+        0.91,
+        0.76,
+        0.38,
+        0.11,
+        0.1,
+        0.19,
+        0.25,
+        0.24,
+        0.22,
+        0.29,
+        0.45,
+        0.72,
+        0.93,
+        0.97,
+        0.81,
+        0.51,
+        0.25,
+        0.13,
+        0.1,
+        0.16,
+        0.35,
+        0.61,
+        0.79,
+        0.8,
+        0.68,
+        0.46,
+        0.26,
+        0.21,
+        0.28,
+        0.28,
+        0.17,
+        0.2,
+        0.52,
+        0.87,
+        0.95,
+        0.71,
+        0.43,
+        0.52,
+        0.64,
+        0.47,
+        0.29,
+        0.22,
+        0.16,
+        0.15,
+        0.29,
+        0.54,
+        0.68,
+        0.68,
+        0.64,
+        0.59,
+        0.42,
+        0.18,
+        0.09,
+        0.09,
+        0.13,
+        0.2,
+        0.22,
+        0.15,
+        0.05
+      ],
+      "visemes": [
+        [
+          0,
+          "G"
+        ],
+        [
+          2,
+          "F"
+        ],
+        [
+          4,
+          "B"
+        ],
+        [
+          7,
+          "X"
+        ],
+        [
+          9,
+          "C"
+        ],
+        [
+          12,
+          "A"
+        ],
+        [
+          15,
+          "E"
+        ],
+        [
+          18,
+          "B"
+        ],
+        [
+          21,
+          "H"
+        ],
+        [
+          23,
+          "X"
+        ],
+        [
+          27,
+          "B"
+        ],
+        [
+          30,
+          "G"
+        ],
+        [
+          32,
+          "C"
+        ],
+        [
+          34,
+          "B"
+        ],
+        [
+          37,
+          "X"
+        ],
+        [
+          39,
+          "D"
+        ],
+        [
+          42,
+          "B"
+        ],
+        [
+          44,
+          "C"
+        ],
+        [
+          46,
+          "B"
+        ],
+        [
+          48,
+          "E"
+        ],
+        [
+          51,
+          "B"
+        ],
+        [
+          54,
+          "C"
+        ],
+        [
+          56,
+          "B"
+        ],
+        [
+          59,
+          "A"
+        ],
+        [
+          61,
+          "C"
+        ],
+        [
+          64,
+          "B"
+        ],
+        [
+          69,
+          "C"
+        ],
+        [
+          72,
+          "B"
+        ],
+        [
+          78,
+          "X"
+        ],
+        [
+          80,
+          "D"
+        ],
+        [
+          82,
+          "A"
+        ],
+        [
+          84,
+          "B"
+        ],
+        [
+          87,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 3.2,
+          "w": [
+            0,
+            7
+          ],
+          "text": "Four repos that fix Claude Code's biggest gaps.",
+          "focus": "gaps",
+          "layout": "hookBold",
+          "layoutReason": {
+            "score": 6.6,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 1.0,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "hook",
+            "runner_up": "hookStack"
+          },
+          "anchor": "right",
+          "transition": "cut",
+          "punch": true,
+          "character": {
+            "state": "speaking",
+            "scale": "closeup",
+            "anchor": "centre"
+          },
+          "direction": {
+            "transition": "first frame: the hook must be readable immediately",
+            "character": "signature entrance: pops up under the hook and acknowledges the viewer",
+            "layout": "hook"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 0,
+      "id": "scene_001",
+      "role": "hook",
+      "intent": "hook",
+      "pace": "emphasis",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "hookBold",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": []
+    },
+    {
+      "heading": "Use any LLM in Codex",
+      "narration": "Number 1: opencodex. A universal provider proxy for OpenAI Codex and Claude Code, so you can use any LLM.",
+      "caption": "Number 1: opencodex. A universal provider proxy for OpenAI Codex and Claude Code, so you can use any LLM.",
+      "points": [
+        "Any LLM",
+        "Codex",
+        "Claude Code"
+      ],
+      "visual": "repo",
+      "item": 1,
+      "label": "opencodex",
+      "emphasis": "any LLM",
+      "stat": "",
+      "audio": "jobs/84118f87ae29/scene-1.wav",
+      "frames": 241,
+      "audioFrames": 224,
+      "uiAudio": "jobs/84118f87ae29/scene-1-ui.wav",
+      "words": [
+        {
+          "w": "Number",
+          "s": 0.0,
+          "e": 0.36
+        },
+        {
+          "w": "1:",
+          "s": 0.36,
+          "e": 0.749
+        },
+        {
+          "w": "opencodex.",
+          "s": 0.857,
+          "e": 1.651
+        },
+        {
+          "w": "A",
+          "s": 1.9,
+          "e": 2.085
+        },
+        {
+          "w": "universal",
+          "s": 2.15,
+          "e": 2.841
+        },
+        {
+          "w": "provider",
+          "s": 3.0,
+          "e": 3.45
+        },
+        {
+          "w": "proxy",
+          "s": 3.45,
+          "e": 3.79
+        },
+        {
+          "w": "for",
+          "s": 3.79,
+          "e": 4.095
+        },
+        {
+          "w": "OpenAI",
+          "s": 4.19,
+          "e": 4.665
+        },
+        {
+          "w": "Codex",
+          "s": 4.72,
+          "e": 5.02
+        },
+        {
+          "w": "and",
+          "s": 5.02,
+          "e": 5.3
+        },
+        {
+          "w": "Claude",
+          "s": 5.4,
+          "e": 5.46
+        },
+        {
+          "w": "Code,",
+          "s": 5.46,
+          "e": 5.813
+        },
+        {
+          "w": "so",
+          "s": 5.919,
+          "e": 6.076
+        },
+        {
+          "w": "you",
+          "s": 6.119,
+          "e": 6.229
+        },
+        {
+          "w": "can",
+          "s": 6.229,
+          "e": 6.417
+        },
+        {
+          "w": "use",
+          "s": 6.429,
+          "e": 6.579
+        },
+        {
+          "w": "any",
+          "s": 6.579,
+          "e": 6.916
+        },
+        {
+          "w": "LLM.",
+          "s": 6.999,
+          "e": 7.414
+        }
+      ],
+      "mouth": [
+        0.54,
+        0.79,
+        0.87,
+        0.74,
+        0.56,
+        0.56,
+        0.58,
+        0.6,
+        0.71,
+        0.75,
+        0.56,
+        0.47,
+        0.69,
+        0.92,
+        0.98,
+        0.92,
+        0.82,
+        0.72,
+        0.63,
+        0.6,
+        0.6,
+        0.51,
+        0.31,
+        0.09,
+        0.1,
+        0.42,
+        0.7,
+        0.55,
+        0.23,
+        0.33,
+        0.6,
+        0.58,
+        0.43,
+        0.31,
+        0.33,
+        0.51,
+        0.77,
+        0.9,
+        0.85,
+        0.71,
+        0.53,
+        0.41,
+        0.54,
+        0.77,
+        0.65,
+        0.3,
+        0.13,
+        0.15,
+        0.23,
+        0.26,
+        0.19,
+        0.07,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.21,
+        0.58,
+        0.63,
+        0.58,
+        0.74,
+        0.71,
+        0.57,
+        0.63,
+        0.56,
+        0.46,
+        0.65,
+        0.87,
+        0.87,
+        0.7,
+        0.51,
+        0.51,
+        0.71,
+        0.82,
+        0.62,
+        0.34,
+        0.23,
+        0.43,
+        0.72,
+        0.62,
+        0.42,
+        0.59,
+        0.89,
+        0.96,
+        0.85,
+        0.62,
+        0.46,
+        0.59,
+        0.71,
+        0.47,
+        0.18,
+        0.18,
+        0.44,
+        0.81,
+        0.97,
+        0.78,
+        0.42,
+        0.16,
+        0.16,
+        0.33,
+        0.56,
+        0.74,
+        0.66,
+        0.34,
+        0.13,
+        0.34,
+        0.76,
+        0.87,
+        0.72,
+        0.78,
+        0.92,
+        0.89,
+        0.7,
+        0.44,
+        0.26,
+        0.42,
+        0.63,
+        0.53,
+        0.53,
+        0.7,
+        0.76,
+        0.85,
+        0.92,
+        0.84,
+        0.65,
+        0.38,
+        0.23,
+        0.4,
+        0.72,
+        0.93,
+        0.9,
+        0.66,
+        0.46,
+        0.6,
+        0.75,
+        0.5,
+        0.18,
+        0.13,
+        0.21,
+        0.26,
+        0.23,
+        0.13,
+        0.03,
+        0.1,
+        0.41,
+        0.7,
+        0.68,
+        0.6,
+        0.52,
+        0.28,
+        0.09,
+        0.08,
+        0.21,
+        0.42,
+        0.68,
+        0.91,
+        1.0,
+        0.97,
+        0.78,
+        0.45,
+        0.23,
+        0.12,
+        0.11,
+        0.28,
+        0.52,
+        0.74,
+        0.86,
+        0.85,
+        0.79,
+        0.72,
+        0.66,
+        0.52,
+        0.32,
+        0.19,
+        0.1,
+        0.02,
+        0.02,
+        0.15,
+        0.36,
+        0.58,
+        0.77,
+        0.85,
+        0.73,
+        0.54,
+        0.58,
+        0.69,
+        0.5,
+        0.29,
+        0.38,
+        0.6,
+        0.65,
+        0.54,
+        0.51,
+        0.65,
+        0.87,
+        0.93,
+        0.75,
+        0.57,
+        0.62,
+        0.82,
+        0.83,
+        0.62,
+        0.6,
+        0.75,
+        0.82,
+        0.88,
+        0.87,
+        0.72,
+        0.61,
+        0.66,
+        0.83,
+        0.93,
+        0.82,
+        0.66,
+        0.6,
+        0.66,
+        0.84,
+        0.91,
+        0.82,
+        0.7,
+        0.57,
+        0.53,
+        0.52,
+        0.34
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          2,
+          "A"
+        ],
+        [
+          6,
+          "C"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          11,
+          "X"
+        ],
+        [
+          24,
+          "E"
+        ],
+        [
+          27,
+          "A"
+        ],
+        [
+          30,
+          "C"
+        ],
+        [
+          32,
+          "B"
+        ],
+        [
+          37,
+          "E"
+        ],
+        [
+          40,
+          "B"
+        ],
+        [
+          43,
+          "C"
+        ],
+        [
+          45,
+          "B"
+        ],
+        [
+          50,
+          "X"
+        ],
+        [
+          55,
+          "D"
+        ],
+        [
+          63,
+          "X"
+        ],
+        [
+          65,
+          "B"
+        ],
+        [
+          68,
+          "C"
+        ],
+        [
+          70,
+          "G"
+        ],
+        [
+          72,
+          "C"
+        ],
+        [
+          75,
+          "B"
+        ],
+        [
+          79,
+          "D"
+        ],
+        [
+          81,
+          "H"
+        ],
+        [
+          85,
+          "X"
+        ],
+        [
+          88,
+          "A"
+        ],
+        [
+          90,
+          "B"
+        ],
+        [
+          92,
+          "E"
+        ],
+        [
+          94,
+          "G"
+        ],
+        [
+          97,
+          "B"
+        ],
+        [
+          99,
+          "C"
+        ],
+        [
+          102,
+          "A"
+        ],
+        [
+          104,
+          "X"
+        ],
+        [
+          106,
+          "E"
+        ],
+        [
+          108,
+          "B"
+        ],
+        [
+          112,
+          "G"
+        ],
+        [
+          114,
+          "X"
+        ],
+        [
+          118,
+          "B"
+        ],
+        [
+          123,
+          "X"
+        ],
+        [
+          127,
+          "A"
+        ],
+        [
+          129,
+          "C"
+        ],
+        [
+          131,
+          "B"
+        ],
+        [
+          134,
+          "D"
+        ],
+        [
+          136,
+          "C"
+        ],
+        [
+          140,
+          "X"
+        ],
+        [
+          142,
+          "E"
+        ],
+        [
+          144,
+          "B"
+        ],
+        [
+          146,
+          "C"
+        ],
+        [
+          149,
+          "D"
+        ],
+        [
+          151,
+          "X"
+        ],
+        [
+          155,
+          "B"
+        ],
+        [
+          159,
+          "X"
+        ],
+        [
+          161,
+          "B"
+        ],
+        [
+          164,
+          "X"
+        ],
+        [
+          168,
+          "B"
+        ],
+        [
+          170,
+          "C"
+        ],
+        [
+          174,
+          "X"
+        ],
+        [
+          176,
+          "B"
+        ],
+        [
+          178,
+          "E"
+        ],
+        [
+          182,
+          "B"
+        ],
+        [
+          184,
+          "F"
+        ],
+        [
+          187,
+          "X"
+        ],
+        [
+          189,
+          "B"
+        ],
+        [
+          191,
+          "F"
+        ],
+        [
+          193,
+          "X"
+        ],
+        [
+          196,
+          "D"
+        ],
+        [
+          199,
+          "B"
+        ],
+        [
+          207,
+          "X"
+        ],
+        [
+          213,
+          "H"
+        ],
+        [
+          217,
+          "A"
+        ],
+        [
+          222,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.813,
+          "w": [
+            0,
+            12
+          ],
+          "text": "Number 1: opencodex. A universal provider proxy for OpenAI Codex and Claude Code,",
+          "focus": "opencodex",
+          "layout": "repoCard",
+          "layoutReason": {
+            "score": 5.4,
+            "parts": {
+              "relevance": 1.0,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": null
+          },
+          "anchor": "right",
+          "transition": "blurDissolve",
+          "punch": false,
+          "character": {
+            "state": "surprised",
+            "scale": "medium",
+            "anchor": "home",
+            "point": "right"
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "signature reveal reaction (once per video) on the most impressive item",
+            "layout": "repository"
+          }
+        },
+        {
+          "s": 5.813,
+          "e": 8.033,
+          "w": [
+            13,
+            18
+          ],
+          "text": "so you can use any LLM.",
+          "focus": "any LLM",
+          "layout": "repoConnect",
+          "layoutReason": {
+            "score": 3.584,
+            "parts": {
+              "relevance": 0.546,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": "readmeScroll"
+          },
+          "anchor": "peek",
+          "transition": "expand",
+          "punch": true,
+          "character": {
+            "state": "explaining",
+            "scale": "companion",
+            "anchor": "home",
+            "point": "right",
+            "dim": 0.1
+          },
+          "direction": {
+            "transition": "the repo card expands into its own demonstration (same object continues)",
+            "character": "gestures toward the connection being drawn",
+            "layout": "repository"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 96,
+      "id": "scene_002",
+      "role": "item",
+      "intent": "repository",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c1"
+      ]
+    },
+    {
+      "heading": "Every model, one menu bar",
+      "narration": "Number 2: magpie. Every agent's model in one place: Codex on DeepSeek, Claude Code on Kimi, right from the menu bar.",
+      "caption": "Number 2: magpie. Every agent's model in one place: Codex on DeepSeek, Claude Code on Kimi, right from the menu bar.",
+      "points": [
+        "DeepSeek",
+        "Kimi",
+        "Menu bar"
+      ],
+      "visual": "repo",
+      "item": 2,
+      "label": "magpie",
+      "emphasis": "menu bar",
+      "stat": "",
+      "audio": "jobs/84118f87ae29/scene-2.wav",
+      "frames": 244,
+      "audioFrames": 228,
+      "uiAudio": "jobs/84118f87ae29/scene-2-ui.wav",
+      "words": [
+        {
+          "w": "Number",
+          "s": 0.0,
+          "e": 0.357
+        },
+        {
+          "w": "2:",
+          "s": 0.36,
+          "e": 0.674
+        },
+        {
+          "w": "magpie.",
+          "s": 0.779,
+          "e": 1.287
+        },
+        {
+          "w": "Every",
+          "s": 1.511,
+          "e": 2.012
+        },
+        {
+          "w": "agent's",
+          "s": 2.121,
+          "e": 2.389
+        },
+        {
+          "w": "model",
+          "s": 2.471,
+          "e": 2.701
+        },
+        {
+          "w": "in",
+          "s": 2.701,
+          "e": 2.948
+        },
+        {
+          "w": "one",
+          "s": 2.961,
+          "e": 3.041
+        },
+        {
+          "w": "place:",
+          "s": 3.041,
+          "e": 3.412
+        },
+        {
+          "w": "Codex",
+          "s": 3.515,
+          "e": 3.895
+        },
+        {
+          "w": "on",
+          "s": 3.895,
+          "e": 4.175
+        },
+        {
+          "w": "DeepSeek,",
+          "s": 4.175,
+          "e": 4.78
+        },
+        {
+          "w": "Claude",
+          "s": 4.909,
+          "e": 5.104
+        },
+        {
+          "w": "Code",
+          "s": 5.239,
+          "e": 5.315
+        },
+        {
+          "w": "on",
+          "s": 5.319,
+          "e": 5.489
+        },
+        {
+          "w": "Kimi,",
+          "s": 5.489,
+          "e": 6.05
+        },
+        {
+          "w": "right",
+          "s": 6.174,
+          "e": 6.364
+        },
+        {
+          "w": "from",
+          "s": 6.364,
+          "e": 6.524
+        },
+        {
+          "w": "the",
+          "s": 6.524,
+          "e": 6.784
+        },
+        {
+          "w": "menu",
+          "s": 6.784,
+          "e": 7.308
+        },
+        {
+          "w": "bar.",
+          "s": 7.464,
+          "e": 7.561
+        }
+      ],
+      "mouth": [
+        0.5,
+        0.74,
+        0.83,
+        0.71,
+        0.53,
+        0.52,
+        0.54,
+        0.55,
+        0.66,
+        0.66,
+        0.4,
+        0.17,
+        0.27,
+        0.59,
+        0.84,
+        0.92,
+        0.85,
+        0.74,
+        0.68,
+        0.57,
+        0.32,
+        0.08,
+        0.08,
+        0.28,
+        0.49,
+        0.66,
+        0.75,
+        0.75,
+        0.68,
+        0.57,
+        0.41,
+        0.25,
+        0.14,
+        0.09,
+        0.2,
+        0.54,
+        0.82,
+        0.78,
+        0.58,
+        0.33,
+        0.09,
+        0.0,
+        0.0,
+        0.0,
+        0.19,
+        0.64,
+        0.89,
+        0.82,
+        0.61,
+        0.37,
+        0.28,
+        0.43,
+        0.7,
+        0.77,
+        0.71,
+        0.84,
+        0.87,
+        0.69,
+        0.49,
+        0.45,
+        0.59,
+        0.64,
+        0.5,
+        0.29,
+        0.13,
+        0.15,
+        0.28,
+        0.42,
+        0.52,
+        0.66,
+        0.89,
+        0.96,
+        0.81,
+        0.55,
+        0.46,
+        0.65,
+        0.78,
+        0.79,
+        0.79,
+        0.63,
+        0.46,
+        0.53,
+        0.81,
+        0.95,
+        0.86,
+        0.7,
+        0.58,
+        0.53,
+        0.38,
+        0.17,
+        0.2,
+        0.38,
+        0.59,
+        0.77,
+        0.85,
+        0.8,
+        0.69,
+        0.56,
+        0.45,
+        0.34,
+        0.27,
+        0.22,
+        0.13,
+        0.04,
+        0.06,
+        0.19,
+        0.42,
+        0.73,
+        0.91,
+        0.84,
+        0.59,
+        0.42,
+        0.61,
+        0.72,
+        0.44,
+        0.16,
+        0.15,
+        0.3,
+        0.49,
+        0.71,
+        0.9,
+        0.87,
+        0.73,
+        0.68,
+        0.52,
+        0.36,
+        0.57,
+        0.83,
+        0.71,
+        0.37,
+        0.12,
+        0.07,
+        0.08,
+        0.15,
+        0.34,
+        0.54,
+        0.72,
+        0.8,
+        0.76,
+        0.67,
+        0.57,
+        0.38,
+        0.17,
+        0.08,
+        0.05,
+        0.01,
+        0.04,
+        0.17,
+        0.31,
+        0.5,
+        0.76,
+        0.95,
+        1.0,
+        0.9,
+        0.61,
+        0.3,
+        0.15,
+        0.1,
+        0.15,
+        0.36,
+        0.65,
+        0.86,
+        0.87,
+        0.68,
+        0.44,
+        0.41,
+        0.69,
+        0.89,
+        0.79,
+        0.61,
+        0.49,
+        0.3,
+        0.2,
+        0.36,
+        0.68,
+        0.91,
+        0.89,
+        0.67,
+        0.48,
+        0.56,
+        0.71,
+        0.6,
+        0.29,
+        0.07,
+        0.14,
+        0.49,
+        0.8,
+        0.94,
+        0.89,
+        0.72,
+        0.48,
+        0.23,
+        0.13,
+        0.11,
+        0.1,
+        0.27,
+        0.61,
+        0.75,
+        0.59,
+        0.41,
+        0.32,
+        0.44,
+        0.61,
+        0.54,
+        0.6,
+        0.82,
+        0.82,
+        0.64,
+        0.56,
+        0.55,
+        0.56,
+        0.67,
+        0.65,
+        0.42,
+        0.35,
+        0.49,
+        0.65,
+        0.82,
+        0.95,
+        0.95,
+        0.92,
+        0.86,
+        0.75,
+        0.63,
+        0.59,
+        0.57,
+        0.39,
+        0.12
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          2,
+          "A"
+        ],
+        [
+          6,
+          "C"
+        ],
+        [
+          11,
+          "X"
+        ],
+        [
+          22,
+          "A"
+        ],
+        [
+          24,
+          "D"
+        ],
+        [
+          27,
+          "B"
+        ],
+        [
+          29,
+          "A"
+        ],
+        [
+          32,
+          "C"
+        ],
+        [
+          39,
+          "X"
+        ],
+        [
+          44,
+          "C"
+        ],
+        [
+          47,
+          "G"
+        ],
+        [
+          50,
+          "C"
+        ],
+        [
+          53,
+          "B"
+        ],
+        [
+          60,
+          "X"
+        ],
+        [
+          62,
+          "D"
+        ],
+        [
+          65,
+          "C"
+        ],
+        [
+          67,
+          "B"
+        ],
+        [
+          72,
+          "X"
+        ],
+        [
+          74,
+          "E"
+        ],
+        [
+          77,
+          "C"
+        ],
+        [
+          81,
+          "X"
+        ],
+        [
+          83,
+          "B"
+        ],
+        [
+          87,
+          "E"
+        ],
+        [
+          89,
+          "C"
+        ],
+        [
+          91,
+          "X"
+        ],
+        [
+          94,
+          "D"
+        ],
+        [
+          96,
+          "B"
+        ],
+        [
+          99,
+          "C"
+        ],
+        [
+          102,
+          "X"
+        ],
+        [
+          104,
+          "B"
+        ],
+        [
+          106,
+          "E"
+        ],
+        [
+          109,
+          "B"
+        ],
+        [
+          111,
+          "C"
+        ],
+        [
+          113,
+          "B"
+        ],
+        [
+          115,
+          "E"
+        ],
+        [
+          117,
+          "X"
+        ],
+        [
+          120,
+          "B"
+        ],
+        [
+          125,
+          "X"
+        ],
+        [
+          127,
+          "B"
+        ],
+        [
+          130,
+          "A"
+        ],
+        [
+          133,
+          "B"
+        ],
+        [
+          143,
+          "X"
+        ],
+        [
+          146,
+          "B"
+        ],
+        [
+          148,
+          "D"
+        ],
+        [
+          150,
+          "B"
+        ],
+        [
+          153,
+          "X"
+        ],
+        [
+          156,
+          "B"
+        ],
+        [
+          158,
+          "E"
+        ],
+        [
+          161,
+          "B"
+        ],
+        [
+          165,
+          "X"
+        ],
+        [
+          167,
+          "C"
+        ],
+        [
+          172,
+          "A"
+        ],
+        [
+          176,
+          "C"
+        ],
+        [
+          182,
+          "X"
+        ],
+        [
+          184,
+          "B"
+        ],
+        [
+          189,
+          "G"
+        ],
+        [
+          191,
+          "B"
+        ],
+        [
+          193,
+          "A"
+        ],
+        [
+          196,
+          "X"
+        ],
+        [
+          198,
+          "C"
+        ],
+        [
+          202,
+          "A"
+        ],
+        [
+          204,
+          "X"
+        ],
+        [
+          206,
+          "C"
+        ],
+        [
+          210,
+          "B"
+        ],
+        [
+          214,
+          "F"
+        ],
+        [
+          219,
+          "X"
+        ],
+        [
+          222,
+          "A"
+        ],
+        [
+          224,
+          "B"
+        ],
+        [
+          227,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 3.412,
+          "w": [
+            0,
+            8
+          ],
+          "text": "Number 2: magpie. Every agent's model in one place:",
+          "focus": "magpie",
+          "layout": "repoCard",
+          "layoutReason": {
+            "score": 4.65,
+            "parts": {
+              "relevance": 1.0,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.5,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": null
+          },
+          "anchor": "right",
+          "transition": "push",
+          "punch": false,
+          "character": {
+            "state": "presenting",
+            "scale": "medium",
+            "anchor": "home",
+            "point": "right"
+          },
+          "direction": {
+            "transition": "next numbered item slides in: list progression",
+            "character": "introduces the repository it is next to",
+            "layout": "repository"
+          }
+        },
+        {
+          "s": 3.412,
+          "e": 6.05,
+          "w": [
+            9,
+            15
+          ],
+          "text": "Codex on DeepSeek, Claude Code on Kimi,",
+          "focus": "DeepSeek",
+          "layout": "readmeScroll",
+          "layoutReason": {
+            "score": 3.64,
+            "parts": {
+              "relevance": 0.56,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": "heroWord"
+          },
+          "anchor": "left",
+          "transition": "expand",
+          "punch": false,
+          "character": {
+            "state": "speaking",
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
+          },
+          "direction": {
+            "transition": "the repo card expands into its own demonstration (same object continues)",
+            "character": "dense demonstration: small companion",
+            "layout": "repository"
+          }
+        },
+        {
+          "s": 6.05,
+          "e": 8.133,
+          "w": [
+            16,
+            20
+          ],
+          "text": "right from the menu bar.",
+          "focus": "menu bar",
+          "layout": "heroWord",
+          "layoutReason": {
+            "score": 3.52,
+            "parts": {
+              "relevance": 0.53,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": "quote"
+          },
+          "anchor": "right",
+          "transition": "focus",
+          "punch": true,
+          "character": {
+            "state": "speaking",
+            "scale": "medium",
+            "anchor": "home"
+          },
+          "direction": {
+            "transition": "camera focuses into a detail of the same idea",
+            "character": "explanation beat: medium presenter",
+            "layout": "repository"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 337,
+      "id": "scene_003",
+      "role": "item",
+      "intent": "repository",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c2"
+      ]
+    },
+    {
+      "heading": "Product videos from your agent",
+      "narration": "Number 3: video-shotcraft. An AI video skill for Claude Code and Codex that makes cinematic product videos with Remotion.",
+      "caption": "Number 3: video-shotcraft. An AI video skill for Claude Code and Codex that makes cinematic product videos with Remotion.",
+      "points": [
+        "Remotion",
+        "Agent skill",
+        "AI video"
+      ],
+      "visual": "repo",
+      "item": 3,
+      "label": "video-shotcraft",
+      "emphasis": "cinematic",
+      "stat": "",
+      "audio": "jobs/84118f87ae29/scene-3.wav",
+      "frames": 244,
+      "audioFrames": 228,
+      "uiAudio": "jobs/84118f87ae29/scene-3-ui.wav",
+      "words": [
+        {
+          "w": "Number",
+          "s": 0.0,
+          "e": 0.36
+        },
+        {
+          "w": "3:",
+          "s": 0.36,
+          "e": 0.685
+        },
+        {
+          "w": "video-shotcraft.",
+          "s": 0.79,
+          "e": 1.777
+        },
+        {
+          "w": "An",
+          "s": 2.043,
+          "e": 2.239
+        },
+        {
+          "w": "AI",
+          "s": 2.273,
+          "e": 2.452
+        },
+        {
+          "w": "video",
+          "s": 2.463,
+          "e": 2.861
+        },
+        {
+          "w": "skill",
+          "s": 2.993,
+          "e": 3.091
+        },
+        {
+          "w": "for",
+          "s": 3.173,
+          "e": 3.233
+        },
+        {
+          "w": "Claude",
+          "s": 3.233,
+          "e": 3.517
+        },
+        {
+          "w": "Code",
+          "s": 3.553,
+          "e": 3.73
+        },
+        {
+          "w": "and",
+          "s": 3.863,
+          "e": 3.923
+        },
+        {
+          "w": "Codex",
+          "s": 3.923,
+          "e": 4.352
+        },
+        {
+          "w": "that",
+          "s": 4.423,
+          "e": 4.543
+        },
+        {
+          "w": "makes",
+          "s": 4.543,
+          "e": 4.991
+        },
+        {
+          "w": "cinematic",
+          "s": 5.053,
+          "e": 5.793
+        },
+        {
+          "w": "product",
+          "s": 5.793,
+          "e": 6.183
+        },
+        {
+          "w": "videos",
+          "s": 6.183,
+          "e": 6.695
+        },
+        {
+          "w": "with",
+          "s": 6.773,
+          "e": 6.926
+        },
+        {
+          "w": "Remotion.",
+          "s": 6.943,
+          "e": 7.531
+        }
+      ],
+      "mouth": [
+        0.49,
+        0.73,
+        0.82,
+        0.7,
+        0.52,
+        0.51,
+        0.53,
+        0.55,
+        0.65,
+        0.66,
+        0.42,
+        0.16,
+        0.2,
+        0.49,
+        0.77,
+        0.89,
+        0.89,
+        0.82,
+        0.73,
+        0.59,
+        0.36,
+        0.1,
+        0.0,
+        0.07,
+        0.22,
+        0.49,
+        0.84,
+        0.91,
+        0.62,
+        0.5,
+        0.66,
+        0.75,
+        0.79,
+        0.69,
+        0.49,
+        0.5,
+        0.62,
+        0.74,
+        0.86,
+        0.85,
+        0.68,
+        0.39,
+        0.17,
+        0.13,
+        0.11,
+        0.13,
+        0.21,
+        0.37,
+        0.58,
+        0.62,
+        0.44,
+        0.2,
+        0.1,
+        0.12,
+        0.13,
+        0.08,
+        0.02,
+        0.0,
+        0.0,
+        0.0,
+        0.14,
+        0.47,
+        0.6,
+        0.54,
+        0.61,
+        0.72,
+        0.73,
+        0.52,
+        0.28,
+        0.37,
+        0.69,
+        0.91,
+        0.81,
+        0.56,
+        0.59,
+        0.77,
+        0.81,
+        0.77,
+        0.59,
+        0.36,
+        0.27,
+        0.27,
+        0.34,
+        0.57,
+        0.87,
+        0.95,
+        0.83,
+        0.7,
+        0.56,
+        0.34,
+        0.18,
+        0.38,
+        0.76,
+        0.82,
+        0.53,
+        0.22,
+        0.17,
+        0.3,
+        0.48,
+        0.75,
+        0.95,
+        0.99,
+        0.9,
+        0.61,
+        0.3,
+        0.15,
+        0.12,
+        0.19,
+        0.4,
+        0.69,
+        0.86,
+        0.88,
+        0.81,
+        0.61,
+        0.37,
+        0.21,
+        0.11,
+        0.03,
+        0.0,
+        0.19,
+        0.55,
+        0.63,
+        0.5,
+        0.48,
+        0.38,
+        0.16,
+        0.1,
+        0.27,
+        0.53,
+        0.78,
+        0.86,
+        0.73,
+        0.5,
+        0.45,
+        0.65,
+        0.63,
+        0.32,
+        0.15,
+        0.2,
+        0.37,
+        0.43,
+        0.33,
+        0.4,
+        0.6,
+        0.47,
+        0.19,
+        0.21,
+        0.4,
+        0.63,
+        0.8,
+        0.63,
+        0.32,
+        0.16,
+        0.18,
+        0.35,
+        0.44,
+        0.4,
+        0.47,
+        0.68,
+        0.83,
+        0.67,
+        0.54,
+        0.61,
+        0.64,
+        0.71,
+        0.8,
+        0.72,
+        0.49,
+        0.47,
+        0.75,
+        0.66,
+        0.23,
+        0.08,
+        0.06,
+        0.08,
+        0.23,
+        0.51,
+        0.82,
+        0.97,
+        0.89,
+        0.62,
+        0.42,
+        0.57,
+        0.64,
+        0.36,
+        0.14,
+        0.07,
+        0.06,
+        0.1,
+        0.17,
+        0.2,
+        0.38,
+        0.73,
+        0.94,
+        0.78,
+        0.5,
+        0.56,
+        0.75,
+        0.8,
+        0.76,
+        0.57,
+        0.32,
+        0.22,
+        0.34,
+        0.66,
+        0.87,
+        0.7,
+        0.44,
+        0.52,
+        0.81,
+        0.9,
+        0.72,
+        0.51,
+        0.54,
+        0.74,
+        0.86,
+        0.84,
+        0.72,
+        0.55,
+        0.43,
+        0.45,
+        0.57,
+        0.64,
+        0.66,
+        0.59,
+        0.5,
+        0.34,
+        0.11
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          2,
+          "A"
+        ],
+        [
+          6,
+          "C"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          11,
+          "X"
+        ],
+        [
+          22,
+          "G"
+        ],
+        [
+          24,
+          "C"
+        ],
+        [
+          27,
+          "B"
+        ],
+        [
+          29,
+          "C"
+        ],
+        [
+          31,
+          "E"
+        ],
+        [
+          34,
+          "B"
+        ],
+        [
+          36,
+          "E"
+        ],
+        [
+          38,
+          "B"
+        ],
+        [
+          45,
+          "D"
+        ],
+        [
+          47,
+          "G"
+        ],
+        [
+          50,
+          "B"
+        ],
+        [
+          53,
+          "X"
+        ],
+        [
+          60,
+          "D"
+        ],
+        [
+          63,
+          "B"
+        ],
+        [
+          67,
+          "D"
+        ],
+        [
+          69,
+          "C"
+        ],
+        [
+          72,
+          "G"
+        ],
+        [
+          74,
+          "X"
+        ],
+        [
+          77,
+          "B"
+        ],
+        [
+          80,
+          "C"
+        ],
+        [
+          82,
+          "E"
+        ],
+        [
+          86,
+          "X"
+        ],
+        [
+          88,
+          "B"
+        ],
+        [
+          90,
+          "H"
+        ],
+        [
+          93,
+          "X"
+        ],
+        [
+          95,
+          "B"
+        ],
+        [
+          97,
+          "H"
+        ],
+        [
+          100,
+          "F"
+        ],
+        [
+          103,
+          "C"
+        ],
+        [
+          105,
+          "B"
+        ],
+        [
+          109,
+          "C"
+        ],
+        [
+          112,
+          "X"
+        ],
+        [
+          114,
+          "D"
+        ],
+        [
+          116,
+          "B"
+        ],
+        [
+          118,
+          "X"
+        ],
+        [
+          121,
+          "B"
+        ],
+        [
+          124,
+          "C"
+        ],
+        [
+          126,
+          "B"
+        ],
+        [
+          131,
+          "X"
+        ],
+        [
+          134,
+          "B"
+        ],
+        [
+          136,
+          "X"
+        ],
+        [
+          140,
+          "B"
+        ],
+        [
+          143,
+          "C"
+        ],
+        [
+          146,
+          "B"
+        ],
+        [
+          150,
+          "X"
+        ],
+        [
+          153,
+          "C"
+        ],
+        [
+          155,
+          "B"
+        ],
+        [
+          157,
+          "C"
+        ],
+        [
+          160,
+          "A"
+        ],
+        [
+          162,
+          "D"
+        ],
+        [
+          165,
+          "B"
+        ],
+        [
+          167,
+          "C"
+        ],
+        [
+          170,
+          "B"
+        ],
+        [
+          172,
+          "A"
+        ],
+        [
+          174,
+          "X"
+        ],
+        [
+          176,
+          "E"
+        ],
+        [
+          179,
+          "F"
+        ],
+        [
+          181,
+          "B"
+        ],
+        [
+          184,
+          "G"
+        ],
+        [
+          187,
+          "C"
+        ],
+        [
+          189,
+          "B"
+        ],
+        [
+          192,
+          "C"
+        ],
+        [
+          194,
+          "E"
+        ],
+        [
+          197,
+          "B"
+        ],
+        [
+          201,
+          "X"
+        ],
+        [
+          203,
+          "C"
+        ],
+        [
+          205,
+          "H"
+        ],
+        [
+          207,
+          "B"
+        ],
+        [
+          209,
+          "C"
+        ],
+        [
+          211,
+          "A"
+        ],
+        [
+          213,
+          "E"
+        ],
+        [
+          216,
+          "B"
+        ],
+        [
+          218,
+          "C"
+        ],
+        [
+          220,
+          "E"
+        ],
+        [
+          222,
+          "B"
+        ],
+        [
+          226,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 5.793,
+          "w": [
+            0,
+            14
+          ],
+          "text": "Number 3: video-shotcraft. An AI video skill for Claude Code and Codex that makes cinematic",
+          "focus": "cinematic",
+          "layout": "repoCard",
+          "layoutReason": {
+            "score": 4.05,
+            "parts": {
+              "relevance": 1.0,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.9,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": null
+          },
+          "anchor": "right",
+          "transition": "push",
+          "punch": true,
+          "character": {
+            "state": "presenting",
+            "scale": "medium",
+            "anchor": "home",
+            "point": "right"
+          },
+          "direction": {
+            "transition": "next numbered item slides in: list progression",
+            "character": "introduces the repository it is next to",
+            "layout": "repository"
+          }
+        },
+        {
+          "s": 5.793,
+          "e": 8.133,
+          "w": [
+            15,
+            18
+          ],
+          "text": "product videos with Remotion.",
+          "focus": "Remotion",
+          "layout": "repoConnect",
+          "layoutReason": {
+            "score": 3.584,
+            "parts": {
+              "relevance": 0.546,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": "quote"
+          },
+          "anchor": "peek",
+          "transition": "expand",
+          "punch": false,
+          "character": {
+            "state": "explaining",
+            "scale": "companion",
+            "anchor": "home",
+            "point": "right",
+            "dim": 0.1
+          },
+          "direction": {
+            "transition": "the repo card expands into its own demonstration (same object continues)",
+            "character": "gestures toward the connection being drawn",
+            "layout": "repository"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 581,
+      "id": "scene_004",
+      "role": "item",
+      "intent": "repository",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c3"
+      ]
+    },
+    {
+      "heading": "Plain English to Android",
+      "narration": "Number 4: artemis. It turns natural-language instructions into reliable Android automation.",
+      "caption": "Number 4: artemis. It turns natural-language instructions into reliable Android automation.",
+      "points": [
+        "Android",
+        "Plain English",
+        "Automation"
+      ],
+      "visual": "repo",
+      "item": 4,
+      "label": "artemis",
+      "emphasis": "Android",
+      "stat": "",
+      "audio": "jobs/84118f87ae29/scene-4.wav",
+      "frames": 182,
+      "audioFrames": 166,
+      "uiAudio": "jobs/84118f87ae29/scene-4-ui.wav",
+      "words": [
+        {
+          "w": "Number",
+          "s": 0.0,
+          "e": 0.36
+        },
+        {
+          "w": "4:",
+          "s": 0.36,
+          "e": 0.738
+        },
+        {
+          "w": "artemis.",
+          "s": 0.845,
+          "e": 1.361
+        },
+        {
+          "w": "It",
+          "s": 1.586,
+          "e": 1.656
+        },
+        {
+          "w": "turns",
+          "s": 1.656,
+          "e": 1.945
+        },
+        {
+          "w": "natural-language",
+          "s": 2.066,
+          "e": 2.821
+        },
+        {
+          "w": "instructions",
+          "s": 2.826,
+          "e": 3.376
+        },
+        {
+          "w": "into",
+          "s": 3.376,
+          "e": 3.802
+        },
+        {
+          "w": "reliable",
+          "s": 3.856,
+          "e": 4.306
+        },
+        {
+          "w": "Android",
+          "s": 4.306,
+          "e": 4.646
+        },
+        {
+          "w": "automation.",
+          "s": 4.646,
+          "e": 5.456
+        }
+      ],
+      "mouth": [
+        0.51,
+        0.76,
+        0.85,
+        0.73,
+        0.55,
+        0.54,
+        0.55,
+        0.57,
+        0.68,
+        0.68,
+        0.42,
+        0.17,
+        0.25,
+        0.6,
+        0.89,
+        0.95,
+        0.92,
+        0.86,
+        0.77,
+        0.67,
+        0.61,
+        0.55,
+        0.34,
+        0.09,
+        0.15,
+        0.54,
+        0.88,
+        0.92,
+        0.78,
+        0.65,
+        0.55,
+        0.37,
+        0.33,
+        0.55,
+        0.61,
+        0.59,
+        0.78,
+        0.73,
+        0.41,
+        0.25,
+        0.23,
+        0.15,
+        0.04,
+        0.0,
+        0.0,
+        0.0,
+        0.11,
+        0.48,
+        0.72,
+        0.47,
+        0.17,
+        0.13,
+        0.11,
+        0.13,
+        0.39,
+        0.76,
+        0.9,
+        0.8,
+        0.71,
+        0.72,
+        0.68,
+        0.52,
+        0.37,
+        0.35,
+        0.51,
+        0.71,
+        0.81,
+        0.75,
+        0.52,
+        0.32,
+        0.42,
+        0.6,
+        0.68,
+        0.73,
+        0.79,
+        0.75,
+        0.63,
+        0.69,
+        0.85,
+        0.81,
+        0.66,
+        0.59,
+        0.58,
+        0.48,
+        0.41,
+        0.56,
+        0.8,
+        0.86,
+        0.64,
+        0.55,
+        0.78,
+        0.81,
+        0.57,
+        0.4,
+        0.3,
+        0.25,
+        0.29,
+        0.42,
+        0.71,
+        0.83,
+        0.58,
+        0.23,
+        0.12,
+        0.23,
+        0.44,
+        0.59,
+        0.69,
+        0.7,
+        0.58,
+        0.49,
+        0.5,
+        0.67,
+        0.84,
+        0.75,
+        0.54,
+        0.32,
+        0.21,
+        0.41,
+        0.61,
+        0.57,
+        0.65,
+        0.7,
+        0.61,
+        0.75,
+        0.93,
+        0.89,
+        0.77,
+        0.71,
+        0.59,
+        0.44,
+        0.62,
+        0.83,
+        0.77,
+        0.76,
+        0.83,
+        0.71,
+        0.59,
+        0.62,
+        0.6,
+        0.52,
+        0.65,
+        0.83,
+        0.77,
+        0.54,
+        0.39,
+        0.54,
+        0.86,
+        0.83,
+        0.53,
+        0.51,
+        0.6,
+        0.53,
+        0.64,
+        0.84,
+        0.84,
+        0.74,
+        0.6,
+        0.48,
+        0.48,
+        0.57,
+        0.65,
+        0.68,
+        0.63,
+        0.52,
+        0.35,
+        0.11
+      ],
+      "visemes": [
+        [
+          0,
+          "B"
+        ],
+        [
+          2,
+          "A"
+        ],
+        [
+          6,
+          "C"
+        ],
+        [
+          8,
+          "B"
+        ],
+        [
+          11,
+          "X"
+        ],
+        [
+          24,
+          "D"
+        ],
+        [
+          26,
+          "B"
+        ],
+        [
+          30,
+          "C"
+        ],
+        [
+          33,
+          "A"
+        ],
+        [
+          35,
+          "C"
+        ],
+        [
+          37,
+          "B"
+        ],
+        [
+          41,
+          "X"
+        ],
+        [
+          46,
+          "C"
+        ],
+        [
+          48,
+          "B"
+        ],
+        [
+          50,
+          "X"
+        ],
+        [
+          52,
+          "B"
+        ],
+        [
+          58,
+          "X"
+        ],
+        [
+          60,
+          "B"
+        ],
+        [
+          62,
+          "D"
+        ],
+        [
+          64,
+          "B"
+        ],
+        [
+          68,
+          "D"
+        ],
+        [
+          70,
+          "H"
+        ],
+        [
+          73,
+          "D"
+        ],
+        [
+          76,
+          "B"
+        ],
+        [
+          79,
+          "D"
+        ],
+        [
+          82,
+          "C"
+        ],
+        [
+          85,
+          "X"
+        ],
+        [
+          87,
+          "B"
+        ],
+        [
+          90,
+          "F"
+        ],
+        [
+          92,
+          "B"
+        ],
+        [
+          94,
+          "C"
+        ],
+        [
+          96,
+          "E"
+        ],
+        [
+          98,
+          "B"
+        ],
+        [
+          100,
+          "C"
+        ],
+        [
+          103,
+          "B"
+        ],
+        [
+          109,
+          "E"
+        ],
+        [
+          114,
+          "X"
+        ],
+        [
+          116,
+          "C"
+        ],
+        [
+          118,
+          "H"
+        ],
+        [
+          121,
+          "D"
+        ],
+        [
+          123,
+          "A"
+        ],
+        [
+          126,
+          "C"
+        ],
+        [
+          128,
+          "D"
+        ],
+        [
+          131,
+          "B"
+        ],
+        [
+          134,
+          "E"
+        ],
+        [
+          136,
+          "B"
+        ],
+        [
+          138,
+          "D"
+        ],
+        [
+          140,
+          "F"
+        ],
+        [
+          143,
+          "B"
+        ],
+        [
+          145,
+          "E"
+        ],
+        [
+          148,
+          "A"
+        ],
+        [
+          150,
+          "D"
+        ],
+        [
+          152,
+          "B"
+        ],
+        [
+          155,
+          "C"
+        ],
+        [
+          157,
+          "E"
+        ],
+        [
+          160,
+          "B"
+        ],
+        [
+          164,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 6.067,
+          "w": [
+            0,
+            10
+          ],
+          "text": "Number 4: artemis. It turns natural-language instructions into reliable Android automation.",
+          "focus": "Android",
+          "layout": "repoCard",
+          "layoutReason": {
+            "score": 3.45,
+            "parts": {
+              "relevance": 1.0,
+              "narrative": 0.5,
+              "readability": 1.0,
+              "recent": 1.3,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "repository",
+            "runner_up": null
+          },
+          "anchor": "right",
+          "transition": "push",
+          "punch": true,
+          "character": {
+            "state": "presenting",
+            "scale": "medium",
+            "anchor": "home",
+            "point": "right"
+          },
+          "direction": {
+            "transition": "next numbered item slides in: list progression",
+            "character": "introduces the repository it is next to",
+            "layout": "repository"
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 825,
+      "id": "scene_005",
+      "role": "item",
+      "intent": "repository",
+      "pace": "demonstration",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "slide",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "",
+      "avoidLayouts": [],
+      "cta": null,
+      "character_action": "",
+      "motionClip": false,
+      "character": true,
+      "claimIds": [
+        "c4"
+      ]
+    },
+    {
+      "heading": "Comment LINK",
+      "narration": "Want all 4 repos? Comment LINK for the list.",
+      "caption": "Want all 4 repos? Comment LINK for the list.",
+      "points": [],
+      "visual": "outro",
+      "item": 0,
+      "label": "",
+      "emphasis": "LINK",
+      "stat": "",
+      "audio": "jobs/84118f87ae29/scene-5.wav",
+      "frames": 101,
+      "audioFrames": 84,
+      "uiAudio": "jobs/84118f87ae29/scene-5-ui.wav",
+      "words": [
+        {
+          "w": "Want",
+          "s": 0.0,
+          "e": 0.234
+        },
+        {
+          "w": "all",
+          "s": 0.25,
+          "e": 0.489
+        },
+        {
+          "w": "4",
+          "s": 0.54,
+          "e": 0.744
+        },
+        {
+          "w": "repos?",
+          "s": 0.8,
+          "e": 1.233
+        },
+        {
+          "w": "Comment",
+          "s": 1.454,
+          "e": 1.784
+        },
+        {
+          "w": "LINK",
+          "s": 1.784,
+          "e": 2.084
+        },
+        {
+          "w": "for",
+          "s": 2.084,
+          "e": 2.33
+        },
+        {
+          "w": "the",
+          "s": 2.414,
+          "e": 2.553
+        },
+        {
+          "w": "list.",
+          "s": 2.644,
+          "e": 2.777
+        }
+      ],
+      "mouth": [
+        0.41,
+        0.7,
+        0.91,
+        0.93,
+        0.77,
+        0.62,
+        0.53,
+        0.34,
+        0.17,
+        0.32,
+        0.68,
+        0.93,
+        0.94,
+        0.81,
+        0.68,
+        0.51,
+        0.29,
+        0.16,
+        0.36,
+        0.79,
+        0.91,
+        0.73,
+        0.58,
+        0.56,
+        0.64,
+        0.77,
+        0.82,
+        0.67,
+        0.45,
+        0.27,
+        0.21,
+        0.38,
+        0.63,
+        0.65,
+        0.46,
+        0.29,
+        0.2,
+        0.11,
+        0.02,
+        0.0,
+        0.0,
+        0.0,
+        0.02,
+        0.13,
+        0.37,
+        0.7,
+        0.89,
+        0.81,
+        0.6,
+        0.57,
+        0.67,
+        0.59,
+        0.44,
+        0.26,
+        0.13,
+        0.21,
+        0.5,
+        0.84,
+        0.89,
+        0.69,
+        0.54,
+        0.42,
+        0.25,
+        0.12,
+        0.07,
+        0.07,
+        0.19,
+        0.43,
+        0.54,
+        0.4,
+        0.38,
+        0.49,
+        0.47,
+        0.49,
+        0.71,
+        0.92,
+        0.95,
+        0.8,
+        0.55,
+        0.35,
+        0.26,
+        0.2,
+        0.15,
+        0.08
+      ],
+      "visemes": [
+        [
+          0,
+          "F"
+        ],
+        [
+          2,
+          "B"
+        ],
+        [
+          6,
+          "D"
+        ],
+        [
+          8,
+          "H"
+        ],
+        [
+          15,
+          "X"
+        ],
+        [
+          22,
+          "B"
+        ],
+        [
+          25,
+          "C"
+        ],
+        [
+          28,
+          "A"
+        ],
+        [
+          30,
+          "E"
+        ],
+        [
+          33,
+          "B"
+        ],
+        [
+          37,
+          "X"
+        ],
+        [
+          42,
+          "B"
+        ],
+        [
+          44,
+          "E"
+        ],
+        [
+          46,
+          "A"
+        ],
+        [
+          48,
+          "C"
+        ],
+        [
+          51,
+          "B"
+        ],
+        [
+          54,
+          "X"
+        ],
+        [
+          57,
+          "B"
+        ],
+        [
+          61,
+          "G"
+        ],
+        [
+          63,
+          "X"
+        ],
+        [
+          66,
+          "B"
+        ],
+        [
+          70,
+          "X"
+        ],
+        [
+          73,
+          "C"
+        ],
+        [
+          77,
+          "X"
+        ],
+        [
+          79,
+          "C"
+        ],
+        [
+          81,
+          "B"
+        ],
+        [
+          83,
+          "X"
+        ]
+      ],
+      "beats": [
+        {
+          "s": 0.0,
+          "e": 2.367,
+          "w": [
+            0,
+            7
+          ],
+          "text": "Want all 4 repos? Comment LINK for the",
+          "focus": "LINK",
+          "layout": "outroCTA",
+          "layoutReason": {
+            "score": 6.6,
+            "parts": {
+              "relevance": 1.2,
+              "narrative": 1.0,
+              "readability": 1.0,
+              "recent": 0.0,
+              "discontinuity": 0.0,
+              "cost": 0.0,
+              "complexity": 0.0,
+              "brand": 0.0
+            },
+            "intent": "recap",
+            "runner_up": "recap"
+          },
+          "anchor": "right",
+          "transition": "blurDissolve",
+          "punch": true,
+          "character": {
+            "state": "pointing",
+            "scale": "medium",
+            "anchor": "right",
+            "point": "left",
+            "wink": true
+          },
+          "direction": {
+            "transition": "unrelated objects: editorial blur dissolve",
+            "character": "signature CTA: points at the keyword and winks",
+            "layout": "recap"
+          }
+        },
+        {
+          "s": 2.367,
+          "e": 3.367,
+          "w": [
+            8,
+            8
+          ],
+          "text": "list.",
+          "focus": "list",
+          "layout": "loop",
+          "layoutReason": {
+            "rule": "final beat loops to the opening frame"
+          },
+          "anchor": "right",
+          "transition": "blurDissolve",
+          "punch": false,
+          "character": {
+            "state": "speaking",
+            "scale": "closeup",
+            "anchor": "centre"
+          },
+          "direction": {
+            "transition": "loop tail returns softly to the opening frame",
+            "character": "loop returns to the opening composition",
+            "layout": null
+          }
+        }
+      ],
+      "transitionFrames": 0,
+      "from": 1007,
+      "id": "scene_006",
+      "role": "outro",
+      "intent": "recap",
+      "pace": "pause",
+      "visualData": {
+        "code": [],
+        "code_language": "",
+        "steps": [],
+        "compare_left": [],
+        "compare_right": [],
+        "compare_titles": [],
+        "series_labels": [],
+        "series_values": [],
+        "timeline": [],
+        "nodes": [],
+        "url": "",
+        "prompt_before": [],
+        "prompt_after": []
+      },
+      "motion": {
+        "entrance": "reveal",
+        "emphasis": "highlight",
+        "connect": "none",
+        "exit": "cut",
+        "camera": "subtle_push",
+        "intensity": 1.0,
+        "stagger_frames": 4
+      },
+      "media": null,
+      "mediaSeconds": null,
+      "layoutHint": "outroCTA",
+      "avoidLayouts": [],
+      "cta": {
+        "keyword": "LINK",
+        "secondary": "Get all 4 GitHub repos",
+        "fulfillment": "manual: resources prepared in resources/, send dm_message.txt by hand"
+      },
+      "character_action": "pointing",
+      "motionClip": false,
+      "character": true,
+      "claimIds": []
+    }
+  ],
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 1108,
+  "schemaVersion": "2.0",
+  "theme": "fieldnotes-premium",
+  "characterMode": "on"
+}
