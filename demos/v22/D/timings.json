@@ -1,8 +1,8 @@
 {
-  "creative_direction": 0.0,
+  "creative_direction": 0.01,
   "cinematic_generation_wait": 0.0,
-  "narration": 11.7,
-  "render": 139.36,
-  "qa": 31.02,
-  "total_wall_clock": 182.1
+  "narration": 11.38,
+  "render": 119.53,
+  "qa": 33.01,
+  "total_wall_clock": 163.95
 }

@@ -5,8 +5,8 @@
    "kokoro": {
     "voice": "am_adam",
     "speed": 1.05,
-    "note": "Reference A's own engine and voice (am_adam, speed 1.05). Timbre and pitch are Kokoro's; the ONNX path adds sentence_pause_s between sentences.",
-    "sentence_pause_s": 0.24
+    "note": "Reference A's own engine and voice (am_adam, speed 1.05). Timbre and pitch are Kokoro's; the ONNX path adds sentence_pause_s between sentences (calibrated so comma-heavy and sentence-heavy scripts both land near the reference median pause).",
+    "sentence_pause_s": 0.16
    },
    "espeak": {
     "variant": "en-us+m3",

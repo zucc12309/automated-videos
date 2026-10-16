@@ -8,23 +8,23 @@
     "reveal_scene": null
   },
   "repos": [],
-  "music": "jobs/4fb61e565db9/music.wav",
+  "music": "jobs/72b13ce5dd8b/music.wav",
   "variant": {
     "seed": "v22-D",
     "palette": "",
-    "background": "grid",
+    "background": "flat",
     "temperament": "editorial",
-    "captions": "editorial",
+    "captions": "pill",
     "transitions": [
       "cut",
       "push",
       "mask"
     ],
-    "outfit": "#c2410c",
+    "outfit": "#0f766e",
     "hair": "#7c4a2d",
     "music": {
-      "progression": 3,
-      "bpm": 84
+      "progression": 2,
+      "bpm": 100
     },
     "camera": 1.0,
     "theme": "fieldnotes-premium",
@@ -41,10 +41,10 @@
       "label": "",
       "emphasis": "conversation",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-0.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-0.wav",
       "frames": 72,
       "audioFrames": 60,
-      "uiAudio": "jobs/4fb61e565db9/scene-0-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-0-ui.wav",
       "words": [
         {
           "w": "Coding",
@@ -292,7 +292,7 @@
         "intensity": 1.0,
         "stagger_frames": 4
       },
-      "media": "jobs/4fb61e565db9/cinematic/scene_001.mp4",
+      "media": "jobs/72b13ce5dd8b/cinematic/scene_001.mp4",
       "mediaSeconds": 4.0,
       "layoutHint": "hookBold",
       "avoidLayouts": [],
@@ -316,10 +316,10 @@
       "label": "",
       "emphasis": "agent",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-1.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-1.wav",
       "frames": 155,
       "audioFrames": 136,
-      "uiAudio": "jobs/4fb61e565db9/scene-1-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-1-ui.wav",
       "words": [
         {
           "w": "You",
@@ -820,10 +820,10 @@
       "label": "",
       "emphasis": "review",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-2.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-2.wav",
       "frames": 135,
       "audioFrames": 117,
-      "uiAudio": "jobs/4fb61e565db9/scene-2-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-2-ui.wav",
       "words": [
         {
           "w": "Your",
@@ -1255,10 +1255,10 @@
       "label": "",
       "emphasis": "judgment",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-3.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-3.wav",
       "frames": 117,
       "audioFrames": 105,
-      "uiAudio": "jobs/4fb61e565db9/scene-3-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-3-ui.wav",
       "words": [
         {
           "w": "Teams",
@@ -1636,7 +1636,7 @@
         "intensity": 1.0,
         "stagger_frames": 4
       },
-      "media": "jobs/4fb61e565db9/cinematic/scene_004.mp4",
+      "media": "jobs/72b13ce5dd8b/cinematic/scene_004.mp4",
       "mediaSeconds": 4.0,
       "layoutHint": "cinematic",
       "avoidLayouts": [],
@@ -1656,10 +1656,10 @@
       "label": "",
       "emphasis": "thinking",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-4.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-4.wav",
       "frames": 109,
       "audioFrames": 97,
-      "uiAudio": "jobs/4fb61e565db9/scene-4-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-4-ui.wav",
       "words": [
         {
           "w": "Typing",
@@ -2039,10 +2039,10 @@
       "label": "The catch",
       "emphasis": "tests",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-5.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-5.wav",
       "frames": 111,
       "audioFrames": 99,
-      "uiAudio": "jobs/4fb61e565db9/scene-5-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-5-ui.wav",
       "words": [
         {
           "w": "The",
@@ -2451,10 +2451,10 @@
       "label": "",
       "emphasis": "GUIDE",
       "stat": "",
-      "audio": "jobs/4fb61e565db9/scene-6.wav",
+      "audio": "jobs/72b13ce5dd8b/scene-6.wav",
       "frames": 88,
       "audioFrames": 70,
-      "uiAudio": "jobs/4fb61e565db9/scene-6-ui.wav",
+      "uiAudio": "jobs/72b13ce5dd8b/scene-6-ui.wav",
       "words": [
         {
           "w": "Want",
