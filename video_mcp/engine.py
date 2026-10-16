@@ -17,7 +17,8 @@ from typing import Literal
 import httpx
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from . import audio as audio_fx, prompts, sources, variety
+from . import audio as audio_fx, prompts, security, settings as settings_mod, sources, variety
+from .orchestration import job_state
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -103,15 +104,20 @@ def job_path(job_id):
     return JOBS / job_id
 
 
+def _completed(status: dict) -> bool:
+    """A real finished video. Dry runs and failed/canceled jobs never mark a topic or repo as used."""
+    return status.get("state") == "completed" and not status.get("dry_run")
+
+
 def history_ids():
-    return {json.loads(p.read_text()).get("topic_id") for p in JOBS.glob("*/status.json") if json.loads(p.read_text()).get("state") == "completed"}
+    return {json.loads(p.read_text()).get("topic_id") for p in JOBS.glob("*/status.json") if _completed(json.loads(p.read_text()))}
 
 
 def used_repos():
     names = set()
     for path in JOBS.glob("*/status.json"):
         topic = path.parent / "topic.json"
-        if json.loads(path.read_text()).get("state") == "completed" and topic.exists():
+        if _completed(json.loads(path.read_text())) and topic.exists():
             names |= {r["full_name"] for r in json.loads(topic.read_text()).get("repos", [])}
     return names
 
@@ -256,7 +262,7 @@ def resolve_style(plan: Plan):
     if plan.style != "auto":
         return plan.style
     styles = config().get("styles") or ["paper"]
-    completed = sum(1 for p in JOBS.glob("*/status.json") if json.loads(p.read_text()).get("state") == "completed")
+    completed = sum(1 for p in JOBS.glob("*/status.json") if _completed(json.loads(p.read_text())))
     return styles[completed % len(styles)]
 
 
@@ -268,16 +274,44 @@ def update(job_id, **fields):
     return current
 
 
-def start_job(plan: Plan | None = None, topic_id: str | None = None, autopilot=False):
+def start_job(plan: Plan | None = None, topic_id: str | None = None, autopilot=False, *, mode: str | None = None,
+              storyboard: dict | None = None, topic: dict | None = None, dry_run: bool = False, approved_budget_usd: float = 0.0,
+              seed: str | None = None):
+    """Queue a background job. V1 callers pass plan/topic_id/autopilot exactly as before; V2 options are keyword-only."""
     ident = uuid.uuid4().hex[:12]
     folder = job_path(ident)
     folder.mkdir(parents=True)
-    save(folder / "request.json", {"plan": plan.model_dump() if plan else None, "topic_id": topic_id, "autopilot": autopilot})
-    update(ident, id=ident, state="queued", stage="waiting", created_at=time.time(), topic_id=topic_id)
-    with (folder / "worker.log").open("w") as log:
+    cfg = settings_mod.load(ROOT / "config.json")
+    request = {"plan": plan.model_dump() if plan else None, "topic_id": topic_id, "autopilot": autopilot,
+               "mode": mode or cfg.production.mode, "storyboard": storyboard, "topic": topic, "dry_run": dry_run,
+               "approved_budget_usd": max(0.0, float(approved_budget_usd or 0)), "seed": seed, "schema": 2}
+    save(folder / "request.json", request)
+    update(ident, id=ident, state="queued", stage="waiting", phase="CREATED", created_at=time.time(), topic_id=topic_id,
+           mode=request["mode"], dry_run=dry_run)
+    return {"id": ident, "state": "queued", "pid": spawn(ident), "mode": request["mode"], "dry_run": dry_run, "next": "Poll job_status with this ID"}
+
+
+def spawn(ident: str) -> int:
+    folder = job_path(ident)
+    with (folder / "worker.log").open("a") as log:
         process = subprocess.Popen([sys.executable, "-m", "video_mcp.engine", "worker", ident], cwd=ROOT,
-                                   stdout=log, stderr=log, start_new_session=True)
-    return {"id": ident, "state": "queued", "pid": process.pid, "next": "Poll job_status with this ID"}
+                                   stdout=log, stderr=log, start_new_session=True, env=security.child_env(keep_secrets=True))
+    update(ident, pid=process.pid)
+    return process.pid
+
+
+def resume_job(job_id: str) -> dict:
+    """Restart an interrupted, failed or approval-paused job from its checkpoints (completed stages are not redone)."""
+    current = status(job_id)
+    if current["state"] in ("queued", "running"):
+        return {"id": job_id, "resumed": False, "reason": "job is still active"}
+    if current["state"] == "completed":
+        return {"id": job_id, "resumed": False, "reason": "job already completed; use repair_video to change it"}
+    if current["state"] == "canceled":
+        return {"id": job_id, "resumed": False, "reason": "job was canceled"}
+    (job_path(job_id) / "CANCEL").unlink(missing_ok=True)
+    update(job_id, state="queued", stage="resuming", error=None, resumed_at=time.time())
+    return {"id": job_id, "resumed": True, "pid": spawn(job_id), "checkpoints": sorted(job_state.checkpoints(job_path(job_id)))}
 
 
 def status(job_id):
@@ -287,7 +321,8 @@ def status(job_id):
         try:
             os.kill(current["pid"], 0)
         except ProcessLookupError:
-            current = update(job_id, state="failed", error="Worker stopped unexpectedly; see worker.log")
+            current = update(job_id, state="failed", phase="FAILED", resumable=True,
+                             error="Worker stopped unexpectedly; see worker.log. resume_job continues from the last checkpoint.")
     return current
 
 
@@ -296,97 +331,9 @@ def run_command(args, timeout=1800):
 
 
 def produce(job_id, plan):
-    import numpy as np
-    import soundfile as sf
-    # Lazy import keeps the MCP handshake lightweight. Models load only in workers.
-    from kokoro import KPipeline
-    cfg = config()
-    folder = job_path(job_id)
-    public = ROOT / "public" / "jobs" / job_id
-    public.mkdir(parents=True, exist_ok=True)
-    save(folder / "plan.json", plan.model_dump())
-    update(job_id, stage="loading_local_voice")
-    pipe = KPipeline(lang_code=cfg["tts_language_code"], repo_id="hexgrad/Kokoro-82M", device="cpu")
-    scenes, cursor = [], 0
-    style = resolve_style(plan)
-    studio = style == "studio"
-    # Studio scenes butt-join (beats carry the transitions) and keep only a short breath after each line.
-    transition_frames = 0 if studio else max(1, round(cfg["fps"] * 0.4))
-    tail = 0.28 if studio else 0.45
-    for i, scene in enumerate(plan.scenes):
-        update(job_id, stage=f"narrating_scene_{i + 1}_of_{len(plan.scenes)}")
-        results = list(pipe(scene.narration, voice=cfg["voice"], speed=cfg.get("voice_speed", 1.0)))
-        if not results:
-            raise RuntimeError(f"No audio for scene {i + 1}")
-        audio = np.concatenate([result.audio.numpy() for result in results])
-        if not np.isfinite(audio).all() or np.max(np.abs(audio)) < 0.001:
-            raise RuntimeError("Speech synthesis returned invalid or silent audio")
-        raw_audio = public / f"scene-{i}-raw.wav"
-        audio_path = public / f"scene-{i}.wav"
-        sf.write(raw_audio, audio, 24000)
-        run_command([
-            "ffmpeg", "-v", "error", "-y", "-i", str(raw_audio),
-            "-af", "highpass=f=75,acompressor=threshold=-20dB:ratio=2.5:attack=5:release=80,loudnorm=I=-16:TP=-1.5:LRA=7",
-            "-ar", "24000", "-ac", "1", str(audio_path),
-        ])
-        raw_audio.unlink()
-        normalized, _ = sf.read(audio_path, dtype="float32")
-        scene.caption = scene.narration
-        length = math.ceil((len(audio) / 24000 + tail) * cfg["fps"])
-        ui_audio = public / f"scene-{i}-ui.wav"
-        words = audio_fx.word_timings(results)
-        if not studio:
-            audio_fx.scene_sfx(ui_audio, length / cfg["fps"], i, scene.visual, scene.item, bool(scene.stat))
-        scenes.append({**scene.model_dump(), "audio": f"jobs/{job_id}/scene-{i}.wav", "frames": length,
-                       "audioFrames": math.ceil((len(audio) / 24000) * cfg["fps"]),
-                       "uiAudio": f"jobs/{job_id}/scene-{i}-ui.wav", "words": words,
-                       "mouth": audio_fx.mouth_envelope(normalized, cfg["fps"]),
-                       "visemes": audio_fx.visemes(results, cfg["fps"]),
-                       "beats": variety.split_beats(words, length / cfg["fps"]), "_roundup": bool(plan.repos),
-                       "transitionFrames": transition_frames, "from": cursor})
-        cursor += length - (transition_frames if i < len(plan.scenes) - 1 else 0)
-    duration_in_frames = scenes[-1]["from"] + scenes[-1]["frames"]
-    variant = variety.choose_variant(job_id, DATA / "variety.json")
-    layouts = variety.plan_layouts(scenes, variant)
-    for i, scene in enumerate(scenes):
-        scene.pop("_roundup", None)
-        if studio:
-            audio_fx.beat_sfx(public / f"scene-{i}-ui.wav", scene["frames"] / cfg["fps"], scene["beats"], scene["words"], scene.get("emphasis", ""))
-    speech = [(s["from"] / cfg["fps"] + w["s"], s["from"] / cfg["fps"] + w["e"]) for s in scenes for w in s["words"]]
-    music = None
-    if cfg.get("music", True):
-        update(job_id, stage="scoring_music")
-        audio_fx.music_bed(public / "music-raw.wav", duration_in_frames / cfg["fps"], variant["music"]["bpm"],
-                           variant["music"]["progression"], speech)
-        run_command(["ffmpeg", "-v", "error", "-y", "-i", str(public / "music-raw.wav"), "-af", "loudnorm=I=-31:TP=-6",
-                     "-ar", "24000", str(public / "music.wav")])
-        (public / "music-raw.wav").unlink()
-        music = f"jobs/{job_id}/music.wav"
-    props = {"title": plan.title, "style": style, "brand": cfg.get("brand", "FIELDNOTES"), "series": plan.series,
-             "repos": [r.model_dump() for r in plan.repos], "music": music, "variant": variant, "scenes": scenes, "fps": cfg["fps"], "width": cfg["width"], "height": cfg["height"], "durationInFrames": duration_in_frames}
-    save(folder / "props.json", props)
-    update(job_id, stage="rendering", style=style, duration_seconds=duration_in_frames / cfg["fps"])
-    cli = ROOT / "node_modules" / ".bin" / "remotion"
-    run_command([str(cli), "render", "src/index.tsx", "Explainer", str(folder / "video.mp4"),
-                 f"--props={folder / 'props.json'}", "--codec=h264", "--concurrency=2", "--log=error"])
-    # Master the final mix to -14 LUFS / -1 dBTP (social-platform norm); the video stream is copied untouched.
-    run_command(["ffmpeg", "-v", "error", "-y", "-i", str(folder / "video.mp4"), "-c:v", "copy", "-af", "loudnorm=I=-14:TP=-1:LRA=9",
-                 "-ar", "48000", "-c:a", "aac", "-b:a", "192k", str(folder / "video-master.mp4")])
-    (folder / "video-master.mp4").replace(folder / "video.mp4")
-    variety.remember(variant, layouts, DATA / "variety.json")
-    run_command(["ffmpeg", "-v", "error", "-y", "-i", str(folder / "video.mp4"), "-frames:v", "1", str(folder / "poster.jpg")])
-    checks = check_video(folder / "video.mp4")
-    save(folder / "checks.json", checks)
-    if not checks["passed"]:
-        raise RuntimeError(f"Video validation failed: {checks}")
-    save(folder / "provenance.json", {"sources": plan.source_urls, "model": cfg["model"], "voice_model": "hexgrad/Kokoro-82M",
-         "voice": cfg["voice"], "caption_timing": "Kokoro per-word timestamps; mouth shapes from Kokoro phonemes",
-         "narration_language": "English (US)", "visual_style": style, "scene_transitions": "0.4-second style-specific transitions",
-         "variant": variant, "layouts": layouts,
-         "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix mastered to -14 LUFS, -1 dBTP",
-         "review": "Technical checks passed. Factual accuracy, pronunciation and editorial quality need human review."})
-    update(job_id, state="completed", stage="done", video=str(folder / "video.mp4"), poster=str(folder / "poster.jpg"),
-           plan=str(folder / "plan.json"), checks=checks, review_required=True)
+    """V1 entry point kept for compatibility: render a Plan through the V2 pipeline in LOCAL mode."""
+    from .orchestration.pipeline import Pipeline
+    return Pipeline(job_id, root=ROOT, data=DATA, cfg=settings_mod.load(ROOT / "config.json")).run({"plan": plan.model_dump(), "mode": "local"})
 
 
 def check_video(path):
@@ -401,34 +348,95 @@ def check_video(path):
 
 
 def worker(job_id):
+    from .orchestration.pipeline import Paused, Pipeline
     DATA.mkdir(exist_ok=True)
+    folder = job_path(job_id)
     update(job_id, pid=os.getpid())
     with (DATA / "render.lock").open("w") as lock:
         # Serialize GPU/CPU-heavy jobs across MCP sessions and CLI invocations.
         fcntl.flock(lock, fcntl.LOCK_EX)
         try:
+            if job_state.cancel_requested(folder):
+                raise job_state.Canceled("Canceled by user")
             update(job_id, state="running", stage="preparing")
-            request = json.loads((job_path(job_id) / "request.json").read_text())
-            if request["plan"]:
-                plan = Plan.model_validate(request["plan"])
-            else:
-                if request["autopilot"]:
+            request = json.loads((folder / "request.json").read_text())
+            cfg = settings_mod.load(ROOT / "config.json")
+            if not request.get("plan") and not request.get("storyboard") and not (folder / "topic.json").exists():
+                job_state.transition(folder, "DISCOVERING", stage="discovering_topics")
+                if request.get("topic"):
+                    topic = request["topic"]
+                elif request["autopilot"]:
                     kind = preferred_kind()
                     topics = sorted(discover(10)["topics"], key=lambda t: t.get("kind") != kind)
+                    topic = topics[0] if topics else None
                 else:
-                    topics = json.loads((DATA / "topics.json").read_text())
+                    topics = json.loads((DATA / "topics.json").read_text()) if (DATA / "topics.json").exists() else []
                     topics = [x for x in topics if x["id"] == request["topic_id"] and x["id"] not in history_ids()]
-                if not topics:
+                    topic = topics[0] if topics else None
+                if not topic:
                     raise RuntimeError("No fresh unused topic found; adjust feeds/keywords or submit a plan")
-                topic = topics[0]
-                update(job_id, stage="writing_english_script", topic_id=topic["id"], topic_title=topic["title"])
-                save(job_path(job_id) / "topic.json", topic)
-                plan = generate_plan(topic)
-            produce(job_id, plan)
+                topic.setdefault("retrieved_at", time.time())
+                update(job_id, topic_id=topic["id"], topic_title=topic["title"])
+                save(folder / "topic.json", topic)
+            Pipeline(job_id, root=ROOT, data=DATA, cfg=cfg).run(request)
+        except Paused as exc:
+            job_state.transition(folder, "AWAITING_APPROVAL", stage="awaiting_approval", state="awaiting_approval", error=None,
+                                 pending=list(json.loads((folder / "approvals.json").read_text()).get("pending", {}).values())
+                                 if (folder / "approvals.json").exists() else [], note=str(exc))
+        except job_state.Canceled as exc:
+            job_state.transition(folder, "CANCELED", stage="canceled", error=str(exc))
         except Exception as exc:
             import traceback
             traceback.print_exc()
-            update(job_id, state="failed", error=str(exc), stage="failed")
+            update(job_id, state="failed", phase="FAILED", error=security.redact(str(exc))[:2000], stage="failed", resumable=True)
+
+
+def background(job_id: str, action: str) -> dict:
+    """Run review/repair for an existing job in a detached worker (returns immediately)."""
+    folder = job_path(job_id)
+    if not (folder / "status.json").exists():
+        raise ValueError("Unknown job")
+    with (folder / "worker.log").open("a") as log:
+        process = subprocess.Popen([sys.executable, "-m", "video_mcp.engine", action, job_id], cwd=ROOT, stdout=log, stderr=log,
+                                   start_new_session=True, env=security.child_env(keep_secrets=True))
+    return {"id": job_id, "action": action, "pid": process.pid, "next": "Poll job_status / get_video_report"}
+
+
+def post_worker(job_id: str, action: str):
+    from .orchestration.pipeline import Pipeline
+    folder = job_path(job_id)
+    cfg = settings_mod.load(ROOT / "config.json")
+    lock_path = DATA / "render.lock"
+    try:
+        if action == "review":
+            summary = Pipeline(job_id, root=ROOT, data=DATA, cfg=cfg).review()
+            update(job_id, last_review={"at": time.time(), "technical_pass": summary["technical_pass"], "issues": summary["issue_count"]})
+            return
+        with lock_path.open("w") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            Pipeline(job_id, root=ROOT, data=DATA, cfg=cfg).repair()
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        update(job_id, **{f"last_{action}_error": security.redact(str(exc))[:1000]})
+    finally:
+        (folder / f"{action}.done").write_text(str(time.time()))
+
+
+def _v2_health() -> dict:
+    from . import tts
+    from .providers.claude_provider import ClaudeProvider
+    from .providers.higgsfield_provider import HiggsfieldProvider
+    cfg = settings_mod.load(ROOT / "config.json")
+    try:
+        narration = "%s (%s)" % tts.available_engine(cfg.narration.engine)
+    except RuntimeError as exc:
+        narration = f"unavailable: {exc}"
+    return {"production_mode": cfg.production.mode, "narration_engine": narration,
+            "claude": {"model": cfg.claude_model(), "ready": ClaudeProvider(cfg).available()[1]},
+            "higgsfield": {"ready": HiggsfieldProvider(cfg).available()[1]},
+            "paid_generation_enabled": cfg.budget.allow_paid_generation, "approval_policy": cfg.budget.approval_policy,
+            "browser_executable": cfg.browser() or "remotion default"}
 
 
 def health():
@@ -443,17 +451,21 @@ def health():
             "renderer_installed": (ROOT / "node_modules/.bin/remotion").exists(), "ollama_models": models,
             "configured_model": cfg["model"], "model_ready": cfg["model"] in models, "voice": cfg["voice"],
             "narration_language": "English (US)", "tts_language_code": cfg["tts_language_code"],
-            "api_keys_required": False, "schedule_enabled": False,
+            "api_keys_required": False, "schedule_enabled": False, **_v2_health(),
             "notes": "First speech run downloads public model weights. Discovery needs internet. Rendering and cached inference are local."}
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=["worker", "health", "discover", "autopilot", "render", "status"])
+    parser.add_argument("command", choices=["worker", "health", "discover", "autopilot", "render", "status", "review", "repair",
+                                            "resume", "preview", "report"])
     parser.add_argument("value", nargs="?")
     args = parser.parse_args()
     if args.command == "worker":
         worker(args.value)
+        return
+    if args.command in ("review", "repair"):
+        post_worker(args.value, args.command)
         return
     if args.command == "health":
         result = health()
@@ -463,6 +475,14 @@ def main():
         result = start_job(autopilot=True)
     elif args.command == "render":
         result = start_job(plan=Plan.model_validate_json(Path(args.value).read_text()))
+    elif args.command == "resume":
+        result = resume_job(args.value)
+    elif args.command == "preview":
+        from .orchestration import tools
+        result = tools.preview_storyboard(plan=json.loads(Path(args.value).read_text()))
+    elif args.command == "report":
+        from .orchestration import tools
+        result = tools.video_report(args.value)
     else:
         result = status(args.value)
     print(json.dumps(result, ensure_ascii=False, indent=2))

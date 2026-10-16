@@ -26,7 +26,10 @@ HOOK_OPEN = ["hookStack", "heroWord", "bigNumber"]
 ANCHOR = {"heroWord": "right", "bigNumber": "left", "quote": "peek", "mascotCloseup": "center", "hookStack": "right",
           "repoCard": "right", "terminal": "left", "chips": "right", "starMeter": "left", "listStack": "right",
           "deviceMock": "left", "docStamp": "right", "nodeGraph": "left", "chat": "right", "steps": "left",
-          "compare": "peek", "recap": "right", "loop": "right"}
+          "compare": "peek", "recap": "right", "loop": "right", "codeBlock": "left", "flowDiagram": "peek", "timeline": "right",
+          "chartBars": "left", "browserMock": "left", "warningCard": "right", "splitCompare": "peek", "cinematic": "peek"}
+# Premium editorial themes (V2). A video keeps one theme for every scene.
+THEMES = ["carbon", "midnight", "warm-editorial", "minimal-white", "tech-mono", "soft-gradient", "product-launch", "cinematic-dark"]
 
 
 def _pick(rng: random.Random, options: list, recent: list) -> object:
@@ -34,7 +37,7 @@ def _pick(rng: random.Random, options: list, recent: list) -> object:
     return rng.choices(options, weights=weights)[0]
 
 
-def choose_variant(seed: str, history_path: Path) -> dict:
+def choose_variant(seed: str, history_path: Path, theme: str | None = None, character: bool = True) -> dict:
     history = json.loads(history_path.read_text()) if history_path.exists() else []
     recent = lambda key: [h.get(key) for h in history[-4:]]
     rng = random.Random(seed)
@@ -50,6 +53,12 @@ def choose_variant(seed: str, history_path: Path) -> dict:
         "music": _pick(rng, MUSIC, recent("music")),
         "camera": rng.choice([0.8, 1.0, 1.2]),
     }
+    if theme:
+        # A storyboard theme replaces the seeded fun palette; motion stays restrained for editorial work.
+        variant.update(theme=theme if theme in THEMES else _pick(rng, THEMES, recent("theme")), palette="",
+                       background="flat" if variant["background"] in ("dots", "lines") else variant["background"],
+                       camera=min(variant["camera"], 1.0))
+    variant["character"] = character
     return variant
 
 
@@ -94,43 +103,64 @@ def _focus(scene: dict, text: str) -> str:
     return max(words, key=len) if words else scene.get("heading", "")
 
 
+PACE = {"emphasis": (1.0, 2.4), "medium": (1.3, 3.0), "demonstration": (2.4, 5.5), "pause": (1.6, 3.6), "montage": (.9, 1.8)}
+
+
 def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
-    """Assign a layout, focus, transition and camera move to every beat. Mutates scenes; returns layout order."""
+    """Assign a layout, focus, transition and camera move to every beat. Mutates scenes; returns layout order.
+
+    Layouts are chosen semantically (creative/semantic_router.py): what the narration means outranks variety.
+    Structural V1 rules still hold: repo items open on their repo card, the outro opens on the recap, the final beat
+    loops back to the opening frame, and no layout plays twice in a row."""
+    from .creative import semantic_router as sr
     rng = random.Random(variant["seed"] + ":layouts")
+    theme = variant.get("theme", "")
+    character = variant.get("character", True)
     used: dict[str, int] = {}
     order: list[str] = []
+    beat_no = 0
+    list_items = sum(1 for s in scenes if s.get("item", 0) > 0)
     for index, scene in enumerate(scenes):
+        scene["_listItems"] = list_items
         is_last = index == len(scenes) - 1
+        scene["_repo"] = bool(scene.get("_roundup")) and scene.get("item", 0) > 0
         for b, beat in enumerate(scene["beats"]):
             text = " ".join(w["w"] for w in scene["words"][beat["w"][0]:beat["w"][1] + 1])
             beat["text"] = text
             beat["focus"] = _focus(scene, text)
-            has_number = bool(re.search(r"\d", text))
-            if scene["visual"] == "hook" and b == 0:
-                options = [o for o in HOOK_OPEN if o != "bigNumber" or has_number]
-                options = ["hookStack"] if scene.get("_roundup") and rng.random() < .5 else options
-            elif scene["visual"] == "repo" and b == 0:
-                options = ["repoCard"]
-            elif scene["visual"] == "doc" and b == 0:
-                options = [o for o in DOC_OPEN if o != "bigNumber" or scene.get("stat")]
-            elif is_last and b == len(scene["beats"]) - 1:
-                options = ["loop"]
-            elif scene["visual"] == "outro" and b == 0:
-                options = ["recap"]
-            elif scene["visual"] in ("hook", "outro") or not scene.get("points"):
-                options = ["heroWord", "quote", "mascotCloseup"] + (["bigNumber"] if has_number else [])
-            elif scene["visual"] == "repo":
-                options = REPO_FOLLOW + (["bigNumber"] if has_number else [])
+            if is_last and b == len(scene["beats"]) - 1 and len(scenes) > 1:
+                layout, reason = "loop", {"rule": "final beat loops to the opening frame"}
             else:
-                options = DOC_FOLLOW + (["bigNumber"] if has_number else [])
-            fresh = [o for o in options if (not order or o != order[-1]) and (o in STRUCTURAL or o == "loop" or used.get(o, 0) < 2)]
-            pool = fresh or options
-            least = min(used.get(o, 0) for o in pool)
-            layout = rng.choice([o for o in pool if used.get(o, 0) == least])
+                ctx = sr.beat_context(scene, beat, b, character=character and scene.get("character", True) is not False)
+                allowed = None
+                if b == 0 and scene["visual"] == "repo" and scene["_repo"]:
+                    allowed = ["repoCard"]
+                elif b == 0 and scene["visual"] == "outro" and list_items >= 2:
+                    allowed = ["recap"]
+                elif b == 0 and scene["visual"] == "hook":
+                    allowed = HOOK_OPEN + ["cinematic"]
+                    if scene.get("_roundup") and not scene.get("media"):
+                        allowed = ["hookStack", "heroWord", "bigNumber"]
+                    if list_items < 2:
+                        allowed = [x for x in allowed if x != "hookStack"]
+                elif b == 0 and scene["visual"] == "doc" and ctx["intent"] in ("generic", "list"):
+                    allowed = DOC_OPEN
+                avoid = set(scene.get("avoidLayouts") or [])
+                if avoid:
+                    allowed = [x for x in (allowed or list(sr.CATALOG)) if x not in avoid] or None
+                layout, reason = sr.choose(ctx, order, used, variant["seed"], beat_no, theme, allowed)
             used[layout] = used.get(layout, 0) + 1
+            previous = order[-1] if order else None
             order.append(layout)
+            beat_no += 1
             beat["layout"] = layout
+            beat["layoutReason"] = reason
             beat["anchor"] = ANCHOR.get(layout, "right")
-            beat["transition"] = "cut" if not order[:-1] else rng.choice(variant["transitions"])
+            if previous is None:
+                beat["transition"] = "cut"
+            elif layout == "cinematic" or previous == "cinematic":
+                beat["transition"] = "mask" if "mask" in variant["transitions"] else variant["transitions"][0]
+            else:
+                beat["transition"] = rng.choice(variant["transitions"])
             beat["punch"] = bool(scene.get("emphasis")) and scene["emphasis"].lower() in text.lower()
     return order

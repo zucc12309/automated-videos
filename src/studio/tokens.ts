@@ -1,4 +1,5 @@
 import {Easing, interpolate, spring} from 'remotion';
+import themes from './themes.json';
 
 // ---- Brand layer (never varies): type, safe zones, line weights ----
 export const FONT = {
@@ -25,7 +26,11 @@ export const PALETTES: Record<string, Palette> = {
   'sand-teal': {bg: '#efe3cf', bg2: '#e6d7bd', surface: '#fff8ec', ink: '#1f1a14', muted: '#8a7b66', line: '#dccbb0', accent: '#0a8f8f', accent2: '#e04f2f', hl: '#ffcf5a', dark: false},
 };
 
-export type Variant = {seed: string; palette: string; background: string; temperament: 'snappy' | 'smooth' | 'editorial'; captions: 'pill' | 'bold' | 'editorial';
+// Premium editorial themes (V2), shared with the Python QA via themes.json. One theme per video.
+export type Theme = Palette & {background: string; fonts: 'sans' | 'serif' | 'mono'};
+export const THEMES = themes as Record<string, Theme>;
+
+export type Variant = {seed: string; palette: string; theme?: string; character?: boolean; background: string; temperament: 'snappy' | 'smooth' | 'editorial'; captions: 'pill' | 'bold' | 'editorial';
   transitions: string[]; outfit: string; hair: string; camera: number};
 
 export const DEFAULT_VARIANT: Variant = {seed: 'default', palette: 'paper-red', background: 'grain', temperament: 'snappy', captions: 'editorial', transitions: ['whip', 'zoom', 'cut'], outfit: '#2f3b52', hair: '#3b2a21', camera: 1};

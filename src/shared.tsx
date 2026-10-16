@@ -3,10 +3,14 @@ import {Audio, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig}
 
 export type Style = 'studio' | 'paper' | 'editorial' | 'kinetic' | 'mascot' | 'fieldnotes';
 export type Word = {w: string; s: number; e: number};
-export type Beat = {s: number; e: number; w: [number, number]; text: string; focus: string; layout: string; anchor: string; transition: string; punch: boolean};
+export type Beat = {s: number; e: number; w: [number, number]; text: string; focus: string; layout: string; anchor: string; transition: string; punch: boolean; layoutReason?: unknown};
+export type Motion = {entrance: string; emphasis: string; connect: string; exit: string; camera: string; intensity: number; stagger_frames: number};
 export type Repo = {full_name: string; owner: string; name: string; description: string; stars: number; language: string; topics: string[]};
-export type Scene = {heading: string; narration: string; caption: string; points: string[]; visual: string; emphasis?: string; stat?: string; item?: number; label?: string; words?: Word[]; mouth?: number[]; visemes?: [number, string][]; beats?: Beat[]; audio: string; uiAudio?: string; frames: number; audioFrames?: number; transitionFrames?: number; from: number};
-export type Props = {title: string; style?: Style; brand?: string; series?: string; repos?: Repo[]; music?: string | null; variant?: any; scenes: Scene[]; durationInFrames: number; fps: number; width: number; height: number};
+export type Scene = {heading: string; narration: string; caption: string; points: string[]; visual: string; emphasis?: string; stat?: string; item?: number; label?: string; words?: Word[]; mouth?: number[]; visemes?: [number, string][]; beats?: Beat[]; audio: string; uiAudio?: string; frames: number; audioFrames?: number; transitionFrames?: number; from: number;
+  // V2 storyboard fields (absent on V1 props)
+  id?: string; role?: string; intent?: string; pace?: string; visualData?: Record<string, unknown>; motion?: Motion; media?: string | null; layoutHint?: string; character?: boolean; claimIds?: string[]};
+export type Props = {title: string; style?: Style; brand?: string; series?: string; repos?: Repo[]; music?: string | null; variant?: any; scenes: Scene[]; durationInFrames: number; fps: number; width: number; height: number;
+  schemaVersion?: string; theme?: string; characterMode?: 'auto' | 'on' | 'off'};
 export type ShotProps = {scene: Scene; index: number; total: number; brand: string};
 
 export const sans = '"Helvetica Neue", Helvetica, Arial, sans-serif';
