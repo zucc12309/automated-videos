@@ -49,19 +49,19 @@ def board() -> dict:
 
 
 # ---------------------------------------------------------------- narration
-def narrate(story: dict, cfg) -> list[dict]:
+def narrate(story: dict, cfg, work: Path = WORK, pronounce: dict | None = None) -> list[dict]:
     engine, why = tts.available_engine("auto")
     if not engine.startswith("kokoro"):
         raise SystemExit(f"Kokoro is required for the DevMimo voice; resolved engine {engine!r}: {why}")
-    cfg.narration.pronunciations = {**cfg.narration.pronunciations, **PRONOUNCE}
+    cfg.narration.pronunciations = {**cfg.narration.pronunciations, **(PRONOUNCE if pronounce is None else pronounce)}
     cfg.voice_speed = story.get("voice_speed", cfg.voice_speed)
     prof = audio_profile.profile()
     strength = prof["targets"]["narration_eq"].get("kokoro_strength", .5)
-    WORK.mkdir(parents=True, exist_ok=True)
+    work.mkdir(parents=True, exist_ok=True)
     out = []
     for i, scene in enumerate(story["scenes"]):
         n = tts.narrate(scene["narration"], cfg, FPS, engine)
-        raw, wav = WORK / f"vo-{i}-raw.wav", WORK / f"vo-{i}.wav"
+        raw, wav = work / f"vo-{i}-raw.wav", work / f"vo-{i}.wav"
         sf.write(raw, n.audio, RATE)
         eq, eq_info = audio_profile.match_eq(n.audio, RATE, prof["measured"]["voice_bands_db"], strength)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-af",
@@ -153,7 +153,8 @@ def sfx_track(scenes: list[dict], cues: list[dict], seconds: float) -> np.ndarra
     return track
 
 
-def mix(scenes: list[dict], voice: list[dict], cues: list[dict], seconds: float) -> dict:
+def mix(scenes: list[dict], voice: list[dict], cues: list[dict], seconds: float, work: Path = WORK, music_on: bool = True,
+        out_name: str = "mix.wav") -> dict:
     n = math.ceil(seconds * RATE)
     vo = np.zeros(n, np.float32)
     speech, voices = [], []
@@ -165,18 +166,19 @@ def mix(scenes: list[dict], voice: list[dict], cues: list[dict], seconds: float)
         speech += [(s["from"] / FPS + w["s"], s["from"] / FPS + w["e"]) for w in s["words"]]
     prof = audio_profile.profile()
     bed_cfg = prof["targets"]["music"]
-    fx.music_bed(WORK / "music-raw.wav", seconds, 84, 2, speech, style=bed_cfg.get("style", "warm_pad"), duck_db=bed_cfg.get("duck_db", -6))
-    music, _ = sf.read(WORK / "music-raw.wav", dtype="float32")
+    fx.music_bed(work / "music-raw.wav", seconds, 84, 2, speech, style=bed_cfg.get("style", "warm_pad"), duck_db=bed_cfg.get("duck_db", -6))
+    music, _ = sf.read(work / "music-raw.wav", dtype="float32")
     gain = audio_profile.bed_gain_db(voices, music, RATE, prof["measured"]["bed_minus_speech_db"])
     music = music[:n] * 10 ** (gain / 20)
     sfx = sfx_track(scenes, cues, seconds)[:n]
     # SFX sit under the voice: measured against the narration peak, not absolute.
     sfx *= 10 ** (-9 / 20)
     total = vo.copy()
-    total[:len(music)] += music
+    if music_on:                                  # the no-music export keeps voice + SFX at the same levels
+        total[:len(music)] += music
     total[:len(sfx)] += sfx
-    sf.write(WORK / "mix.wav", np.clip(total, -.98, .98), RATE)
-    (WORK / "music-raw.wav").unlink()
+    sf.write(work / out_name, np.clip(total, -.98, .98), RATE)
+    (work / "music-raw.wav").unlink()
     return {"bed_gain_db": gain, "speech_spans": len(speech)}
 
 

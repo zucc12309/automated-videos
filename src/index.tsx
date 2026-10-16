@@ -12,6 +12,9 @@ import {BlobSheet, PremiumVideo} from './premium/PremiumVideo';
 import {DevMimoIntro, DevMimoPoster, MimoSheet} from './devmimo/DevMimoIntro';
 import {DevMimoLogo} from './devmimo/Logo';
 import {IntroProps} from './devmimo/theme';
+import {SeriesCover, SeriesCoverGuides} from './series/Cover';
+import {SeriesEpisode} from './series/Episode';
+import {CoverProps, EpisodeProps} from './series/theme';
 
 const shots: Record<Exclude<Style, 'paper' | 'studio' | 'premium'>, React.FC<ShotProps>> = {editorial: EditorialShot, kinetic: KineticShot, mascot: MascotShot, fieldnotes: FieldnotesShot};
 
@@ -38,5 +41,15 @@ const DevMimoCompositions = () => <>
   <Composition id="DevMimoPoster" component={DevMimoPoster} durationInFrames={1} fps={30} width={1080} height={1920}/>
   <Composition id="MimoSheet" component={MimoSheet} durationInFrames={1} fps={30} width={1440} height={1240}/>
 </>;
-const Root = () => <><DevMimoCompositions/><Composition id="BlobSheet" component={BlobSheet} durationInFrames={60} fps={30} width={1440} height={1240}/><Composition id="CharacterSheet" component={CharacterSheet} durationInFrames={120} fps={30} width={2000} height={2000}/><Composition id="Explainer" component={Video} defaultProps={defaults} durationInFrames={150} fps={30} width={1080} height={1920} calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps, width: props.width, height: props.height})}/></>;
+const seriesInfo = {header: 'MIMO FOUND THIS ON GITHUB', tagline: 'Weird finds. Real builds.', footer: 'DevMimo · Weird finds. Real builds.', handle: '@devmimo', collection: "MIMO'S FINDS"};
+const coverDefaults: CoverProps = {series: seriesInfo, episode: {n: 0, label: 'EP. 000', title: 'Template preview', repo: 'owner/repository', category: 'Template',
+  headline: ['COVER', 'TEMPLATE.'], expression: 'curious', visual: 'terminal', demoStatus: 'fixture'}};
+/* Series compositions: every episode passes its own props (examples/series/build_episode.py); the defaults are a neutral template. */
+const SeriesCompositions = () => <>
+  <Composition id="SeriesEpisode" component={SeriesEpisode} defaultProps={{} as EpisodeProps} durationInFrames={750} fps={30} width={1080} height={1920}
+    calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames ?? 750, fps: props.fps ?? 30})}/>
+  <Composition id="SeriesCover" component={SeriesCover} defaultProps={coverDefaults} durationInFrames={1} fps={30} width={1080} height={1920}/>
+  <Composition id="SeriesCoverGuides" component={SeriesCoverGuides} defaultProps={coverDefaults} durationInFrames={1} fps={30} width={1080} height={1920}/>
+</>;
+const Root = () => <><DevMimoCompositions/><SeriesCompositions/><Composition id="BlobSheet" component={BlobSheet} durationInFrames={60} fps={30} width={1440} height={1240}/><Composition id="CharacterSheet" component={CharacterSheet} durationInFrames={120} fps={30} width={2000} height={2000}/><Composition id="Explainer" component={Video} defaultProps={defaults} durationInFrames={150} fps={30} width={1080} height={1920} calculateMetadata={({props}) => ({durationInFrames: props.durationInFrames, fps: props.fps, width: props.width, height: props.height})}/></>;
 registerRoot(Root);

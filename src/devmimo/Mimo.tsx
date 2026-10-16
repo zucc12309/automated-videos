@@ -22,6 +22,10 @@ export type MimoProps = {
   squash?: number;            // -1..1 landing squash / stretch
   glow?: number;              // >1 adds sparkles (big moments)
   autoBlink?: boolean;
+  tilt?: number;              // degrees, body leans/tilts around the feet (curious, thinking)
+  point?: number;             // 0..1 nub held out steadily toward pointAngle (identity gesture 'point'); overrides wave
+  pointAngle?: number;        // degrees; 0 = straight right, -40 = up-right
+  hop?: number;               // 0..1 lift (fraction of size * .25)
 };
 
 const P = ID.palette;
@@ -36,7 +40,7 @@ const blinkOpen = (frame: number, extra: number[], auto: boolean) => {
 };
 
 export const Mimo: React.FC<MimoProps> = ({size, frame, mouth = 0, wave = 0, typing = 0, expression = 'neutral', look = {x: 0, y: 0},
-  blinkAt = [], squash = 0, glow = 1, autoBlink = true}) => {
+  blinkAt = [], squash = 0, glow = 1, autoBlink = true, tilt = 0, point = 0, pointAngle = -20, hop = 0}) => {
   const t = frame / 30;
   const breathe = Math.sin(t * Math.PI * .5) * .015;                    // identity: 1.5% at 0.25 Hz
   const bob = typing * Math.abs(Math.sin(t * Math.PI * 5.5)) * 2;
@@ -44,7 +48,8 @@ export const Mimo: React.FC<MimoProps> = ({size, frame, mouth = 0, wave = 0, typ
   const lx = look.x * 3.2, ly = look.y * 2.2;
   const nod = mouth > .12 ? Math.max(0, Math.sin(t * 7)) * mouth * 1.2 : 0;
   const sx = 1 + squash * .09, sy = 1 - squash * .11 + breathe;
-  const nubAngle = lerp(-10, -62 + Math.sin(t * Math.PI * 4.2) * 24, Math.min(1, wave));
+  const nubAngle = point > .02 ? lerp(30, pointAngle, Math.min(1, point)) : lerp(-10, -62 + Math.sin(t * Math.PI * 4.2) * 24, Math.min(1, wave));
+  const nub = Math.max(wave, point);
   const sparkle = glow > 1.05 ? Math.min(1, (glow - 1) * 2) : 0;
 
   const eye = (cx: number, right: boolean) => {
@@ -61,8 +66,8 @@ export const Mimo: React.FC<MimoProps> = ({size, frame, mouth = 0, wave = 0, typ
   return <div style={{position: 'relative', width: size, height: Hs}}>
     <svg viewBox="-20 -16.5 140 120" width={W} height={W * 120 / 140} style={{position: 'absolute', left: -size * .2, bottom: 0, overflow: 'visible'}}>
       <ellipse cx={50} cy={Hh + 6} rx={38 * (1 + squash * .12)} ry={4.5} fill={P.shadow} opacity={.7}/>
-      <g transform={`translate(0 ${-bob}) translate(50 ${Hh}) scale(${sx} ${sy}) translate(-50 ${-Hh})`}>
-        {wave > .02 && <g transform={`translate(96, 50) rotate(${nubAngle}) scale(${Math.min(1, wave * 1.5)})`}>
+      <g transform={`translate(0 ${-bob - hop * 25}) translate(50 ${Hh}) rotate(${tilt}) scale(${sx} ${sy}) translate(-50 ${-Hh})`}>
+        {nub > .02 && <g transform={`translate(96, 50) rotate(${nubAngle}) scale(${Math.min(1, nub * 1.5)})`}>
           <rect x={0} y={-5.5} width={20} height={11} rx={5.5} fill={P.body}/></g>}
         <defs><clipPath id="mimoClip"><path d={BODY}/></clipPath></defs>
         <path d={BODY} fill={P.body}/>

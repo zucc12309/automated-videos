@@ -1,0 +1,96 @@
+{
+  "slug": "mimo-found-this-on-github",
+  "name": "Mimo Found This on GitHub",
+  "header": "MIMO FOUND THIS ON GITHUB",
+  "tagline": "Weird finds. Real builds.",
+  "footer": "DevMimo · Weird finds. Real builds.",
+  "handle": "@devmimo",
+  "collection": "MIMO'S FINDS",
+  "episode_format": "EP. {n:03d}",
+  "palette_note": "Series palette from the series brief (cover visual identity). The mascot keeps its own colours from brand/character/identity.json.",
+  "palette": {
+    "ground": "#0E0F12",
+    "groundLift": "#15171B",
+    "panel": "#1A1C21",
+    "panelHi": "#22252B",
+    "line": "#2C2F36",
+    "ink": "#F5F0E8",
+    "inkSoft": "#D8D2C8",
+    "muted": "#9C978F",
+    "dim": "#625F5A",
+    "accent": "#ECA044",
+    "accentHot": "#F6BF73",
+    "accentDeep": "#B8742A",
+    "ok": "#8FCF8A",
+    "error": "#E8796B"
+  },
+  "pacing": {
+    "target_s": 25.0,
+    "range_s": [
+      22,
+      28
+    ],
+    "wpm_target": [
+      145,
+      165
+    ],
+    "outro_s": 2.0,
+    "voice_speed": 0.95
+  },
+  "narration_templates": {
+    "discovery": "And I found the project on GitHub.",
+    "payoff": "Would you actually use this? Follow Mimo for more GitHub discoveries."
+  },
+  "pronounce": {
+    "Mimo": "Meemo",
+    "DevMimo": "Dev Meemo",
+    "GitHub": "Git Hub"
+  },
+  "hashtags_base": [
+    "#GitHub",
+    "#OpenSource",
+    "#Coding",
+    "#DevMimo"
+  ],
+  "banned_phrases": [
+    "change your life",
+    "won't believe",
+    "wont believe",
+    "you need",
+    "this changes everything",
+    "game changer",
+    "game-changer",
+    "mind-blowing",
+    "mind blowing",
+    "insane",
+    "must-have",
+    "10x"
+  ],
+  "unverifiable_stats": [
+    "stars",
+    "forks",
+    "downloads",
+    "contributors",
+    "users",
+    "installs"
+  ],
+  "safe_zone": {
+    "video": {
+      "top": 220,
+      "bottom": 1620,
+      "left": 72,
+      "right": 1008
+    },
+    "cover_square": {
+      "top": 420,
+      "bottom": 1500,
+      "left": 60,
+      "right": 1020
+    }
+  },
+  "subtitles": {
+    "min_words": 3,
+    "max_words": 5,
+    "y": 1420
+  }
+}

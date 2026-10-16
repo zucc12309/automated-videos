@@ -1,0 +1,141 @@
+{
+  "note": "Episode layout rectangles [x, y, w, h] at 1080x1920. Episode.tsx places its blocks with these and the QA checks them against the safe zone and the subtitle band, so the two never drift apart.",
+  "subtitle": {
+    "y": 1420,
+    "max_h": 152
+  },
+  "regions": {
+    "hook": {
+      "stage": [
+        60,
+        236,
+        960,
+        780
+      ],
+      "headline": [
+        40,
+        1060,
+        1000,
+        264
+      ]
+    },
+    "discovery": {
+      "header": [
+        0,
+        290,
+        1080,
+        160
+      ],
+      "card": [
+        90,
+        640,
+        900,
+        380
+      ],
+      "mimo": [
+        110,
+        1040,
+        250,
+        300
+      ]
+    },
+    "demo": {
+      "left": [
+        60,
+        300,
+        450,
+        700
+      ],
+      "right": [
+        570,
+        300,
+        450,
+        700
+      ],
+      "chips": [
+        0,
+        1044,
+        1080,
+        80
+      ],
+      "mimo": [
+        70,
+        1160,
+        170,
+        204
+      ]
+    },
+    "flow": {
+      "title": [
+        0,
+        290,
+        1080,
+        130
+      ],
+      "nodes": [
+        300,
+        470,
+        680,
+        670
+      ],
+      "mimo": [
+        70,
+        470,
+        190,
+        900
+      ]
+    },
+    "payoff": {
+      "stage": [
+        150,
+        300,
+        780,
+        580
+      ],
+      "mimo": [
+        80,
+        940,
+        230,
+        276
+      ],
+      "question": [
+        360,
+        930,
+        670,
+        190
+      ],
+      "stamp": [
+        0,
+        1210,
+        1080,
+        80
+      ]
+    },
+    "outro": {
+      "mimo": [
+        390,
+        470,
+        300,
+        360
+      ],
+      "wordmark": [
+        140,
+        900,
+        800,
+        170
+      ],
+      "episode": [
+        100,
+        1090,
+        880,
+        80
+      ],
+      "cta": [
+        90,
+        1230,
+        900,
+        100
+      ]
+    }
+  }
+}
