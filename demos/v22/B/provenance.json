@@ -8,7 +8,7 @@
       "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
       "title": "Stop your coding agent from breaking your UI",
       "kind": "manual",
-      "retrieved_at": 1792147060.7746816
+      "retrieved_at": 1792148696.849441
     }
   ],
   "claims": [
@@ -56,7 +56,7 @@
     "provider": "local",
     "script_provider": "vibe_library",
     "model": "vibe-template-v1",
-    "created_at": 1792147060.7746837
+    "created_at": 1792148696.849443
   },
   "decisions": [
     {
@@ -71,33 +71,33 @@
       "stage": "narration",
       "engine": "kokoro_onnx",
       "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
-      "at": 1792147060.8761365
+      "at": 1792148696.9419096
     },
     {
       "stage": "music",
       "style": "warm_pad",
-      "gain_db": -0.86,
+      "gain_db": -1.68,
       "basis": "reference bed level",
-      "at": 1792147073.2259672
+      "at": 1792148710.1157358
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 14.05,
-      "at": 1792147073.3474228
+      "memory_available_gb": 13.57,
+      "at": 1792148710.2392468
     },
     {
       "stage": "music",
       "style": "warm_pad",
-      "gain_db": -1.04,
+      "gain_db": -0.95,
       "basis": "reference bed level",
-      "at": 1792147199.0969207
+      "at": 1792148828.6282873
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 14.05,
-      "at": 1792147199.218333
+      "memory_available_gb": 13.52,
+      "at": 1792148828.7524388
     }
   ],
   "model": "vibe-template-v1",
@@ -115,7 +115,7 @@
   "variant": {
     "seed": "v22-B",
     "palette": "",
-    "background": "grain",
+    "background": "flat",
     "temperament": "editorial",
     "captions": "editorial",
     "transitions": [
@@ -146,6 +146,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792147324.5752878,
+  "created_at": 1792148942.8867285,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }

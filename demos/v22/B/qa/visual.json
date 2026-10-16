@@ -174,7 +174,7 @@
   {
    "check": "cuts_per_10s",
    "passed": true,
-   "detail": "busiest 10 s window has 3 cuts (target \u2264 5)",
+   "detail": "busiest 10 s window has 4 cuts (target \u2264 5)",
    "scene": null,
    "mandatory": false,
    "basis": "deterministic",
@@ -214,7 +214,7 @@
    "kind": "first_frame",
    "scene": "",
    "mean_luma": 28.9,
-   "stage_std": 65.59
+   "stage_std": 65.6
   },
   {
    "t": 0.15,
@@ -224,137 +224,137 @@
    "stage_std": 65.58
   },
   {
-   "t": 1.267,
+   "t": 1.217,
    "kind": "scene_mid",
    "scene": "scene_001",
-   "mean_luma": 45.1,
-   "stage_std": 66.09
+   "mean_luma": 45.0,
+   "stage_std": 66.08
   },
   {
-   "t": 2.333,
+   "t": 2.233,
    "kind": "scene_exit",
    "scene": "scene_001",
    "mean_luma": 45.3,
-   "stage_std": 66.4
+   "stage_std": 66.38
   },
   {
-   "t": 2.683,
+   "t": 2.583,
    "kind": "scene_entrance",
    "scene": "scene_002",
    "mean_luma": 30.6,
-   "stage_std": 52.91
+   "stage_std": 52.87
   },
   {
-   "t": 5.35,
+   "t": 5.15,
    "kind": "scene_mid",
    "scene": "scene_002",
    "mean_luma": 20.1,
    "stage_std": 17.23
   },
   {
-   "t": 7.967,
+   "t": 7.667,
    "kind": "scene_exit",
    "scene": "scene_002",
    "mean_luma": 20.3,
-   "stage_std": 21.76
+   "stage_std": 21.73
   },
   {
-   "t": 8.317,
+   "t": 8.017,
    "kind": "scene_entrance",
    "scene": "scene_003",
    "mean_luma": 20.2,
-   "stage_std": 8.06
+   "stage_std": 8.04
   },
   {
-   "t": 10.217,
+   "t": 9.833,
    "kind": "scene_mid",
    "scene": "scene_003",
    "mean_luma": 22.2,
-   "stage_std": 16.68
+   "stage_std": 14.1
   },
   {
-   "t": 12.067,
+   "t": 11.6,
    "kind": "scene_exit",
    "scene": "scene_003",
    "mean_luma": 23.9,
-   "stage_std": 33.2
+   "stage_std": 33.18
   },
   {
-   "t": 12.417,
+   "t": 11.95,
    "kind": "scene_entrance",
    "scene": "scene_004",
    "mean_luma": 21.4,
    "stage_std": 14.63
   },
   {
-   "t": 14.867,
+   "t": 14.35,
    "kind": "scene_mid",
    "scene": "scene_004",
    "mean_luma": 23.4,
-   "stage_std": 40.48
+   "stage_std": 40.49
   },
   {
-   "t": 17.267,
+   "t": 16.7,
    "kind": "scene_exit",
    "scene": "scene_004",
    "mean_luma": 23.7,
    "stage_std": 40.34
   },
   {
-   "t": 17.617,
+   "t": 17.05,
    "kind": "scene_entrance",
    "scene": "scene_005",
    "mean_luma": 21.1,
-   "stage_std": 14.66
+   "stage_std": 14.65
   },
   {
-   "t": 19.017,
+   "t": 18.367,
    "kind": "scene_mid",
    "scene": "scene_005",
    "mean_luma": 22.9,
-   "stage_std": 24.73
+   "stage_std": 25.48
   },
   {
-   "t": 20.367,
+   "t": 19.633,
    "kind": "scene_exit",
    "scene": "scene_005",
    "mean_luma": 22.6,
-   "stage_std": 22.77
+   "stage_std": 22.78
   },
   {
-   "t": 20.717,
+   "t": 19.983,
    "kind": "scene_entrance",
    "scene": "scene_006",
    "mean_luma": 24.3,
    "stage_std": 21.63
   },
   {
-   "t": 22.033,
+   "t": 21.267,
    "kind": "scene_mid",
    "scene": "scene_006",
    "mean_luma": 29.3,
-   "stage_std": 60.21
+   "stage_std": 60.18
   },
   {
-   "t": 22.6,
+   "t": 21.8,
    "kind": "beat_boundary",
    "scene": "scene_006",
    "mean_luma": 34.0,
-   "stage_std": 65.72
+   "stage_std": 65.71
   },
   {
-   "t": 23.3,
+   "t": 22.5,
    "kind": "scene_exit",
    "scene": "scene_006",
    "mean_luma": 42.6,
-   "stage_std": 66.25
+   "stage_std": 66.26
   },
   {
-   "t": 23.4,
+   "t": 22.6,
    "kind": "final_frame",
    "scene": "",
    "mean_luma": 38.4,
-   "stage_std": 66.38
+   "stage_std": 66.39
   }
  ],
  "issues": [],
@@ -367,5 +367,5 @@
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/51906c124922/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/61c97bf927f5/qa/contact_sheet.jpg"
 }
