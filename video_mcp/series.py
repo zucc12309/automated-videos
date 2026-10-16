@@ -32,6 +32,9 @@ DEMO_STATUSES = {
     "fixture": "pipeline test content, not an episode",
 }
 FEATURE_STATUSES = {"verified-run", "verified-source"}
+# Reel format v2 (EP. 002 on): seven narrated beats, no branded outro, the Instagram safe-zone margins in series.json safe_zone.reel_v2.
+# Episodes without "format" keep the original five-scene layout (EP. 001).
+REEL_BEATS = ("shock", "context", "mystery", "discovery", "proof", "possibility", "question")
 
 
 class SeriesError(ValueError):
@@ -134,7 +137,13 @@ def update(slug: str, n: int, root: Path | None = None, **fields) -> dict:
 
 
 # ---------------------------------------------------------------- spec
+def is_reel(spec: dict) -> bool:
+    return spec.get("format") == "reel-v2"
+
+
 def default_narration(spec: dict, cfg: dict) -> dict:
+    if is_reel(spec):
+        return {b["id"]: b["narration"] for b in spec.get("beats", [])}
     t = cfg["narration_templates"]
     n = dict(spec.get("narration", {}))
     n.setdefault("hook", spec["title"].rstrip(".") + ".")
@@ -146,7 +155,7 @@ def default_narration(spec: dict, cfg: dict) -> dict:
 def validate(spec: dict, cfg: dict) -> list[str]:
     """Problems that block a render. Claims must trace to verified features; nothing hype or unverifiable reaches the screen."""
     errs = []
-    for k in ("repository", "title", "cover_headline", "verified_features", "demo", "narration"):
+    for k in ("repository", "title", "cover_headline", "verified_features", "demo", "beats" if is_reel(spec) else "narration"):
         if not spec.get(k):
             errs.append(f"missing {k}")
     if errs:
@@ -172,11 +181,27 @@ def validate(spec: dict, cfg: dict) -> list[str]:
         if node.get("feature") and node["feature"] not in feats:
             errs.append(f"flow node {i} cites unknown feature {node['feature']!r}")
     narration = default_narration(spec, cfg)
-    for k in ("hook", "discovery", "demo", "tech", "payoff"):
+    required = REEL_BEATS if is_reel(spec) else ("hook", "discovery", "demo", "tech", "payoff")
+    for k in required:
         if not narration.get(k):
             errs.append(f"narration.{k} is empty")
-    text = " ".join([spec["title"], " ".join(spec["cover_headline"]), *narration.values(), spec.get("caption", {}).get("hook", ""),
-                     spec.get("caption", {}).get("body", "")]).lower()
+    on_screen = []
+    if is_reel(spec):
+        if [b["id"] for b in spec["beats"]] != list(REEL_BEATS):
+            errs.append(f"beats must be, in order: {', '.join(REEL_BEATS)}")
+        for b in spec["beats"]:                    # every on-screen claim in a reel beat cites a verified feature
+            for item in b.get("claims", []):
+                if item.get("feature") not in feats:
+                    errs.append(f"beat {b['id']}: {item.get('text')!r} is not tied to a verified feature")
+                on_screen.append(item.get("text", ""))
+            on_screen += b.get("text", [])
+        for v in spec.get("hook_variants", []):
+            if v.get("feature") not in feats:
+                errs.append(f"hook variant {v.get('id')}: not tied to a verified feature")
+            on_screen += [v.get("narration", ""), *v.get("headline", [])]
+    text = " ".join([spec["title"], " ".join(spec["cover_headline"]), *narration.values(), *on_screen, spec.get("caption", {}).get("hook", ""),
+                     spec.get("caption", {}).get("body", ""), spec.get("caption", {}).get("text", ""),
+                     spec.get("caption", {}).get("pinned_comment", "")]).lower()
     for phrase in cfg["banned_phrases"]:
         if re.search(r"\b" + re.escape(phrase) + r"\b", text):
             errs.append(f"banned phrase: {phrase!r}")
@@ -238,6 +263,8 @@ def subtitle_groups(words: list[dict], emphasis: list[str] | None = None, min_wo
 # ---------------------------------------------------------------- copy
 def caption(spec: dict, cfg: dict, n: int) -> str:
     c = spec.get("caption", {})
+    if c.get("text"):                              # an authored caption is used as written; the episode label is filled in
+        return c["text"].replace("{episode}", fmt(n)).rstrip() + "\n"
     repo = normalize_repo(spec["repository"])
     tags = list(dict.fromkeys(cfg["hashtags_base"][:2] + spec.get("hashtags", []) + cfg["hashtags_base"][2:]))
     parts = [c.get("hook", f"I found a GitHub project: {spec['title'].rstrip('.')}.") + " 👀",

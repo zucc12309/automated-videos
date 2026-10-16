@@ -12,7 +12,7 @@ import {accentA, clamp01, fitSize, EpisodeInfo, EpisodeProps, FONT, inkA, io, La
 type SP = {scene: Scene; f: number; p: EpisodeProps; mouth: number};
 const R = L.regions;
 
-const Backdrop: React.FC<{g: number; kx?: number; ky?: number}> = ({g, kx = 50, ky = 40}) =>
+export const Backdrop: React.FC<{g: number; kx?: number; ky?: number}> = ({g, kx = 50, ky = 40}) =>
   <AbsoluteFill>
     <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
       <defs>

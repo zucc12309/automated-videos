@@ -160,3 +160,81 @@ def test_episode_001_spec_is_verified_and_numbered():
     for ref in be.media_refs(spec):
         if ref.endswith((".png", ".jpg")):              # videos are git-ignored (fetched via media_sources); stills are committed
             assert (ROOT / "public" / ref).exists(), ref
+
+
+# ---------------------------------------------------------------- reel format v2 (EP. 002 on)
+REEL_SPEC = ROOT / "series" / SLUG / "specs" / "morluto-rea.json"
+
+
+def reel_spec():
+    return json.loads(REEL_SPEC.read_text())
+
+
+def test_episode_002_reel_spec_is_verified_and_numbered():
+    spec = reel_spec()
+    assert series.is_reel(spec) and series.validate(spec, cfg()) == []
+    rec = series.find_by_repo(SLUG, spec["repository"])
+    assert rec and rec["episode"] == 2
+    assert series.find_by_repo(SLUG, "harry0703/MoneyPrinterTurbo")["episode"] == 1          # EP. 001 untouched
+    statuses = {f["id"]: f["status"] for f in spec["verified_features"]}
+    for k in ("mcp_agents", "no_source", "observe", "inspect", "rebuild"):             # the proof is a real run, not a re-enactment
+        assert statuses[k] == "verified-run"
+    import build_reel as br
+    for ref in br.media_refs(spec):
+        assert (ROOT / "public" / ref).exists(), ref
+    ev = ROOT / "series" / SLUG / "evidence" / "episode-002-rea"
+    for f in ("findings.md", "findings-short.json", "rebuild.py", "disasm-main-loop.txt", "transcript-trimmed.jsonl"):
+        assert (ev / f).exists(), f
+    assert json.loads((ev / "findings-short.json").read_text())["differing_bytes"] == 0
+
+
+def test_reel_validation_requires_beats_and_cited_claims():
+    spec = reel_spec()
+    spec["beats"][4]["claims"].append({"text": "CLONES ANY APP", "feature": "cloning"})
+    spec["beats"] = spec["beats"][:3] + spec["beats"][4:]
+    spec["hook_variants"][0]["narration"] = "This changes everything."
+    errs = " ".join(series.validate(spec, cfg()))
+    assert "beats must be, in order" in errs and "not tied to a verified feature" in errs and "banned phrase" in errs
+
+
+def test_reel_layout_inside_instagram_safe_area():
+    lay = json.loads((ROOT / "src" / "series" / "layout-reel.json").read_text())
+    m = cfg()["safe_zone"]["reel_v2"]
+    s = lay["safe"]
+    assert (s["left"], s["top"], 1080 - s["right"], 1920 - s["bottom"]) == (m["left"], m["top"], m["right"], m["bottom"]) == (60, 250, 180, 400)
+    blocks = [r for b in lay["regions"].values() for r in b.values()] + [lay["bug"]]
+    sub = lay["subtitle"]
+    blocks.append([sub["x"], sub["y"], sub["w"], sub["max_h"]])
+    for x, y, w, h in blocks:
+        assert s["left"] <= x and x + w <= s["right"] and s["top"] <= y and y + h <= s["bottom"], (x, y, w, h)
+    for b in lay["regions"].values():                                                      # subtitles never cover content
+        for x, y, w, h in b.values():
+            assert y + h <= sub["y"] or y >= sub["y"] + sub["max_h"]
+
+
+def test_reel_composition_registered_and_episode_free():
+    assert 'id="SeriesReel"' in (ROOT / "src" / "index.tsx").read_text()
+    src = (ROOT / "src" / "series" / "Reel.tsx").read_text()
+    import re
+    for banned in ("EP. 002", "morluto", "REA", "ArtCraft", "Adobe", "Photoshop"):
+        assert not re.search(r"\b" + re.escape(banned) + r"\b", src), banned
+    for f in ("build_reel.py", "qa_reel.py"):
+        text = (ROOT / "examples" / "series" / f).read_text().lower()
+        for banned in ("anthropic", "higgsfield", "requests.post", "urlopen"):
+            assert banned not in text
+
+
+def test_reel_cues_follow_spoken_words():
+    import build_reel as br
+    words = [{"w": w, "s": i * .4, "e": i * .4 + .3} for i, w in enumerate("It can inspect code, trace behavior, and help recreate specific features.".split())]
+    scene = {"id": "possibility", "kind": "possibility", "frames": 160, "words": words,
+             "stages": [{"at": "inspect"}, {"at": "trace"}, {"at": "recreate"}], "stamp": {"text": "X"}}
+    assert [br.at_word(scene, t) for t in ("inspect", "trace", "recreate")] == [24, 48, 96]
+    ticks = [c["frame"] for c in br.cues([scene]) if c["sound"] == "tick"]
+    assert ticks == sorted(ticks) and ticks[:3] == [24, 48, 96]
+
+
+def test_reel_caption_uses_authored_text():
+    text = series.caption(reel_spec(), cfg(), 2)
+    assert "Mimo Found This on GitHub — EP. 002" in text and "github.com/morluto/rea" in text and "{episode}" not in text
+    assert "stars" not in text.lower()

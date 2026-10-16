@@ -8,12 +8,18 @@ the shared components is specific to one episode.
 .venv/bin/python examples/series/build_episode.py series/mimo-found-this-on-github/specs/<repo>.json --validate-only
 .venv/bin/python examples/series/build_episode.py series/mimo-found-this-on-github/specs/<repo>.json
 .venv/bin/python examples/series/build_episode.py SPEC --episode 12    # manual number; refused if another repository holds it
+
+# reel format v2 (EP. 002 on): seven-beat story arc, Instagram safe area, hook variants, no branded outro
+.venv/bin/python examples/series/build_reel.py series/mimo-found-this-on-github/specs/morluto-rea.json
 ```
 
 ## Status
 
 - **EP. 001 is produced and QA-passed** (52/52 checks, frames inspected). It features `harry0703/MoneyPrinterTurbo` (MIT, v1.3.8,
   commit `c3634de`). Outputs are in `outputs/mimo-found-this-on-github/episode-001/`.
+- **EP. 002 is produced in the reel-v2 format.** It features `morluto/rea` (REA, MIT, commit `5eaef92`, npm `rea-agents` 6.5.0),
+  with ArtCraft's seven Adobe-style open-source apps as the hook. Outputs are in `outputs/mimo-found-this-on-github/episode-002/`.
+  Research: `series/mimo-found-this-on-github/research/episode-002-research.md`.
 - `fikriaf/HandCam-Control` was verified and rejected because it has no OS cursor control. See `candidates/rejected.json`.
 - The pipeline-test fixture (`tests/fixtures/series/pipeline_test_spec.json`) builds against a temporary registry and never takes a number.
 
@@ -39,6 +45,39 @@ The output of that run is not shown, because it was only a verification.
 **Verified from source only.** Stock-footage search and LLM script writing. The stock and LLM APIs are blocked or paid here.
 
 **Rights caveat.** `mpt-assets` states no licence. Confirm reuse with the maintainer before publishing.
+
+### How EP. 002 was made
+
+**Two separate projects.** The hook shows ArtCraft's own README screenshots (MIT OR Apache-2.0). Each one is labelled with the
+recreation's name, "-style · open source" and "NOT ADOBE". REA is introduced as "A DIFFERENT PROJECT". Nothing says REA was used to
+build ArtCraft, and nothing in the reel implies it.
+
+**The proof is a real run.**
+1. The pipeline compiled a small image filter as a stripped binary, ran it once, and deleted its source.
+2. A separate AI agent got only the binary. It drove REA's MCP server (`rea --mcp`) through a small JSON-RPC client that logs every message, and
+   called `capture_process_scenario`, then `inspect_with_objdump`.
+3. It explained the per-pixel rules and rewrote the filter. The rebuilt output matches the original byte for byte (0 of 1,080,015).
+
+The evidence is in `series/mimo-found-this-on-github/evidence/episode-002-rea/`. On screen the run is tagged "REAL REA RUN · TEST APP
+MADE FOR THIS DEMO", and the possibility beat ends with "NOT A ONE-CLICK CLONER".
+
+**Not run here.** Hopper, Ghidra and IDA (not installed). The `trace` commands are cited from `rea --help`, so the reel says
+"trace behavior" only as a capability.
+
+## Reel format v2
+
+Set `"format": "reel-v2"` in a spec to use it. The EP. 001 format is unchanged.
+
+| | |
+|---|---|
+| Beats | `shock → context → mystery → discovery → proof → possibility → question`, each with its own narration and on-screen data (`claims` must cite verified features) |
+| Composition | `SeriesReel` (`src/series/Reel.tsx`, layout `src/series/layout-reel.json`) |
+| Builder / QA | `examples/series/build_reel.py`, `examples/series/qa_reel.py` |
+| Safe area | `series.json` `safe_zone.reel_v2`: top 250, bottom 400, left 60, right 180 px. Critical blocks stay inside x 60–900, y 250–1520; backgrounds bleed full-frame |
+| Subtitles | Band y 1372–1504, above Instagram's caption UI, clear of every content block |
+| Ending | Stops right after the question (≤ 1 s); no branded outro |
+| Hook variants | `hook_variants` render as 3–5 s previews (`episode-NNN-hook-{a,b,c}.mp4`): the variant's opening plus the first spoken name of the next beat |
+| Previews | `qa/instagram/*.png` and `qa/instagram-safe-preview.png`: key frames under a simulated Reels UI (top bar, action rail, caption block), with and without safe-area guides |
 
 ## Layout
 

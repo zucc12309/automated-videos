@@ -1,0 +1,15 @@
+{
+  "note": "Reel format v2 layout, rectangles [x, y, w, h] at 1080x1920. Critical content stays inside the Instagram safe area from series.json safe_zone.reel_v2 (top 250, bottom 400, left 60, right 180 => x 60-900, y 250-1520); backgrounds fill the frame. Reel.tsx places blocks with these and qa_reel.py checks them, so the two never drift apart.",
+  "safe": {"left": 60, "top": 250, "right": 900, "bottom": 1520},
+  "subtitle": {"y": 1372, "max_h": 132, "x": 60, "w": 840, "size": 50},
+  "bug": [60, 258, 840, 44],
+  "regions": {
+    "shock": {"stage": [60, 320, 840, 690], "headline": [60, 1036, 840, 300], "mimo": [744, 846, 150, 160]},
+    "context": {"stage": [60, 320, 840, 690], "name": [60, 1040, 840, 140], "inspired": [60, 1186, 840, 64], "dots": [60, 1288, 840, 30]},
+    "mystery": {"grid": [60, 320, 840, 700], "question": [60, 1046, 840, 290]},
+    "discovery": {"card": [60, 330, 840, 660], "mimo": [60, 1010, 250, 320], "chips": [330, 1060, 570, 220]},
+    "proof": {"app": [60, 320, 840, 330], "mimo": [744, 410, 150, 170], "panel": [60, 676, 840, 560], "stamp": [60, 1256, 840, 84]},
+    "possibility": {"stages": [60, 320, 840, 110], "compare": [60, 460, 840, 520], "badge": [60, 1000, 840, 130], "stamp": [60, 1180, 840, 120]},
+    "question": {"icons": [330, 330, 570, 560], "mimo": [60, 560, 250, 320], "question": [60, 940, 840, 270], "cta": [60, 1236, 840, 96]}
+  }
+}

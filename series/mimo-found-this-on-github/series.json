@@ -88,11 +88,33 @@
       "bottom": 1500,
       "left": 60,
       "right": 1020
+    },
+    "reel_v2": {
+      "note": "Instagram Reels UI margins in px at 1080x1920 (configurable). Critical content stays inside; backgrounds may fill the frame.",
+      "top": 250,
+      "bottom": 400,
+      "left": 60,
+      "right": 180
     }
   },
   "subtitles": {
     "min_words": 3,
     "max_words": 5,
     "y": 1420
+  },
+  "formats": {
+    "reel-v2": {
+      "beats": [
+        "shock",
+        "context",
+        "mystery",
+        "discovery",
+        "proof",
+        "possibility",
+        "question"
+      ],
+      "outro_s": 0,
+      "note": "EP. 002 on: story-arc reel, no branded outro, ends on the question"
+    }
   }
 }

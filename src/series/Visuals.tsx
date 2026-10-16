@@ -250,9 +250,21 @@ const CoverPhoneFan: React.FC<{w: number; h: number; frames: string[]}> = ({w, h
   </div>;
 };
 
+/** Two or three real interface screenshots, overlapping and large enough to read as a grid thumbnail. */
+const CoverCollage: React.FC<{w: number; h: number; frames: string[]}> = ({w, h, frames}) => {
+  const n = Math.min(3, frames.length), cw = w * .7, ch = cw * .625;
+  const pos = [{x: 0, y: h - ch, r: -5, z: 1}, {x: w - cw, y: h * .02, r: 4, z: 2}, {x: (w - cw) * .45, y: (h - ch) * .55, r: -1, z: 3}];
+  return <div style={{position: 'relative', width: w, height: h}}>
+    {frames.slice(0, n).map((src, i) => <div key={i} style={{position: 'absolute', left: pos[i].x, top: pos[i].y, width: cw, height: ch, zIndex: pos[i].z,
+      transform: `rotate(${pos[i].r}deg)`, borderRadius: 20, overflow: 'hidden', border: `4px solid ${i === n - 1 ? S.accent : S.line}`, background: '#000',
+      boxShadow: '0 24px 60px rgba(0,0,0,.65)'}}><Img src={staticFile(src)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/></div>)}
+  </div>;
+};
+
 export const ProjectVisual: React.FC<{visual: string; w: number; h: number; assets?: {input?: string; output?: string; frames?: string[]}}> = ({visual, w, h, assets}) => {
   switch (visual) {
     case 'phone-fan': return <CoverPhoneFan w={w} h={h} frames={assets?.frames ?? []}/>;
+    case 'collage': return <CoverCollage w={w} h={h} frames={assets?.frames ?? []}/>;
     case 'hand-cursor': return <CoverHandCursor w={w} h={h}/>;
     case 'input-output': return <CoverInputOutput w={w} h={h} input={assets?.input} output={assets?.output}/>;
     default: return <CoverTerminal w={w} h={h}/>;

@@ -1,0 +1,25 @@
+{
+  "behavior": "Warm vintage tint; very bright pixels locked to cream.",
+  "rules": [
+    "luma 233+ becomes cream",
+    "warms reds by +24",
+    "green mixes in red, +10",
+    "blue muted toward grey, +4",
+    "red clamped at 255"
+  ],
+  "evidence_lines": [
+    "1315:\t81 fa ff e8 00 00    \tcmp    $0xe8ff,%edx",
+    "1325:\tba f8 ff ff ff       \tmov    $0xfffffff8,%edx",
+    "1290:\t44 69 d7 e4 00 00 00 \timul   $0xe4,%edi,%r10d",
+    "12a9:\t83 c2 18             \tadd    $0x18,%edx",
+    "12cf:\t83 c7 0a             \tadd    $0xa,%edi",
+    "12d2:\t83 c1 04             \tadd    $0x4,%ecx"
+  ],
+  "differing_bytes": 0,
+  "tool_calls": [
+    "capture_process_scenario",
+    "inspect_with_objdump",
+    "inspect_with_objdump",
+    "inspect_with_objdump"
+  ]
+}
