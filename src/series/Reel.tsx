@@ -166,7 +166,7 @@ const MysteryBeat: React.FC<BP> = ({b, f, mouth}) => {
         fontFamily: FONT.sans, fontWeight: 900, fontSize: 110, color: inkA(.35)}}>?</div>;
       if (typeof t === 'string') return null;
       return <div key={i} style={{...style, border: `2px solid ${inkA(.14)}`, background: '#000'}}>
-        <Img src={staticFile(t.src)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
+        <Img src={staticFile(t.src)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.02 + .16 * f / Math.max(1, b.frames)})`}}/>
         <div style={{position: 'absolute', left: 8, bottom: 8, fontFamily: FONT.sans, fontWeight: 800, fontSize: 28, color: S.ink, background: 'rgba(14,15,18,.85)',
           padding: '2px 10px', borderRadius: 8}}>{t.name}</div>
       </div>;
@@ -232,7 +232,7 @@ const ProofBeat: React.FC<BP> = ({b, f, mouth}) => {
       {[{src: app.input, label: 'INPUT'}, {src: app.output, label: 'APP OUTPUT'}].map((x, i) =>
         <div key={i} style={{position: 'absolute', left: i * (img + 70), top: 0, width: img, height: img, borderRadius: 20, overflow: 'hidden', background: '#000',
           border: `3px solid ${i ? S.accent : inkA(.16)}`, opacity: i ? warm : 1, transform: i ? `translateX(${(1 - warm) * -40}px)` : undefined}}>
-          <Img src={staticFile(x.src)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
+          <Img src={staticFile(x.src)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1 + .14 * f / Math.max(1, b.frames)})`}}/>
           <div style={{position: 'absolute', left: 8, top: 8, fontFamily: FONT.mono, fontWeight: 700, fontSize: 24, color: i ? S.ground : S.ink,
             background: i ? S.accent : 'rgba(14,15,18,.85)', padding: '2px 10px', borderRadius: 6}}>{x.label}</div>
         </div>)}
@@ -263,6 +263,8 @@ const ProofBeat: React.FC<BP> = ({b, f, mouth}) => {
             background: hi ? S.accent : 'transparent', borderRadius: 6, padding: '0 8px', marginLeft: -8}}>{l}</div>;
         })}
       </div>
+      {cur >= 0 && <div style={{position: 'absolute', left: 0, right: 0, top: 80 + ((local % 36) / 36) * (R.proof.panel[3] - 140), height: 46,
+        background: `linear-gradient(180deg, ${accentA(0)}, ${accentA(.16)}, ${accentA(0)})`, borderTop: `2px solid ${accentA(.35)}`}}/>}
       {b.tag && <div style={{position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', fontFamily: FONT.mono, fontSize: 24, letterSpacing: 1.5,
         color: S.muted}}>{b.tag}</div>}
     </div>
@@ -296,7 +298,7 @@ const PossibilityBeat: React.FC<BP> = ({b, f}) => {
     {[c.left, c.right].map((x, i) => <div key={i} style={{position: 'absolute', left: cx + i * (iw + 30), top: cy, width: iw, height: ch, borderRadius: 22, overflow: 'hidden',
       background: S.panel, border: `3px solid ${i && wipe > .99 ? S.ok : inkA(.14)}`}}>
       <div style={{position: 'absolute', inset: 0, clipPath: i ? `inset(0 ${(1 - wipe) * 100}% 0 0)` : undefined}}>
-        <Img src={staticFile(x.src)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/></div>
+        <Img src={staticFile(x.src)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1 + .14 * f / Math.max(1, b.frames)})`}}/></div>
       {i === 1 && wipe < 1 && <div style={{position: 'absolute', top: 0, bottom: 0, left: `${wipe * 100}%`, width: 6, background: S.accent, opacity: wipe > 0 ? 1 : 0}}/>}
       {i === 1 && wipe <= 0 && <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.mono,
         fontSize: 32, color: S.muted}}>rebuilding…</div>}
