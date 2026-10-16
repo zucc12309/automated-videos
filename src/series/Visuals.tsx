@@ -67,7 +67,7 @@ export const PanelFrame: React.FC<{w: number; h: number; title?: string; tag?: s
     <div style={{position: 'relative', width: w, height: h, borderRadius: 26, overflow: 'hidden', background: tone === 'cam' ? '#121316' : S.panel,
       border: `2px solid ${inkA(.09)}`, boxShadow: '0 30px 80px rgba(0,0,0,.55)'}}>
       {children}
-      {title && <div style={{position: 'absolute', left: 20, top: 16, fontFamily: FONT.mono, fontSize: 24, fontWeight: 700, letterSpacing: 2, color: S.inkSoft,
+      {title && <div style={{position: 'absolute', left: 20, top: 16, fontFamily: FONT.mono, fontSize: 28, fontWeight: 700, letterSpacing: 2, color: S.inkSoft,
         display: 'flex', alignItems: 'center', gap: 10}}>
         {tone === 'cam' && <span style={{width: 12, height: 12, borderRadius: 6, background: S.error, display: 'inline-block'}}/>}{title}</div>}
       {tag && <div style={{position: 'absolute', right: 14, bottom: 12, fontFamily: FONT.mono, fontSize: 18, letterSpacing: 1.5, color: S.muted,
@@ -174,9 +174,9 @@ export const VideoPanel: React.FC<{w: number; h: number; src: string; startFrom?
       <div style={{position: 'absolute', left: (w - pw) / 2, top: (h - ph) / 2, width: pw, height: ph, borderRadius: pw * .09, overflow: 'hidden',
         border: `${Math.max(4, pw * .018)}px solid ${S.line}`, boxShadow: `0 30px 80px rgba(0,0,0,.6), 0 0 0 2px ${inkA(.08)}`, background: '#000'}}>
         <OffthreadVideo src={staticFile(src)} muted startFrom={Math.round(startFrom * 30)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/>
-        {title && <div style={{position: 'absolute', left: 14, top: 14, fontFamily: FONT.mono, fontWeight: 700, fontSize: 20, letterSpacing: 2, color: S.ground,
+        {title && <div style={{position: 'absolute', left: 14, top: 14, fontFamily: FONT.mono, fontWeight: 700, fontSize: Math.max(22, pw * .052), letterSpacing: 2, color: S.ground,
           background: S.accent, padding: '4px 10px', borderRadius: 8}}>{title}</div>}
-        {tag && <div style={{position: 'absolute', left: 0, right: 0, top: 50, textAlign: 'center'}}><span style={{fontFamily: FONT.mono, fontSize: 17,
+        {tag && <div style={{position: 'absolute', left: 0, right: 0, top: Math.max(56, pw * .13), textAlign: 'center'}}><span style={{fontFamily: FONT.mono, fontSize: Math.max(19, pw * .042),
           letterSpacing: 1.2, color: S.inkSoft, background: 'rgba(14,15,18,.75)', padding: '4px 10px', borderRadius: 8}}>{tag}</span></div>}
       </div>
     </div>;

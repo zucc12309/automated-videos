@@ -1,17 +1,17 @@
-# EP. 001 · Script in, short out: an open-source video maker
+# EP. 001 · This GitHub repo turns a topic into a video
 
 Mimo Found This on GitHub · repository: https://github.com/harry0703/MoneyPrinterTurbo
 Demo status: **project-showcase** (official output examples published by the project itself (shown muted and credited); the features they show were also verified in source or by a local run)
 
 | Scene | Start | Length | Narration |
 |---|---|---|---|
-| hook | 0.00s | 3.77s | An open-source tool made both of these videos. |
-| discovery | 3.77s | 2.93s | And I found the project on GitHub. |
-| demo | 6.70s | 7.10s | Paste a script. It finds the footage, adds voice, subtitles and music, and edits it. |
-| tech | 13.80s | 4.30s | No script? Add your AI key, and it writes one. |
-| payoff | 18.10s | 5.57s | Would you actually use this? Follow Mimo for more GitHub discoveries. |
+| hook | 0.00s | 4.13s | This GitHub repo turns a topic into a finished video. |
+| discovery | 4.13s | 2.53s | It's called MoneyPrinterTurbo. |
+| demo | 6.67s | 7.50s | Give it a topic. It writes the script, finds footage, adds voice and subtitles, then edits the video. |
+| tech | 14.17s | 4.90s | It's open source. Use your own AI key, or a local model. |
+| payoff | 19.07s | 5.50s | Would you let AI make your next Reel? Follow Mimo for more GitHub discoveries. |
 
-51 words, 148 wpm while speaking.
+57 words, 158 wpm while speaking.
 
 ## Verified features shown
 
@@ -21,4 +21,6 @@ Demo status: **project-showcase** (official output examples published by the pro
 - **MUSIC** (verified-run): Mixes a background track under the voice. — evidence: run: --bgm-type random; final mix has no silences where the voice-only track has 3; app/services/video.py:877 get_bgm_file
 - **EDIT** (verified-run): Cuts and fits the clips to a 1080x1920 vertical video that matches the voice length. — evidence: run: 'combining video' / 'generating video' -> final-1.mp4 1080x1920 10.0 s; app/services/video.py:965 combine_videos, :1558 generate_video
 - **SCRIPT** (verified-source): Can write the script (and footage keywords) from a topic using an LLM provider you configure with your own API key. — evidence: app/services/llm.py:880 generate_script, :1009 generate_terms; WebUI 'Generate Script & Keywords with AI' button (screenshot)
-- **WEB UI · CLI · API** (verified-run): Has a web UI, a command line and an HTTP API. — evidence: WebUI run and screenshotted on 127.0.0.1:8501; cli.py run; app/controllers/v1/video.py:212 POST /videos (source)
+- **WEB UI · CLI · API** (verified-run): Has a web UI, a command line and an HTTP API; runs on your own machine. — evidence: WebUI run and screenshotted on 127.0.0.1:8501; cli.py run; app/controllers/v1/video.py:212 POST /videos (source)
+- **LOCAL MODEL** (verified-source): Script writing can use your own API key for one of ~37 LLM providers (OpenAI, Gemini, DeepSeek, Anthropic, …) or a local model through Ollama. — evidence: app/models/llm_provider.py LLM_PROVIDER_REGISTRY (openai, gemini, deepseek, anthropic, ollama, …); app/services/llm.py:880 generate_script
+- **OPEN SOURCE** (verified-source): MIT licensed, Python. — evidence: LICENSE (MIT); pyproject.toml license = MIT, requires-python >= 3.11

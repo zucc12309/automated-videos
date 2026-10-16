@@ -145,8 +145,11 @@ def cues(scenes: list[dict], props: dict) -> list[dict]:
     for i, lab in enumerate(labels):
         add("demo", label_frame(demo, labels, i), "tick", .5)
     add("demo", 10, "plug", .3)
-    right = props["demo"]["right"]
-    if right["kind"] == "cursor":
+    if props["demo"].get("output") and len(labels) > 1:                 # before -> after: the output lands with the second stage
+        add("demo", label_frame(demo, labels, 1), "whoosh", .4)
+        add("demo", label_frame(demo, labels, len(labels) - 1) + 2, "chime", .3)
+    right = props["demo"]["right"] or {}
+    if right.get("kind") == "cursor":
         for t in press_times(right["path"], 0, demo["frames"] / FPS):
             add("demo", t * FPS, "tick", .45)
     flow = by["flow"]
@@ -224,11 +227,13 @@ def episode_props(spec: dict, cfg: dict, rec: dict, scenes: list[dict], subs: li
         "episode": {"n": rec["episode"], "label": series.fmt(rec["episode"]), "title": spec["title"], "repo": f"{owner}/{name}",
                     "category": spec.get("category", "Open source"), "headline": spec["cover_headline"],
                     "expression": spec.get("mascot_expression", "surprised"), "visual": spec.get("project_visual", "terminal"),
-                    "demoStatus": status, "demoTag": demo.get("tag", DEMO_TAGS[status]), "visualAssets": spec.get("project_visual_assets", {})},
+                    "demoStatus": status, "demoTag": demo.get("tag", DEMO_TAGS[status]), "visualAssets": spec.get("project_visual_assets", {}),
+                    **({"hookHeadline": spec["hook_headline"]} if spec.get("hook_headline") else {})},
         "scenes": [{**s, "narration": next(x["narration"] for x in storyboard(spec, cfg)["scenes"] if x["id"] == s["id"])} for s in scenes],
         "subtitles": subs, "mouth": mouth,
         "hook": {"panels": demo["hook"]["panels"], "labels": demo["hook"].get("labels", [])},
-        "demo": {"left": demo["demo"]["left"], "right": demo["demo"]["right"], "labels": demo["demo"].get("labels", [])},
+        "demo": {"left": demo["demo"].get("left"), "right": demo["demo"].get("right"), "labels": demo["demo"].get("labels", []),
+                 **{k: demo["demo"][k] for k in ("input", "output") if k in demo["demo"]}},
         "flow": spec.get("flow", []),
         "repoCard": {"owner": owner, "name": name, "description": spec["repo_card"]["description"],
                      "language": spec["repo_card"].get("language"), "license": spec["repo_card"].get("license")},

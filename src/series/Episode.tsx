@@ -4,7 +4,7 @@ import {ensureFonts} from '../premium/tokens';
 import {EpisodeNumber, SeriesHeader} from './Cover';
 import {CursorPanel, handTip, HandPanel, MimoMascot, PanelView} from './Visuals';
 import L from './layout.json';
-import {accentA, clamp01, EpisodeInfo, EpisodeProps, FONT, inkA, io, Label, Panel, S, samplePath, Scene, SeriesInfo, sp, SubGroup, wf} from './theme';
+import {accentA, clamp01, fitSize, EpisodeInfo, EpisodeProps, FONT, inkA, io, Label, Panel, S, samplePath, Scene, SeriesInfo, sp, SubGroup, wf} from './theme';
 
 /* One episode of a series, entirely data-driven: build_episode.py times every scene to the measured narration (scenes[].from/frames/
    words), groups the subtitles, and passes the verified demo panels. Nothing episode-specific is written here. */
@@ -76,8 +76,9 @@ const DemoStage: React.FC<{panels: Panel[]; t: number; w: number; h: number; tag
 // ---------------------------------------------------------------- scenes
 const HookScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const t = f / 30;
-  const lines = p.episode.headline;
+  const lines = p.episode.hookHeadline ?? p.episode.headline;
   const at = lines.map((_, i) => i === 0 ? 0 : wf(scene, Math.round(i * scene.words.length / lines.length)));
+  const hs = fitSize(lines, R.hook.headline[2] - 20, 132, ), lh = Math.min(hs, R.hook.headline[3] / lines.length);
   const pop = sp(f, 0, 16, 220);
   return <AbsoluteFill>
     <div style={{position: 'absolute', left: R.hook.stage[0], top: R.hook.stage[1], transform: `scale(${.94 + .06 * pop})`, transformOrigin: '50% 0%'}}>
@@ -86,15 +87,15 @@ const HookScene: React.FC<SP> = ({scene, f, p, mouth}) => {
     <div style={{position: 'absolute', left: R.hook.headline[0], width: R.hook.headline[2], top: R.hook.headline[1], textAlign: 'center', fontFamily: FONT.sans, fontWeight: 900, letterSpacing: -3}}>
       {lines.map((l, i) => {
         const k = sp(f, at[i], 13, 260, .5);
-        return <div key={i} style={{fontSize: 132, lineHeight: 1, color: i === lines.length - 1 && lines.length > 1 ? S.accent : S.ink,
+        return <div key={i} style={{fontSize: lh, lineHeight: 1, color: i === lines.length - 1 && lines.length > 1 ? S.accent : S.ink,
           opacity: f >= at[i] ? 1 : 0, transform: `scale(${1.35 - .35 * k})`, whiteSpace: 'nowrap'}}>{l}</div>;
       })}
     </div>
     {/* Mimo peeks over the stage edge as the punchline lands: a reaction, not an intro */}
-    <div style={{position: 'absolute', left: R.hook.peek[0], top: R.hook.peek[1], width: R.hook.peek[2], height: R.hook.peek[3], overflow: 'hidden'}}>
+    {lines.length <= 2 && <div style={{position: 'absolute', left: R.hook.peek[0], top: R.hook.peek[1], width: R.hook.peek[2], height: R.hook.peek[3], overflow: 'hidden'}}>
       <div style={{position: 'absolute', left: 20, top: R.hook.peek[3] - 140 * sp(f, at[at.length - 1] + 4, 12, 180)}}>
         <MimoMascot state="surprised" size={160} frame={f} mouth={mouth} look={{x: -1, y: -.8}}/></div>
-    </div>
+    </div>}
   </AbsoluteFill>;
 };
 
@@ -113,15 +114,15 @@ const DiscoveryScene: React.FC<SP> = ({scene, f, p, mouth}) => {
       <SeriesHeader text={p.series.header} size={40}/>
       <EpisodeNumber label={p.episode.label} size={60}/>
     </div>
-    <div style={{position: 'absolute', left: 90, right: 90, top: 640, padding: '40px 44px', borderRadius: 30, background: S.panel,
+    <div style={{position: 'absolute', left: 70, right: 70, top: R.discovery.card[1], padding: '36px 44px', borderRadius: 30, background: S.panel,
       border: `2px solid ${inkA(.1)}`, boxShadow: '0 40px 90px rgba(0,0,0,.55)',
       transform: `translateX(${(1 - card) * 900}px) translateY(${Math.sin(f / 14) * 7}px) rotate(${(1 - card) * 4 + Math.sin(f / 22) * .5}deg)`}}>
-      <div style={{display: 'flex', alignItems: 'center', gap: 18, fontFamily: FONT.mono, fontSize: 36, color: S.inkSoft}}>
-        <RepoGlyph size={44}/><span>{r.owner} /</span></div>
-      <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 70, color: S.ink, marginTop: 8, letterSpacing: -1, whiteSpace: 'nowrap', overflow: 'hidden',
+      <div style={{display: 'flex', alignItems: 'center', gap: 18, fontFamily: FONT.mono, fontSize: 42, color: S.inkSoft}}>
+        <RepoGlyph size={50}/><span>{r.owner} /</span></div>
+      <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 82, color: S.ink, marginTop: 8, letterSpacing: -1, whiteSpace: 'nowrap', overflow: 'hidden',
         textOverflow: 'ellipsis'}}>{r.name}</div>
-      <div style={{fontFamily: FONT.sans, fontSize: 36, color: S.inkSoft, marginTop: 14, lineHeight: 1.3}}>{r.description}</div>
-      <div style={{display: 'flex', gap: 30, marginTop: 24, fontFamily: FONT.mono, fontSize: 28, color: S.muted}}>
+      <div style={{fontFamily: FONT.sans, fontSize: 44, color: S.inkSoft, marginTop: 14, lineHeight: 1.25}}>{r.description}</div>
+      <div style={{display: 'flex', gap: 34, marginTop: 24, fontFamily: FONT.mono, fontSize: 36, color: S.inkSoft}}>
         {r.language && <span><span style={{display: 'inline-block', width: 18, height: 18, borderRadius: 9, background: S.accent, marginRight: 10}}/>{r.language}</span>}
         {r.license && <span>{r.license} license</span>}
       </div>
@@ -138,7 +139,77 @@ const DiscoveryScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   </AbsoluteFill>;
 };
 
-const DemoScene: React.FC<SP> = ({scene, f, p, mouth}) => {
+/* Before → after: the input (a topic), the project's pipeline stages ticking on the spoken words, and the real output growing into
+   a large phone. Used when the spec gives demo.input + demo.output; the stage list is demo.labels (each tied to a verified feature). */
+const Spinner: React.FC<{f: number; size: number}> = ({f, size}) =>
+  <svg width={size} height={size} viewBox="0 0 40 40"><circle cx={20} cy={20} r={16} stroke={inkA(.15)} strokeWidth={5} fill="none"/>
+    <path d="M20 4 A16 16 0 0 1 36 20" stroke={S.accent} strokeWidth={5} fill="none" strokeLinecap="round" transform={`rotate(${f * 14} 20 20)`}/></svg>;
+const Check: React.FC<{size: number; k: number}> = ({size, k}) =>
+  <svg width={size} height={size} viewBox="0 0 40 40"><circle cx={20} cy={20} r={18} fill={S.accent} opacity={k}/>
+    <path d="M11 21 L17.5 27 L29 14" stroke={S.ground} strokeWidth={5} fill="none" strokeLinecap="round" strokeLinejoin="round"
+      strokeDasharray={30} strokeDashoffset={30 * (1 - k)}/></svg>;
+
+const BeforeAfterScene: React.FC<SP> = ({scene, f, p, mouth}) => {
+  const {input, output, labels} = p.demo as Required<EpisodeProps['demo']>;
+  const t = f / 30;
+  const B = R.demo;
+  const done = labels.map((_, i) => labelFrame(scene, labels, i));
+  const reveal = done.length > 1 ? done[1] : Math.round(scene.frames * .35);   // the video appears once the footage step lands
+  const inK = sp(f, 0, 15, 190), out = sp(f, reveal, 14, 150);
+  const progress = clamp01(done.filter(d => f >= d).length / Math.max(1, done.length));
+  const allDone = f >= done[done.length - 1];
+  const nod = Math.max(0, ...done.map(h => f >= h ? Math.exp(-(f - h) / 5) * Math.sin(Math.min(Math.PI, (f - h) / 3)) : 0));
+  const [ox, oy, ow, oh] = B.output;
+  const pw = Math.min(ow, oh * 9 / 16), ph = pw * 16 / 9;
+  return <AbsoluteFill>
+    {/* BEFORE: the topic */}
+    <div style={{position: 'absolute', left: B.input[0], top: B.input[1], width: B.input[2], height: B.input[3], borderRadius: 28, background: S.panel,
+      border: `3px solid ${inkA(.1)}`, padding: '22px 34px', boxSizing: 'border-box', opacity: inK, transform: `translateY(${(1 - inK) * -40}px)`}}>
+      <div style={{display: 'flex', alignItems: 'center', gap: 16}}>
+        <span style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 30, letterSpacing: 3, color: S.ground, background: S.accent, padding: '4px 14px', borderRadius: 8}}>{input.label}</span>
+        {input.note && <span style={{fontFamily: FONT.mono, fontSize: 24, color: S.muted}}>{input.note}</span>}
+      </div>
+      <div style={{fontFamily: FONT.sans, fontWeight: 800, fontSize: Math.min(58, (B.input[2] - 80) / (input.text.length * .53 + 1)), color: S.ink, marginTop: 14,
+        whiteSpace: 'nowrap', overflow: 'hidden'}}>
+        “{input.text.slice(0, Math.ceil(clamp01((f - 4) / 22) * input.text.length))}”</div>
+    </div>
+    {/* the pipeline: one row per stage, ticking on the narration */}
+    <div style={{position: 'absolute', left: B.steps[0], top: B.steps[1], width: B.steps[2]}}>
+      {labels.map((l, i) => {
+        const d = done[i], prev = i ? done[i - 1] : 8;
+        const state = f >= d ? 'done' : f >= prev ? 'active' : 'pending';
+        const k = sp(f, d, 14, 220);
+        return <div key={l.text} style={{display: 'flex', alignItems: 'center', gap: 22, height: 104, opacity: state === 'pending' ? .35 : 1}}>
+          {state === 'done' ? <Check size={52} k={k}/> : state === 'active' ? <Spinner f={f} size={52}/> :
+            <div style={{width: 52, height: 52, borderRadius: 26, border: `4px solid ${inkA(.18)}`, boxSizing: 'border-box'}}/>}
+          <span style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 52, letterSpacing: -.5, color: state === 'done' ? S.ink : S.inkSoft,
+            transform: `scale(${1 + (state === 'done' ? (1 - k) * .12 : 0)})`, transformOrigin: 'left center'}}>{l.text}</span>
+        </div>;
+      })}
+      <div style={{marginTop: 18, height: 12, borderRadius: 6, background: inkA(.1), width: B.steps[2] - 40, overflow: 'hidden'}}>
+        <div style={{height: '100%', width: `${progress * 100}%`, background: S.accent, borderRadius: 6}}/></div>
+    </div>
+    {/* AFTER: the real output, large */}
+    <div style={{position: 'absolute', left: ox + (ow - pw) / 2, top: oy, width: pw, height: ph}}>
+      <div style={{position: 'absolute', inset: 0, borderRadius: pw * .09, border: `6px dashed ${inkA(.14)}`, display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', gap: 24, opacity: 1 - out}}>
+        <Spinner f={f} size={110}/>
+        <span style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 34, color: S.inkSoft, letterSpacing: 2}}>GENERATING…</span>
+      </div>
+      <div style={{position: 'absolute', inset: 0, opacity: out, transform: `scale(${.82 + .18 * out})`, transformOrigin: '50% 50%',
+        boxShadow: allDone ? `0 0 0 ${4 + 3 * Math.sin(f / 4)}px ${S.accent}` : 'none', borderRadius: pw * .09}}>
+        <PanelView panel={output} w={pw} h={ph} t={t} tag={p.episode.demoTag}/></div>
+    </div>
+    <div style={{position: 'absolute', left: B.mimo[0], top: B.mimo[1]}}>
+      <div style={{transform: `translateY(${-nod * 18}px) scale(${1 + nod * .04}, ${1 - nod * .05})`, transformOrigin: '50% 100%'}}>
+        <MimoMascot state={allDone ? 'excited' : f >= reveal ? 'surprised' : 'curious'} size={B.mimo[2]} frame={f} mouth={mouth}
+          amount={allDone ? .5 : .9} look={{x: 1, y: -.5}}/></div></div>
+  </AbsoluteFill>;
+};
+
+const DemoScene: React.FC<SP> = props => props.p.demo.input && props.p.demo.output ? <BeforeAfterScene {...props}/> : <SplitDemoScene {...props}/>;
+
+const SplitDemoScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const t = f / 30;
   const {left, right, labels} = p.demo;
   const [lx, top, pw, ph] = R.demo.left, rx = R.demo.right[0];
@@ -200,8 +271,8 @@ const FlowScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const walking = active >= 0 && f - nodeAt[Math.max(0, active)] < 12;
   return <AbsoluteFill>
     <div style={{position: 'absolute', top: 290, left: 0, right: 0, textAlign: 'center', opacity: io(f, 0, 8)}}>
-      <div style={{fontFamily: FONT.mono, fontSize: 34, color: S.muted, letterSpacing: 2}}>{p.repoCard.owner} /</div>
-      <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 64, color: S.ink, letterSpacing: -1}}>{p.repoCard.name}</div>
+      <div style={{fontFamily: FONT.mono, fontSize: 40, color: S.inkSoft, letterSpacing: 2}}>{p.repoCard.owner} /</div>
+      <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 76, color: S.ink, letterSpacing: -1}}>{p.repoCard.name}</div>
     </div>
     <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
       {nodes.slice(1).map((_, i) => {
@@ -221,7 +292,7 @@ const FlowScene: React.FC<SP> = ({scene, f, p, mouth}) => {
         background: sweep ? accentA(.16) : on ? S.panelHi : S.panel, border: `3px solid ${on ? S.accent : inkA(.08)}`, display: 'flex', flexDirection: 'column',
         justifyContent: 'center', padding: '0 40px', opacity: k, transform: `translateX(${(1 - k) * 80}px)`}}>
         <div style={{fontFamily: FONT.sans, fontWeight: 900, fontSize: 56, color: S.ink, letterSpacing: -.5, whiteSpace: 'nowrap'}}>{n.label}</div>
-        {n.sub && <div style={{fontFamily: FONT.mono, fontSize: 26, color: S.muted, marginTop: 6, whiteSpace: 'nowrap'}}>{n.sub}</div>}
+        {n.sub && <div style={{fontFamily: FONT.mono, fontSize: 30, color: S.inkSoft, marginTop: 6, whiteSpace: 'nowrap'}}>{n.sub}</div>}
       </div>;
     })}
     <div style={{position: 'absolute', left: R.flow.mimo[0], top: mimoY}}>
@@ -230,12 +301,20 @@ const FlowScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   </AbsoluteFill>;
 };
 
+/** Split a phrase into n lines of similar length (word boundaries only). */
+const balance = (text: string, n: number) => {
+  const words = text.split(' '), target = text.length / n, out: string[] = [];
+  let cur = '';
+  for (const w of words) {
+    if (cur && (cur + ' ' + w).length > target + 3 && out.length < n - 1) { out.push(cur); cur = w; } else cur = cur ? cur + ' ' + w : w;
+  }
+  return [...out, cur];
+};
+
 const PayoffScene: React.FC<SP> = ({scene, f, p, mouth}) => {
   const t = f / 30 + (p.payoff.replayFrom ?? 0);                    // replay the strongest verified moment of the demo path
-  const qw = p.payoff.question.split(' ');                         // two balanced lines
-  const cut = qw.reduce((best, _, i) => Math.abs(qw.slice(0, i).join(' ').length - qw.slice(i).join(' ').length) <
-    Math.abs(qw.slice(0, best).join(' ').length - qw.slice(best).join(' ').length) ? i : best, 1);
-  const q = [qw.slice(0, cut).join(' '), qw.slice(cut).join(' ')].filter(Boolean);
+  const q = balance(p.payoff.question, p.payoff.question.length > 22 ? 3 : 2);
+  const qs = fitSize(q, R.payoff.question[2], 104), qlh = Math.min(qs, R.payoff.question[3] / q.length);
   const qAt = 4;
   const follow = scene.words.findIndex(w => /^follow/i.test(w.w));
   const stampAt = follow >= 0 ? wf(scene, follow) : Math.round(scene.frames * .55);
@@ -245,13 +324,14 @@ const PayoffScene: React.FC<SP> = ({scene, f, p, mouth}) => {
       <DemoStage panels={[p.payoff.panel, ...p.hook.panels.filter(x => x.kind !== p.payoff.panel.kind)]} t={t} w={R.payoff.stage[2]} h={R.payoff.stage[3]} tag={p.episode.demoTag}/></div>
     <div style={{position: 'absolute', left: R.payoff.mimo[0], top: R.payoff.mimo[1]}}>
       <MimoMascot state="excited" size={R.payoff.mimo[2]} frame={f} mouth={mouth} amount={io(f, 0, 10)}/></div>
-    <div style={{position: 'absolute', left: 360, right: 50, top: 930, fontFamily: FONT.sans, fontWeight: 900, fontSize: 92, lineHeight: .98, letterSpacing: -2}}>
+    <div style={{position: 'absolute', left: R.payoff.question[0], width: R.payoff.question[2], top: R.payoff.question[1], textAlign: 'center', fontFamily: FONT.sans,
+      fontWeight: 900, fontSize: qlh, lineHeight: 1, letterSpacing: -2}}>
       {q.map((l, i) => {
         const k = sp(f, qAt + i * 6, 14, 220);
         return <div key={i} style={{color: i === q.length - 1 ? S.accent : S.ink, opacity: k, transform: `translateY(${(1 - k) * 30}px)`, whiteSpace: 'nowrap'}}>{l.trim()}</div>;
       })}
     </div>
-    <div style={{position: 'absolute', left: 0, right: 0, top: 1210, display: 'flex', justifyContent: 'center', opacity: f >= stampAt ? 1 : 0,
+    <div style={{position: 'absolute', left: R.payoff.stamp[0], width: R.payoff.stamp[2], top: R.payoff.stamp[1], display: 'flex', justifyContent: 'center', opacity: f >= stampAt ? 1 : 0,
       transform: `scale(${1.5 - .5 * st}) rotate(${-2 * st}deg)`}}>
       <div style={{fontFamily: FONT.mono, fontWeight: 700, fontSize: 36, letterSpacing: 2, color: S.accent, border: `4px solid ${S.accent}`, borderRadius: 14,
         padding: '12px 24px', background: 'rgba(14,15,18,.85)', whiteSpace: 'nowrap'}}>{p.episode.label} — SAVED TO {p.series.collection}</div>
@@ -294,7 +374,7 @@ export const Subtitles: React.FC<{g: number; groups: SubGroup[]; scenes: Scene[]
 
 const SeriesBug: React.FC<{series: SeriesInfo; episode: EpisodeInfo; on: number}> = ({series, episode, on}) =>
   <div style={{position: 'absolute', top: 222, left: 60, right: 60, display: 'flex', alignItems: 'center', gap: 14, opacity: on,
-    fontFamily: FONT.mono, fontWeight: 700, fontSize: 22, letterSpacing: 3, color: S.muted}}>
+    fontFamily: FONT.mono, fontWeight: 700, fontSize: 28, letterSpacing: 3, color: S.muted}}>
     <span style={{color: S.ground, background: S.accent, padding: '3px 10px', borderRadius: 6}}>{episode.label}</span>{series.header}
   </div>;
 

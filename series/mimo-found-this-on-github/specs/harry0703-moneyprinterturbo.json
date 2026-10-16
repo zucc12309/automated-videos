@@ -1,10 +1,10 @@
 {
   "series": "mimo-found-this-on-github",
   "repository": "harry0703/MoneyPrinterTurbo",
-  "title": "Script in, short out: an open-source video maker",
+  "title": "This GitHub repo turns a topic into a video",
   "cover_headline": [
-    "SCRIPT IN.",
-    "SHORT OUT."
+    "TOPIC IN.",
+    "VIDEO OUT."
   ],
   "category": "AI video",
   "mascot_expression": "surprised",
@@ -17,7 +17,7 @@
     ]
   },
   "repo_card": {
-    "description": "Give it a script (or a topic and your own AI key) and it builds the voice, subtitles, music and edit of a short video.",
+    "description": "Give it a topic (with your own AI key) or a script, and it builds the footage, voice, subtitles, music and edit of a short video.",
     "language": "Python",
     "license": "MIT"
   },
@@ -96,44 +96,62 @@
       "id": "interfaces",
       "label": "WEB UI · CLI · API",
       "status": "verified-run",
-      "claim": "Has a web UI, a command line and an HTTP API.",
+      "claim": "Has a web UI, a command line and an HTTP API; runs on your own machine.",
       "evidence": "WebUI run and screenshotted on 127.0.0.1:8501; cli.py run; app/controllers/v1/video.py:212 POST /videos (source)"
+    },
+    {
+      "id": "local_llm",
+      "label": "LOCAL MODEL",
+      "status": "verified-source",
+      "claim": "Script writing can use your own API key for one of ~37 LLM providers (OpenAI, Gemini, DeepSeek, Anthropic, …) or a local model through Ollama.",
+      "evidence": "app/models/llm_provider.py LLM_PROVIDER_REGISTRY (openai, gemini, deepseek, anthropic, ollama, …); app/services/llm.py:880 generate_script"
+    },
+    {
+      "id": "oss",
+      "label": "OPEN SOURCE",
+      "status": "verified-source",
+      "claim": "MIT licensed, Python.",
+      "evidence": "LICENSE (MIT); pyproject.toml license = MIT, requires-python >= 3.11"
     }
   ],
   "narration": {
-    "hook": "An open-source tool made both of these videos.",
-    "discovery": "And I found the project on GitHub.",
-    "demo": "Paste a script. It finds the footage, adds voice, subtitles and music, and edits it.",
-    "tech": "No script? Add your AI key, and it writes one.",
-    "payoff": "Would you actually use this? Follow Mimo for more GitHub discoveries."
+    "hook": "This GitHub repo turns a topic into a finished video.",
+    "discovery": "It's called MoneyPrinterTurbo.",
+    "demo": "Give it a topic. It writes the script, finds footage, adds voice and subtitles, then edits the video.",
+    "tech": "It's open source. Use your own AI key, or a local model.",
+    "payoff": "Would you let AI make your next Reel? Follow Mimo for more GitHub discoveries."
   },
   "emphasis": [
-    "open-source",
-    "footage,",
-    "voice,",
-    "subtitles",
-    "music,",
     "GitHub",
-    "script",
-    "AI"
+    "topic",
+    "video.",
+    "MoneyPrinterTurbo.",
+    "script,",
+    "footage,",
+    "voice",
+    "subtitles,",
+    "open",
+    "source.",
+    "AI",
+    "Reel?"
   ],
   "pacing": {
     "target_s": 24.0
   },
   "flow": [
     {
-      "label": "TOPIC",
-      "sub": "your own AI key · optional",
-      "feature": "script"
+      "label": "OPEN SOURCE",
+      "sub": "MIT · Python",
+      "feature": "oss"
     },
     {
-      "label": "SCRIPT + VOICE",
-      "sub": "Kokoro · Edge · Azure · …",
-      "feature": "voice"
+      "label": "YOUR AI KEY",
+      "sub": "or a local model (Ollama)",
+      "feature": "local_llm"
     },
     {
-      "label": "FINISHED SHORT",
-      "sub": "subtitles · music · 9:16",
+      "label": "FINISHED VIDEO",
+      "sub": "voice · subtitles · 9:16",
       "feature": "edit"
     }
   ],
@@ -142,8 +160,9 @@
     "tag": "OFFICIAL MPT DEMO",
     "notes": [
       "Every video shown is an official MoneyPrinterTurbo demo from the project's README (muted).",
-      "Voice, subtitles, music and editing were also verified by running MoneyPrinterTurbo v1.3.8 locally (see verification.run_command); that test output is not shown.",
-      "Stock-footage search is verified in source only (stock APIs are blocked in the build environment)."
+      "The topic card shows the demo's published title ('The Future of Everyday Robotics'), labelled as such; the exact input the maintainer used is not published.",
+      "The stage list mirrors MPT's pipeline stages (cli.py _PIPELINE_STAGES: script, terms, audio, subtitle, materials, video), ticking on the narration; it is an illustration, not a capture of that run.",
+      "Voice, subtitles, music and editing were also verified by running MoneyPrinterTurbo v1.3.8 locally; script writing and stock-footage search are verified in source only."
     ],
     "hook": {
       "panels": [
@@ -163,56 +182,60 @@
       "labels": []
     },
     "demo": {
-      "left": {
-        "kind": "video",
-        "src": "series/mimo-found-this-on-github/episode-001/demo-creative.mp4",
-        "label": "OUTPUT",
-        "startFrom": 3.0
+      "input": {
+        "label": "TOPIC",
+        "text": "The future of everyday robotics",
+        "note": "title of the official demo"
       },
-      "right": {
+      "output": {
         "kind": "video",
-        "src": "series/mimo-found-this-on-github/episode-001/demo-coffee.mp4",
+        "src": "series/mimo-found-this-on-github/episode-001/demo-robotics.mp4",
         "label": "OUTPUT",
-        "startFrom": 8.0
+        "startFrom": 1.0
       },
       "labels": [
         {
+          "text": "SCRIPT",
+          "feature": "script",
+          "at": 7
+        },
+        {
           "text": "FOOTAGE",
           "feature": "footage",
-          "at": 6
+          "at": 9
         },
         {
           "text": "VOICE",
           "feature": "voice",
-          "at": 8
+          "at": 11
         },
         {
           "text": "SUBTITLES",
           "feature": "subtitles",
-          "at": 9
+          "at": 13
         },
         {
-          "text": "MUSIC",
-          "feature": "music",
-          "at": 11
+          "text": "EDIT",
+          "feature": "edit",
+          "at": 15
         }
       ]
     },
     "payoff": {
-      "question": "WOULD YOU TRY THIS?",
+      "question": "WOULD YOU LET AI MAKE YOUR NEXT REEL?",
       "replay_from": 0,
       "panel": {
         "kind": "video",
-        "src": "series/mimo-found-this-on-github/episode-001/demo-robotics.mp4",
+        "src": "series/mimo-found-this-on-github/episode-001/demo-creative.mp4",
         "label": "OUTPUT",
-        "startFrom": 9.0
+        "startFrom": 5.0
       }
     }
   },
   "caption": {
-    "hook": "I pasted a script into an open-source GitHub project, and it handed back a finished vertical short",
-    "body": "Footage, voice, subtitles, music and the edit: MoneyPrinterTurbo does all of it from a script. Give it your own AI key and it can write the script from a topic too.\n\nClips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.",
-    "question": "Would you actually use this?"
+    "hook": "This GitHub repo turns a topic into a finished vertical video",
+    "body": "MoneyPrinterTurbo writes the script, finds stock footage, adds voice, subtitles and music, and edits it. Open source (MIT): bring your own AI key or run a local model.\n\nClips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.",
+    "question": "Would you let AI make your next Reel?"
   },
   "hashtags": [
     "#AIVideo",
@@ -223,5 +246,10 @@
     "series/mimo-found-this-on-github/episode-001/demo-robotics.mp4": "https://github.com/harry0703/mpt-assets/releases/download/assets/09-en-portrait-future-robotics.mp4",
     "series/mimo-found-this-on-github/episode-001/demo-coffee.mp4": "https://github.com/harry0703/mpt-assets/releases/download/assets/15-en-portrait-coffee-science.mp4",
     "series/mimo-found-this-on-github/episode-001/demo-creative.mp4": "https://github.com/harry0703/mpt-assets/releases/download/assets/13-en-portrait-creative-work.mp4"
-  }
+  },
+  "hook_headline": [
+    "THIS GITHUB REPO",
+    "TURNS A TOPIC",
+    "INTO A VIDEO."
+  ]
 }

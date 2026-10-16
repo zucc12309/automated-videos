@@ -3,11 +3,11 @@
  "series_slug": "mimo-found-this-on-github",
  "episode": 1,
  "episode_label": "EP. 001",
- "title": "Script in, short out: an open-source video maker",
- "cover_headline": "SCRIPT IN. SHORT OUT.",
+ "title": "This GitHub repo turns a topic into a video",
+ "cover_headline": "TOPIC IN. VIDEO OUT.",
  "github_url": "https://github.com/harry0703/MoneyPrinterTurbo",
  "repository": "harry0703/MoneyPrinterTurbo",
- "repository_description": "Give it a script (or a topic and your own AI key) and it builds the voice, subtitles, music and edit of a short video.",
+ "repository_description": "Give it a topic (with your own AI key) or a script, and it builds the footage, voice, subtitles, music and edit of a short video.",
  "category": "AI video",
  "verified_features": [
   {
@@ -56,8 +56,22 @@
    "id": "interfaces",
    "label": "WEB UI · CLI · API",
    "status": "verified-run",
-   "claim": "Has a web UI, a command line and an HTTP API.",
+   "claim": "Has a web UI, a command line and an HTTP API; runs on your own machine.",
    "evidence": "WebUI run and screenshotted on 127.0.0.1:8501; cli.py run; app/controllers/v1/video.py:212 POST /videos (source)"
+  },
+  {
+   "id": "local_llm",
+   "label": "LOCAL MODEL",
+   "status": "verified-source",
+   "claim": "Script writing can use your own API key for one of ~37 LLM providers (OpenAI, Gemini, DeepSeek, Anthropic, …) or a local model through Ollama.",
+   "evidence": "app/models/llm_provider.py LLM_PROVIDER_REGISTRY (openai, gemini, deepseek, anthropic, ollama, …); app/services/llm.py:880 generate_script"
+  },
+  {
+   "id": "oss",
+   "label": "OPEN SOURCE",
+   "status": "verified-source",
+   "claim": "MIT licensed, Python.",
+   "evidence": "LICENSE (MIT); pyproject.toml license = MIT, requires-python >= 3.11"
   }
  ],
  "demonstration": {
@@ -66,8 +80,9 @@
   "on_screen_tag": "OFFICIAL MPT DEMO",
   "notes": [
    "Every video shown is an official MoneyPrinterTurbo demo from the project's README (muted).",
-   "Voice, subtitles, music and editing were also verified by running MoneyPrinterTurbo v1.3.8 locally (see verification.run_command); that test output is not shown.",
-   "Stock-footage search is verified in source only (stock APIs are blocked in the build environment)."
+   "The topic card shows the demo's published title ('The Future of Everyday Robotics'), labelled as such; the exact input the maintainer used is not published.",
+   "The stage list mirrors MPT's pipeline stages (cli.py _PIPELINE_STAGES: script, terms, audio, subtitle, materials, video), ticking on the narration; it is an illustration, not a capture of that run.",
+   "Voice, subtitles, music and editing were also verified by running MoneyPrinterTurbo v1.3.8 locally; script writing and stock-footage search are verified in source only."
   ]
  },
  "verification": {
@@ -110,59 +125,59 @@
   "app/controllers/v1/video.py:212 POST /videos; webui/Main.py"
  ],
  "narration_script": {
-  "hook": "An open-source tool made both of these videos.",
-  "discovery": "And I found the project on GitHub.",
-  "demo": "Paste a script. It finds the footage, adds voice, subtitles and music, and edits it.",
-  "tech": "No script? Add your AI key, and it writes one.",
-  "payoff": "Would you actually use this? Follow Mimo for more GitHub discoveries."
+  "hook": "This GitHub repo turns a topic into a finished video.",
+  "discovery": "It's called MoneyPrinterTurbo.",
+  "demo": "Give it a topic. It writes the script, finds footage, adds voice and subtitles, then edits the video.",
+  "tech": "It's open source. Use your own AI key, or a local model.",
+  "payoff": "Would you let AI make your next Reel? Follow Mimo for more GitHub discoveries."
  },
- "narration_word_count": 51,
- "speaking_rate_wpm": 147.8,
+ "narration_word_count": 57,
+ "speaking_rate_wpm": 158.3,
  "word_timing_source": "energy_snapped",
  "voice": {
   "engine": "kokoro_onnx",
-  "voice": "am_adam @ 0.799",
-  "speed": 0.799,
+  "voice": "am_adam @ 0.822",
+  "speed": 0.822,
   "speed_search": [
    {
     "speed": 0.95,
-    "wpm": 184.3
+    "wpm": 179.0
    },
    {
-    "speed": 0.799,
-    "wpm": 147.8
+    "speed": 0.822,
+    "wpm": 158.3
    }
   ]
  },
- "duration_s": 25.667,
+ "duration_s": 26.567,
  "scenes": [
   {
    "id": "hook",
    "start_s": 0.0,
-   "seconds": 3.77
+   "seconds": 4.13
   },
   {
    "id": "discovery",
-   "start_s": 3.77,
-   "seconds": 2.93
+   "start_s": 4.13,
+   "seconds": 2.53
   },
   {
    "id": "demo",
-   "start_s": 6.7,
-   "seconds": 7.1
+   "start_s": 6.67,
+   "seconds": 7.5
   },
   {
    "id": "tech",
-   "start_s": 13.8,
-   "seconds": 4.3
+   "start_s": 14.17,
+   "seconds": 4.9
   },
   {
    "id": "payoff",
-   "start_s": 18.1,
-   "seconds": 5.57
+   "start_s": 19.07,
+   "seconds": 5.5
   }
  ],
- "instagram_caption": "I pasted a script into an open-source GitHub project, and it handed back a finished vertical short 👀\n\nFootage, voice, subtitles, music and the edit: MoneyPrinterTurbo does all of it from a script. Give it your own AI key and it can write the script from a topic too.\n\nClips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.\n\nWelcome to EP. 001 of Mimo Found This on GitHub. 👾\n\nWould you actually use this?\n\nRepo: harry0703/MoneyPrinterTurbo\nhttps://github.com/harry0703/MoneyPrinterTurbo\n\nFollow @devmimo for more weird finds and real builds.\n\n#GitHub #OpenSource #AIVideo #Python #ContentCreation #Coding #DevMimo\n",
+ "instagram_caption": "This GitHub repo turns a topic into a finished vertical video 👀\n\nMoneyPrinterTurbo writes the script, finds stock footage, adds voice, subtitles and music, and edits it. Open source (MIT): bring your own AI key or run a local model.\n\nClips: official demo videos from the MoneyPrinterTurbo README. I also ran it myself to check the voice, subtitle, music and editing steps.\n\nWelcome to EP. 001 of Mimo Found This on GitHub. 👾\n\nWould you let AI make your next Reel?\n\nRepo: harry0703/MoneyPrinterTurbo\nhttps://github.com/harry0703/MoneyPrinterTurbo\n\nFollow @devmimo for more weird finds and real builds.\n\n#GitHub #OpenSource #AIVideo #Python #ContentCreation #Coding #DevMimo\n",
  "hashtags": [
   "#GitHub",
   "#OpenSource",
@@ -187,16 +202,16 @@
  "loudness": {
   "final": {
    "integrated_lufs": -14.2,
-   "lra_lu": 2.8,
+   "lra_lu": 1.9,
    "true_peak_dbtp": -1.9
   },
   "no_music": {
-   "integrated_lufs": -14.1,
-   "lra_lu": 2.9,
-   "true_peak_dbtp": -2.0
+   "integrated_lufs": -14.2,
+   "lra_lu": 1.9,
+   "true_peak_dbtp": -1.9
   }
  },
- "music_bed_gain_db": -1.12,
+ "music_bed_gain_db": -1.22,
  "qa_summary": {
   "passed": true,
   "mandatory_failed": [],
@@ -204,6 +219,6 @@
   "checks": 52,
   "visual_review": "reviewed (agent inspection of extracted frames, not a computed check)"
  },
- "build_seconds": 210.1,
+ "build_seconds": 187.7,
  "never_included": "no GitHub stars, forks, downloads, contributor counts or other repository statistics"
 }

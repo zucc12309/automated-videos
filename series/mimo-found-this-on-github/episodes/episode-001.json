@@ -3,10 +3,10 @@
   "episode": 1,
   "label": "EP. 001",
   "repository": "harry0703/MoneyPrinterTurbo",
-  "title": "Script in, short out: an open-source video maker",
+  "title": "This GitHub repo turns a topic into a video",
   "status": "rendered",
   "reserved_at": "2026-10-16T15:40:52Z",
-  "rendered_at": "2026-10-16T17:16:17Z",
+  "rendered_at": "2026-10-16T18:27:02Z",
   "outputs": {
     "final": "outputs/mimo-found-this-on-github/episode-001/episode-001-final.mp4",
     "no_music": "outputs/mimo-found-this-on-github/episode-001/episode-001-no-music.mp4",
