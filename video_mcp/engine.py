@@ -424,7 +424,7 @@ def post_worker(job_id: str, action: str):
 
 
 def _v2_health() -> dict:
-    from . import tts
+    from . import resources, tts
     from .providers.claude_provider import ClaudeProvider
     from .providers.higgsfield_provider import HiggsfieldProvider
     cfg = settings_mod.load(ROOT / "config.json")
@@ -436,7 +436,7 @@ def _v2_health() -> dict:
             "claude": {"model": cfg.claude_model(), "ready": ClaudeProvider(cfg).available()[1]},
             "higgsfield": {"ready": HiggsfieldProvider(cfg).available()[1]},
             "paid_generation_enabled": cfg.budget.allow_paid_generation, "approval_policy": cfg.budget.approval_policy,
-            "browser_executable": cfg.browser() or "remotion default"}
+            "browser_executable": cfg.browser() or "remotion default", "machine": resources.snapshot()}
 
 
 def health():

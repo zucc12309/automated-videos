@@ -89,6 +89,11 @@ def split_beats(words: list[dict], audio_seconds: float, min_len=1.3, max_len=3.
     return beats
 
 
+FUNCTION_WORDS = set("the and but for with from that this these those your their there here into onto about after before "
+                     "because while where which would could should doesn't isn't aren't don't won't can't just also very "
+                     "only then than what when will have has had been being".split())
+
+
 def _focus(scene: dict, text: str) -> str:
     """The word or phrase a beat is about: emphasis, a number, the item label, or the longest word."""
     lower = text.lower()
@@ -100,7 +105,9 @@ def _focus(scene: dict, text: str) -> str:
     if scene.get("label") and scene["label"].lower() in lower:
         return scene["label"]
     words = [w.strip(".,!?;:'\"()") for w in text.split()]
-    return max(words, key=len) if words else scene.get("heading", "")
+    # Prefer a content word: no contractions or function words as the hero of a beat.
+    content = [w for w in words if "'" not in w and "’" not in w and w.lower() not in FUNCTION_WORDS and len(w) > 2]
+    return max(content or words, key=len) if words else scene.get("heading", "")
 
 
 PACE = {"emphasis": (1.0, 2.4), "medium": (1.3, 3.0), "demonstration": (2.4, 5.5), "pause": (1.6, 3.6), "montage": (.9, 1.8)}
@@ -124,7 +131,9 @@ def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
         scene["_listItems"] = list_items
         is_last = index == len(scenes) - 1
         scene["_repo"] = bool(scene.get("_roundup")) and scene.get("item", 0) > 0
-        for b, beat in enumerate(scene["beats"]):
+        b = 0
+        while b < len(scene["beats"]):
+            beat = scene["beats"][b]
             text = " ".join(w["w"] for w in scene["words"][beat["w"][0]:beat["w"][1] + 1])
             beat["text"] = text
             beat["focus"] = _focus(scene, text)
@@ -163,4 +172,15 @@ def plan_layouts(scenes: list[dict], variant: dict) -> list[str]:
             else:
                 beat["transition"] = rng.choice(variant["transitions"])
             beat["punch"] = bool(scene.get("emphasis")) and scene["emphasis"].lower() in text.lower()
+            if b == 0 and layout != "loop" and len(scene["beats"]) > 1 and sr.holds_scene(layout, scene.get("pace", "medium")):
+                # Hold the explanatory visual for the whole line; keep a separate final beat only for the loop-back.
+                keep = scene["beats"][-1] if is_last and len(scenes) > 1 else None
+                rest = scene["beats"][1:-1] if keep else scene["beats"][1:]
+                if rest:
+                    beat["e"], beat["w"] = rest[-1]["e"], [beat["w"][0], rest[-1]["w"][1]]
+                    beat["text"] = " ".join(w["w"] for w in scene["words"][beat["w"][0]:beat["w"][1] + 1])
+                    beat["punch"] = bool(scene.get("emphasis")) and scene["emphasis"].lower() in beat["text"].lower()
+                    beat["held"] = True
+                scene["beats"] = [beat] + ([keep] if keep else [])
+            b += 1
     return order

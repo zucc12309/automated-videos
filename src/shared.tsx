@@ -8,7 +8,7 @@ export type Motion = {entrance: string; emphasis: string; connect: string; exit:
 export type Repo = {full_name: string; owner: string; name: string; description: string; stars: number; language: string; topics: string[]};
 export type Scene = {heading: string; narration: string; caption: string; points: string[]; visual: string; emphasis?: string; stat?: string; item?: number; label?: string; words?: Word[]; mouth?: number[]; visemes?: [number, string][]; beats?: Beat[]; audio: string; uiAudio?: string; frames: number; audioFrames?: number; transitionFrames?: number; from: number;
   // V2 storyboard fields (absent on V1 props)
-  id?: string; role?: string; intent?: string; pace?: string; visualData?: Record<string, unknown>; motion?: Motion; media?: string | null; layoutHint?: string; character?: boolean; claimIds?: string[]};
+  id?: string; role?: string; intent?: string; pace?: string; visualData?: Record<string, unknown>; motion?: Motion; media?: string | null; mediaSeconds?: number | null; layoutHint?: string; character?: boolean; claimIds?: string[]};
 export type Props = {title: string; style?: Style; brand?: string; series?: string; repos?: Repo[]; music?: string | null; variant?: any; scenes: Scene[]; durationInFrames: number; fps: number; width: number; height: number;
   schemaVersion?: string; theme?: string; characterMode?: 'auto' | 'on' | 'off'};
 export type ShotProps = {scene: Scene; index: number; total: number; brand: string};

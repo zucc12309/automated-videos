@@ -47,7 +47,16 @@ def test_repair_plan_targets_only_failing_scenes():
     props = _props(["listStack", "quote"], points=["x" * 60])
     report = {"visual": {"issues": frame_analysis.layout_checks(props)["issues"]}}
     overrides = quality_report.plan_repairs(report, props)
-    assert overrides["avoid"] == {"scene_001": ["listStack", "quote"]}
+    assert overrides["shorten"] == {"scene_001": {"points": 26}} and overrides["avoid"] == {}
+    blank = {"visual": {"issues": [{"kind": "blank", "scene": "scene_001"}]}, "audio": {"checks": [{"check": "true_peak", "passed": False}]}}
+    overrides = quality_report.plan_repairs(blank, props)
+    assert overrides["avoid"] == {"scene_001": ["listStack"]} and overrides["remaster"]
+
+
+def test_shorten_cuts_at_word_boundaries():
+    assert quality_report.shorten("Ripgrep is a line-oriented search tool for the", 34) == "Ripgrep is a line-oriented search"
+    assert quality_report.shorten("Fits fine", 20) == "Fits fine"
+    assert len(quality_report.shorten("x" * 60, 26)) == 26
 
 
 # ---------- technical QA on real media ----------

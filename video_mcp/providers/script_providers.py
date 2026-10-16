@@ -52,6 +52,11 @@ def _clip_words(text: str, n: int) -> str:
     return out if len(words) <= n else out.rstrip(",;:") + "."
 
 
+def _heading(text: str, limit: int = 30) -> str:
+    from ..quality.quality_report import shorten
+    return shorten(re.sub(r"\s+", " ", text).strip().rstrip("."), limit)
+
+
 def _key_words(text: str, k: int = 3) -> list[str]:
     words = [w.strip(".,!?;:'\"()") for w in text.split()]
     stop = {"the", "and", "that", "with", "this", "from", "your", "into", "their", "about", "which", "have", "will", "they"}
@@ -78,7 +83,7 @@ class TemplateProvider:
             repos = topic["repos"]
             theme = re.sub(r"^\d+\s+", "", topic.get("theme", "tools")).strip()
             hook = f"{len(repos)} {theme} you can try today."
-            scenes.append({"heading": _clip_words(theme.capitalize(), 6), "narration": hook, "caption": hook, "emphasis": str(len(repos))})
+            scenes.append({"heading": _heading(theme.capitalize()), "narration": hook, "caption": hook, "emphasis": str(len(repos))})
             for i, repo in enumerate(repos, 1):
                 desc = re.sub(r"\s+", " ", repo.get("description") or "").strip().rstrip(".")
                 desc = re.sub(r"https?://\S+", "", desc)
@@ -87,7 +92,7 @@ class TemplateProvider:
                 if not line.endswith((".", "!", "?")):
                     line += "."
                 points = [x for x in [repo.get("language", ""), *(repo.get("topics") or [])] if x][:3] or ["Open source"]
-                scenes.append({"heading": _clip_words(desc or name, 6)[:65], "narration": line, "caption": line, "label": repo["name"][:28],
+                scenes.append({"heading": _heading(desc or name), "narration": line, "caption": line, "label": repo["name"][:28],
                                "points": [p[:30] for p in points], "emphasis": name.split()[0]})
             outro = "Save this list, and try one of them this week."
             scenes.append({"heading": "Save this list", "narration": outro, "caption": outro, "emphasis": "Save"})
@@ -95,12 +100,12 @@ class TemplateProvider:
             facts = _sentences(topic.get("summary", ""))
             title = re.sub(r"\s+", " ", topic.get("title", "This story")).strip()
             hook = _clip_words(title, 12).rstrip(".") + "."
-            scenes.append({"heading": _clip_words(title, 6)[:65], "narration": hook, "caption": hook})
+            scenes.append({"heading": _heading(title), "narration": hook, "caption": hook})
             picked = facts[:count] if len(facts) >= count else facts + [title] * (count - len(facts))
             for i, fact in enumerate(picked, 1):
                 line = _clip_words(fact, 34)
                 kw = _key_words(line)
-                scenes.append({"heading": _clip_words(line, 6)[:65], "narration": line, "caption": line, "label": (kw[0] if kw else f"Fact {i}")[:28],
+                scenes.append({"heading": _heading(line), "narration": line, "caption": line, "label": (kw[0] if kw else f"Fact {i}")[:28],
                                "points": [k[:30] for k in kw[:3]] or [f"Fact {i}"], "emphasis": kw[0] if kw else ""})
             outro = "Save this for later, and share it with a builder who needs it."
             scenes.append({"heading": "Save this", "narration": outro, "caption": outro, "emphasis": "Save"})

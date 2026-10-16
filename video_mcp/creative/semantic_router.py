@@ -170,7 +170,8 @@ def choose(ctx: dict, history: list[str], used: dict[str, int], seed: str, beat_
            allowed: list[str] | None = None, cap: int = 2) -> tuple[str, dict]:
     candidates = [name for name in (allowed or CATALOG) if name in CATALOG and _requirements_met(CATALOG[name], ctx)]
     structural = {"repoCard", "docStamp", "hookStack", "recap", "cinematic"}
-    fresh = [c for c in candidates if (not history or c != history[-1]) and (c in structural or used.get(c, 0) < cap)]
+    # The usage cap keeps supporting beats varied; a scene's primary visual is chosen on meaning (recency still penalised).
+    fresh = [c for c in candidates if (not history or c != history[-1]) and (c in structural or ctx["primary"] or used.get(c, 0) < cap)]
     pool = fresh or candidates or ["heroWord"]
     scored = sorted(((*score(c, ctx, history, used, theme), c) for c in pool),
                     key=lambda x: (-x[0], _tiebreak(seed, beat_index, x[2])))
@@ -188,6 +189,8 @@ def beat_context(scene: dict, beat: dict, beat_no: int, *, character: bool) -> d
     scene_intent = infer_intent(scene.get("narration", ""), role=role, visual=visual, has_repo=bool(scene.get("_repo")),
                                 given=scene.get("intent", "generic"))
     intent = scene_intent if primary else infer_intent(text, role="body", visual={}, given="generic")
+    if not primary and role == "outro":
+        intent = "generic"      # the payoff line stays a recap, not a new diagram
     if not primary and intent == "generic":
         intent = scene_intent if scene_intent not in ("hook", "recap", "repository") else "generic"
     return {"intent": intent, "primary": primary, "role": role, "item": scene.get("item", 0), "seconds": beat["e"] - beat["s"],
@@ -216,3 +219,16 @@ def _register_generated():
 
 
 _register_generated()
+
+
+HOLD_FAMILIES = {"diagram", "device", "data", "footage"}
+
+
+def holds_scene(layout: str, pace: str) -> bool:
+    """Complex visuals stay on screen for the whole line instead of being cut into filler beats."""
+    spec = CATALOG.get(layout)
+    if not spec:
+        return False
+    if layout in ("repoCard", "docStamp", "hookStack", "recap"):
+        return False            # structural openers hand over to supporting beats (V1 rhythm)
+    return spec.family in HOLD_FAMILIES or layout == "splitCompare" or (pace == "demonstration" and spec.complexity >= .5)

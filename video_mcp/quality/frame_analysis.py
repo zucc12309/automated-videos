@@ -72,8 +72,8 @@ def layout_checks(props: dict) -> dict:
     theme_name = variant.get("theme") or props.get("theme")
     palette = themes().get(theme_name) if theme_name else None
 
-    def add(name, passed, detail, scene=None, mandatory=False, kind="layout"):
-        row = {"check": name, "passed": bool(passed), "detail": detail, "scene": scene, "mandatory": mandatory, "basis": "deterministic", "kind": kind}
+    def add(name, passed, detail, scene=None, mandatory=False, kind="layout", **extra):
+        row = {"check": name, "passed": bool(passed), "detail": detail, "scene": scene, "mandatory": mandatory, "basis": "deterministic", "kind": kind, **extra}
         checks.append(row)
         if not passed:
             issues.append(row)
@@ -94,7 +94,8 @@ def layout_checks(props: dict) -> dict:
             for field, limit, px in LAYOUT_TEXT.get(layout, []):
                 for text in _texts(layout, field, scene, beat):
                     if len(text) > limit:
-                        add("text_fits", False, f"{layout}.{field} '{text[:40]}' is {len(text)} chars > {limit} (will be clipped)", sid, kind="overflow")
+                        add("text_fits", False, f"{layout}.{field} '{text[:40]}' is {len(text)} chars > {limit} (will be clipped)", sid, kind="overflow",
+                            field=field, limit=limit, layout=layout)
                 if px < (MIN_LABEL_PX if field in ("label",) else MIN_BODY_PX):
                     add("font_size", False, f"{layout}.{field} {px}px below minimum", sid, kind="tiny_text")
             if layout == "codeBlock":

@@ -34,9 +34,9 @@ def layout_preview(board: Storyboard) -> list[dict]:
     for s in board.scenes:
         words, t = [], 0.0
         for w in s.narration.split():
-            length = max(.18, .12 * len(re.sub(r"\W", "", w)) + .08)
+            length = max(.16, .055 * len(re.sub(r"\W", "", w)) + .1)     # ~2.6 words/s for average English words
             words.append({"w": w, "s": round(t, 2), "e": round(t + length, 2)})
-            t += length + (.25 if re.search(r"[.,!?;:]$", w) else .04)
+            t += length + (.22 if re.search(r"[.,!?;:]$", w) else .03)
         lo, hi = variety.PACE.get(s.pace, (1.3, 3.0))
         scenes.append({"id": s.id, "visual": "hook" if s.role == "hook" else "outro" if s.role == "outro" else
                        ("repo" if board.format == "roundup" and s.item else "doc" if s.item else "cards"),

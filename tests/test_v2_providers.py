@@ -413,3 +413,15 @@ def test_preflight_downgrades_claude_without_authorization(tmp_path, make_cfg, m
     assert p.preflight_claude("claude") == "local"            # explicit policy, no job approval
     p.costs.approve(p.folder, None, .9)
     assert p.preflight_claude("claude") == "claude"
+
+
+def test_supplied_storyboard_cannot_point_media_outside_public(tmp_path, make_cfg):
+    p = _pipe(tmp_path, make_cfg, PAID)
+    (p.root / "public" / "jobs" / "abcdef123456").mkdir(parents=True)
+    ok = p.root / "public" / "jobs" / "abcdef123456" / "clip.mp4"
+    ok.write_bytes(b"x")
+    assert p._safe_media("jobs/abcdef123456/clip.mp4")
+    assert not p._safe_media("../../etc/passwd") and not p._safe_media("jobs/missing.mp4")
+    board = _hybrid_board()
+    board.scenes[0].cinematic.reference_images = ["https://cdn.example.com/ref.png", "http://169.254.169.254/x", "file:///etc/passwd"]
+    assert p.cinematic_request(board.scenes[0]).reference_images == ["https://cdn.example.com/ref.png"]

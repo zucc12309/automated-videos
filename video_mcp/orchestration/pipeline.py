@@ -141,7 +141,13 @@ class Pipeline:
             board.video_id, board.seed = self.job_id, board.seed or seed
             board.director = {**board.director, "supplied": True}
             self.decide(stage="direction", provider=board.director.get("provider", "supplied"), used=True, note="storyboard supplied by caller")
-            report = {"note": "supplied storyboard; claims not re-verified (no topic data)"}
+            topic = request.get("topic") or _load(self.folder / "topic.json")
+            if topic:
+                from ..creative import research
+                report = research.verify(board, topic)     # supplied copy is checked against the supplied sources too
+                board = Storyboard.model_validate(board.model_dump())
+            else:
+                report = {"note": "supplied storyboard; claims not re-verified (no topic data)"}
         elif request.get("plan"):
             board = from_plan(request["plan"], video_id=self.job_id)
             board.seed = seed
@@ -204,8 +210,14 @@ class Pipeline:
 
     def cinematic_request(self, scene) -> CinematicRequest:
         spec = scene.cinematic
+        refs = []
+        for url in spec.reference_images:
+            try:
+                refs.append(security.check_url(url, resolve=False, allowed_schemes=("https",)))
+            except security.UnsafeURL:
+                self.decide(stage="cinematic", scene=scene.id, dropped_reference=url[:120], reason="unsafe URL")
         return CinematicRequest(scene_id=scene.id, prompt=spec.prompt, duration_seconds=spec.duration_seconds,
-                                aspect_ratio="9:16", negative_guidance=spec.negative_guidance, reference_images=spec.reference_images,
+                                aspect_ratio="9:16", negative_guidance=spec.negative_guidance, reference_images=refs,
                                 fallback=spec.fallback_layout, seed=int(hashlib.sha256(scene.id.encode()).hexdigest()[:6], 16))
 
     def cache_key_for(self, req: CinematicRequest, provider) -> str:
@@ -355,6 +367,7 @@ class Pipeline:
         scene.assets = [a for a in scene.assets if a.kind != "cinematic"] + [
             Asset(kind="cinematic", path=rel, sha256=record.get("sha256", ""), provider=record.get("provider", ""),
                   provenance={"cache_key": record.get("key"), "remote_id": record.get("remote_id"), "cached": cached,
+                              "duration": (record.get("probe") or {}).get("duration") or probe_video(path)["duration"],
                               "mock": record.get("mock", False), "generated_at": record.get("generated_at")})]
         scene.layout = "cinematic"
         self.decide(stage="cinematic", scene=scene.id, used=True, cached=cached, provider=record.get("provider"), mock=record.get("mock", False))
@@ -363,6 +376,9 @@ class Pipeline:
     def narrate(self, board: Storyboard, fps: int) -> list[dict]:
         self.phase("SYNTHESIZING_AUDIO", "loading_local_voice")
         started = time.time()
+        if any(d.get("provider") == "ollama" and d.get("used") for d in self.decisions):
+            from .. import engine as _engine, resources
+            self.decide(stage="resources", action="unload_ollama", ok=resources.release_ollama(_engine.OLLAMA, self.cfg.model))
         engine, why = tts.available_engine(self.cfg.narration.engine)
         self.decide(stage="narration", engine=engine, reason=why)
         self.public.mkdir(parents=True, exist_ok=True)
@@ -419,6 +435,8 @@ class Pipeline:
             length = math.ceil((seconds + tail) * fps)
             lo, hi = variety.PACE.get(story.pace, (1.3, 3.0))
             media = None if story.id in overrides.get("drop_media", []) else next((a.path for a in story.assets if a.kind == "cinematic"), None)
+            media = media if media and self._safe_media(media) else None
+            media_seconds = next((a.provenance.get("duration") for a in story.assets if a.kind == "cinematic"), None)
             hint = overrides.get("layout_hints", {}).get(story.id) or story.layout
             if hint == "cinematic" and not media:
                 hint = story.fallback_layout
@@ -430,7 +448,7 @@ class Pipeline:
                            "transitionFrames": 0, "from": cursor,
                            # V2 additions
                            "id": story.id, "role": story.role, "intent": story.intent, "pace": story.pace,
-                           "visualData": story.visual.model_dump(), "motion": story.motion.model_dump(), "media": media,
+                           "visualData": story.visual.model_dump(), "motion": story.motion.model_dump(), "media": media, "mediaSeconds": media_seconds,
                            "layoutHint": hint, "avoidLayouts": overrides.get("avoid", {}).get(story.id, []),
                            "character": False if story.id in overrides.get("hide_character", []) else
                                         (bool(story.character) if character_mode == "auto" else character_mode == "on"),
@@ -446,6 +464,32 @@ class Pipeline:
                 "repos": plan["repos"], "music": None, "variant": variant, "scenes": scenes, "fps": fps, "width": width,
                 "height": height, "durationInFrames": duration, "schemaVersion": "2.0", "theme": variant.get("theme"),
                 "characterMode": character_mode, "_layouts": layouts}
+
+    def master(self, video: Path, *, from_master: bool = False) -> dict:
+        """-14 LUFS / <= -1 dBTP. AAC encoding can overshoot the limiter, so the encoded true peak is measured and corrected."""
+        from ..quality.audio_analysis import loudness
+        out = self.folder / "video-master.mp4"
+        chain = "volume=0dB" if from_master else "loudnorm=I=-14:TP=-1.5:LRA=9,alimiter=limit=0.8:attack=1:release=50:level=false"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-c:v", "copy", "-af", chain, "-ar", "48000", "-c:a", "aac",
+                        "-b:a", "192k", str(out)], check=True, timeout=600)
+        measured = loudness(out)
+        tp = measured.get("true_peak_dbtp")
+        if tp is not None and tp > -1.0:
+            fixed = self.folder / "video-master2.mp4"
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(out), "-c:v", "copy", "-af", f"volume={-1.2 - tp:.2f}dB", "-ar", "48000",
+                            "-c:a", "aac", "-b:a", "192k", str(fixed)], check=True, timeout=600)
+            fixed.replace(out)
+            measured = loudness(out)
+        out.replace(video)
+        return measured
+
+    def _safe_media(self, rel: str) -> bool:
+        """Only real files inside public/ may reach Remotion's staticFile (supplied storyboards are untrusted)."""
+        try:
+            path = security.inside(self.root / "public", self.root / "public" / rel)
+        except ValueError:
+            return False
+        return path.is_file()
 
     def render(self, props: dict) -> Path:
         self.phase("RENDERING", "rendering")
@@ -465,15 +509,16 @@ class Pipeline:
         _save(self.folder / "props.json", props)
         video = self.folder / "video.mp4"
         cli = self.root / "node_modules" / ".bin" / "remotion"
+        from .. import resources
+        free = resources.available_memory_gb()
+        tabs = resources.render_concurrency(self.cfg.renderer.concurrency, free)
+        self.decide(stage="render", concurrency=tabs, memory_available_gb=free)
         args = [str(cli), "render", "src/index.tsx", "Explainer", str(video), f"--props={self.folder / 'props.json'}", "--codec=h264",
-                f"--concurrency={self.cfg.renderer.concurrency}", "--log=error"]
+                f"--concurrency={tabs}", "--log=error"]
         if self.cfg.browser():
             args.append(f"--browser-executable={self.cfg.browser()}")
         subprocess.run(args, cwd=self.root, check=True, timeout=self.cfg.renderer.timeout_seconds, env=security.child_env())
-        master = self.folder / "video-master.mp4"
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-c:v", "copy", "-af", "loudnorm=I=-14:TP=-1:LRA=9,alimiter=limit=0.89",
-                        "-ar", "48000", "-c:a", "aac", "-b:a", "192k", str(master)], check=True, timeout=600)
-        master.replace(video)
+        self.master(video)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "0.5", "-i", str(video), "-frames:v", "1", str(self.folder / "poster.jpg")],
                        check=True, timeout=120)
         variety.remember(props["variant"], layouts, self.data / "variety.json")
@@ -498,7 +543,7 @@ class Pipeline:
             if not qc.enabled or not needs or attempts >= qc.max_repairs:
                 break
             overrides = quality_report.plan_repairs(report, props)
-            if not any(overrides.get(k) for k in ("avoid", "hide_character", "drop_media", "reseed", "captions", "theme")):
+            if not any(overrides.get(k) for k in ("avoid", "hide_character", "drop_media", "reseed", "captions", "theme", "shorten", "remaster")):
                 break
             attempts += 1
             overrides["reseed"] = attempts if overrides.get("reseed") else None
@@ -510,8 +555,23 @@ class Pipeline:
                 if scene:
                     scene.qa.repairs += 1
                     scene.qa.status = "repaired"
-            props = self.build_props(board, narration, overrides=overrides)
-            video = self.render(props)
+            for sid, fields in overrides.get("shorten", {}).items():
+                scene = next((x for x in board.scenes if x.id == sid), None)
+                if scene:
+                    from ..quality.quality_report import shorten
+                    if "heading" in fields:
+                        scene.heading = shorten(scene.heading, fields["heading"])
+                    if "points" in fields:
+                        scene.points = [shorten(x, fields["points"]) for x in scene.points]
+                    if "label" in fields:
+                        scene.label = shorten(scene.label, fields["label"])
+                    scene.qa.status, scene.qa.repairs = "repaired", scene.qa.repairs + 1
+            visual_change = any(overrides.get(k) for k in ("avoid", "hide_character", "drop_media", "reseed", "captions", "theme", "shorten"))
+            if visual_change:
+                props = self.build_props(board, narration, overrides=overrides)
+                video = self.render(props)
+            elif overrides.get("remaster"):
+                self.master(video, from_master=True)
         _save(self.folder / "qa" / "repairs.json", repairs_log)
         for scene in board.scenes:
             if scene.qa.status == "pending":

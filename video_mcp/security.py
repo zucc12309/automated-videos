@@ -9,6 +9,8 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 SECRET_ENV = re.compile(r"(KEY|SECRET|TOKEN|PASSWORD|CREDENTIAL|AUTH)", re.I)
+# Field names that hold credentials (stricter than SECRET_ENV so cache keys, request keys and token *counts* survive).
+SECRET_FIELD = re.compile(r"(api[_-]?key|secret|passw|^token$|access[_-]?token|auth[_-]?token|bearer|credential|private[_-]?key|download_token)", re.I)
 SECRET_VALUE = re.compile(r"(sk-ant-[A-Za-z0-9_\-]{8,}|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,}"
                           r"|(?:api[_-]?key|secret|token)[\"'=: ]+[A-Za-z0-9_\-:]{12,})", re.I)
 
@@ -59,8 +61,7 @@ def inside(base: Path, candidate: Path) -> Path:
 def redact(value):
     """Recursively scrub secret-looking strings and keys from data destined for logs, reports or MCP responses."""
     if isinstance(value, dict):
-        return {k: ("[redacted]" if SECRET_ENV.search(str(k)) and not str(k).endswith(("_tokens", "tokens")) and isinstance(v, str) else redact(v))
-                for k, v in value.items()}
+        return {k: ("[redacted]" if SECRET_FIELD.search(str(k)) and isinstance(v, str) else redact(v)) for k, v in value.items()}
     if isinstance(value, list):
         return [redact(v) for v in value]
     if isinstance(value, str):

@@ -1,103 +1,128 @@
 # Local Video MCP
 
-A local stdio MCP server for your MacBook. It discovers topics from public RSS feeds, writes English scripts using a local Ollama model, synthesizes US English speech with Kokoro, and renders premium editorial-style vertical explainers using Remotion. No API keys or paid cloud generation services are used.
+A local stdio MCP server for your MacBook that turns a topic into a finished 1080 × 1920 explainer reel: topic
+discovery (GitHub + RSS), research with claim-to-source mapping, script and creative direction, a validated storyboard,
+semantic motion graphics in Remotion, narration, captions, music, automated QA with bounded repair, and an MP4.
+
+**Local-first and cost-controlled.** The default `local` mode uses Ollama (or a deterministic template writer), Kokoro
+(or espeak-ng), Remotion and FFmpeg — no API keys, no paid calls. Two opt-in modes add paid providers behind a budget
+gate and explicit approval:
+
+| Mode | Direction | Visuals | Paid |
+|---|---|---|---|
+| `local` (default) | Ollama → template; local heuristic director | Remotion | nothing |
+| `claude` | Claude Opus 5.5 via the Anthropic API → falls back to local | Remotion | Claude tokens |
+| `hybrid` | as `claude` | Remotion + selected cinematic footage (Higgsfield) | Claude + footage |
+
+Docs: [Architecture](docs/ARCHITECTURE_V2.md) · [Claude](docs/CLAUDE_INTEGRATION.md) · [Higgsfield](docs/HIGGSFIELD_INTEGRATION.md) ·
+[Motion system](docs/MOTION_DESIGN_SYSTEM.md) · [Cost controls](docs/COST_CONTROLS.md) · [QA](docs/QUALITY_ASSURANCE.md) ·
+[Autopilot](docs/AUTOPILOT_V2.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) · [Audit](reports/HYBRID_VIDEO_V2_AUDIT.md) ·
+[Implementation report](reports/HYBRID_VIDEO_V2_IMPLEMENTATION.md)
 
 ## Installed on this Mac
 
-- MCP name: `local-video`
-- Launcher: `/Users/priyanshupatel/Downloads/VIDEOS/local-video-mcp/run-server.sh`
-- Python: isolated `.venv` using Python 3.12
-- Local LLM: existing `qwen2.5:7b` via Ollama on `127.0.0.1:11434`
-- Voice: Kokoro `af_heart`, US English, running locally
-- Output: 1080 × 1920, 30 fps, H.264 MP4 with audio
-- Initial niche: AI tools and practical coding; edit `config.json` to change it
+- MCP name: `local-video`; launcher `/Users/priyanshupatel/Downloads/VIDEOS/local-video-mcp/run-server.sh` (loads an optional `.env`)
+- Python: isolated `.venv`, Python 3.12
+- Local LLM: the Ollama model named by `model` in `config.json` (currently `qwen2.5:14b`; `health_check` reports `model_ready`)
+- Voice: Kokoro voice named by `voice` in `config.json` (currently `am_adam`), US English; espeak-ng is the fallback
+- Output: 1080 × 1920, 30 fps, H.264 + AAC, mastered to −14 LUFS / ≤ −1 dBTP
+- The server runs on stdio only; no port, tunnel or public service.
 
-The server is registered in Codex's MCP configuration. Open a fresh chat/reload the app if the new tools are not visible. The host starts the server on demand; no public port or tunnel is used. Ollama is started on localhost if needed. A video worker continues after the MCP client disconnects.
+Try: **“Use local-video to discover topics, pick one, and make a reel. Poll until it finishes and show me the video.”**
+Or: **“Use local-video preview_storyboard for this plan, then create_video.”**
 
-Try: **“Use local-video to discover topics, choose one useful topic, and make a polished English reel. Poll until it finishes and show me the video.”**
+## MCP tools
 
-Or: **“Use local-video run_autopilot_once and show the finished video.”**
-
-## Tools
+Original tools (names, required arguments and outputs unchanged; new arguments are optional):
 
 | Tool | Purpose |
 |---|---|
-| `health_check` | Check local dependencies and model availability |
-| `discover_topics` | Fetch configured public feeds and rank recent unused topics |
-| `create_video` | Render a supplied scene plan, without calling a language model |
-| `create_video_from_topic` | Write and render a previously discovered topic with local Ollama |
-| `run_autopilot_once` | Discover → script → narrate → animate → save, without intermediate input |
-| `job_status` | Get progress, error details, and completed file paths |
-| `list_videos` | List recent jobs |
+| `health_check` | Dependencies, Ollama models, narration engine, Claude/Higgsfield readiness, budget switch |
+| `discover_topics` | Rank recent unused topics from GitHub and RSS |
+| `create_video(plan, mode?)` | Render a supplied scene plan (no LLM) |
+| `create_video_from_topic(topic_id, mode?, dry_run?, approved_budget_usd?)` | Script and render a discovered topic |
+| `run_autopilot_once(dry_run?, mode?)` | Discover → … → export; never publishes |
+| `job_status` | State, fine-grained phase, errors, pending approvals, output paths |
+| `list_videos` | Recent jobs |
 
-Long work runs in a separate process so MCP calls return quickly. One heavy job runs at a time. Completed topic IDs are excluded from future discovery. Failed jobs remain inspectable and do not mark a topic as used.
+New tools:
+
+| Tool | Purpose |
+|---|---|
+| `preview_storyboard` | Plan/storyboard → scene summaries, planned layouts with reasons, duration, providers (instant); topic → dry-run job |
+| `estimate_video_cost` | External cost upper bound and uncertainty for a mode/storyboard or an existing job |
+| `create_hybrid_video` | Create in a chosen mode with an explicit `approved_budget_usd`; optional `dry_run` |
+| `approve_generation` | Approve a pending paid request or a job budget; resumes a paused job |
+| `review_video` / `repair_video` | Re-run QA / targeted repair on an existing job (background) |
+| `list_assets` | Cached generated media with provenance |
+| `get_video_report` | Creative decisions, sources and claims, spend, provider usage, timings, QA |
+| `cancel_job` / `resume_job` | Cancel; resume from checkpoints after a crash, failure or approval pause |
+
+Long work always returns a job ID immediately; one heavy job runs at a time.
 
 ## Command line
-
-From this directory:
 
 ```sh
 .venv/bin/local-video health
 .venv/bin/local-video discover
 .venv/bin/local-video autopilot
-.venv/bin/local-video status JOB_ID
 .venv/bin/local-video render examples/first-reel.json
-npm run studio
+.venv/bin/local-video preview examples/first-reel.json
+.venv/bin/local-video status JOB_ID      # also: report, review, repair, resume
+.venv/bin/python examples/demos/demo_a_local.py      # Test A (LOCAL)
+.venv/bin/python examples/demos/demo_b_claude.py     # Test B (Claude-directed storyboard; --runtime for the API path)
+.venv/bin/python examples/demos/demo_c_hybrid.py     # Test C (HYBRID with the mock footage provider)
+npm run studio        # Remotion Studio
+npm run typecheck     # strict TypeScript check
 ```
 
-The example is a curated technical demo. Autopilot instead uses a newly discovered RSS item and the local model. Neither mode publishes to social media.
+## Content and visuals
 
-## Content formats
+* **Formats**: `roundup` (GitHub repos; names, descriptions and star counts on screen come from the API) and `story`
+  (full article text), alternating per `formats`; plus manual topics and supplied storyboards.
+* **Storyboard v2** (`video_mcp/schemas/storyboard.py`): creative direction, sources, claims, scenes with intent, pace,
+  motion, structured visual data, cinematic specs, assets and QA status. V1 plans migrate automatically.
+* **Semantic layouts**: 17 original layouts + code editor, flow diagram, timeline, bar chart, browser mockup, warning
+  card, split comparison, cinematic footage, and forge-approved components. Layouts are chosen by what the line means;
+  complex visuals hold for the whole line. Deterministic for a given storyboard + seed.
+* **Themes**: carbon, midnight, warm-editorial, minimal-white, tech-mono, soft-gradient, product-launch,
+  cinematic-dark — one per video, WCAG-checked. The older styles (`paper`, `editorial`, `kinetic`, `mascot`,
+  `fieldnotes`) still render when a V1 plan sets `style`.
+* **Presenter**: only where motivated (hook/outro by default), or `production.character: "off"`.
 
-Autopilot alternates between two formats (`formats` in `config.json`):
+## Voice, captions and sound
 
-- **roundup**: searches GitHub for fresh, high-star repos for each entry in `repo_themes` (Claude Code repos, Codex/agent skills, MCP servers, agent repos). It reads their readmes and scripts a numbered "N repos you should install" reel. Star counts, names and descriptions on screen come from the GitHub API, not from the model. Featured repos are not repeated.
-- **story**: picks a recent item from `feeds` (Simon Willison, TechCrunch AI, Hacker News, GitHub and Hugging Face blogs), fetches the full article text, and scripts a numbered "N facts" breakdown. Items with only a headline are skipped.
+Kokoro narration (configurable voice, speed, pronunciation dictionary) with Kokoro's own word timestamps; espeak-ng
+fallback with phrase-exact, energy-snapped word timings (flagged as estimated). Word-highlight captions in three styles,
+kept inside the safe area. Procedural SFX (whoosh, pop, impact, ticks, chime) and a procedural music bed that changes
+key/tempo per video and ducks under speech; `music: false` disables it. Final master −14 LUFS with measured true-peak
+correction.
 
-Scripts are written by `model` (`qwen2.5:14b`) with prompts in `video_mcp/prompts.py`. Every reel has a hook, numbered items, then a recap and call to action.
+## Files
 
-## Visual styles
+`data/jobs/JOB_ID/`: `video.mp4`, `poster.jpg`, `topic.json`, `script.json`, `storyboard.json`, `plan.json`,
+`props.json`, `verification.json`, `decisions.json`, `estimate.json`, `costs.json`, `provenance.json`, `checks.json`,
+`status.json`, `timings.json`, `worker.log`, `qa/` (technical/visual/audio/storyboard JSON, `summary.md`,
+`contact_sheet.jpg`). Narration, cues and footage for rendering live in `public/jobs/JOB_ID/`; cached footage in
+`data/assets/`; the budget ledger in `data/budget/`.
 
-The default `studio` engine (`src/studio/`) follows `reports/Reel motion and design practices.md` one folder up:
+## Configuration
 
-- **Variety engine** (`video_mcp/variety.py`): each job picks a palette (8), background treatment (6), motion temperament (snappy springs, smooth Carbon curves, or slow editorial), caption style (pill, bold, or editorial), 3 of 5 transitions (whip, zoom, push, mask, hard cut with punch), outfit, music key and tempo, and camera intensity. Choices are seeded from the job ID and penalized if used in the last few videos (`data/variety.json`).
-- **Beats**: each line is split at punctuation into 1.3–3 s beats from Kokoro's word timestamps, so something changes every 1.5–3 s. Each beat gets one of 17 layouts: hero word, big number, quote, character close-up, list stack, steps, compare, repo card, terminal, chips, star meter, phone mockup, chat, node graph, hook stack, fact stamp, recap. No layout plays twice in a row, each is used at most twice, and the final beat loops back to the opening frame.
-- **Camera and motion**: a slow push-in per beat, a zoom punch timed just before the stressed word, Carbon easing and Remotion springs, and staggered reveals.
-- **Layout and captions**: text stays inside the cross-platform safe box (x 120–960, y 290–1248), with 2–4 word captions around y 1100. The hook is readable on frame 0.
-- **Character** (`src/Character.tsx`): rounded primitives only, pill eyes with off-center pupils, and oversized glasses as the signature. Nine mouth shapes are driven by Kokoro phonemes, with jaw size scaled by loudness. Blinks are motivated, idle motion comes from seeded noise, the hair lags the head, and nods land on stressed words. Gestures are chosen per beat and lead the beat by 5 frames: pointing at real on-screen content, counting, shrugging, presenting, waving, thumbs-up. The character also moves between anchor positions with a hop.
-
-Older styles (`paper`, `editorial`, `kinetic`, `mascot`, `fieldnotes`) still work. Set `style` in a plan or `styles` in `config.json` to use them.
-
-## Voice and sound
-
-Narration uses Kokoro `voice` (`am_adam`) at `voice_speed`. Sound effects each have one job: a whoosh on moving transitions, a pop on entrances, an impact on the stressed word, a stamp, counter ticks, and a chime on the recap. The procedural music bed changes key and tempo per video and ducks under the voice using the word timings. The final mix is mastered to −14 LUFS / −1 dBTP. Set `music: false` to disable music.
-
-## Files and configuration
-
-Each job has a directory under `data/jobs/JOB_ID/`:
-
-- `video.mp4`, `poster.jpg`: final output and preview
-- `plan.json`, `props.json`: editable script and timed scene data
-- `topic.json`: source excerpt, when discovered automatically
-- `checks.json`, `provenance.json`: technical checks, source URLs and model information
-- `status.json`, `worker.log`: progress and diagnostics
-
-Scene audio is in `public/jobs/JOB_ID/`. Models are cached by Hugging Face and Ollama. Do not remove audio while a render is in progress.
-
-Edit `config.json` for feeds, keywords, freshness, voice and the installed Ollama model. Narration, on-screen text, and word-highlight captions are generated in English. The visual style uses a dark editorial palette, restrained motion, animated insight cards, subtle interface sounds, and short alternating horizontal push/slide scene transitions. Change `src/index.tsx` for branding, transitions, and animation.
-
-## Autopilot and scheduling
-
-`run_autopilot_once` performs a complete unattended production run. A repeating schedule is **not enabled** until a cadence is selected. The Mac must be awake; topic discovery needs an internet connection. The renderer and cached speech/language models run locally. This server does not reuse a ChatGPT subscription or call an AI cloud API.
+`config.json` keeps its original flat keys (`model`, `voice`, `feeds`, `keywords`, `fps`, `music`, …) and adds optional
+sections: `production`, `creative_director`, `cinematic`, `budget`, `quality_control`, `narration`, `renderer`. Defaults:
+LOCAL mode, paid generation **off**, explicit approval. Secrets go in `.env` (see `.env.example`), never in config,
+plans, logs or reports.
 
 ## Quality boundaries
 
-- This is an original editorial explainer template, not an exact reproduction of the reference's human character or hand-crafted scene choreography.
-- Topic ranking is keyword relevance + freshness, not a claim to measure social virality.
-- Scripts use RSS titles/excerpts, not full-article verification. Prompts constrain claims and retain sources; a local language model can still make mistakes. Review facts before publication.
-- Kokoro's pronunciation needs a listening review, especially names and acronyms. Narration is synthesized per scene and normalized for consistent playback level. Captions use the exact spoken text, with word timing estimated by word length rather than forced alignment. Subtle synthesized UI cues accompany scene and point reveals.
-- Technical validation checks dimensions, presence of audio, and nonzero duration. It does not certify factual accuracy, natural speech, or every layout.
-- No background music is included. The current audio track is narration only.
+- Topic ranking is keyword relevance + freshness, not a virality measure.
+- Claims are mapped to sources by word overlap and unsupported numbers are removed; this is not full fact-checking.
+  Review facts before publishing.
+- QA measures technical correctness, layout rules, contrast, loudness and caption sync; narrative quality, taste and
+  pronunciation need a human. Scores state their basis.
+- The template writer and espeak voice are honest fallbacks, noticeably plainer than Ollama/Claude and Kokoro.
+- Not implemented: frame-range partial re-render (repairs re-render the whole video, reusing narration and footage),
+  vision-model review, bundled forced aligners (evaluated; optional).
 
 ## Repositories and licenses
 
@@ -105,27 +130,29 @@ Edit `config.json` for feeds, keywords, freshness, voice and the installed Ollam
 |---|---|---|
 | MCP SDK | https://github.com/modelcontextprotocol/python-sdk | MIT; tool protocol |
 | Ollama | https://github.com/ollama/ollama | MIT; local model runtime |
-| Qwen2.5 7B | https://huggingface.co/Qwen/Qwen2.5-7B-Instruct | Apache 2.0; script model |
+| Qwen2.5 | https://huggingface.co/Qwen/Qwen2.5-14B-Instruct | Apache 2.0; script model |
 | Kokoro | https://github.com/hexgrad/kokoro | Apache 2.0; local speech |
-| Kokoro weights | https://huggingface.co/hexgrad/Kokoro-82M | Apache 2.0; multilingual voice presets |
-| Remotion | https://github.com/remotion-dev/remotion | Special license; free eligibility depends on usage/team; see upstream LICENSE.md |
-| FFmpeg | https://ffmpeg.org | LGPL/GPL depending on build; media processing |
-| feedparser | https://github.com/kurtmckee/feedparser | BSD; RSS/Atom parsing |
+| espeak-ng | https://github.com/espeak-ng/espeak-ng | GPL-3.0; fallback speech (invoked as a separate program) |
+| Remotion | https://github.com/remotion-dev/remotion | Special license; free eligibility depends on usage/team |
+| FFmpeg | https://ffmpeg.org | LGPL/GPL depending on build |
+| feedparser | https://github.com/kurtmckee/feedparser | BSD |
+| Anthropic Python SDK (optional) | https://github.com/anthropics/anthropic-sdk-python | MIT; Claude API |
+| higgsfield-client (optional) | https://pypi.org/project/higgsfield-client/ | Higgsfield SDK; footage API |
 
-No paid service is configured. Remotion's company/service licensing rules still apply if the project becomes a larger business or hosted product.
+Claude API usage and Higgsfield generation are billed by those providers under their terms.
 
 ## Reinstall / test
 
 ```sh
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.lock.txt
+.venv/bin/pip install -r requirements-claude.lock.txt     # optional: CLAUDE/HYBRID
 .venv/bin/pip install -e . --no-deps
 npm ci
 brew install ffmpeg espeak-ng ollama
 node_modules/.bin/remotion browser ensure
-.venv/bin/python -m pytest -q
+.venv/bin/python -m pytest -q                             # RUN_SLOW=1 adds a real end-to-end render
+npm run typecheck
 ```
 
-The model `qwen2.5:7b` must be available in Ollama. On another Mac, update the Node path in `run-server.sh` and register its absolute path with your MCP client. Initial package, browser, and speech-weight downloads require internet, but no account/key.
-
-To remove the Codex registration: `codex mcp remove local-video`. This leaves your generated files intact.
+To remove the Codex registration: `codex mcp remove local-video`. Generated files are left intact.

@@ -95,11 +95,37 @@ REPAIRS = {
 }
 
 
+STOP_TAIL = {"a", "an", "the", "and", "or", "of", "to", "for", "with", "in", "on", "is", "are", "your", "its"}
+
+
+def shorten(text: str, limit: int) -> str:
+    """Cut at a word boundary to fit `limit` chars, never mid-word, never ending on a dangling article/preposition."""
+    if len(text) <= limit:
+        return text
+    words, out = text.split(), []
+    for w in words:
+        if len(" ".join(out + [w])) > limit:
+            break
+        out.append(w)
+    while len(out) > 1 and out[-1].lower().strip(".,;:") in STOP_TAIL:
+        out.pop()
+    return (" ".join(out) or text[:limit]).rstrip(",;:—-")
+
+
 def plan_repairs(report: dict, props: dict) -> dict:
     """Targeted overrides for build_props; only scenes with issues change."""
-    overrides: dict = {"avoid": {}, "hide_character": [], "drop_media": [], "notes": []}
+    overrides: dict = {"avoid": {}, "hide_character": [], "drop_media": [], "shorten": {}, "notes": []}
+    for check in report.get("audio", {}).get("checks", []):
+        if check["check"] in ("true_peak", "clipping", "loudness") and not check["passed"]:
+            overrides["remaster"] = True
+            overrides["notes"].append(f"audio: {check['check']} -> re-master with measured true-peak correction")
     for issue in report["visual"]["issues"]:
         kind, sid = issue.get("kind"), issue.get("scene")
+        if kind == "overflow" and sid and issue.get("field") in ("heading", "points", "label"):
+            fields = overrides["shorten"].setdefault(sid, {})
+            fields[issue["field"]] = min(fields.get(issue["field"], 999), issue["limit"])
+            overrides["notes"].append(f"{sid}: overflow -> shorten {issue['field']} to {issue['limit']} chars at a word boundary")
+            continue
         if kind in ("overflow", "tiny_text", "blank") and sid:
             scene = next((s for s in props["scenes"] if s.get("id") == sid), None)
             if scene:

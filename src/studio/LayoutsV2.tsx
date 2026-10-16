@@ -205,11 +205,12 @@ export const SplitCompare: React.FC<LayoutProps> = p => {
 
 /** Full-bleed cinematic footage, graded toward the theme so it sits with the graphics; heading overlaid by Remotion. */
 export const Cinematic: React.FC<LayoutProps> = p => {
-  const {P, scene, beat} = p;
-  const f = useCurrentFrame();
+  const {P, scene, beat, dur} = p;
   const media = scene.media;
+  // Stretch a short clip across the beat (never below half speed) instead of letting it run out.
+  const rate = scene.mediaSeconds ? Math.max(.5, Math.min(1, scene.mediaSeconds / Math.max(.1, dur / 30))) : 1;
   return <div style={{position: 'absolute', left: -STAGE.left, top: -STAGE.top, width: 1080, height: 1920, overflow: 'hidden', background: P.bg}}>
-    {media && <OffthreadVideo src={staticFile(media)} muted style={{width: '100%', height: '100%', objectFit: 'cover',
+    {media && <OffthreadVideo src={staticFile(media)} muted playbackRate={rate} style={{width: '100%', height: '100%', objectFit: 'cover',
       filter: `saturate(.86) contrast(1.06) brightness(${P.dark ? .82 : .95})`}}/>}
     <div style={{position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${P.bg}cc 0%, ${P.bg}00 26%, ${P.bg}00 52%, ${P.bg}e6 78%, ${P.bg} 100%)`}}/>
     <div style={{position: 'absolute', inset: 0, mixBlendMode: 'soft-light', background: P.accent, opacity: .12}}/>
