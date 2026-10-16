@@ -1,13 +1,13 @@
 {
   "demo": "A",
-  "job": "064e9625b8db",
+  "job": "feca2a2df601",
   "state": "completed",
   "phase": "COMPLETED",
   "degraded": [
     "scene_001"
   ],
-  "wall_seconds": 184.4,
+  "wall_seconds": 199.1,
   "mock_cinematic": false,
   "live_provider_tested": false,
-  "qa": "/home/user/automated-videos/data/jobs/064e9625b8db/qa/summary.md"
+  "qa": "/home/user/automated-videos/data/jobs/feca2a2df601/qa/summary.md"
 }

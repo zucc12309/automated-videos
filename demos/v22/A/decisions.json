@@ -4,7 +4,7 @@
     "provider": "claude-code-interactive",
     "used": true,
     "note": "storyboard supplied by caller",
-    "at": 1792144206.544342
+    "at": 1792147326.2496972
   },
   {
     "stage": "cinematic",
@@ -12,18 +12,25 @@
     "used": false,
     "reason": "local mode renders everything in Remotion",
     "fallback": "remotion:hookBold",
-    "at": 1792144206.5479438
+    "at": 1792147326.2563276
   },
   {
     "stage": "narration",
-    "engine": "espeak",
-    "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-    "at": 1792144206.5505247
+    "engine": "kokoro_onnx",
+    "reason": "kokoro not importable (ModuleNotFoundError); Kokoro v1.0 via onnxruntime",
+    "at": 1792147326.2603893
+  },
+  {
+    "stage": "music",
+    "style": "warm_pad",
+    "gain_db": -2.15,
+    "basis": "reference bed level",
+    "at": 1792147343.7761025
   },
   {
     "stage": "render",
     "concurrency": 2,
-    "memory_available_gb": 14.9,
-    "at": 1792144209.740957
+    "memory_available_gb": 13.97,
+    "at": 1792147343.9493415
   }
 ]

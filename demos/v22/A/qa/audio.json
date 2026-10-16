@@ -4,77 +4,77 @@
   {
    "check": "loudness",
    "passed": true,
-   "detail": "-13.8 LUFS (target -14.0 \u00b12)",
+   "detail": "-14.1 LUFS (target -14.0 \u00b12)",
    "mandatory": false,
    "basis": "deterministic"
   },
   {
    "check": "true_peak",
    "passed": true,
-   "detail": "-1.8 dBTP (limit -0.5)",
+   "detail": "-1.4 dBTP (limit -0.5)",
    "mandatory": true,
    "basis": "deterministic"
   },
   {
    "check": "clipping",
    "passed": true,
-   "detail": "true peak -1.8 dBTP",
+   "detail": "true peak -1.4 dBTP",
    "mandatory": false,
    "basis": "deterministic"
   },
   {
    "check": "scene_001_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.97, 'inside_ratio': 0.811} via energy_snapped",
+   "detail": "{'covered_speech': 0.859, 'inside_ratio': 0.863} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_002_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.906, 'inside_ratio': 0.878} via energy_snapped",
+   "detail": "{'covered_speech': 0.882, 'inside_ratio': 0.844} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_003_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.92, 'inside_ratio': 0.889} via energy_snapped",
+   "detail": "{'covered_speech': 0.876, 'inside_ratio': 0.824} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_004_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.903, 'inside_ratio': 0.841} via energy_snapped",
+   "detail": "{'covered_speech': 0.888, 'inside_ratio': 0.851} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_005_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.954, 'inside_ratio': 0.92} via energy_snapped",
+   "detail": "{'covered_speech': 0.923, 'inside_ratio': 0.877} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_006_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.879, 'inside_ratio': 0.848} via energy_snapped",
+   "detail": "{'covered_speech': 0.903, 'inside_ratio': 0.951} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   }
  ],
  "loudness": {
-  "integrated_lufs": -13.8,
-  "lra": 1.5,
-  "true_peak_dbtp": -1.8
+  "integrated_lufs": -14.1,
+  "lra": 1.9,
+  "true_peak_dbtp": -1.4
  },
  "timing_sources": [
   "energy_snapped"
  ],
  "estimated_timings": true,
  "engines": [
-  "espeak"
+  "kokoro_onnx"
  ]
 }

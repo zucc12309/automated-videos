@@ -20,7 +20,7 @@
 - PASS `resolution` — 1080x1920 (want 1080x1920)
 - PASS `aspect_ratio` — 9:16
 - PASS `frame_rate` — 30.000 fps (want 30)
-- PASS `duration` — 37.00s (expected 36.93s)
+- PASS `duration` — 37.55s (expected 37.50s)
 - PASS `audio_present` — aac 48000
 - PASS `decode_integrity` — clean full decode
 - PASS `black_frames` — none
@@ -33,15 +33,15 @@
 
 ## Audio
 
-- PASS `loudness` — -13.8 LUFS (target -14.0 ±2) (deterministic)
-- PASS `true_peak` — -1.8 dBTP (limit -0.5) (deterministic)
-- PASS `clipping` — true peak -1.8 dBTP (deterministic)
-- PASS `scene_001_caption_sync` — {'covered_speech': 0.97, 'inside_ratio': 0.811} via energy_snapped (heuristic)
-- PASS `scene_002_caption_sync` — {'covered_speech': 0.906, 'inside_ratio': 0.878} via energy_snapped (heuristic)
-- PASS `scene_003_caption_sync` — {'covered_speech': 0.92, 'inside_ratio': 0.889} via energy_snapped (heuristic)
-- PASS `scene_004_caption_sync` — {'covered_speech': 0.903, 'inside_ratio': 0.841} via energy_snapped (heuristic)
-- PASS `scene_005_caption_sync` — {'covered_speech': 0.954, 'inside_ratio': 0.92} via energy_snapped (heuristic)
-- PASS `scene_006_caption_sync` — {'covered_speech': 0.879, 'inside_ratio': 0.848} via energy_snapped (heuristic)
+- PASS `loudness` — -14.1 LUFS (target -14.0 ±2) (deterministic)
+- PASS `true_peak` — -1.4 dBTP (limit -0.5) (deterministic)
+- PASS `clipping` — true peak -1.4 dBTP (deterministic)
+- PASS `scene_001_caption_sync` — {'covered_speech': 0.859, 'inside_ratio': 0.863} via energy_snapped (heuristic)
+- PASS `scene_002_caption_sync` — {'covered_speech': 0.882, 'inside_ratio': 0.844} via energy_snapped (heuristic)
+- PASS `scene_003_caption_sync` — {'covered_speech': 0.876, 'inside_ratio': 0.824} via energy_snapped (heuristic)
+- PASS `scene_004_caption_sync` — {'covered_speech': 0.888, 'inside_ratio': 0.851} via energy_snapped (heuristic)
+- PASS `scene_005_caption_sync` — {'covered_speech': 0.923, 'inside_ratio': 0.877} via energy_snapped (heuristic)
+- PASS `scene_006_caption_sync` — {'covered_speech': 0.903, 'inside_ratio': 0.951} via energy_snapped (heuristic)
 - Caption timings are **estimated** (no model timestamps for this voice).
 
 ## Sources

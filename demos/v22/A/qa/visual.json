@@ -204,8 +204,8 @@
    "t": 0.0,
    "kind": "first_frame",
    "scene": "",
-   "mean_luma": 27.0,
-   "stage_std": 57.11
+   "mean_luma": 26.9,
+   "stage_std": 57.1
   },
   {
    "t": 0.15,
@@ -215,180 +215,180 @@
    "stage_std": 57.12
   },
   {
-   "t": 1.6,
+   "t": 1.533,
    "kind": "scene_mid",
    "scene": "scene_001",
-   "mean_luma": 45.8,
+   "mean_luma": 45.7,
    "stage_std": 63.97
   },
   {
-   "t": 3.0,
+   "t": 2.867,
    "kind": "scene_exit",
    "scene": "scene_001",
    "mean_luma": 46.0,
-   "stage_std": 64.29
+   "stage_std": 64.3
   },
   {
-   "t": 3.35,
+   "t": 3.217,
    "kind": "scene_entrance",
    "scene": "scene_002",
    "mean_luma": 34.4,
-   "stage_std": 38.32
+   "stage_std": 38.34
   },
   {
-   "t": 7.217,
+   "t": 7.117,
    "kind": "scene_mid",
    "scene": "scene_002",
-   "mean_luma": 29.3,
-   "stage_std": 40.69
+   "mean_luma": 29.6,
+   "stage_std": 40.73
   },
   {
-   "t": 9.113,
+   "t": 8.797,
    "kind": "beat_boundary",
    "scene": "scene_002",
-   "mean_luma": 30.8,
-   "stage_std": 56.35
+   "mean_luma": 26.8,
+   "stage_std": 27.08
   },
   {
-   "t": 11.033,
+   "t": 10.967,
    "kind": "scene_exit",
    "scene": "scene_002",
-   "mean_luma": 24.7,
-   "stage_std": 54.42
+   "mean_luma": 22.6,
+   "stage_std": 21.84
   },
   {
-   "t": 11.383,
+   "t": 11.317,
    "kind": "scene_entrance",
    "scene": "scene_003",
-   "mean_luma": 24.9,
-   "stage_std": 23.88
+   "mean_luma": 24.3,
+   "stage_std": 16.5
   },
   {
-   "t": 14.745,
+   "t": 14.974,
    "kind": "beat_boundary",
    "scene": "scene_003",
-   "mean_luma": 24.7,
-   "stage_std": 18.48
+   "mean_luma": 28.4,
+   "stage_std": 50.23
   },
   {
-   "t": 15.3,
+   "t": 15.217,
    "kind": "scene_mid",
    "scene": "scene_003",
-   "mean_luma": 22.6,
-   "stage_std": 12.41
+   "mean_luma": 24.5,
+   "stage_std": 45.0
   },
   {
-   "t": 17.383,
+   "t": 17.384,
    "kind": "beat_boundary",
    "scene": "scene_003",
-   "mean_luma": 23.0,
-   "stage_std": 9.53
+   "mean_luma": 23.5,
+   "stage_std": 30.01
   },
   {
-   "t": 19.167,
+   "t": 19.067,
    "kind": "scene_exit",
    "scene": "scene_003",
    "mean_luma": 28.3,
-   "stage_std": 32.35
+   "stage_std": 32.34
   },
   {
-   "t": 19.517,
+   "t": 19.417,
    "kind": "scene_entrance",
    "scene": "scene_004",
    "mean_luma": 27.0,
    "stage_std": 19.29
   },
   {
-   "t": 23.433,
+   "t": 23.383,
    "kind": "scene_mid",
    "scene": "scene_004",
    "mean_luma": 30.4,
-   "stage_std": 43.16
+   "stage_std": 43.19
   },
   {
-   "t": 25.26,
+   "t": 25.17,
    "kind": "beat_boundary",
    "scene": "scene_004",
-   "mean_luma": 31.4,
-   "stage_std": 61.93
+   "mean_luma": 25.4,
+   "stage_std": 20.97
   },
   {
    "t": 27.3,
    "kind": "scene_exit",
    "scene": "scene_004",
-   "mean_luma": 27.1,
-   "stage_std": 63.89
+   "mean_luma": 23.7,
+   "stage_std": 26.78
   },
   {
    "t": 27.65,
    "kind": "scene_entrance",
    "scene": "scene_005",
-   "mean_luma": 25.4,
-   "stage_std": 25.92
+   "mean_luma": 24.4,
+   "stage_std": 16.2
   },
   {
-   "t": 30.533,
+   "t": 30.8,
    "kind": "scene_mid",
    "scene": "scene_005",
    "mean_luma": 28.9,
-   "stage_std": 37.85
+   "stage_std": 37.86
   },
   {
-   "t": 33.367,
+   "t": 33.9,
    "kind": "scene_exit",
    "scene": "scene_005",
    "mean_luma": 29.9,
    "stage_std": 41.21
   },
   {
-   "t": 33.717,
+   "t": 34.25,
    "kind": "scene_entrance",
    "scene": "scene_006",
    "mean_luma": 25.1,
    "stage_std": 15.49
   },
   {
-   "t": 35.25,
+   "t": 35.8,
    "kind": "scene_mid",
    "scene": "scene_006",
-   "mean_luma": 29.4,
-   "stage_std": 61.13
+   "mean_luma": 29.3,
+   "stage_std": 61.14
   },
   {
-   "t": 36.034,
+   "t": 36.6,
    "kind": "beat_boundary",
    "scene": "scene_006",
-   "mean_luma": 36.6,
-   "stage_std": 63.69
+   "mean_luma": 34.6,
+   "stage_std": 63.75
   },
   {
-   "t": 36.733,
+   "t": 37.3,
    "kind": "scene_exit",
    "scene": "scene_006",
    "mean_luma": 43.3,
    "stage_std": 64.2
   },
   {
-   "t": 36.833,
+   "t": 37.4,
    "kind": "final_frame",
    "scene": "",
    "mean_luma": 39.1,
-   "stage_std": 64.32
+   "stage_std": 64.31
   }
  ],
  "issues": [],
  "layout_order": [
   "hookBold",
   "repoCard",
-  "repoConnect",
-  "repoCard",
   "readmeScroll",
+  "repoCard",
+  "repoConnect",
   "heroWord",
   "repoCard",
-  "repoConnect",
+  "readmeScroll",
   "repoCard",
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/064e9625b8db/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/feca2a2df601/qa/contact_sheet.jpg"
 }
