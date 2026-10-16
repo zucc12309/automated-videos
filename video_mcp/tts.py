@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import html
 import math
+import os
 import re
 import shutil
 import subprocess
@@ -48,20 +49,40 @@ def spoken_form(text: str, pronunciations: dict[str, str], expand_acronyms: bool
     return out
 
 
+ONNX_DIR = Path(os.environ.get("KOKORO_ONNX_DIR") or Path(__file__).resolve().parents[1] / "data" / "models" / "kokoro-onnx")
+ONNX_FILES = ("kokoro-v1.0.onnx", "voices-v1.0.bin")
+
+
+def kokoro_onnx_ready() -> tuple[bool, str]:
+    """Kokoro v1.0 (same weights and voices as hexgrad/Kokoro-82M) through onnxruntime; model files in ONNX_DIR."""
+    missing = [f for f in ONNX_FILES if not (ONNX_DIR / f).is_file()]
+    if missing:
+        return False, f"kokoro-onnx model files missing in {ONNX_DIR}: {missing}"
+    try:
+        import kokoro_onnx  # noqa: F401
+    except Exception as exc:
+        return False, f"kokoro_onnx not importable ({type(exc).__name__})"
+    return True, ""
+
+
 def available_engine(preferred: str) -> tuple[str, str]:
-    """Resolve 'auto' to a usable engine and say why."""
+    """Resolve 'auto' to a usable engine and say why. Kokoro (PyTorch) first, then the same Kokoro voices via ONNX, then espeak."""
     kokoro_ok, why = False, ""
     try:
         import kokoro  # noqa: F401
         kokoro_ok = True
     except Exception as exc:
         why = f"kokoro not importable ({type(exc).__name__})"
+    onnx_ok, onnx_why = kokoro_onnx_ready()
     if preferred == "kokoro":
-        return "kokoro", "configured"
+        return ("kokoro", "configured") if kokoro_ok or not onnx_ok else ("kokoro_onnx", f"configured kokoro; {why}; using Kokoro ONNX")
     if preferred == "espeak":
         return "espeak", "configured"
     if kokoro_ok:
         return "kokoro", "default"
+    if onnx_ok:
+        return "kokoro_onnx", f"{why}; Kokoro v1.0 via onnxruntime"
+    why = f"{why}; {onnx_why}"
     if shutil.which("espeak-ng"):
         return "espeak", f"fallback: {why}"
     raise RuntimeError(f"No narration engine: {why}; install Kokoro (pip) or espeak-ng")
@@ -84,6 +105,46 @@ def kokoro_narrate(text: str, cfg, fps: int) -> Narration:
     audio = np.concatenate([r.audio.numpy() for r in results]).astype(np.float32)
     words = alignment.retarget(audio_fx.word_timings(results), [c for c, _ in pairs])
     return Narration(audio, words, audio_fx.visemes(results, fps), "kokoro", cfg.voice, "kokoro_timestamps")
+
+
+_ONNX: dict = {}
+
+
+def kokoro_onnx_narrate(text: str, cfg, fps: int) -> Narration:
+    """Kokoro voices via onnxruntime. One call per sentence keeps Kokoro's own intonation; sentence boundaries are exact and words
+    inside a sentence are estimated and energy-snapped (the ONNX runtime returns no timestamps)."""
+    from kokoro_onnx import Kokoro
+    if "model" not in _ONNX:
+        _ONNX["model"] = Kokoro(str(ONNX_DIR / ONNX_FILES[0]), str(ONNX_DIR / ONNX_FILES[1]))
+    model = _ONNX["model"]
+    pause = .3
+    if getattr(cfg.narration, "audio_profile", "off") == "reference":
+        from . import audio_profile
+        pause = audio_profile.profile()["targets"]["voice"]["kokoro"].get("sentence_pause_s", pause)
+    pairs = spoken_form(text, cfg.narration.pronunciations, False, "kokoro")
+    sentences, current = [], []
+    for caption, spoken in pairs:
+        current.append((caption, spoken))
+        if re.search(r"[.!?]$", caption):
+            sentences.append(current)
+            current = []
+    if current:
+        sentences.append(current)
+    chunks, words, t = [], [], 0.0
+    for sentence in sentences:
+        samples, rate = model.create(" ".join(s for _, s in sentence), voice=cfg.voice, speed=cfg.voice_speed, lang="en-us")
+        pcm = np.asarray(samples, dtype=np.float32)
+        if rate != RATE:
+            n = math.ceil(len(pcm) * RATE / rate)
+            pcm = np.interp(np.linspace(0, len(pcm) - 1, n), np.arange(len(pcm)), pcm).astype(np.float32)
+        pcm = _trim(pcm)
+        est = alignment.energy_snap(pcm, RATE, alignment.estimate([c for c, _ in sentence], 0, len(pcm) / RATE))
+        words += [{"w": w["w"], "s": round(w["s"] + t, 3), "e": round(w["e"] + t, 3)} for w in est]
+        chunks += [pcm, np.zeros(int(pause * RATE), dtype=np.float32)]
+        t += len(pcm) / RATE + pause
+    audio = np.concatenate(chunks[:-1]) if len(chunks) > 1 else chunks[0]
+    return Narration(audio, words, text_visemes(words, fps), "kokoro_onnx", f"{cfg.voice} @ {cfg.voice_speed}", "energy_snapped",
+                     ["Kokoro v1.0 via onnxruntime; word timings inside a sentence are estimated"])
 
 
 GRAPHEME = [("th", "H"), ("oo", "F"), ("ee", "B"), ("ch", "B"), ("sh", "B"), ("m", "A"), ("b", "A"), ("p", "A"), ("f", "G"),
@@ -182,7 +243,8 @@ def _trim(pcm: np.ndarray, threshold: float = .01) -> np.ndarray:
 
 
 def narrate(text: str, cfg, fps: int, engine: str) -> Narration:
-    result = kokoro_narrate(text, cfg, fps) if engine == "kokoro" else espeak_narrate(text, cfg, fps)
+    result = (kokoro_narrate(text, cfg, fps) if engine == "kokoro" else kokoro_onnx_narrate(text, cfg, fps) if engine == "kokoro_onnx"
+              else espeak_narrate(text, cfg, fps))
     if not np.isfinite(result.audio).all() or np.max(np.abs(result.audio)) < 0.001:
         raise RuntimeError("Speech synthesis returned invalid or silent audio")
     return result

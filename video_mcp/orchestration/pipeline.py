@@ -444,7 +444,8 @@ class Pipeline:
             eq, eq_info = "", None
             if self._profile():          # move the voice's tonal balance toward Reference A (clamped ±6 dB per band)
                 from .. import audio_profile
-                eq, eq_info = audio_profile.match_eq(n.audio, RATE, self._profile()["measured"]["voice_bands_db"])
+                strength = self._profile()["targets"]["narration_eq"].get("kokoro_strength", .5) if n.engine.startswith("kokoro") else 1.0
+                eq, eq_info = audio_profile.match_eq(n.audio, RATE, self._profile()["measured"]["voice_bands_db"], strength)
             subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-af",
                             "highpass=f=75," + (eq + "," if eq else "") +
                             "acompressor=threshold=-20dB:ratio=2.5:attack=5:release=80,loudnorm=I=-16:TP=-1.5:LRA=7",
@@ -718,9 +719,10 @@ class Pipeline:
             "sources": [s.model_dump() for s in board.sources], "claims": [c.model_dump() for c in board.claims],
             "director": board.director, "decisions": self.decisions,
             # V1 keys kept for existing consumers
-            "model": board.director.get("model", self.cfg.model), "voice_model": "hexgrad/Kokoro-82M" if "kokoro" in engines else "espeak-ng",
-            "voice": self.cfg.voice if "kokoro" in engines else self.cfg.narration.espeak_voice, "voice_engines": engines,
-            "caption_timing": timing, "narration_language": "English (US)", "visual_style": "studio",
+            "model": board.director.get("model", self.cfg.model), "voice_model": "hexgrad/Kokoro-82M" if "kokoro" in engines else
+                          "Kokoro-82M v1.0 ONNX (kokoro-onnx model-files-v1.0)" if "kokoro_onnx" in engines else "espeak-ng",
+            "voice": self.cfg.voice if {"kokoro", "kokoro_onnx"} & set(engines) else self.cfg.narration.espeak_voice, "voice_engines": engines,
+            "caption_timing": timing, "narration_language": "English (US)", "visual_style": (props or {}).get("style", "studio"),
             "theme": (props or {}).get("theme"), "variant": (props or {}).get("variant"), "layouts": (props or {}).get("_layouts"),
             "scene_transitions": "beat-level 9-frame transitions; scenes butt-joined",
             "assets": [{"scene": s.id, **a.model_dump()} for s in board.scenes for a in s.assets],

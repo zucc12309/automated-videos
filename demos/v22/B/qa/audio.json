@@ -11,56 +11,56 @@
   {
    "check": "true_peak",
    "passed": true,
-   "detail": "-1.7 dBTP (limit -0.5)",
+   "detail": "-1.9 dBTP (limit -0.5)",
    "mandatory": true,
    "basis": "deterministic"
   },
   {
    "check": "clipping",
    "passed": true,
-   "detail": "true peak -1.7 dBTP",
+   "detail": "true peak -1.9 dBTP",
    "mandatory": false,
    "basis": "deterministic"
   },
   {
    "check": "scene_001_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.945, 'inside_ratio': 0.851} via energy_snapped",
+   "detail": "{'covered_speech': 0.893, 'inside_ratio': 0.908} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_002_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.878, 'inside_ratio': 0.833} via energy_snapped",
+   "detail": "{'covered_speech': 0.873, 'inside_ratio': 0.822} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_003_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.871, 'inside_ratio': 0.86} via energy_snapped",
+   "detail": "{'covered_speech': 0.815, 'inside_ratio': 0.8} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_004_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.891, 'inside_ratio': 0.832} via energy_snapped",
+   "detail": "{'covered_speech': 0.841, 'inside_ratio': 0.787} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_005_caption_sync",
-   "passed": true,
-   "detail": "{'covered_speech': 0.888, 'inside_ratio': 0.785} via energy_snapped",
+   "passed": false,
+   "detail": "{'covered_speech': 0.696, 'inside_ratio': 0.826} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   },
   {
    "check": "scene_006_caption_sync",
    "passed": true,
-   "detail": "{'covered_speech': 0.901, 'inside_ratio': 0.784} via energy_snapped",
+   "detail": "{'covered_speech': 0.899, 'inside_ratio': 0.885} via energy_snapped",
    "mandatory": false,
    "basis": "heuristic"
   }
@@ -68,13 +68,13 @@
  "loudness": {
   "integrated_lufs": -14.0,
   "lra": 2.0,
-  "true_peak_dbtp": -1.7
+  "true_peak_dbtp": -1.9
  },
  "timing_sources": [
   "energy_snapped"
  ],
  "estimated_timings": true,
  "engines": [
-  "espeak"
+  "kokoro_onnx"
  ]
 }

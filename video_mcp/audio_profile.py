@@ -140,8 +140,9 @@ def save_reference(path: Path) -> dict:
     return data
 
 
-def match_eq(pcm: np.ndarray, rate: int, target_bands: dict) -> tuple[str, dict]:
-    """ffmpeg filter chain moving this narration's band balance toward the reference voice (each gain clamped to ±6 dB)."""
+def match_eq(pcm: np.ndarray, rate: int, target_bands: dict, strength: float = 1.0) -> tuple[str, dict]:
+    """ffmpeg filter chain moving this narration's band balance toward the reference voice (each gain clamped to ±6 dB).
+    strength < 1 for Kokoro, which is the reference voice already and only needs a trim."""
     x = pcm.astype(np.float32)
     if rate != SR:
         n = int(len(x) * SR / rate)
@@ -150,14 +151,14 @@ def match_eq(pcm: np.ndarray, rate: int, target_bands: dict) -> tuple[str, dict]
     # Remove the overall offset so the EQ changes balance, not loudness (loudnorm follows).
     diff = {k: target_bands[k] - got[k] for k in BANDS}
     mean = sum(diff.values()) / len(diff)
-    gains = {k: round(float(np.clip((v - mean) / EQ_EFFICIENCY, -EQ_LIMIT_DB, EQ_LIMIT_DB)), 1) for k, v in diff.items()}
+    gains = {k: round(float(np.clip(strength * (v - mean) / EQ_EFFICIENCY, -EQ_LIMIT_DB, EQ_LIMIT_DB)), 1) for k, v in diff.items()}
     parts = []
     for k, g in gains.items():
         if abs(g) < .5:
             continue
         kind, freq, width = EQ_POINTS[k]
         parts.append(f"highshelf=f={freq}:g={g}:t=q:w={width}" if kind == "highshelf" else f"equalizer=f={freq}:t=q:w={width}:g={g}")
-    return ",".join(parts), {"measured": got, "gains_db": gains}
+    return ",".join(parts), {"measured": got, "gains_db": gains, "strength": strength}
 
 
 def _frame_db(x: np.ndarray, rate: int) -> np.ndarray:

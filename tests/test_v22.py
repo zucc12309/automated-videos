@@ -263,3 +263,30 @@ def test_espeak_uses_reference_prosody_when_profile_is_on(monkeypatch, make_cfg)
     with pytest.raises(RuntimeError):
         tts.espeak_narrate("Plain.", make_cfg(narration={"audio_profile": "off"}), 30)
     assert "-m" not in calls[0]
+
+
+def test_engine_resolution_prefers_kokoro_then_kokoro_onnx_then_espeak(monkeypatch):
+    import builtins
+    from video_mcp import tts
+    real_import = builtins.__import__
+    def no_torch_kokoro(name, *a, **kw):
+        if name == "kokoro":
+            raise ModuleNotFoundError(name)
+        return real_import(name, *a, **kw)
+    monkeypatch.setattr(builtins, "__import__", no_torch_kokoro)
+    monkeypatch.setattr(tts, "kokoro_onnx_ready", lambda: (True, ""))
+    assert tts.available_engine("auto")[0] == "kokoro_onnx"
+    assert tts.available_engine("kokoro")[0] == "kokoro_onnx"
+    assert tts.available_engine("espeak")[0] == "espeak"
+    monkeypatch.setattr(tts, "kokoro_onnx_ready", lambda: (False, "missing"))
+    assert tts.available_engine("auto")[0] == "espeak"
+
+
+def test_match_eq_strength_scales_the_correction():
+    import numpy as np
+    from video_mcp import audio_profile
+    x = np.random.default_rng(1).standard_normal(32000).astype(np.float32)
+    target = {"low": -4.0, "mid": -3.0, "presence": -12.0, "air": -17.0}
+    full = audio_profile.match_eq(x, 16000, target)[1]["gains_db"]
+    half = audio_profile.match_eq(x, 16000, target, .5)[1]["gains_db"]
+    assert all(abs(half[k]) <= abs(full[k]) for k in full)

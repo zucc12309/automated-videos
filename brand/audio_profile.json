@@ -5,7 +5,8 @@
    "kokoro": {
     "voice": "am_adam",
     "speed": 1.05,
-    "note": "Reference A's own engine and voice; timbre, pitch and pauses are left as Kokoro produces them."
+    "note": "Reference A's own engine and voice (am_adam, speed 1.05). Timbre and pitch are Kokoro's; the ONNX path adds sentence_pause_s between sentences.",
+    "sentence_pause_s": 0.24
    },
    "espeak": {
     "variant": "en-us+m3",
@@ -19,7 +20,8 @@
   },
   "narration_eq": {
    "mode": "match_reference_voice_bands",
-   "limit_db": 6
+   "limit_db": 6,
+   "kokoro_strength": 0.5
   },
   "scene_tail_s": {
    "default": 0.4,

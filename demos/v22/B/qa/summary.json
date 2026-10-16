@@ -27,7 +27,7 @@
    "basis": "deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json)"
   },
   "audio_quality": {
-   "score": 100,
+   "score": 89,
    "basis": "deterministic loudness/peak; heuristic caption sync"
   },
   "narrative_coherence": {
@@ -48,7 +48,7 @@
   "Music licensing (procedural bed is generated locally)"
  ],
  "estimated_caption_timing": true,
- "contact_sheet": "/home/user/automated-videos/data/jobs/99eba1475eb4/qa/contact_sheet.jpg",
+ "contact_sheet": "/home/user/automated-videos/data/jobs/e8fdf254cd46/qa/contact_sheet.jpg",
  "reference_style": {
   "ground_colour": true,
   "luminance": true,
