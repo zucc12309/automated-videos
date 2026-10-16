@@ -2,7 +2,11 @@
   {
     "attempt": 1,
     "overrides": {
-      "avoid": {},
+      "avoid": {
+        "scene_003": [
+          "splitCompare"
+        ]
+      },
       "hide_character": [],
       "drop_media": [],
       "shorten": {
@@ -11,27 +15,10 @@
         }
       },
       "notes": [
-        "scene_005: overflow -> shorten heading to 26 chars at a word boundary",
-        "video: one_reveal_reaction -> reported (no automatic repair)",
-        "video: repetition -> re-seed layout planning"
+        "scene_003: overflow -> switch the scene to a layout with more text capacity",
+        "scene_005: overflow -> shorten heading to 26 chars at a word boundary"
       ],
-      "reseed": 1
-    },
-    "issues_before": 3,
-    "technical_pass_before": true
-  },
-  {
-    "attempt": 2,
-    "overrides": {
-      "avoid": {},
-      "hide_character": [],
-      "drop_media": [],
-      "shorten": {},
-      "notes": [
-        "video: one_reveal_reaction -> reported (no automatic repair)",
-        "video: repetition -> re-seed layout planning"
-      ],
-      "reseed": 2
+      "reseed": null
     },
     "issues_before": 2,
     "technical_pass_before": true

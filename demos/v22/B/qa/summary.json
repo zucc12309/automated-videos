@@ -19,11 +19,11 @@
    "basis": "heuristic (freeze detection only; motion taste needs manual review)"
   },
   "scene_variety": {
-   "score": 50,
+   "score": 100,
    "basis": "deterministic + heuristic"
   },
   "brand_consistency": {
-   "score": 92,
+   "score": 100,
    "basis": "deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json)"
   },
   "audio_quality": {
@@ -40,7 +40,7 @@
   }
  },
  "failing_scenes": [],
- "issue_count": 2,
+ "issue_count": 0,
  "manual_review": [
   "Factual accuracy against the cited sources",
   "Pronunciation of names and acronyms",
@@ -48,7 +48,7 @@
   "Music licensing (procedural bed is generated locally)"
  ],
  "estimated_caption_timing": true,
- "contact_sheet": "/home/user/automated-videos/data/jobs/78384847ff4b/qa/contact_sheet.jpg",
+ "contact_sheet": "/home/user/automated-videos/data/jobs/d1bb3f2583b3/qa/contact_sheet.jpg",
  "reference_style": {
   "ground_colour": true,
   "luminance": true,

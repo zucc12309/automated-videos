@@ -8,8 +8,8 @@
 | readability | 100 | deterministic (layout metadata + tokens) |
 | visual consistency | 100 | deterministic |
 | motion quality | 100 | heuristic (freeze detection only; motion taste needs manual review) |
-| scene variety | 50 | deterministic + heuristic |
-| brand consistency | 92 | deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json) |
+| scene variety | 100 | deterministic + heuristic |
+| brand consistency | 100 | deterministic (character staging, frame-0 hook, CTA, pacing from props + brand/*.json) |
 | audio quality | 100 | deterministic loudness/peak; heuristic caption sync |
 | narrative coherence | n/a | manual review required (no model opinion collected) |
 | source reliability | 40 | deterministic word-overlap support check; share of claims with source support |
@@ -29,14 +29,13 @@
 
 ## Visual issues
 
-- [deterministic] `one_reveal_reaction` : 2 big reaction(s): ['scene_003', 'scene_005']
-- [deterministic] `no_back_to_back_layouts` : 1 repeat(s)
+- none
 
 ## Audio
 
 - PASS `loudness` — -14.2 LUFS (target -14.0 ±2) (deterministic)
-- PASS `true_peak` — -1.9 dBTP (limit -0.5) (deterministic)
-- PASS `clipping` — true peak -1.9 dBTP (deterministic)
+- PASS `true_peak` — -1.8 dBTP (limit -0.5) (deterministic)
+- PASS `clipping` — true peak -1.8 dBTP (deterministic)
 - PASS `scene_001_caption_sync` — {'covered_speech': 0.981, 'inside_ratio': 0.871} via energy_snapped (heuristic)
 - PASS `scene_002_caption_sync` — {'covered_speech': 0.872, 'inside_ratio': 0.836} via energy_snapped (heuristic)
 - PASS `scene_003_caption_sync` — {'covered_speech': 0.891, 'inside_ratio': 0.872} via energy_snapped (heuristic)

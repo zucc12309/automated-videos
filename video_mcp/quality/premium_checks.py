@@ -20,7 +20,7 @@ PREMIUM_TEXT = {
     "nodeGraph": [("points", 28, 44, "body")], "repoConnect": [("points", 28, 44, "body")], "flowDiagram": [("nodes", 30, 44, "body")],
     "steps": [("points", 44, 44, "body")], "timeline": [("timeline", 44, 44, "body")], "listStack": [("points", 44, 44, "body")],
     "codeBlock": [("heading", 26, 32, "meta"), ("code", 999, 30, "code")], "terminal": [("points", 30, 40, "body")],
-    "splitCompare": [("compare", 40, 42, "body")], "compare": [("compare", 40, 42, "body")],
+    "splitCompare": [("compare", 60, 42, "body")], "compare": [("compare", 60, 42, "body")],
     "warningCard": [("heading", 40, 76, "heading"), ("points", 40, 44, "body")],
     "browserMock": [("heading", 28, 64, "heading"), ("points", 26, 42, "body")],
     "deviceMock": [("heading", 26, 40, "body")], "chat": [("heading", 26, 40, "body")],

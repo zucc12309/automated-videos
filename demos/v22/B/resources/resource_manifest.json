@@ -12,8 +12,8 @@
   }
  ],
  "files": [
-  "prompt.md",
   "example_code/example.txt",
+  "prompt.md",
   "guide.md",
   "dm_message.txt",
   "resource_manifest.json"

@@ -44,7 +44,7 @@ const flatten = (scenes: Scene[], fps: number): GBeat[] => {
 const exitStyle = (kind: string, p: number): React.CSSProperties => {
   if (p <= 0) return {};
   const e = EASE.exit(p);
-  if (kind === 'cut') return {opacity: p >= 1 ? 0 : 1};
+  if (kind === 'cut') return {opacity: 0};          // a cut hides the outgoing beat at once (no overlap)
   if (kind === 'expand') return {opacity: 1 - e, transform: `scale(${1 + .08 * e})`, filter: `blur(${e * 8}px)`};
   if (kind === 'focus') return {opacity: 1 - e, transform: `scale(${1 + .14 * e})`, filter: `blur(${e * 12}px)`};
   if (kind === 'push') return {opacity: 1 - e, transform: `translateX(${-140 * e}px)`, filter: `blur(${e * 6}px)`};

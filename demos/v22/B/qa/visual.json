@@ -119,8 +119,8 @@
   },
   {
    "check": "one_reveal_reaction",
-   "passed": false,
-   "detail": "2 big reaction(s): ['scene_003', 'scene_005']",
+   "passed": true,
+   "detail": "1 big reaction(s): ['scene_005']",
    "scene": null,
    "mandatory": false,
    "basis": "deterministic",
@@ -174,7 +174,7 @@
   {
    "check": "cuts_per_10s",
    "passed": true,
-   "detail": "busiest 10 s window has 4 cuts (target \u2264 5)",
+   "detail": "busiest 10 s window has 3 cuts (target \u2264 5)",
    "scene": null,
    "mandatory": false,
    "basis": "deterministic",
@@ -182,8 +182,8 @@
   },
   {
    "check": "no_back_to_back_layouts",
-   "passed": false,
-   "detail": "1 repeat(s)",
+   "passed": true,
+   "detail": "0 repeat(s)",
    "scene": null,
    "mandatory": false,
    "basis": "deterministic",
@@ -192,7 +192,7 @@
   {
    "check": "layout_variety",
    "passed": true,
-   "detail": "7 distinct layouts over 8 beats",
+   "detail": "7 distinct layouts over 7 beats",
    "scene": null,
    "mandatory": false,
    "basis": "deterministic",
@@ -241,57 +241,50 @@
    "t": 2.817,
    "kind": "scene_entrance",
    "scene": "scene_002",
-   "mean_luma": 35.2,
-   "stage_std": 52.15
+   "mean_luma": 30.5,
+   "stage_std": 52.89
   },
   {
    "t": 5.533,
    "kind": "scene_mid",
    "scene": "scene_002",
-   "mean_luma": 25.0,
-   "stage_std": 22.16
-  },
-  {
-   "t": 6.197,
-   "kind": "beat_boundary",
-   "scene": "scene_002",
-   "mean_luma": 25.0,
-   "stage_std": 15.32
+   "mean_luma": 19.9,
+   "stage_std": 17.22
   },
   {
    "t": 8.2,
    "kind": "scene_exit",
    "scene": "scene_002",
-   "mean_luma": 25.5,
-   "stage_std": 25.5
+   "mean_luma": 20.3,
+   "stage_std": 21.73
   },
   {
    "t": 8.55,
    "kind": "scene_entrance",
    "scene": "scene_003",
-   "mean_luma": 25.2,
-   "stage_std": 19.86
+   "mean_luma": 22.5,
+   "stage_std": 6.89
   },
   {
    "t": 10.65,
    "kind": "scene_mid",
    "scene": "scene_003",
-   "mean_luma": 25.6,
-   "stage_std": 32.83
+   "mean_luma": 27.9,
+   "stage_std": 29.35
   },
   {
    "t": 12.7,
    "kind": "scene_exit",
    "scene": "scene_003",
-   "mean_luma": 25.3,
-   "stage_std": 28.32
+   "mean_luma": 27.6,
+   "stage_std": 24.57
   },
   {
    "t": 13.05,
    "kind": "scene_entrance",
    "scene": "scene_004",
-   "mean_luma": 21.8,
-   "stage_std": 12.23
+   "mean_luma": 22.6,
+   "stage_std": 11.91
   },
   {
    "t": 16.0,
@@ -312,7 +305,7 @@
    "kind": "scene_entrance",
    "scene": "scene_005",
    "mean_luma": 21.1,
-   "stage_std": 14.64
+   "stage_std": 14.65
   },
   {
    "t": 20.95,
@@ -333,7 +326,7 @@
    "kind": "scene_entrance",
    "scene": "scene_006",
    "mean_luma": 24.3,
-   "stage_std": 21.62
+   "stage_std": 21.63
   },
   {
    "t": 24.35,
@@ -346,15 +339,15 @@
    "t": 25.0,
    "kind": "beat_boundary",
    "scene": "scene_006",
-   "mean_luma": 39.8,
-   "stage_std": 80.32
+   "mean_luma": 40.3,
+   "stage_std": 82.95
   },
   {
    "t": 25.7,
    "kind": "scene_exit",
    "scene": "scene_006",
    "mean_luma": 42.6,
-   "stage_std": 66.25
+   "stage_std": 66.26
   },
   {
    "t": 25.8,
@@ -364,35 +357,15 @@
    "stage_std": 66.38
   }
  ],
- "issues": [
-  {
-   "check": "one_reveal_reaction",
-   "passed": false,
-   "detail": "2 big reaction(s): ['scene_003', 'scene_005']",
-   "scene": null,
-   "mandatory": false,
-   "basis": "deterministic",
-   "kind": "brand"
-  },
-  {
-   "check": "no_back_to_back_layouts",
-   "passed": false,
-   "detail": "1 repeat(s)",
-   "scene": null,
-   "mandatory": false,
-   "basis": "deterministic",
-   "kind": "repetition"
-  }
- ],
+ "issues": [],
  "layout_order": [
   "hookBold",
-  "warningCard",
-  "warningCard",
-  "quote",
+  "terminal",
+  "heroWord",
   "steps",
   "codeBlock",
   "outroCTA",
   "loop"
  ],
- "contact_sheet": "/home/user/automated-videos/data/jobs/78384847ff4b/qa/contact_sheet.jpg"
+ "contact_sheet": "/home/user/automated-videos/data/jobs/d1bb3f2583b3/qa/contact_sheet.jpg"
 }

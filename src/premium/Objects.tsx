@@ -221,12 +221,12 @@ export const BeforeAfter: React.FC<ObjProps> = p => {
         background: good ? C.successStrong : `${C.danger}33`, color: good ? '#05240f' : C.danger}}>{good ? '✓' : '✕'}</span>
       <Meta style={{fontSize: 32, color: good ? C.success : C.danger, letterSpacing: 4}}>{clip(titles[good ? 1 : 0].toUpperCase(), 18)}</Meta>
     </div>
-    <div style={{marginTop: 26, fontFamily: good ? F.sans : F.mono, fontSize: good ? 44 : 42, lineHeight: 1.3, color: good ? C.ink : C.inkSoft}}>
+    <div style={{marginTop: 26, fontFamily: good ? F.sans : F.mono, fontSize: good ? 42 : 42, lineHeight: 1.25, color: good ? C.ink : C.inkSoft}}>
       {lines.slice(0, 5).map((l, i) => <div key={i} style={{marginTop: i ? 10 : 0, ...(good ? enterStyle(f - swap, 4 + i * 6) : {})}}>
-        {good && <span style={{color: C.success}}>→ </span>}{clip(l, 40)}</div>)}
+        {good && <span style={{color: C.success}}>→ </span>}{clip(l, 60)}</div>)}
     </div>
   </div>;
-  return <Centre f={f}><Card style={{height: 640, position: 'relative'}}>
+  return <Centre f={f}><Card style={{height: 700, position: 'relative'}}>
     <div style={{position: 'relative', height: '100%'}}>
       {block(before, false, 1 - m, -m * 30)}
       {m > 0 && block(after, true, m, (1 - m) * 30)}

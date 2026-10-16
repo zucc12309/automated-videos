@@ -8,7 +8,7 @@
       "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
       "title": "Stop your coding agent from breaking your UI",
       "kind": "manual",
-      "retrieved_at": 1792142842.1004984
+      "retrieved_at": 1792143380.3913648
     }
   ],
   "claims": [
@@ -56,7 +56,7 @@
     "provider": "local",
     "script_provider": "vibe_library",
     "model": "vibe-template-v1",
-    "created_at": 1792142842.1005
+    "created_at": 1792143380.391367
   },
   "decisions": [
     {
@@ -71,25 +71,19 @@
       "stage": "narration",
       "engine": "espeak",
       "reason": "fallback: kokoro not importable (ModuleNotFoundError)",
-      "at": 1792142842.1075196
+      "at": 1792143380.40238
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 15.01,
-      "at": 1792142844.564031
+      "memory_available_gb": 12.14,
+      "at": 1792143383.150735
     },
     {
       "stage": "render",
       "concurrency": 2,
-      "memory_available_gb": 15.06,
-      "at": 1792142977.0450819
-    },
-    {
-      "stage": "render",
-      "concurrency": 2,
-      "memory_available_gb": 15.02,
-      "at": 1792143109.95444
+      "memory_available_gb": 14.98,
+      "at": 1792143519.7660189
     }
   ],
   "model": "vibe-template-v1",
@@ -105,21 +99,21 @@
   "visual_style": "studio",
   "theme": "fieldnotes-premium",
   "variant": {
-    "seed": "v22-B:r2",
+    "seed": "v22-B",
     "palette": "",
     "background": "flat",
-    "temperament": "smooth",
-    "captions": "pill",
+    "temperament": "editorial",
+    "captions": "editorial",
     "transitions": [
-      "cut",
-      "zoom",
-      "mask"
+      "push",
+      "mask",
+      "zoom"
     ],
-    "outfit": "#be123c",
+    "outfit": "#0f766e",
     "hair": "#3b2a21",
     "music": {
-      "progression": 0,
-      "bpm": 100
+      "progression": 2,
+      "bpm": 84
     },
     "camera": 1.0,
     "theme": "fieldnotes-premium",
@@ -127,9 +121,8 @@
   },
   "layouts": [
     "hookBold",
-    "warningCard",
-    "warningCard",
-    "quote",
+    "terminal",
+    "heroWord",
     "steps",
     "codeBlock",
     "outroCTA",
@@ -139,6 +132,6 @@
   "assets": [],
   "music": "procedural bed generated locally (no third-party audio)",
   "audio_processing": "Voice high-passed, compressed, -16 LUFS; music ducked under speech; final mix -14 LUFS with limiter",
-  "created_at": 1792143244.94802,
+  "created_at": 1792143648.7946796,
   "review": "Technical checks are automated. Factual accuracy, pronunciation and editorial quality need human review."
 }

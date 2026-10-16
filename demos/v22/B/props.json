@@ -4,29 +4,27 @@
   "brand": "FIELDNOTES",
   "series": "BUILD SMARTER",
   "direction": {
-    "notes": [
-      "scene_002: merged a 1.6s 'heroWord' beat into the previous one (min hold 1.6s)"
-    ],
+    "notes": [],
     "reveal_scene": "scene_003"
   },
   "repos": [],
-  "music": "jobs/78384847ff4b/music.wav",
+  "music": "jobs/d1bb3f2583b3/music.wav",
   "variant": {
-    "seed": "v22-B:r2",
+    "seed": "v22-B",
     "palette": "",
     "background": "flat",
-    "temperament": "smooth",
-    "captions": "pill",
+    "temperament": "editorial",
+    "captions": "editorial",
     "transitions": [
-      "cut",
-      "zoom",
-      "mask"
+      "push",
+      "mask",
+      "zoom"
     ],
-    "outfit": "#be123c",
+    "outfit": "#0f766e",
     "hair": "#3b2a21",
     "music": {
-      "progression": 0,
-      "bpm": 100
+      "progression": 2,
+      "bpm": 84
     },
     "camera": 1.0,
     "theme": "fieldnotes-premium",
@@ -43,10 +41,10 @@
       "label": "",
       "emphasis": "",
       "stat": "",
-      "audio": "jobs/78384847ff4b/scene-0.wav",
+      "audio": "jobs/d1bb3f2583b3/scene-0.wav",
       "frames": 80,
       "audioFrames": 72,
-      "uiAudio": "jobs/78384847ff4b/scene-0-ui.wav",
+      "uiAudio": "jobs/d1bb3f2583b3/scene-0-ui.wav",
       "words": [
         {
           "w": "Your",
@@ -345,10 +343,10 @@
       "label": "Vague",
       "emphasis": "guess",
       "stat": "",
-      "audio": "jobs/78384847ff4b/scene-1.wav",
+      "audio": "jobs/d1bb3f2583b3/scene-1.wav",
       "frames": 172,
       "audioFrames": 164,
-      "uiAudio": "jobs/78384847ff4b/scene-1-ui.wav",
+      "uiAudio": "jobs/d1bb3f2583b3/scene-1-ui.wav",
       "words": [
         {
           "w": "Most",
@@ -840,79 +838,42 @@
       "beats": [
         {
           "s": 0.0,
-          "e": 3.43,
+          "e": 5.733,
           "w": [
             0,
-            9
+            17
           ],
-          "text": "Most people type something like: make the dashboard look better.",
+          "text": "Most people type something like: make the dashboard look better. The agent has to guess what you mean.",
           "focus": "something",
-          "layout": "warningCard",
+          "layout": "terminal",
           "layoutReason": {
-            "score": 5.28,
+            "score": 5.5875,
             "parts": {
-              "relevance": 1.0,
+              "relevance": 1.1,
               "narrative": 0.5,
-              "readability": 1.0,
+              "readability": 0.938,
               "recent": 0.0,
               "discontinuity": 0.0,
               "cost": 0.0,
-              "complexity": 0.4,
+              "complexity": 0.5,
               "brand": 0.0
             },
             "intent": "warning",
-            "runner_up": "quote"
+            "runner_up": "warningCard"
           },
-          "anchor": "right",
+          "anchor": "left",
           "transition": "blurDissolve",
-          "punch": false,
+          "punch": true,
+          "held": true,
           "character": {
             "state": "confused",
-            "scale": "medium",
-            "anchor": "home"
+            "scale": "companion",
+            "anchor": "home",
+            "dim": 0.15
           },
           "direction": {
             "transition": "unrelated objects: editorial blur dissolve",
             "character": "storyboard asked for 'confused'",
-            "layout": "warning"
-          }
-        },
-        {
-          "s": 3.43,
-          "e": 5.733,
-          "w": [
-            10,
-            17
-          ],
-          "text": "The agent has to guess what you mean.",
-          "focus": "guess",
-          "layout": "warningCard",
-          "layoutReason": {
-            "score": 3.45,
-            "parts": {
-              "relevance": 0.7,
-              "narrative": 0.5,
-              "readability": 1.0,
-              "recent": 0.5,
-              "discontinuity": 0.0,
-              "cost": 0.0,
-              "complexity": 0.0,
-              "brand": 0.0
-            },
-            "intent": "warning",
-            "runner_up": "quote"
-          },
-          "anchor": "right",
-          "transition": "blurDissolve",
-          "punch": true,
-          "character": {
-            "state": "warning",
-            "scale": "medium",
-            "anchor": "home"
-          },
-          "direction": {
-            "transition": "unrelated objects: editorial blur dissolve",
-            "character": "reacts to the mistake/caution",
             "layout": "warning"
           }
         }
@@ -974,10 +935,10 @@
       "label": "Better",
       "emphasis": "scope",
       "stat": "",
-      "audio": "jobs/78384847ff4b/scene-2.wav",
+      "audio": "jobs/d1bb3f2583b3/scene-2.wav",
       "frames": 135,
       "audioFrames": 119,
-      "uiAudio": "jobs/78384847ff4b/scene-2-ui.wav",
+      "uiAudio": "jobs/d1bb3f2583b3/scene-2-ui.wav",
       "words": [
         {
           "w": "Instead,",
@@ -1342,11 +1303,11 @@
           ],
           "text": "Instead, give it a scope, constraints, and a way to check the result.",
           "focus": "scope",
-          "layout": "quote",
+          "layout": "heroWord",
           "layoutReason": {
-            "score": 2.72,
+            "score": 2.84,
             "parts": {
-              "relevance": 0.33,
+              "relevance": 0.36,
               "narrative": 0.5,
               "readability": 1.0,
               "recent": 0.0,
@@ -1356,19 +1317,19 @@
               "brand": 0.0
             },
             "intent": "comparison",
-            "runner_up": "mascotCloseup"
+            "runner_up": "quote"
           },
-          "anchor": "peek",
+          "anchor": "right",
           "transition": "blurDissolve",
           "punch": true,
           "character": {
-            "state": "surprised",
+            "state": "speaking",
             "scale": "medium",
             "anchor": "home"
           },
           "direction": {
             "transition": "unrelated objects: editorial blur dissolve",
-            "character": "signature reveal reaction (once per video) on the most impressive item",
+            "character": "explanation beat: medium presenter",
             "layout": "comparison"
           }
         }
@@ -1416,7 +1377,9 @@
       "media": null,
       "mediaSeconds": null,
       "layoutHint": "splitCompare",
-      "avoidLayouts": [],
+      "avoidLayouts": [
+        "splitCompare"
+      ],
       "cta": null,
       "character_action": "",
       "motionClip": false,
@@ -1439,10 +1402,10 @@
       "label": "",
       "emphasis": "works",
       "stat": "",
-      "audio": "jobs/78384847ff4b/scene-3.wav",
+      "audio": "jobs/d1bb3f2583b3/scene-3.wav",
       "frames": 186,
       "audioFrames": 178,
-      "uiAudio": "jobs/78384847ff4b/scene-3-ui.wav",
+      "uiAudio": "jobs/d1bb3f2583b3/scene-3-ui.wav",
       "words": [
         {
           "w": "Why",
@@ -1930,9 +1893,9 @@
           "focus": "works",
           "layout": "steps",
           "layoutReason": {
-            "score": 5.0227,
+            "score": 5.2227,
             "parts": {
-              "relevance": 1.05,
+              "relevance": 1.1,
               "narrative": 0.5,
               "readability": 0.603,
               "recent": 0.0,
@@ -2017,10 +1980,10 @@
       "label": "",
       "emphasis": "focused",
       "stat": "",
-      "audio": "jobs/78384847ff4b/scene-4.wav",
+      "audio": "jobs/d1bb3f2583b3/scene-4.wav",
       "frames": 111,
       "audioFrames": 95,
-      "uiAudio": "jobs/78384847ff4b/scene-4-ui.wav",
+      "uiAudio": "jobs/d1bb3f2583b3/scene-4-ui.wav",
       "words": [
         {
           "w": "Here's",
@@ -2324,7 +2287,7 @@
               "brand": 0.0
             },
             "intent": "code",
-            "runner_up": "mascotCloseup"
+            "runner_up": "terminal"
           },
           "anchor": "left",
           "transition": "blurDissolve",
@@ -2399,10 +2362,10 @@
       "label": "",
       "emphasis": "PROMPT",
       "stat": "",
-      "audio": "jobs/78384847ff4b/scene-5.wav",
+      "audio": "jobs/d1bb3f2583b3/scene-5.wav",
       "frames": 93,
       "audioFrames": 77,
-      "uiAudio": "jobs/78384847ff4b/scene-5-ui.wav",
+      "uiAudio": "jobs/d1bb3f2583b3/scene-5-ui.wav",
       "words": [
         {
           "w": "Want",
@@ -2672,7 +2635,7 @@
             "rule": "final beat loops to the opening frame"
           },
           "anchor": "right",
-          "transition": "blurDissolve",
+          "transition": "cut",
           "punch": true,
           "character": {
             "state": "speaking",
@@ -2680,7 +2643,7 @@
             "anchor": "centre"
           },
           "direction": {
-            "transition": "loop tail returns softly to the opening frame",
+            "transition": "loop tail cuts back to the opening frame so the CTA never overlaps the hook and the replay is seamless",
             "character": "loop returns to the opening composition",
             "layout": null
           }

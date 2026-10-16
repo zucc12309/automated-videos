@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "video_id": "78384847ff4b",
+  "video_id": "d1bb3f2583b3",
   "title": "Stop your coding agent from breaking your UI",
   "format": "vibe_coding",
   "duration_target_seconds": 40.0,
@@ -25,7 +25,7 @@
       "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
       "title": "Stop your coding agent from breaking your UI",
       "kind": "manual",
-      "retrieved_at": 1792142842.1004984
+      "retrieved_at": 1792143380.3913648
     }
   ],
   "claims": [
@@ -251,9 +251,9 @@
       "cta": {},
       "fallback_layout": "heroWord",
       "qa": {
-        "status": "pass",
+        "status": "repaired",
         "issues": [],
-        "repairs": 0
+        "repairs": 1
       }
     },
     {
@@ -448,7 +448,7 @@
     "provider": "local",
     "script_provider": "vibe_library",
     "model": "vibe-template-v1",
-    "created_at": 1792142842.1005
+    "created_at": 1792143380.391367
   },
   "seed": "v22-B",
   "hook_candidates": [

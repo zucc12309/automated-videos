@@ -1,3 +1,6 @@
-> make the dashboard look better
+- <h1 className="text-xl">
++ <h1 className="text-heading">
+  {title}
+  </h1>
 
 # Illustrative snippet from the video; not executed by this pipeline.
